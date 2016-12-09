@@ -4,9 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * Created by 365 on 2016/12/9 0009.
  */
@@ -15,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloWorldController {
 
     @RequestMapping("hello")
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView handleRequest() throws Exception {
         //1、收集参数、验证参数
         //2、绑定参数到命令对象
         //3、将命令对象传入业务对象进行业务处理
