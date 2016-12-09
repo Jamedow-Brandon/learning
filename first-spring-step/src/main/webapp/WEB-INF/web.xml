@@ -1,5 +1,4 @@
-<!DOCTYPE web-app PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app id="WebApp_ID" version="2.4"
@@ -16,6 +15,10 @@
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
+        </init-param>
         <!--启动顺序 小值优先-->
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -23,8 +26,15 @@
     <!--url拦截配置-->
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
+        <!--表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!-- 设置Spring容器加载配置文件路径 -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/*.xml</param-value>
+    </context-param>
 
     <listener>
         <listener-class>
