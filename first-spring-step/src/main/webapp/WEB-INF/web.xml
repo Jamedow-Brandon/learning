@@ -9,7 +9,7 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
-    <!--前置控制器-->
+    <!-- DispatcherServlet start -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>
@@ -22,6 +22,24 @@
         <!--启动顺序 小值优先-->
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!-- DispatcherServlet end -->
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!--url拦截配置-->
     <servlet-mapping>
