@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 365
-  Date: 2016/12/9 0009
-  Time: 16:44
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-    <title>hello</title>
-</head>
 <body>
-Hello World!${jamedow}
+<h2>Hello World!</h2>
+<form:form  commandName="user" action="/adduser">
+    <form:input path="username"/>
+    <form:input path="password"/>
+
+    <button type="submit">提交</button>
+</form:form>
 </body>
 </html>

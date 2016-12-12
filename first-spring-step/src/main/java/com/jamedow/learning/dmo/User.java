@@ -1,10 +1,14 @@
 package com.jamedow.learning.dmo;
 
+
+import com.sun.istack.internal.NotNull;
+
 /**
  * Created by 365 on 2016/12/12 0012.
  */
 public class User {
 
+    @NotNull
     private int id;
 
     private String username;
