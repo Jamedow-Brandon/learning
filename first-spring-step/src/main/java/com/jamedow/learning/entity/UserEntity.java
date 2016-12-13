@@ -1,14 +1,10 @@
-package com.jamedow.learning.dmo;
-
-
-import com.sun.istack.internal.NotNull;
+package com.jamedow.learning.entity;
 
 /**
  * Created by 365 on 2016/12/12 0012.
  */
-public class User {
+public class UserEntity {
 
-    @NotNull
     private int id;
 
     private String username;
