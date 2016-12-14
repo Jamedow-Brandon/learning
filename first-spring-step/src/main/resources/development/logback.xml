@@ -40,7 +40,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         <!--<rollingPolicy>:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 非当天的Log文件压缩备份为 ${USER_HOME}/${byDay}/${FILE_NAME}-${byDay}-%i.log.zip -->
-            <fileNamePattern>${USER_HOME}/${byDay}/${FILE_NAME}-${byDay}.log</fileNamePattern>
+            <fileNamePattern>${USER_HOME}/${byDay}/${FILE_NAME}-%d{yyyy-MM-dd}.log</fileNamePattern>
             <!-- 超过30天的备份文件会被删除 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
