@@ -2,6 +2,8 @@ package com.jamedow.learning.web;
 
 import com.jamedow.learning.entity.UserEntity;
 import com.jamedow.learning.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class HelloWorldController {
+    Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
     @Autowired
     private UserService userService;
@@ -33,8 +36,13 @@ public class HelloWorldController {
 
     @RequestMapping("adduser")
     public ModelAndView addUser(UserEntity userEntity) throws Exception {
+        logger.info("add user {} start", userEntity.getUsername());
         ModelAndView view = new ModelAndView();
-        userService.insertUser(userEntity);
+        try {
+            userService.insertUser(userEntity);
+        } catch (Exception e) {
+            logger.error("add user {} error", userEntity.getUsername());
+        }
         //添加模型数据 可以是任意的POJO对象
         view.addObject("user", userEntity);
         //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
