@@ -1,6 +1,6 @@
-package com.jamedow.learning.dao;
+package com.jamedow.learning.mapper;
 
-import com.jamedow.learning.dmo.User;
+import com.jamedow.learning.entity.UserEntity;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,9 +11,9 @@ public interface UserDao {
 
     /**
      * 添加新用户
-     * @param user
+     *
+     * @param userEntity
      * @return
      */
-    public int insertUser(User user);
-
+    int insertUser(UserEntity userEntity);
 }

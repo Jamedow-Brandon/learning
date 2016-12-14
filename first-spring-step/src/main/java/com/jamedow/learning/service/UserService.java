@@ -1,6 +1,6 @@
 package com.jamedow.learning.service;
 
-import com.jamedow.learning.dmo.User;
+import com.jamedow.learning.entity.UserEntity;
 
 /**
  * Created by 365 on 2016/12/12 0012.
@@ -8,5 +8,5 @@ import com.jamedow.learning.dmo.User;
 public interface UserService {
 
 
-    public int insertUser(User user);
+    int insertUser(UserEntity userEntity);
 }

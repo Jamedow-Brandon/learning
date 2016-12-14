@@ -1,17 +1,14 @@
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-        "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app id="WebApp_ID" version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-            http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
 
     <display-name>Archetype Created Web Application</display-name>
 
     <!-- DispatcherServlet start -->
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>springServlet</servlet-name>
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
@@ -22,6 +19,13 @@
         <!--启动顺序 小值优先-->
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <!--url拦截配置-->
+    <servlet-mapping>
+        <servlet-name>springServlet</servlet-name>
+        <!--表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求-->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
     <!-- DispatcherServlet end -->
 
     <filter>
@@ -41,22 +45,38 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--url拦截配置-->
+    <!-- DruidStatView -->
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+        <init-param>
+            <param-name>allow</param-name>
+            <param-value>127.0.0.1</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <!--表示哪些请求交给Spring Web MVC处理， “/” 是用来定义默认servlet映射的。也可以如“*.html”表示拦截所有以html为扩展名的请求-->
-        <url-pattern>/</url-pattern>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
 
-    <!-- 设置Spring容器加载配置文件路径 -->
+    <!-- Context ConfigLocation -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:spring/*.xml</param-value>
     </context-param>
 
     <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>logbackConfigLocation</param-name>
+        <param-value>classpath:logback.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
     </listener>
 </web-app>
