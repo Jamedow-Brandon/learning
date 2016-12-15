@@ -10,15 +10,13 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     <contextName>learning</contextName>
 
     <property name="USER_HOME" value="logs"/>
-    <property scope="context" name="FILE_NAME" value="learning-logback"/>
 
     <!--获取时间戳字符串-->
     <timestamp key="byDay" datePattern="yyyy-MM-dd"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
-            </pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -29,18 +27,17 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     FileAppender：把日志输出到文件
     RollingFileAppender：滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件-->
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Encoding>UTF-8</Encoding>
-
         <!-- 当前Log文件名 -->
-        <file>${USER_HOME}/${FILE_NAME}.log</file>
+        <file>/${USER_HOME}/learning-logback.log</file>
 
         <!--<append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true-->
         <append>true</append>
+        <prudent>false</prudent>
 
         <!--<rollingPolicy>:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 非当天的Log文件压缩备份为 ${USER_HOME}/${byDay}/${FILE_NAME}-${byDay}-%i.log.zip -->
-            <fileNamePattern>${USER_HOME}/${byDay}/${FILE_NAME}-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${USER_HOME}/${FILE_NAME}-%d.log</fileNamePattern>
             <!-- 超过30天的备份文件会被删除 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
@@ -49,32 +46,34 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
         <minIndex>:窗口索引最小值
         <maxIndex>:窗口索引最大值，当用户指定的窗口过大时，会自动将窗口设置为12
         按照固定窗口模式生成日志文件，当文件大于20MB时，生成新的日志文件。窗口大小是1到3，当保存了3个归档文件后，将覆盖最早的日志-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>tests.%i.log.zip</fileNamePattern>
-            <minIndex>1</minIndex>
-            <maxIndex>6</maxIndex>
-        </rollingPolicy>
+        <!--在FixedWindowRollingPolicy里面不能配置%d{yyyy-MM-dd}, 如果配置了的话，会导致滚动失败，不仅不能生成滚动文件，当前文件也不再写入，只能且必需配置%i-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+        <!--<fileNamePattern>tests.%i.log.zip</fileNamePattern>-->
+        <!--<minIndex>1</minIndex>-->
+        <!--<maxIndex>6</maxIndex>-->
+        <!--</rollingPolicy>-->
 
+        <!--<triggeringPolicy >: 告知 RollingFileAppender 何时激活滚动 滚动，就是刷新的意思-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+        <!--SizeBasedTriggeringPolicy： 查看当前活动文件的大小，如果超过指定大小会告知-->
 
-        <!--<triggeringPolicy >: 告知 RollingFileAppender 何时激活滚动-->
-        <triggeringPolicy
-                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <!--SizeBasedTriggeringPolicy： 查看当前活动文件的大小，如果超过指定大小会告知-->
+        <!--<maxFileSize>:这是活动文件的大小，默认值是10MB-->
+        <!--<maxFileSize>100MB</maxFileSize>-->
+        <!--</triggeringPolicy>-->
 
-            <!--<maxFileSize>:这是活动文件的大小，默认值是10MB-->
-            <maxFileSize>5MB</maxFileSize>
-        </triggeringPolicy>
+        <!--TimeBasedRollingPolicy 不能和SizeBasedTriggeringPolicy配合使用，如果两个同时配置，在达到最大文件大小的时候，会导致即不会生成滚动文件，当前文件也不再写入
+        FixedWindowRollingPolicy可以和SizeBasedTriggeringPolicy配合使用-->
+
         <!--<encoder>：对日志进行格式化-->
         <encoder>
-            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n
-            </pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
         <!--<prudent>：当为true时，不支持FixedWindowRollingPolicy。支持TimeBasedRollingPolicy，
         但是有两个限制，1不支持也不允许文件压缩，2不能设置file属性，必须留空-->
     </appender>
 
     <!--name:用来指定受此logger约束的某一个包或者具体的某一个类
-    level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，还有一个特俗值INHERITED或者同义词NULL，
+    level:用来设置打印级别，大小写无关： 从高到地低 OFF 、FATAL 、ERROR 、WARN 、INFO 、DEBUG 、TRACE 、ALL，还有一个特俗值INHERITED或者同义词NULL，
           代表强制执行上级的级别。如果未设置此属性，那么当前logger将会继承上级的级别
     additivity:是否向上级logger传递打印信息。默认是true-->
     <logger name="com.jamedow.learning" level="debug" additivity="true">
@@ -83,6 +82,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     </logger>
 
     <root level="debug">
+        <appender-ref ref="file"/>
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

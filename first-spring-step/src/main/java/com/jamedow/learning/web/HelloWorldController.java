@@ -37,6 +37,17 @@ public class HelloWorldController {
     @RequestMapping("adduser")
     public ModelAndView addUser(UserEntity userEntity) throws Exception {
         logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
+        logger.info("add user {} start", userEntity.getUsername());
         ModelAndView view = new ModelAndView();
         try {
             userService.insertUser(userEntity);
