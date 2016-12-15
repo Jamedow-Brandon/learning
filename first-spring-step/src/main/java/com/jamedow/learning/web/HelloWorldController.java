@@ -15,10 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class HelloWorldController {
-    Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+    private Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping(value = "")
+    public ModelAndView index() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("index");
+        return view;
+    }
+
 
     @RequestMapping("hello")
     public ModelAndView hello() {
