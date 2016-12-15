@@ -8,8 +8,12 @@
             http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!-- 使用Annotation自动注册Bean，解决事物失效问题：在主容器中不扫描@Controller注解，在SpringMvc中只扫描@Controller注解。  -->
-    <context:component-scan base-package="com.jamedow.learning"/>
+    <context:component-scan base-package="com.jamedow.learning">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
     <context:annotation-config/>
+
     <!-- MyBatis begin -->
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory"

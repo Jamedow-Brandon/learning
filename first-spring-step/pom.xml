@@ -203,6 +203,11 @@
         <resources>
             <resource>
                 <targetPath>.</targetPath>
+                <excludes>
+                    <exclude>test/*</exclude>
+                    <exclude>production/*</exclude>
+                    <exclude>development/*</exclude>
+                </excludes>
                 <directory>src/main/resources/${profiles.active}</directory>
                 <filtering>true</filtering>
             </resource>
