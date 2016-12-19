@@ -131,6 +131,14 @@
             <artifactId>logback-ext-spring</artifactId>
             <version>0.1.2</version>
         </dependency>
+
+
+        <!--ali api-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>taobao-sdk-java-auto</artifactId>
+            <version>6.12.18</version>
+        </dependency>
     </dependencies>
 
     <profiles>
