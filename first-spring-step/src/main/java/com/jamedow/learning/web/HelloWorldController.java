@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by 365 on 2016/12/9 0009.
@@ -43,7 +44,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping("adduser")
-    public ModelAndView addUser(UserEntity userEntity) throws Exception {
+    public String addUser(UserEntity userEntity, RedirectAttributes redirectAttributes) throws Exception {
         logger.info("add user {} start", userEntity.getUsername());
         logger.info("add user {} start", userEntity.getUsername());
         logger.info("add user {} start", userEntity.getUsername());
@@ -56,16 +57,13 @@ public class HelloWorldController {
         logger.info("add user {} start", userEntity.getUsername());
         logger.info("add user {} start", userEntity.getUsername());
         logger.info("add user {} start", userEntity.getUsername());
-        ModelAndView view = new ModelAndView();
         try {
             userService.insertUser(userEntity);
         } catch (Exception e) {
             logger.error("add user {} error", userEntity.getUsername());
+            redirectAttributes.addFlashAttribute("message", "error");
         }
-        //添加模型数据 可以是任意的POJO对象
-        view.addObject("user", userEntity);
-        //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
-        view.setViewName("hello");
-        return view;
+        redirectAttributes.addFlashAttribute("message", "ok");
+        return "redirect:hello";
     }
 }
