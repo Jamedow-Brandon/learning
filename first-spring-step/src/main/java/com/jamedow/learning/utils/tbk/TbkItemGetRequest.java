@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class TbkItemGetRequest extends BaseTaobaoRequest implements TaobaoRequest {
 
-    private String API_METHOD_NAME = "taobao.tbk.item.get";
+    private static final String API_METHOD_NAME = "taobao.tbk.item.get";
 
     private String fields;
 

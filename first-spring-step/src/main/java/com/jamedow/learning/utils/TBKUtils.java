@@ -1,5 +1,7 @@
 package com.jamedow.learning.utils;
 
+import com.jamedow.learning.utils.category.ItemcatsGetRequest;
+import com.jamedow.learning.utils.category.ItemcatsGetResponse;
 import com.jamedow.learning.utils.tbk.TbkItemGetRequest;
 import com.jamedow.learning.utils.tbk.TbkItemGetResponse;
 import com.taobao.api.DefaultTaobaoClient;
@@ -18,12 +20,12 @@ public class TBKUtils {
 
     private static String secret = "sandboxde69ac9a8e65921ff87f92f9b";
 
-    public static void execute() {
+    public static void getProducts() {
         try {
             TbkItemGetRequest req = new TbkItemGetRequest();
             req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick");
-            req.setQ("女装");
-            req.setCat("16,18");
+            req.setQ("零食");
+            req.setCat("50008613,50008058,50009832,50009556,50008059,50010535,50008063,50009898,50003874");
             req.setItemloc("杭州");
             req.setSort("tk_rate_des");
             req.setTmall(false);
@@ -46,7 +48,25 @@ public class TBKUtils {
         }
     }
 
+    public static void getCategories() {
+        try {
+            ItemcatsGetRequest req = new ItemcatsGetRequest();
+            req.setCids("50008613,50008058,50009832,50009556,50008059,50010535,50008063,50009898,50003874");
+            req.setFields("cid,parent_cid,name,is_parent");
+            //食品\茶叶\零食\特产：50002766
+            req.setParentCid(50002766L);
+            req.setTimestamp((new Date()).getTime());
+
+            TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
+            ItemcatsGetResponse rsp = (ItemcatsGetResponse) client.execute(req);
+            System.out.println(rsp.getBody());
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+    }
+
     public static void main(String[] args) {
-        execute();
+        getProducts();
+//        getCategories();
     }
 }
