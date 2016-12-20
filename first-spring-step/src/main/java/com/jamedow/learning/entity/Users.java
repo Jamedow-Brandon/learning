@@ -3,7 +3,7 @@ package com.jamedow.learning.entity;
 /**
  * Created by 365 on 2016/12/12 0012.
  */
-public class UserEntity {
+public class Users {
 
     private int id;
 

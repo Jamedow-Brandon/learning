@@ -23,20 +23,20 @@
 
         <!-- 生成实体类地址 -->
         <javaModelGenerator targetPackage="com.jamedow.learning.entity"
-                            targetProject="D:/src/main/java">
+                            targetProject="D:/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
         <sqlMapGenerator targetPackage="com.jamedow.learning.mapper"
-                         targetProject="D:/src/main/java">
+                         targetProject="D:/">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
         <javaClientGenerator targetPackage="com.jamedow.learning.mapper"
-                             targetProject="D:/src/main/java" type="XMLMAPPER">
+                             targetProject="D:/" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
@@ -49,8 +49,7 @@
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
+            <!--<columnOverride column="photo" jdbcType="BLOB"/>-->
         </table>
 
     </context>

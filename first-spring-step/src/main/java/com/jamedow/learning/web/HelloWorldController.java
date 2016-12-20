@@ -1,7 +1,7 @@
 package com.jamedow.learning.web;
 
-import com.jamedow.learning.entity.UserEntity;
-import com.jamedow.learning.service.UserService;
+import com.jamedow.learning.entity.Users;
+import com.jamedow.learning.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class HelloWorldController {
     private Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
     @Autowired
-    private UserService userService;
+    private UsersService usersService;
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -37,33 +37,40 @@ public class HelloWorldController {
         //4、选择下一个页面
         ModelAndView view = new ModelAndView();
         //添加模型数据 可以是任意的POJO对象
-        view.addObject("user", new UserEntity());
+        view.addObject("user", new Users());
         //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
         view.setViewName("hello");
         return view;
     }
 
     @RequestMapping("adduser")
-    public String addUser(UserEntity userEntity, RedirectAttributes redirectAttributes) throws Exception {
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
-        logger.info("add user {} start", userEntity.getUsername());
+    public String addUser(Users users, RedirectAttributes redirectAttributes) throws Exception {
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
+        logger.info("add user {} start", users.getUsername());
         try {
-            userService.insertUser(userEntity);
+            usersService.insertUser(users);
         } catch (Exception e) {
-            logger.error("add user {} error", userEntity.getUsername());
+            logger.error("add user {} error", users.getUsername());
             redirectAttributes.addFlashAttribute("message", "error");
         }
         redirectAttributes.addFlashAttribute("message", "ok");
         return "redirect:hello";
+    }
+
+    @RequestMapping("waterfall")
+    public ModelAndView waterfall() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("waterfall-layout");
+        return view;
     }
 }
