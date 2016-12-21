@@ -102,7 +102,7 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
-            <version>1.6.2</version>
+            <version>1.7</version>
         </dependency>
         <dependency>
             <groupId>org.apache.velocity</groupId>
@@ -132,12 +132,17 @@
             <version>0.1.2</version>
         </dependency>
 
-
         <!--ali api-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>taobao-sdk-java-auto</artifactId>
             <version>6.12.18</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
         </dependency>
     </dependencies>
 

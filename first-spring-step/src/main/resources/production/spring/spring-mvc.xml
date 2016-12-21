@@ -12,7 +12,7 @@
     <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     <!--</context:component-scan>-->
 
-    <!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
+    <!-- 默认的注解映射的支持，org.springframework.web.filter.mvc.method.annotation.RequestMappingHandlerMapping -->
     <mvc:annotation-driven/>
 
 
