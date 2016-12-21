@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------------
 
-package com.qq.weixin.mp.aes;
+package com.jamedow.learning.wechat.aes;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

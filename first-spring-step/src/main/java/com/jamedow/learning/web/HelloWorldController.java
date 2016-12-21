@@ -2,7 +2,7 @@ package com.jamedow.learning.web;
 
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
-import com.qq.weixin.mp.aes.WXBizMsgCrypt;
+import com.jamedow.learning.wechat.aes.WXBizMsgCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
