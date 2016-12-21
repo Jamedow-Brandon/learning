@@ -2,10 +2,14 @@ package com.jamedow.learning.utils;
 
 import com.jamedow.learning.utils.category.ItemcatsGetRequest;
 import com.jamedow.learning.utils.category.ItemcatsGetResponse;
+import com.jamedow.learning.utils.tbk.TbkItemDetailGetRequest;
+import com.jamedow.learning.utils.tbk.TbkItemDetailGetResponse;
 import com.jamedow.learning.utils.tbk.TbkItemGetRequest;
 import com.jamedow.learning.utils.tbk.TbkItemGetResponse;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
@@ -14,11 +18,31 @@ import java.util.Date;
  */
 public class TBKUtils {
 
+    private static Logger logger = LoggerFactory.getLogger(TBKUtils.class);
+
     private static String url = "http://gw.api.tbsandbox.com/router/rest";
 
     private static String appkey = "1023456633";
 
     private static String secret = "sandboxde69ac9a8e65921ff87f92f9b";
+
+
+    public static void getProductDetail() {
+        try {
+            TbkItemDetailGetRequest req = new TbkItemDetailGetRequest();
+            req.setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,description,item_click_url,shop_click_url");
+            req.setNumIids("520824671763,533161287181");
+            req.setPlatform(1L);
+            req.setAdzoneId(123L);
+//            req.setUnid("demo");
+
+            TaobaoClient client = new DefaultTaobaoClient(url, appkey, secret);
+            TbkItemDetailGetResponse rsp = (TbkItemDetailGetResponse) client.execute(req);
+            System.out.println(rsp.getBody());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
 
     public static void getProducts() {
         try {
@@ -44,7 +68,7 @@ public class TBKUtils {
             TbkItemGetResponse rsp = (TbkItemGetResponse) client.execute(req);
             System.out.println(rsp.getBody());
         } catch (Exception e) {
-            System.out.println("error");
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -61,12 +85,13 @@ public class TBKUtils {
             ItemcatsGetResponse rsp = (ItemcatsGetResponse) client.execute(req);
             System.out.println(rsp.getBody());
         } catch (Exception e) {
-            System.out.println("error");
+            logger.error(e.getMessage(), e);
         }
     }
 
     public static void main(String[] args) {
-        getProducts();
+//        getProducts();
 //        getCategories();
+        getProductDetail();
     }
 }
