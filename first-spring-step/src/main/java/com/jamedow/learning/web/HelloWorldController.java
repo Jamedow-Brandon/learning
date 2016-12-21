@@ -87,10 +87,10 @@ public class HelloWorldController {
 
     @RequestMapping("checkwechatcallback")
     public String checkWeChatCallback(HttpServletRequest request, HttpServletResponse response,
-                                      @RequestParam(value = "msg_signature", required = true) String sVerifyMsgSig,
-                                      @RequestParam(value = "timestamp", required = true) String sVerifyTimeStamp,
-                                      @RequestParam(value = "nonce", required = true) String sVerifyNonce,
-                                      @RequestParam(value = "echostr", required = true) String sVerifyEchoStr) throws Exception {
+                                      @RequestParam(value = "msg_signature") String sVerifyMsgSig,
+                                      @RequestParam(value = "timestamp") String sVerifyTimeStamp,
+                                      @RequestParam(value = "nonce") String sVerifyNonce,
+                                      @RequestParam(value = "echostr") String sVerifyEchoStr) throws Exception {
 
 
         WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
