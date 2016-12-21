@@ -1,7 +1,6 @@
 package com.jamedow.learning.common.system.filter;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -19,8 +18,6 @@ public class LearningFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         //将控制器传向下一个filter
         chain.doFilter(servletRequest, servletResponse);
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        request.setAttribute("contextPath", request.getContextPath());
     }
 
     @Override

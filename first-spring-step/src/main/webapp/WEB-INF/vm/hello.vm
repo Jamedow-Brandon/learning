@@ -32,8 +32,8 @@
 </form>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="${contextPath}/static/jquery/jquery-3.1.1.min.js"></script>
+<script src="${rc.contextPath}/static/jquery/jquery-3.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="${contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

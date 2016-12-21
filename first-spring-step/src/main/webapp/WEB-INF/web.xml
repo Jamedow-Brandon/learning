@@ -11,7 +11,7 @@
         <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:logback.xml</param-value>
     </context-param>
-    <!-- Logback the root web application before spring filter init -->
+    <!-- Logback the root web application before spring servlet init -->
     <listener>
         <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
     </listener>
@@ -23,7 +23,7 @@
         <param-value>classpath*:spring/*.xml</param-value>
     </context-param>
 
-    <!-- Bootstraps the root web application context before filter initialization -->
+    <!-- Bootstraps the root web application context before servlet initialization -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -73,14 +73,14 @@
     </filter-mapping>
 
     <!-- learningFilter filter -->
-    <filter>
-        <filter-name>learningFilter</filter-name>
-        <filter-class>com.jamedow.learning.common.system.filter.LearningFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>learningFilter</filter-name>
-        <url-pattern>/</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+    <!--<filter-name>learningFilter</filter-name>-->
+    <!--<filter-class>com.jamedow.learning.common.system.filter.LearningFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>learningFilter</filter-name>-->
+    <!--<url-pattern>/</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <!-- DruidStatView -->
     <servlet>

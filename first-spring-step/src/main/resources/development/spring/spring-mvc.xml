@@ -30,7 +30,6 @@
         <property name="cache" value="true"/>
         <property name="prefix" value="/"/><!-- 视图文件的前缀，即存放的路径 -->
         <property name="suffix" value=".vm"/><!-- 视图文件的后缀名 -->
-        <!--<property name="toolboxConfigLocation" value="/WEB-INF/toolbox.xml"/>&lt;!&ndash;toolbox配置文件路径&ndash;&gt;-->
         <property name="dateToolAttribute" value="dateUtils"/><!--日期函数名称-->
         <property name="numberToolAttribute" value="numberUtils"/><!--数字函数名称-->
         <property name="contentType" value="text/html;charset=UTF-8"/>

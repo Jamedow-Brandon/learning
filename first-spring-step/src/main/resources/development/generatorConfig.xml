@@ -9,7 +9,7 @@
     <properties resource="properties/jdbc.properties"/>
 
     <classPathEntry
-            location="C:\Users\365\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
+            location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
 
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
