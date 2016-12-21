@@ -2,13 +2,19 @@ package com.jamedow.learning.web;
 
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
+import com.qq.weixin.mp.aes.WXBizMsgCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by 365 on 2016/12/9 0009.
@@ -20,6 +26,12 @@ public class HelloWorldController {
 
     @Autowired
     private UsersService usersService;
+    @Value("${wechat.token}")
+    private String sToken;
+    @Value("${wechat.encodingaeskey}")
+    private String sEncodingAESKey;
+    @Value("${wechat.cropid}")
+    private String sCorpID;
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -27,7 +39,6 @@ public class HelloWorldController {
         view.setViewName("index");
         return view;
     }
-
 
     @RequestMapping("hello")
     public ModelAndView hello() {
@@ -72,5 +83,29 @@ public class HelloWorldController {
         ModelAndView view = new ModelAndView();
         view.setViewName("waterfall-layout");
         return view;
+    }
+
+    @RequestMapping("checkwechatcallback")
+    public String checkWeChatCallback(HttpServletRequest request, HttpServletResponse response,
+                                      @RequestParam(value = "msg_signature", required = true) String sVerifyMsgSig,
+                                      @RequestParam(value = "timestamp", required = true) String sVerifyTimeStamp,
+                                      @RequestParam(value = "nonce", required = true) String sVerifyNonce,
+                                      @RequestParam(value = "echostr", required = true) String sVerifyEchoStr) throws Exception {
+
+
+        WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(sToken, sEncodingAESKey, sCorpID);
+
+        String sEchoStr = null; //需要返回的明文
+        try {
+            sEchoStr = wxcpt.VerifyURL(sVerifyMsgSig, sVerifyTimeStamp,
+                    sVerifyNonce, sVerifyEchoStr);
+            System.out.println("verifyurl echostr: " + sEchoStr);
+            // 验证URL成功，将sEchoStr返回
+            // HttpUtils.SetResponse(sEchoStr);
+        } catch (Exception e) {
+            //验证URL失败，错误原因请查看异常
+            e.printStackTrace();
+        }
+        return sEchoStr;
     }
 }
