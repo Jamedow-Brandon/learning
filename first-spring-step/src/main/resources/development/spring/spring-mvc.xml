@@ -37,4 +37,10 @@
         <property name="exposeRequestAttributes" value="true"/><!--是否开放request属性-->
         <property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
     </bean>
+
+    <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 静态资源映射 -->
+    <mvc:resources mapping="/static/**" location="/static/" cache-period="31536000"/>
 </beans>

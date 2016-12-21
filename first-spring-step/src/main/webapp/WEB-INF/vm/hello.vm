@@ -7,7 +7,7 @@
     <title>Bootstrap 101 Template</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="${rc.contextPath}/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,7 +25,9 @@
         World
     #end!</h2>
 <form action="/adduser">
-    <input type="text" id="username" name="username"/>
+    <div class="form-group">
+        <input type="text" class="input-sm" id="username" name="username"/>
+    </div>
     <input type="text" id="password" name="password"/>
 
     <button type="submit">提交</button>
@@ -34,6 +36,6 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="${rc.contextPath}/static/jquery/jquery-3.1.1.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="${rc.contextPath}/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="${rc.contextPath}/static/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
