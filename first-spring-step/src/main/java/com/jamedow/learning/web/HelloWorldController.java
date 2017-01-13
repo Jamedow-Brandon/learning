@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -86,7 +85,7 @@ public class HelloWorldController {
     }
 
     @RequestMapping("checkwechatcallback")
-    public String checkWeChatCallback(HttpServletRequest request, HttpServletResponse response,
+    public String checkWeChatCallback(HttpServletResponse response,
                                       @RequestParam(value = "msg_signature") String sVerifyMsgSig,
                                       @RequestParam(value = "timestamp") String sVerifyTimeStamp,
                                       @RequestParam(value = "nonce") String sVerifyNonce,
@@ -101,7 +100,7 @@ public class HelloWorldController {
                     sVerifyNonce, sVerifyEchoStr);
             System.out.println("verifyurl echostr: " + sEchoStr);
             // 验证URL成功，将sEchoStr返回
-            // HttpUtils.SetResponse(sEchoStr);
+            response.setStatus(200);
         } catch (Exception e) {
             //验证URL失败，错误原因请查看异常
             e.printStackTrace();

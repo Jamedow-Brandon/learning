@@ -27,9 +27,8 @@
 <form action="/adduser">
     <div class="form-group">
         <input type="text" class="input-sm" id="username" name="username"/>
+        <input type="text" class="input-sm" id="password" name="password"/>
     </div>
-    <input type="text" id="password" name="password"/>
-
     <button type="submit">提交</button>
 </form>
 
