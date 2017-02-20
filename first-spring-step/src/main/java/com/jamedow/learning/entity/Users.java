@@ -1,21 +1,23 @@
 package com.jamedow.learning.entity;
 
-/**
- * Created by 365 on 2016/12/12 0012.
- */
 public class Users {
-
-    private int id;
+    private Long id;
 
     private String username;
 
     private String password;
 
-    public int getId() {
+    private String email;
+
+    private String delstatus;
+
+    private String mobile;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,5 +35,29 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDelstatus() {
+        return delstatus;
+    }
+
+    public void setDelstatus(String delstatus) {
+        this.delstatus = delstatus;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

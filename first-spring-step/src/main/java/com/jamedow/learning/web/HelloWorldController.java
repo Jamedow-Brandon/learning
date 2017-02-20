@@ -68,7 +68,7 @@ public class HelloWorldController {
         logger.info("add user {} start", users.getUsername());
         logger.info("add user {} start", users.getUsername());
         try {
-            usersService.insertUser(users);
+            usersService.saveUser(users);
         } catch (Exception e) {
             logger.error("add user {} error", users.getUsername());
             redirectAttributes.addFlashAttribute("message", "error");

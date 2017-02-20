@@ -135,7 +135,6 @@ public class SortNumber {
 
             BubblePos(a,a.length);
 
-
         }else {
              BubbleIn(a,a.length);
         }
