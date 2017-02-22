@@ -1,4 +1,4 @@
-package com.jamedow.learning.common.MD5;
+package com.jamedow.learning.utils.MD5;
 
 public class MD5
 {
