@@ -163,6 +163,12 @@
             <version>1.9</version>
         </dependency>
 
+        <!-- RabbitMQ-->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>4.1.0</version>
+        </dependency>
     </dependencies>
 
     <profiles>

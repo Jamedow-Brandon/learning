@@ -157,11 +157,15 @@ under the License.
         </mirror>
          -->
 
+
+        <!--Takari公司，http://takari.io,也即Maven创始人Jason van Zyl创建的公司，最近宣布在
+         |Google Cloud Storage上建立了Maven镜像仓库，开放给全球所有的开发者使用。
+         |主流的依赖管理工具如Maven、Apache Ivy、Gradle等都可以使用此中央仓库。-->
         <mirror>
-            <id>nexus-aliyun</id>
-            <mirrorOf>*</mirrorOf>
-            <name>Nexus aliyun</name>
-            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <id>google-maven-central</id>
+            <name>Google Maven Central</name>
+            <url>https://maven-central.storage.googleapis.com</url>
+            <mirrorOf>central</mirrorOf>
         </mirror>
     </mirrors>
 
@@ -216,34 +220,6 @@ under the License.
           </repositories>
         </profile>
         -->
-        <profile>
-            <id>nexus</id>
-            <repositories>
-                <repository>
-                    <id>nexus</id>
-                    <url>http://139.196.222.167:8081/nexus/content/groups/public</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>nexus</id>
-                    <url>http://139.196.222.167:8081/nexus/content/groups/public</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
 
         <!--
          | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
