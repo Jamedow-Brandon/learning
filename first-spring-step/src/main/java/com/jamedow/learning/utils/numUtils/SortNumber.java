@@ -7,15 +7,15 @@ public class SortNumber {
 
 
     /**
-     * 正序希尔排序（不稳定）
-     * @param a
-     * @param n
-     * @param dk
+     * 正序希尔排序（不稳定），步数为dk的为一组，每个元素与自己组内的数据进行直接插入排序  
+     * @param a  待排序数
+     * @param n  a长度
+     * @param dk 步数
      */
     static private void ShellInsertSortPos(int a[], int n, int dk)
     {
-            for (int j = dk; j < n; j++)//从数组第gap个元素开始  
-                    if (a[j] < a[j - dk])//每个元素与自己组内的数据进行直接插入排序  
+            for (int j = dk; j < n; j++)
+                    if (a[j] < a[j - dk])
                     {
                         int temp = a[j];
                         int k = j - dk;
@@ -98,10 +98,12 @@ public class SortNumber {
         return r;
     }
 
-    /** 
-     * 插入排序—希尔排序
-     * 先按增量d（n/2,n为要排序数的个数)进行希尔排序 
-     * 
+
+    /**
+     * 插入排序—希尔排序，时间复杂度:O（n^1.3）,空间复杂度O（1）
+     * @param a  待排数
+     * @param order true为正序，false为倒序
+     * @return
      */
     static int[] shellSort(int a[],boolean order){
 
@@ -123,9 +125,9 @@ public class SortNumber {
 
 
     /**
-     * 冒泡排序
-     * @param a
-     * @param order
+     * 冒泡排序,时间复杂度:O（n^2）,空间复杂度O（1）
+     * @param a 待排数
+     * @param order true为正序，false为倒序
      * @return
      */
     static int[] BubbleSort(int a[],boolean order){
@@ -141,10 +143,12 @@ public class SortNumber {
         return a;
     }
 
+
+
     public static void main(String []args){
             int a[] = {3,1,5,7,2,4,8,9};
 
-            int b[]=BubbleSort(a,true);
+            int b[]=shellSort(a,true);
 
             for(int j= 0; j<8; j++){
                 System.out.print(a[j]+" ");
