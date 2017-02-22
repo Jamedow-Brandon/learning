@@ -1,4 +1,4 @@
-package com.jamedow.learning.service.numUtils;
+package com.jamedow.learning.utils.numUtils;
 
 /**
  * Created by yoyo on 2017/2/19.
