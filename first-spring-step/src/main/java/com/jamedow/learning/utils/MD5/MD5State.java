@@ -6,8 +6,8 @@ class MD5State
     public MD5State(MD5State from)
     {
         this();
-        for(int i = 0; i < buffer.length; i++)
-            buffer[i] = from.buffer[i];
+        for(int i = 0; i < buf.length; i++)
+            buf[i] = from.buf[i];
 
         for(int i = 0; i < state.length; i++)
             state[i] = from.state[i];
@@ -19,7 +19,7 @@ class MD5State
 
     public MD5State()
     {
-        buffer = new byte[64];
+        buf = new byte[64];
         count = new int[2];
         state = new int[4];
         state[0] = 0x67452301;
@@ -29,7 +29,7 @@ class MD5State
         count[0] = count[1] = 0;
     }
 
-    byte buffer[];
+    byte buf[];
     int count[];
     int state[];
 }
