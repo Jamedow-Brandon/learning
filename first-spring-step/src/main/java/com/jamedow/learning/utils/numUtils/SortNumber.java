@@ -13,7 +13,7 @@ public class SortNumber {
      * @param n  a长度
      * @param dk 步数
      */
-    private void ShellInsertSortPos(int a[], int n, int dk) {
+    private void shellInsertSortPos(int a[], int n, int dk) {
         for (int j = dk; j < n; j++)
             if (a[j] < a[j - dk]) {
                 int temp = a[j];
@@ -35,7 +35,7 @@ public class SortNumber {
      * @param n
      * @param dk
      */
-    private void ShellInsertSortIn(int a[], int n, int dk) {
+    private void shellInsertSortIn(int a[], int n, int dk) {
         for (int j = dk; j < n; j++)
             if (a[j] > a[j - dk]) {
                 int temp = a[j];
@@ -50,7 +50,7 @@ public class SortNumber {
     }
 
 
-    int[] BubblePos(int r[], int n) {
+    int[] bubblePos(int r[], int n) {
         int low = 0;
         int high = n - 1; //设置变量的初始值  
         int tmp, j;
@@ -73,7 +73,7 @@ public class SortNumber {
         return r;
     }
 
-    int[] BubbleIn(int r[], int n) {
+    int[] bubbleIn(int r[], int n) {
         int low = 0;
         int high = n - 1;
         int tmp, j;
@@ -161,12 +161,12 @@ public class SortNumber {
         int dk = n / 2;
         if (order != false) {
             while (dk >= 1) {
-                ShellInsertSortPos(a, n, dk);
+                shellInsertSortPos(a, n, dk);
                 dk = dk / 2;
             }
         } else {
             while (dk >= 1) {
-                ShellInsertSortIn(a, n, dk);
+                shellInsertSortIn(a, n, dk);
                 dk = dk / 2;
             }
         }
@@ -186,10 +186,10 @@ public class SortNumber {
 
         if (order != false) {
 
-            BubblePos(a, a.length);
+            bubblePos(a, a.length);
 
         } else {
-            BubbleIn(a, a.length);
+            bubbleIn(a, a.length);
         }
         return a;
     }
