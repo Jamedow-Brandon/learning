@@ -180,9 +180,9 @@ public class MD5
         Update(buffer, 1);
     }
 
-    public void Update(byte buffer[])
+    public void Update(byte buf[])
     {
-        Update(buffer, 0, buffer.length);
+        Update(buf, 0, buf.length);
     }
 
     public void Update(byte buffer[], int length)
