@@ -9,15 +9,15 @@ public class SortNumber {
      * 插入排序—希尔排序，时间复杂度:O（n^1.3）,空间复杂度O（1），不稳定
      *
      * @param a       待排数
-     * @param orderBy true为正序，false为倒序
+     * @param sortBy true为正序，false为倒序
      * @return
      */
-    public static int[] shellSort(int a[], boolean orderBy) {
+    public static int[] shellSort(int a[], boolean sortBy) {
 
         int n = a.length;
         int dk = n / 2;
         while (dk >= 1) {
-            shellInsertSortPos(a, n, dk, orderBy);
+            shellInsertSortPos(a, n, dk, sortBy);
             dk = dk / 2;
         }
         return a;
