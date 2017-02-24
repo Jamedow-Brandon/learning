@@ -1,56 +1,61 @@
-package com.jamedow.learning.utils.numUtils;
+package com.jamedow.learning.utils;
 
 /**
  * Created by yoyo on 2017/2/19.
  */
 public class SortNumber {
 
+    /**
+     * 插入排序—希尔排序，时间复杂度:O（n^1.3）,空间复杂度O（1），不稳定
+     *
+     * @param a       待排数
+     * @param orderBy true为正序，false为倒序
+     * @return
+     */
+    public static int[] shellSort(int a[], boolean orderBy) {
+
+        int n = a.length;
+        int dk = n / 2;
+        while (dk >= 1) {
+            shellInsertSortPos(a, n, dk, orderBy);
+            dk = dk / 2;
+        }
+        return a;
+    }
 
     /**
      * 正序希尔排序（不稳定），步数为dk的为一组，每个元素与自己组内的数据进行直接插入排序  
      *
-     * @param a  待排序数
-     * @param n  a长度
-     * @param dk 步数
+     * @param a      待排序数
+     * @param n      a长度
+     * @param dk     步数
+     * @param sortBy 排序方式 true：正序 false：倒序
      */
-    private void ShellInsertSortPos(int a[], int n, int dk) {
+    private static void shellInsertSortPos(int a[], int n, int dk, boolean sortBy) {
         for (int j = dk; j < n; j++)
-            if (a[j] < a[j - dk]) {
-                int temp = a[j];
-                int k = j - dk;
-                while (k >= 0 && a[k] > temp) {
-                    a[k + dk] = a[k];
-                    k -= dk;
+            if (sortBy) {
+                if (a[j] < a[j - dk]) {
+                    shellSortSwapNumber(a, dk, j);
                 }
-                a[k + dk] = temp;
+            } else {
+                if (a[j] > a[j - dk]) {
+                    shellSortSwapNumber(a, dk, j);
+                }
             }
+    }
 
+    private static void shellSortSwapNumber(int[] a, int dk, int j) {
+        int temp = a[j];
+        int k = j - dk;
+        while (k >= 0 && a[k] > temp) {
+            a[k + dk] = a[k];
+            k -= dk;
+        }
+        a[k + dk] = temp;
     }
 
 
-    /**
-     * 倒序希尔排序
-     *
-     * @param a
-     * @param n
-     * @param dk
-     */
-    private void ShellInsertSortIn(int a[], int n, int dk) {
-        for (int j = dk; j < n; j++)
-            if (a[j] > a[j - dk]) {
-                int temp = a[j];
-                int k = j - dk;
-                while (k >= 0 && a[k] < temp) {
-                    a[k + dk] = a[k];
-                    k -= dk;
-                }
-                a[k + dk] = temp;
-            }
-
-    }
-
-
-    int[] BubblePos(int r[], int n) {
+    int[] bubblePos(int r[], int n) {
         int low = 0;
         int high = n - 1; //设置变量的初始值  
         int tmp, j;
@@ -73,7 +78,8 @@ public class SortNumber {
         return r;
     }
 
-    int[] BubbleIn(int r[], int n) {
+
+    int[] bubbleIn(int r[], int n) {
         int low = 0;
         int high = n - 1;
         int tmp, j;
@@ -95,6 +101,7 @@ public class SortNumber {
         }
         return r;
     }
+
 
     /**
      * 正序快速排序
@@ -125,6 +132,7 @@ public class SortNumber {
         }
     }
 
+
     private void quickIn(int a[], int l, int r) {
         if (l < r) {
             int i = l, j = r, temp = a[l];
@@ -149,32 +157,6 @@ public class SortNumber {
 
 
     /**
-     * 插入排序—希尔排序，时间复杂度:O（n^1.3）,空间复杂度O（1），不稳定
-     *
-     * @param a     待排数
-     * @param order true为正序，false为倒序
-     * @return
-     */
-    int[] shellSort(int a[], boolean order) {
-
-        int n = a.length;
-        int dk = n / 2;
-        if (order != false) {
-            while (dk >= 1) {
-                ShellInsertSortPos(a, n, dk);
-                dk = dk / 2;
-            }
-        } else {
-            while (dk >= 1) {
-                ShellInsertSortIn(a, n, dk);
-                dk = dk / 2;
-            }
-        }
-        return a;
-    }
-
-
-    /**
      * 冒泡排序,时间复杂度:O（n^2）,空间复杂度O（1）,稳定
      *
      * @param a     待排数
@@ -186,36 +168,32 @@ public class SortNumber {
 
         if (order != false) {
 
-            BubblePos(a, a.length);
+            bubblePos(a, a.length);
 
         } else {
-            BubbleIn(a, a.length);
+            bubbleIn(a, a.length);
         }
         return a;
     }
-
 
 
     /**
      * 快速排序，时间复杂度:O（nlog2（n））,空间复杂度O（nlog2（n）），不稳定
-     * @param a 待排数
+     *
+     * @param a     待排数
      * @param order true为正序，false为倒序
      * @return
      */
-    int[] quickSort(int a[],boolean order){
+    int[] quickSort(int a[], boolean order) {
 
-        if(order!=false){
+        if (order != false) {
 
-            quickPos(a,0,a.length-1);
+            quickPos(a, 0, a.length - 1);
 
-        }else{
+        } else {
 
-            quickIn(a,0,a.length-1);
+            quickIn(a, 0, a.length - 1);
         }
         return a;
     }
-
-
-
-
 }
