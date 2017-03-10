@@ -209,9 +209,9 @@ public class MD5
         if(length >= partlen)
         {
             for(i = 0; i < partlen; i++)
-                stat.buffer[i + index] = buffer[i + offset];
+                stat.buf[i + index] = buffer[i + offset];
 
-            Transform(stat, stat.buffer, 0);
+            Transform(stat, stat.buf, 0);
             for(i = partlen; i + 63 < length; i += 64)
                 Transform(stat, buffer, i);
 
@@ -224,7 +224,7 @@ public class MD5
         {
             int start = i;
             for(; i < length; i++)
-                stat.buffer[(index + i) - start] = buffer[i + offset];
+                stat.buf[(index + i) - start] = buffer[i + offset];
 
         }
     }
