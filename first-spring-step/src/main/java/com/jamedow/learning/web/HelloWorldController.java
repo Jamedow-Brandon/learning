@@ -1,5 +1,6 @@
 package com.jamedow.learning.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/")
 public class HelloWorldController {
-    private Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+    private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
     @Autowired
     private UsersService usersService;
@@ -78,5 +80,36 @@ public class HelloWorldController {
         ModelAndView view = new ModelAndView();
         view.setViewName("waterfall-layout");
         return view;
+    }
+
+    /**
+     * 测试方法
+     *
+     * @return
+     */
+    @RequestMapping("testO")
+    @ResponseBody
+    public String testO() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("key", "aa");
+        logger.info("==========test1===========");
+        return jsonObject.toJSONString();
+    }
+
+    /**
+     * 测试联动
+     *
+     * @param key
+     * @return
+     */
+    @RequestMapping("testT")
+    @ResponseBody
+    public String testT(String key) {
+        logger.info("==========test2:key:{}===========", key);
+        if (key.equals("aa")) {
+            return "yes";
+        } else {
+            return "no";
+        }
     }
 }

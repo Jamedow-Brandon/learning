@@ -1,4 +1,4 @@
-package com.jamedow.learning.utils;
+package com.jamedow.learning.utils.numUtils;
 
 import com.alibaba.druid.util.StringUtils;
 
