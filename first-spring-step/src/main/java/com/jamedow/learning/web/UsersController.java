@@ -1,6 +1,6 @@
 package com.jamedow.learning.web;
 
-import com.jamedow.learning.common.MD5.MD5;
+import com.jamedow.learning.utils.MD5.MD5;
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
 import com.jamedow.learning.utils.Constant;
