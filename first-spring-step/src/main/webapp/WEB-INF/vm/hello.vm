@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -6,51 +7,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
 
+
+
     <!-- Bootstrap -->
     <link href="${rc.contextPath}/static/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <c:set var="path" value="${pageContext.request.contextPath}" />
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="${rc.contextPath}/static/ajax-dialog.js"></script>
+    <script src="${rc.contextPath}/static/jquery/jquery-3.1.1.min.js"></script>
+    <script src="${rc.contextPath}/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${rc.contextPath}/static/dialog/dialog-min.js"></script>
+
 </head>
 <body>
-<div>$!{message}</div>
-<h2>Hello
-    #if(${user.username})
-        ${user.username}
-    #else
-        World
-    #end!</h2>
-<form action="/adduser">
-    <div class="form-group">
-        <input type="text" class="input-sm" id="username" name="username"/>
-        <input type="text" class="input-sm" id="password" name="password"/>
-    </div>
-    <button type="submit">提交</button>
-    <button id="login">登录</button>
-    <button id="signup">注册</button>
-</form>
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="${rc.contextPath}/static/jquery/jquery-3.1.1.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="${rc.contextPath}/static/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script type="test/javascript">
-    $(document).ready(function(){
-        $("#id").click(function(){
-            var url = "${path}/personalContacts/contacts/edit?contactsId=" + contactsId;
-		    openDialog(url, , 400, 350,true);
+
+    <button id="login" class="btn btn-default" >登录/注册</button>
+
+
+
+<script >
+    $(document).ready(function() {
+
+
+        $("#login").click(function () {
+
+
+
+            $("#loginDialog").modal();
+
         });
 
+        $("#signin").click(function () {
+
+            $("#signin").addClass("action-title");
+            $("#signup").removeClass("action-title");
+            $("#signupBody,#signupSubmit").remove();
+            $("#loginBody").addClass("dialog-body");
+            $("#loginBody").removeClass("signup-dialog-body");
+            $("#signinBody,#signinSubmit").show();
+        });
+
+        $("#signup").click(function () {
+
+            $("#signup").addClass("action-title");
+            $("#signin").removeClass("action-title");
+            $("#signinBody,#signinSubmit").hide();
+            $("#loginBody").addClass("signup-dialog-body");
+            $("#loginBody").removeClass("dialog-body");
+            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'><label for='user_name'>用户名</label> <input type='text' name='user_name' class='form-control' id='user_name' placeholder='请输入用户名/账号'> </div> <div class='form-group'> <label for='password'>密码</label> <input type='password'  name='password' class='form-control' id='password' placeholder='请输入密码'> </div> <div class='form-group'> <label for='passwordConfirm'>确认密码</label> <input type='password'  name='passwordConfirm' class='form-control' id='passwordConfirm' placeholder='请再次输入密码'> </div> </div><button type='button' id='signupSubmit' class='btn btn-primary loginButton' data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
+
+
+        });
+
+        $("#signinSubmit").click(function(){
+
+            var url="${rc.contextPath}/login/accessLogin";
+            var userName = $("#user_name").val();
+            var password = $("#password").val();
+
+            ajaxPost(url,{"userId":userName,"password":password},
+
+                function(value){
+
+                    if("登录成功"==value ){
+                            dialogShow("登录成功");
+                             closeDialog();
+                    }else {
+                        dialogShow("登录失败");
+                    }
+            },null,false );
+        })
+
     });
-
-
 </script>
+
+
+<style  >
+    .action-title
+    {
+        border-bottom:1px solid #f0310b;
+        color: #f02312;
+    }
+    .dialog-body
+    {
+        height: 320px;
+        width: 280px;
+    }
+    .signup-dialog-body
+    {
+        height: 382px;
+        width: 280px;
+    }
+    .loginButton{
+        position: absolute;
+        right: 5%;
+        width:90%;
+    }
+    .titleFont{
+        font-family:Microsoft YaHei
+    }
+    .dialogPosition{
+        position:fixed;
+        left: 20%;
+    }
+</style>
+
+    <div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog"  role="document">
+            <div class="modal-content dialog-body dialogPosition" id="loginBody" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class = "header_title">
+                        <span id = "signin" class = "action-title titleFont" style="cursor:pointer">登录</span>
+                        <span id = "signup" class = "titleFont" style="cursor:pointer">注册</span>
+                    </h4>
+                </div>
+                <div class="modal-body" id = "signinBody">
+
+                    <div class="form-group">
+                        <label for="user_name">用户名</label>
+                        <input type="text" name="user_name" class="form-control" id="user_name" placeholder="请输入用户名/账号">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password"  name="password" class="form-control" id="password" placeholder="请输入密码">
+                    </div>
+
+                </div>
+
+
+                    <button type="button" id="signinSubmit" class="btn btn-primary loginButton" data-dismiss="modal"><span  aria-hidden="true"></span>登录</button>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
 </body>
 </html>
