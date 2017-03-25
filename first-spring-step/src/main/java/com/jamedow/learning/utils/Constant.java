@@ -11,9 +11,9 @@ public class Constant {
 
     public static final String N="N";
 
-    public static final String LOGINERROR="登录失败";
+    public static final String LOGIN_ERROR="登录失败";
 
-    public static final String LOGINSUCCESS="登录成功";
+    public static final String LOGIN_SUCCESS="登录成功";
 
     public static final String NOT_ACCOUNT="用户不存在";
 
