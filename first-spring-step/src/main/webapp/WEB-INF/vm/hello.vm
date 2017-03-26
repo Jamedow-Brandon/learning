@@ -56,7 +56,7 @@
             $("#signinBody,#signinSubmit").hide();
             $("#loginBody").addClass("signup-dialog-body");
             $("#loginBody").removeClass("dialog-body");
-            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'><label for='user_name'>用户名</label> <input type='text' name='user_name' class='form-control' id='user_name' placeholder='请输入用户名/账号'> </div> <div class='form-group'> <label for='password'>密码</label> <input type='password'  name='password' class='form-control' id='password' placeholder='请输入密码'> </div> <div class='form-group'> <label for='passwordConfirm'>确认密码</label> <input type='password'  name='passwordConfirm' class='form-control' id='passwordConfirm' placeholder='请再次输入密码'> </div> </div><button type='button' id='signupSubmit' class='btn btn-primary loginButton' data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
+            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'><label for='userName'>用户名</label> <input type='text' name='userName' class='form-control' id='userName' placeholder='请输入用户名/账号'> </div> <div class='form-group'> <label for='password'>密码</label> <input type='password'  name='password' class='form-control' id='password' placeholder='请输入密码'> </div> <div class='form-group'> <label for='passwordConfirm'>确认密码</label> <input type='password'  name='passwordConfirm' class='form-control' id='passwordConfirm' placeholder='请再次输入密码'> </div> </div><button type='button' id='signupSubmit' class='btn btn-primary loginButton' data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
 
 
         });
@@ -64,10 +64,10 @@
         $("#signinSubmit").click(function(){
 
             var url="${rc.contextPath}/login/accessLogin";
-            var userName = $("#user_name").val();
+            var userName = $("#userName").val();
             var password = $("#password").val();
 
-            ajaxPost(url,{"userId":userName,"password":password},
+            ajaxPost(url,{"userName":userName,"password":password},
 
                 function(value){
 
@@ -127,8 +127,8 @@
                 <div class="modal-body" id = "signinBody">
 
                     <div class="form-group">
-                        <label for="user_name">用户名</label>
-                        <input type="text" name="user_name" class="form-control" id="user_name" placeholder="请输入用户名/账号">
+                        <label for="userName">用户名</label>
+                        <input type="text" name="userName" class="form-control" id="userName" placeholder="请输入用户名/账号">
                     </div>
                     <div class="form-group">
                         <label for="password">密码</label>
