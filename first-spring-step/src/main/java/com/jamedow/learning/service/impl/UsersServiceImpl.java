@@ -52,17 +52,6 @@ public class UsersServiceImpl implements UsersService{
         return null;
     }
 
-    @Override
-    public List<Users> queryContacts(Users contacts) {
-
-        UsersExample example = new UsersExample();
-        UsersExample.Criteria criteria =example.createCriteria();
-        criteria.andDelstatusEqualTo(Constant.Y);
-        if(StringUtils.isNotBlank(contacts.getUsername())){
-
-        }
-        return null;
-    }
 
 
 

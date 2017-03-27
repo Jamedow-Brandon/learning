@@ -2,8 +2,6 @@ package com.jamedow.learning.service;
 
 import com.jamedow.learning.entity.Users;
 
-import java.util.List;
-
 /**
  * Created by 365 on 2016/12/12 0012.
  */
@@ -31,12 +29,6 @@ public interface UsersService {
      */
     public Users getUser(long userId);
 
-    /**
-     *
-     * @param contacts
-     * @return
-     */
-    public List<Users> queryContacts(Users contacts);
 
 
      /**

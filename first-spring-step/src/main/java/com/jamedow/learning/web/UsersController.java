@@ -25,10 +25,10 @@ public class UsersController {
 
     @RequestMapping("/accessLogin")
     @ResponseBody
-    public String accessLogin(String userName, String userPwd){
+    public String accessLogin(String userName, String password){
 
         if(StringUtils.isBlank(userName))
-            return Constant.LOGIN_ERROR;
+            return Constant.ACCOUNT_OR_PASSWORD_ERROR;
 
         Users users = usersService.getUserByName(userName);
         if(users == null)
@@ -38,11 +38,11 @@ public class UsersController {
             users = usersService.getUserByMobile(userName);
 
         if(users == null)
-            return Constant.NOT_ACCOUNT;
+            return Constant.ACCOUNT_OR_PASSWORD_ERROR;
 
-        userPwd = MD5.md5crypt(userPwd);
+        password = MD5.md5crypt(password);
 
-        if(!userPwd.equals(users.getPassword()))
+        if(!password.equals(users.getPassword()))
 
             return Constant.ACCOUNT_OR_PASSWORD_ERROR;
 

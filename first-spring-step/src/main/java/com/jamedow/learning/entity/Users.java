@@ -1,6 +1,8 @@
 package com.jamedow.learning.entity;
 
-public class Users {
+import java.io.Serializable;
+
+public class Users implements Serializable {
     private Long id;
 
     private String username;
