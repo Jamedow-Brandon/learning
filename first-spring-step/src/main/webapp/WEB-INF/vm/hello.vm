@@ -31,12 +31,18 @@
     $(document).ready(function() {
 
 
+
         $("#login").click(function () {
 
-
+            $(".errorinfo").hide();
 
             $("#loginDialog").modal();
 
+
+          /* 点击空白处弹框消失 {
+                backdrop: 'static',
+                        keyboard: false
+            }*/
         });
 
         $("#signin").click(function () {
@@ -56,29 +62,84 @@
             $("#signinBody,#signinSubmit").hide();
             $("#loginBody").addClass("signup-dialog-body");
             $("#loginBody").removeClass("dialog-body");
-            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'><label for='userName'>用户名</label> <input type='text' name='userName' class='form-control' id='userName' placeholder='请输入用户名/账号'> </div> <div class='form-group'> <label for='password'>密码</label> <input type='password'  name='password' class='form-control' id='password' placeholder='请输入密码'> </div> <div class='form-group'> <label for='passwordConfirm'>确认密码</label> <input type='password'  name='passwordConfirm' class='form-control' id='passwordConfirm' placeholder='请再次输入密码'> </div> </div><button type='button' id='signupSubmit' class='btn btn-primary loginButton' data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
+            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'>" +
+                    "<label for='newUserName'>用户名</label> " +
+                    "<input type='text' name='newUserName' class='form-control' id='newUserName' " +
+                    "placeholder='请输入用户名/账号'> "+
+                    " <p class ='errorinfo'>请输入正确的用户名或者账号( ¯ □ ¯ )</p>"+
+                    "</div>" +
+                    " <div class='form-group'> <label for='newPassword'>密码</label>" +
+                    " <input type='newPassword'  name='newPassword' class='form-control' id='newPassword' " +
+                    "placeholder='请输入密码'> </div>" +
+                    " <div class='form-group'> <label for='passwordConfirm'>确认密码</label> " +
+                    "<input type='passwordConfirm'  name='passwordConfirm' class='form-control' id='passwordConfirm' " +
+                    "placeholder='请再次输入密码'> </div> " +
+                    "</div><button type='button' id='signupSubmit' class='btn btn-primary loginButton' " +
+                    "data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
 
 
         });
 
         $("#signinSubmit").click(function(){
 
+            $(".errorinfo").hide();
             var url="${rc.contextPath}/login/accessLogin";
+
             var userName = $("#userName").val();
             var password = $("#password").val();
+
+            console.log(userName);
+            if(userName==null||userName==""){
+                alert(userName);
+                $("#userError").show();
+                return;
+            }
+            if(password==null||password==""){
+                $("#pwdError").show();
+                return;
+            }
 
             ajaxPost(url,{"userName":userName,"password":password},
 
                 function(value){
 
                     if("登录成功"==value ){
-                            dialogShow("登录成功");
+                        dialogShow("登录成功");
                              closeDialog();
                     }else {
-                        dialogShow("登录失败");
+                        $("#loginBody").append("<p  class ='errorinfo pFont'>"+value+" </p>");
                     }
-            },null,false );
-        })
+            },null,true );
+        });
+
+        $("#signupSubmit").click(function(){
+
+            var newUserName = $("#newUserName").val();
+            var newPassword = $("#newPassword").val();
+            var passwordConfirm = $("#passwordConfirm").val();
+            if(newUserName==null&&newUserName == ""){
+                return;
+            }
+            if((newPassword!=null)&&(newPassword!="")){
+                if(newPassword == passwordConfirm){
+
+                    var url="${rc.contextPath}/login/signup";
+                    ajaxPost(url,{"userName":newUserName,"password":newPassword},
+
+                            function(value){
+
+                                if("注册成功"==value ){
+                                    dialogShow("注册成功");
+                                    closeDialog();
+                                }else {
+
+                                }
+                            },null,false );
+                }
+
+
+            }
+        });
 
     });
 </script>
@@ -93,17 +154,17 @@
     .dialog-body
     {
         height: 320px;
-        width: 280px;
+        width: 326px;
     }
     .signup-dialog-body
     {
         height: 382px;
-        width: 280px;
+        width: 326px;
     }
     .loginButton{
         position: absolute;
-        right: 5%;
-        width:90%;
+        right:10%;
+        width:80%;
     }
     .titleFont{
         font-family:Microsoft YaHei
@@ -111,6 +172,10 @@
     .dialogPosition{
         position:fixed;
         left: 20%;
+    }
+    .pFont{
+        font-size: small;
+        color: red;
     }
 </style>
 
@@ -126,13 +191,15 @@
                 </div>
                 <div class="modal-body" id = "signinBody">
 
-                    <div class="form-group">
+                    <div >
                         <label for="userName">用户名</label>
                         <input type="text" name="userName" class="form-control" id="userName" placeholder="请输入用户名/账号">
+                        <p id = "userError" class ="errorinfo pFont">请输入正确的用户名或者账号( ¯ □ ¯ )</p>
                     </div>
-                    <div class="form-group">
+                    <div >
                         <label for="password">密码</label>
-                        <input type="password"  name="password" class="form-control" id="password" placeholder="请输入密码">
+                        <input type="password"  name="password" class="form-control" id="password" placeholder="6-16位密码，区分大小写，不能用空格">
+                        <p id = "pwduError" class ="errorinfo pFont">请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>
                     </div>
 
                 </div>
