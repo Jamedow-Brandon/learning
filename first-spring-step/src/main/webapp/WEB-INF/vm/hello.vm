@@ -66,11 +66,12 @@
                     "<label for='newUserName'>用户名</label> " +
                     "<input type='text' name='newUserName' class='form-control' id='newUserName' " +
                     "placeholder='请输入用户名/账号'> "+
-                    " <p class ='errorinfo'>请输入正确的用户名或者账号( ¯ □ ¯ )</p>"+
+                    " <p id = 'newNameError' class ='errorinfo pFont'>请输入正确的用户名或者账号( ¯ □ ¯ )</p>"+
                     "</div>" +
                     " <div class='form-group'> <label for='newPassword'>密码</label>" +
                     " <input type='newPassword'  name='newPassword' class='form-control' id='newPassword' " +
                     "placeholder='请输入密码'> </div>" +
+                     " <p id = 'newPwdError' class ='errorinfo pFont'>请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>"+
                     " <div class='form-group'> <label for='passwordConfirm'>确认密码</label> " +
                     "<input type='passwordConfirm'  name='passwordConfirm' class='form-control' id='passwordConfirm' " +
                     "placeholder='请再次输入密码'> </div> " +
@@ -88,13 +89,17 @@
             var userName = $("#userName").val();
             var password = $("#password").val();
 
-            console.log(userName);
-            if(userName==null||userName==""){
-                alert(userName);
+
+            var regex=/^[0-9A-Za-z_]{6,15}$/;
+
+
+            if(regex.exec(userName)==null){
+
                 $("#userError").show();
                 return;
             }
-            if(password==null||password==""){
+            if(password==null||password==" "){
+                alert(password);
                 $("#pwdError").show();
                 return;
             }
@@ -104,18 +109,35 @@
                 function(value){
 
                     if("登录成功"==value ){
+
                         dialogShow("登录成功");
                              closeDialog();
                     }else {
+
                         $("#loginBody").append("<p  class ='errorinfo pFont'>"+value+" </p>");
+                        $("#loginDialog").modal();
                     }
             },null,true );
         });
 
         $("#signupSubmit").click(function(){
 
+            $(".errorinfo").hide();
             var newUserName = $("#newUserName").val();
+
+            var regex=/^[0-9A-Za-z_]{6,15}$/;
+            if(regex.exec(newUserName)==null){
+
+                $("#newNameError").show();
+                return;
+            }
             var newPassword = $("#newPassword").val();
+            var regStr = /^[0-9A-Za-z]{1,16}$/;
+            if(regex.exec(newPassword)==null){
+
+                $("#newPwdError").show();
+                return;
+            }
             var passwordConfirm = $("#passwordConfirm").val();
             if(newUserName==null&&newUserName == ""){
                 return;
@@ -199,7 +221,7 @@
                     <div >
                         <label for="password">密码</label>
                         <input type="password"  name="password" class="form-control" id="password" placeholder="6-16位密码，区分大小写，不能用空格">
-                        <p id = "pwduError" class ="errorinfo pFont">请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>
+                        <p id = "pwdError" class ="errorinfo pFont">请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>
                     </div>
 
                 </div>
