@@ -18,25 +18,33 @@
     <!-- 默认的注解映射的支持，org.springframework.web.filter.mvc.method.annotation.RequestMappingHandlerMapping -->
     <mvc:annotation-driven/>
 
-
-    <!-- 配置Velocity引擎 -->
-    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-        <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
-        <property name="configLocation" value="classpath:properties/velocity.properties"/>
+    <!-- 定义视图文件解析 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--<property name="prefix" value="${web.view.prefix}"/>-->
+        <!--<property name="suffix" value="${web.view.suffix}"/>-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!-- ViewResolver -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        <property name="cache" value="true"/>
-        <property name="prefix" value="/"/><!-- 视图文件的前缀，即存放的路径 -->
-        <property name="suffix" value=".vm"/><!-- 视图文件的后缀名 -->
-        <property name="dateToolAttribute" value="dateUtils"/><!--日期函数名称-->
-        <property name="numberToolAttribute" value="numberUtils"/><!--数字函数名称-->
-        <property name="contentType" value="text/html;charset=UTF-8"/>
-        <property name="exposeSpringMacroHelpers" value="true"/><!--是否使用spring对宏定义的支持-->
-        <property name="exposeRequestAttributes" value="true"/><!--是否开放request属性-->
-        <property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
-    </bean>
+
+    <!--&lt;!&ndash; 配置Velocity引擎 &ndash;&gt;-->
+    <!--<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+    <!--<property name="resourceLoaderPath" value="/WEB-INF/vm/"/>-->
+    <!--<property name="configLocation" value="classpath:properties/velocity.properties"/>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; ViewResolver &ndash;&gt;-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+    <!--<property name="cache" value="true"/>-->
+    <!--<property name="prefix" value="/"/>&lt;!&ndash; 视图文件的前缀，即存放的路径 &ndash;&gt;-->
+    <!--<property name="suffix" value=".vm"/>&lt;!&ndash; 视图文件的后缀名 &ndash;&gt;-->
+    <!--<property name="dateToolAttribute" value="dateUtils"/>&lt;!&ndash;日期函数名称&ndash;&gt;-->
+    <!--<property name="numberToolAttribute" value="numberUtils"/>&lt;!&ndash;数字函数名称&ndash;&gt;-->
+    <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
+    <!--<property name="exposeSpringMacroHelpers" value="true"/>&lt;!&ndash;是否使用spring对宏定义的支持&ndash;&gt;-->
+    <!--<property name="exposeRequestAttributes" value="true"/>&lt;!&ndash;是否开放request属性&ndash;&gt;-->
+    <!--<property name="requestContextAttribute" value="rc"/>&lt;!&ndash;request属性引用名称&ndash;&gt;-->
+    <!--</bean>-->
 
     <!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
     <mvc:default-servlet-handler/>

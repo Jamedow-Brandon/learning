@@ -5,7 +5,7 @@ package com.jamedow.learning.utils;
  * <p>
  * Created by 365 on 2017/2/22 0022.
  */
-public class StringUtils extends org.apache.commons.lang.StringUtils {
+public class StringUtils extends org.apache.commons.lang3.StringUtils {
     /**
      * 检测是否有emoji字符
      *
@@ -13,7 +13,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      * @return 一旦含有就抛出
      */
     public static boolean containsEmoji(String source) {
-        if (org.apache.commons.lang.StringUtils.isBlank(source)) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(source)) {
             return false;
         }
 

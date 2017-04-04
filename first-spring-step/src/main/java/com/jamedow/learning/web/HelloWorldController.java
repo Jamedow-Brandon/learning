@@ -33,6 +33,7 @@ public class HelloWorldController {
     @RequestMapping(value = "")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView();
+        view.addObject("name", "jamedow");
         view.setViewName("index");
         return view;
     }

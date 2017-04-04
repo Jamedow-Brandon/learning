@@ -5,7 +5,7 @@ import com.jamedow.learning.entity.UsersExample;
 import com.jamedow.learning.mapper.UsersMapper;
 import com.jamedow.learning.service.UsersService;
 import com.jamedow.learning.utils.Constant;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

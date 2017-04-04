@@ -1,6 +1,6 @@
 package com.jamedow.learning.utils.rabbitmq;
 
-import org.apache.commons.lang.SerializationUtils;
+import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -4,7 +4,7 @@ import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
 import com.jamedow.learning.utils.Constant;
 import com.jamedow.learning.utils.MD5.MD5;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

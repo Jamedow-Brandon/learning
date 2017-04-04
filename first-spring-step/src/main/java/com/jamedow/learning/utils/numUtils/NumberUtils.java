@@ -261,7 +261,7 @@ public class NumberUtils {
             if (StringUtils.isNumber(tempStr)) {
                 tempNumber += tempStr;
             } else {
-                if (org.apache.commons.lang.StringUtils.isNotBlank(tempNumber)) {
+                if (org.apache.commons.lang3.StringUtils.isNotBlank(tempNumber)) {
                     temp += getBeforePoint(tempNumber) + tempStr;
                     tempNumber = "";
                 } else {
