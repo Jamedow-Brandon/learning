@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- spring 版本号 -->
-        <spring.version>4.1.8.RELEASE</spring.version>
+        <spring.version>4.3.7.RELEASE</spring.version>
         <!-- mybatis 版本号 -->
         <mybatis.version>3.4.0</mybatis.version>
         <!-- mybatis generator 版本号 -->
@@ -175,12 +175,25 @@
             <version>3.4</version>
         </dependency>
 
+        <!--redis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.7.2.RELEASE</version>
+        </dependency>
+
         <!-- RabbitMQ-->
         <dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
             <version>4.1.0</version>
         </dependency>
+
 
     </dependencies>
 

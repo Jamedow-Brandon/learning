@@ -3,6 +3,7 @@ package com.jamedow.learning.web;
 import com.alibaba.fastjson.JSONObject;
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
+import com.jamedow.learning.utils.redis.RedisPoolManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class HelloWorldController {
     private String sEncodingAESKey;
     @Value("${wechat.cropid}")
     private String sCorpID;
+    @Autowired
+    private RedisPoolManager redis;
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -93,6 +96,8 @@ public class HelloWorldController {
     public String testO() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("key", "aa");
+        redis.setCacheWithSec("name", "aa", 1000);
+        String name = redis.getCache("name");
         logger.info("==========test1===========");
         return jsonObject.toJSONString();
     }
