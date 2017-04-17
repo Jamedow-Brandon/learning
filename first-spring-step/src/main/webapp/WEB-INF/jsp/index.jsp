@@ -13,6 +13,10 @@
     <title>Title</title>
 </head>
 <body>
-Hello ${name}!
+
+Hello <a href="javascript:HISTORY.aa('aaa')">${name}</a>!
 </body>
+
+<script src="${ctx}/static/jquery/jquery-3.1.1.js"></script>
+<script src="${ctx}/static/application.js"></script>
 </html>

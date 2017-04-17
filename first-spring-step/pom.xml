@@ -25,7 +25,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
 
@@ -69,6 +69,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
         <!-- Spring dependencies end-->
 
@@ -194,7 +200,12 @@
             <version>4.1.0</version>
         </dependency>
 
-
+        <!--taobao-sdk-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>taobao-sdk-java-auto</artifactId>
+            <version>6.12.18</version>
+        </dependency>
     </dependencies>
 
     <profiles>
