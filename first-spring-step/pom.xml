@@ -206,6 +206,14 @@
             <artifactId>taobao-sdk-java-auto</artifactId>
             <version>6.12.18</version>
         </dependency>
+
+        <!--webcollector-->
+        <dependency>
+            <groupId>cn.edu.hfut.dmic.webcollector</groupId>
+            <artifactId>WebCollector</artifactId>
+            <version>2.32</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
