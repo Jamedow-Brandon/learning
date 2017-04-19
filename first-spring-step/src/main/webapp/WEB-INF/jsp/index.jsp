@@ -14,7 +14,7 @@
 </head>
 <body>
 
-Hello <a href="javascript:HISTORY.aa('aaa')">${name}</a>!
+Hello <a href="javascript:HISTORY.goToUrl('aaa')">${name}</a>!
 </body>
 
 <script src="${ctx}/static/jquery/jquery-3.1.1.js"></script>
