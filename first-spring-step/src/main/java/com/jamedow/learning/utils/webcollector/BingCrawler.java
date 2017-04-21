@@ -1,11 +1,12 @@
 package com.jamedow.learning.utils.webcollector;
 
-import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
+import com.jamedow.learning.utils.rabbitmq.Producer;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.net.URLEncoder;
 
@@ -16,24 +17,20 @@ import java.net.URLEncoder;
  */
 public class BingCrawler extends BreadthCrawler {
 
+    @Value("${rabbitmq.host}")
+    private String host;
+    @Value("${rabbitmq.port}")
+    private int port;
+    @Value("${rabbitmq.username}")
+    private String username;
+    @Value("${rabbitmq.password}")
+    private String password;
+
+    private String VIRTUAL_HOST = "webcollector";
+    private String QUEUE = "queue";
+
     public BingCrawler(String crawlPath, boolean autoParse) {
         super(crawlPath, autoParse);
-    }
-
-    public static void main(String[] args) throws Exception {
-        String keyword = "公司";
-        int maxPageNum = 3;
-        BingCrawler crawler = new BingCrawler("depth_crawler", false);
-        for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
-            String url = createBingUrl(keyword, pageNum);
-            crawler.addSeed(new CrawlDatum(url)
-                    .putMetaData("keyword", keyword)
-                    .putMetaData("pageNum", pageNum + "")
-                    .putMetaData("pageType", "searchEngine")
-                    .putMetaData("depth", "1"));
-        }
-
-        crawler.start(maxPageNum);
     }
 
 //    @Override
@@ -91,36 +88,36 @@ public class BingCrawler extends BreadthCrawler {
                 这个功能，在将CrawlDatum添加到next中时，将其depth设置为当前访问页面
                 的depth+1即可。
                 */
-                CrawlDatum datum = new CrawlDatum(result.attr("abs:href"))
-                        .putMetaData("keyword", keyword)
-                        .putMetaData("pageNum", pageNum + "")
-                        .putMetaData("rank", rank + "")
-                        .putMetaData("pageType", "outlink")
-                        .putMetaData("depth", (depth + 1) + "")
-                        .putMetaData("refer", page.getUrl());
-                next.add(datum);
+                try {
+
+                    Producer producer = new Producer(host, port, VIRTUAL_HOST, username, password, QUEUE);
+                    producer.sendMessage(result.attr("abs:href"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+//                CrawlDatum datum = new CrawlDatum(result.attr("abs:href"))
+//                        .putMetaData("keyword", keyword)
+//                        .putMetaData("pageNum", pageNum + "")
+//                        .putMetaData("rank", rank + "")
+//                        .putMetaData("pageType", "outlink")
+//                        .putMetaData("depth", (depth + 1) + "")
+//                        .putMetaData("refer", page.getUrl());
+//                next.add(datum);
             }
-
-        } else if (pageType.equals("outlink")) {
-            int pageNum = Integer.valueOf(page.getMetaData("pageNum"));
-            int rank = Integer.valueOf(page.getMetaData("rank"));
-            String refer = page.getMetaData("refer");
-
-            String line = String.format("第%s页第%s个结果:%s(%s字节)\tdepth=%s\trefer=%s",
-                    pageNum, rank + 1, page.getDoc().title(), page.getContent().length, depth, refer);
-            System.out.println(line);
-
-            try {
-                CompanyCrawler crawler = new CompanyCrawler("crawler", false);
-                crawler.addSeed(refer);
-
-                crawler.setThreads(1);
-                crawler.start(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
 
         }
+//        else if (pageType.equals("outlink")) {
+//            int pageNum = Integer.valueOf(page.getMetaData("pageNum"));
+//            int rank = Integer.valueOf(page.getMetaData("rank"));
+//            String refer = page.getMetaData("refer");
+//
+//            String line = String.format("第%s页第%s个结果:%s(%s字节)\tdepth=%s\trefer=%s",
+//                    pageNum, rank + 1, page.getDoc().title(), page.getContent().length, depth, refer);
+//            System.out.println(line);
+//
+//
+//
+//
+//        }
     }
 }
