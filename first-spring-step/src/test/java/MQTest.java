@@ -28,14 +28,15 @@ public class MQTest {
     private String password;
 
     private String VIRTUALHOST = "webcollector";
+    private String QUEUE = "queue";
 
     @Test
     public void testMain() throws Exception {
-        QueueConsumer consumer = new QueueConsumer(host, port, VIRTUALHOST, username, password, "queue");
+        QueueConsumer consumer = new QueueConsumer(host, port, VIRTUALHOST, username, password, QUEUE);
         Thread consumerThread = new Thread(consumer);
         consumerThread.start();
 
-        Producer producer = new Producer(host, port, VIRTUALHOST, username, password, "queue");
+        Producer producer = new Producer(host, port, VIRTUALHOST, username, password, QUEUE);
 
         for (int i = 0; i < 100; i++) {
             HashMap message = new HashMap();
