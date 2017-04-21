@@ -16,8 +16,8 @@ import java.util.concurrent.TimeoutException;
  */
 public class QueueConsumer extends EndPoint implements Runnable, Consumer {
 
-    public QueueConsumer(String endPointName) throws IOException, TimeoutException {
-        super(endPointName);
+    public QueueConsumer(String host, int port, String virtualHost, String username, String password, String endPointName) throws IOException, TimeoutException {
+        super(host, port, virtualHost, username, password, endPointName);
     }
 
     public void run() {

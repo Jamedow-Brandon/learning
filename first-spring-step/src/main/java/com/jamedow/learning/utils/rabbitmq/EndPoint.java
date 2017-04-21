@@ -17,14 +17,18 @@ public abstract class EndPoint {
     protected Connection connection;
     protected String endPointName;
 
-    public EndPoint(String endpointName) throws IOException, TimeoutException {
+    public EndPoint(String host, int port, String virtualHost, String username, String password, String endpointName) throws IOException, TimeoutException {
         this.endPointName = endpointName;
 
         //Create a connection factory
         ConnectionFactory factory = new ConnectionFactory();
 
         //hostname of your rabbitmq server
-        factory.setHost("localhost");
+        factory.setHost(host);
+        factory.setPort(port);
+        factory.setVirtualHost(virtualHost);
+        factory.setUsername(username);
+        factory.setPassword(password);
 
         //getting a connection
         connection = factory.newConnection();
