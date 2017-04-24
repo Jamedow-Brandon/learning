@@ -3,15 +3,13 @@ package com.jamedow.learning.web;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import com.alibaba.fastjson.JSONObject;
 import com.jamedow.learning.entity.Users;
-import com.jamedow.learning.service.RabbitMQService;
 import com.jamedow.learning.service.UsersService;
-import com.jamedow.learning.utils.rabbitmq.QueueConsumer;
+import com.jamedow.learning.utils.rabbitmq.RabbitMQUtils;
 import com.jamedow.learning.utils.redis.RedisPoolManager;
 import com.jamedow.learning.utils.webcollector.BingCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,32 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/")
 public class HelloWorldController {
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
-
+    private final String VIRTUAL_HOST = "webcollector";
+    private final String QUEUE = "queue";
     @Autowired
     private UsersService usersService;
     @Autowired
-    private RabbitMQService rabbitMQService;
-
-    @Value("${wechat.token}")
-    private String sToken;
-    @Value("${wechat.encodingaeskey}")
-    private String sEncodingAESKey;
-    @Value("${wechat.cropid}")
-    private String sCorpID;
-    @Autowired
     private RedisPoolManager redis;
-
-    @Value("${rabbitmq.host}")
-    private String host;
-    @Value("rabbitmq.port")
-    private int port;
-    @Value("${rabbitmq.username}")
-    private String username;
-    @Value("${rabbitmq.password}")
-    private String password;
-
-    private String VIRTUAL_HOST = "webcollector";
-    private String QUEUE = "queue";
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -75,7 +53,7 @@ public class HelloWorldController {
         try {
             String keyword = "公司";
             int maxPageNum = 3;
-            BingCrawler crawler = new BingCrawler("depth_crawler", false, rabbitMQService);
+            BingCrawler crawler = new BingCrawler("depth_crawler", false);
             for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
                 String url = BingCrawler.createBingUrl(keyword, pageNum);
                 crawler.addSeed(new CrawlDatum(url)
@@ -87,9 +65,7 @@ public class HelloWorldController {
 
             crawler.start(maxPageNum);
 
-            QueueConsumer consumer = new QueueConsumer(host, port, VIRTUAL_HOST, username, password, QUEUE);
-            Thread consumerThread = new Thread(consumer);
-            consumerThread.start();
+            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

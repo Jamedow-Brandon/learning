@@ -1,12 +1,10 @@
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
-import com.jamedow.learning.service.RabbitMQService;
 import com.jamedow.learning.utils.rabbitmq.QueueConsumer;
 import com.jamedow.learning.utils.webcollector.BingCrawler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -31,14 +29,11 @@ public class CollectorTest {
     private String VIRTUAL_HOST = "webcollector";
     private String QUEUE = "queue";
 
-    @Autowired
-    private RabbitMQService rabbitMQService;
-
     @Test
     public void testMain() throws Exception {
         String keyword = "公司";
         int maxPageNum = 3;
-        BingCrawler crawler = new BingCrawler("depth_crawler", false, rabbitMQService);
+        BingCrawler crawler = new BingCrawler("depth_crawler", false);
         for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
             String url = BingCrawler.createBingUrl(keyword, pageNum);
             crawler.addSeed(new CrawlDatum(url)

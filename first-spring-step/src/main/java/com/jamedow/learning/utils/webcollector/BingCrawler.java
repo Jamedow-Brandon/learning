@@ -3,7 +3,7 @@ package com.jamedow.learning.utils.webcollector;
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatums;
 import cn.edu.hfut.dmic.webcollector.model.Page;
 import cn.edu.hfut.dmic.webcollector.plugin.berkeley.BreadthCrawler;
-import com.jamedow.learning.service.RabbitMQService;
+import com.jamedow.learning.utils.rabbitmq.RabbitMQUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +17,12 @@ import java.net.URLEncoder;
  */
 public class BingCrawler extends BreadthCrawler {
 
-    private final RabbitMQService rabbitMQService;
     private String VIRTUAL_HOST = "webcollector";
     private String QUEUE = "queue";
 
     @Autowired
-    public BingCrawler(String crawlPath, boolean autoParse, RabbitMQService rabbitMQService) {
+    public BingCrawler(String crawlPath, boolean autoParse) {
         super(crawlPath, autoParse);
-        this.rabbitMQService = rabbitMQService;
     }
 
 //    @Override
@@ -66,7 +64,7 @@ public class BingCrawler extends BreadthCrawler {
                 Element result = results.get(rank);
 
                 //向消息队列推送消息
-                rabbitMQService.sendMessage(VIRTUAL_HOST, QUEUE, result.attr("abs:href"));
+                RabbitMQUtils.sendMessage(VIRTUAL_HOST, QUEUE, result.attr("abs:href"));
             }
 
         } else if (pageType.equals("outlink")) {
