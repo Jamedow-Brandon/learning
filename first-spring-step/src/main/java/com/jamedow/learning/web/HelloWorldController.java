@@ -1,9 +1,13 @@
 package com.jamedow.learning.web;
 
+import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import com.alibaba.fastjson.JSONObject;
 import com.jamedow.learning.entity.Users;
+import com.jamedow.learning.service.RabbitMQService;
 import com.jamedow.learning.service.UsersService;
+import com.jamedow.learning.utils.rabbitmq.QueueConsumer;
 import com.jamedow.learning.utils.redis.RedisPoolManager;
+import com.jamedow.learning.utils.webcollector.BingCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,9 @@ public class HelloWorldController {
 
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private RabbitMQService rabbitMQService;
+
     @Value("${wechat.token}")
     private String sToken;
     @Value("${wechat.encodingaeskey}")
@@ -32,6 +39,18 @@ public class HelloWorldController {
     private String sCorpID;
     @Autowired
     private RedisPoolManager redis;
+
+    @Value("${rabbitmq.host}")
+    private String host;
+    @Value("rabbitmq.port")
+    private int port;
+    @Value("${rabbitmq.username}")
+    private String username;
+    @Value("${rabbitmq.password}")
+    private String password;
+
+    private String VIRTUAL_HOST = "webcollector";
+    private String QUEUE = "queue";
 
     @RequestMapping(value = "")
     public ModelAndView index() {
@@ -52,6 +71,29 @@ public class HelloWorldController {
         view.addObject("user", new Users());
         //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
         view.setViewName("hello");
+
+        try {
+            String keyword = "公司";
+            int maxPageNum = 3;
+            BingCrawler crawler = new BingCrawler("depth_crawler", false, rabbitMQService);
+            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
+                String url = BingCrawler.createBingUrl(keyword, pageNum);
+                crawler.addSeed(new CrawlDatum(url)
+                        .putMetaData("keyword", keyword)
+                        .putMetaData("pageNum", pageNum + "")
+                        .putMetaData("pageType", "searchEngine")
+                        .putMetaData("depth", "1"));
+            }
+
+            crawler.start(maxPageNum);
+
+            QueueConsumer consumer = new QueueConsumer(host, port, VIRTUAL_HOST, username, password, QUEUE);
+            Thread consumerThread = new Thread(consumer);
+            consumerThread.start();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+
         return view;
     }
 

@@ -41,10 +41,14 @@ public class QueueConsumer extends EndPoint implements Runnable, Consumer {
     @Override
     public void handleDelivery(String consumerTag, Envelope env,
                                AMQP.BasicProperties props, byte[] body) throws IOException {
-        String href = SerializationUtils.deserialize(body);
+        String url = SerializationUtils.deserialize(body);
+
         try {
+            System.out.println("Message url " + url + " received.");
+            System.out.println("Message url " + url + " received.");
+            System.out.println("Message url " + url + " received.");
             CompanyCrawler crawler = new CompanyCrawler("crawler", false);
-            crawler.addSeed(href);
+            crawler.addSeed(url);
 
             crawler.setThreads(1);
             crawler.start(1);
