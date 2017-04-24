@@ -55,7 +55,6 @@ public class BingCrawler extends BreadthCrawler {
 
         String keyword = page.getMetaData("keyword");
         String pageType = page.getMetaData("pageType");
-        int depth = Integer.valueOf(page.getMetaData("depth"));
         if (pageType.equals("searchEngine")) {
             int pageNum = Integer.valueOf(page.getMetaData("pageNum"));
             System.out.println("成功抓取关键词" + keyword + "的第" + pageNum + "页搜索结果");
@@ -63,29 +62,9 @@ public class BingCrawler extends BreadthCrawler {
             for (int rank = 0; rank < results.size(); rank++) {
                 Element result = results.get(rank);
 
-                //向消息队列推送消息
+                //向消息队列推送下一级需要爬取的url
                 RabbitMQUtils.sendMessage(VIRTUAL_HOST, QUEUE, result.attr("abs:href"));
             }
-
-        } else if (pageType.equals("outlink")) {
-            int pageNum = Integer.valueOf(page.getMetaData("pageNum"));
-            int rank = Integer.valueOf(page.getMetaData("rank"));
-            String refer = page.getMetaData("refer");
-
-            String line = String.format("第%s页第%s个结果:%s(%s字节)\tdepth=%s\trefer=%s",
-                    pageNum, rank + 1, page.getDoc().title(), page.getContent().length, depth, refer);
-            System.out.println(line);
-
-            try {
-                CompanyCrawler crawler = new CompanyCrawler("crawler", false);
-                crawler.addSeed(refer);
-
-                crawler.setThreads(1);
-                crawler.start(1);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
 
         }
     }
