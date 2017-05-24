@@ -2,7 +2,6 @@ package com.jamedow.learning.web;
 
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
-import com.jamedow.learning.utils.Constant;
 import com.jamedow.learning.utils.MD5.MD5;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,7 @@ public class UsersController {
     public String accessLogin(String userName, String password){
 
         if(StringUtils.isBlank(userName))
-            return Constant.ACCOUNT_OR_PASSWORD_ERROR;
+            return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
         Users users = usersService.getUserByName(userName);
         if(users == null)
@@ -38,17 +37,44 @@ public class UsersController {
             users = usersService.getUserByMobile(userName);
 
         if(users == null)
-            return Constant.ACCOUNT_OR_PASSWORD_ERROR;
+            return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
         password = MD5.md5crypt(password);
 
         if(!password.equals(users.getPassword()))
 
-            return Constant.ACCOUNT_OR_PASSWORD_ERROR;
+            return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
 
-        return Constant.LOGIN_SUCCESS;
+        return UsersService.LOGIN_SUCCESS;
 
+
+    }
+
+    @RequestMapping("/signup")
+    @ResponseBody
+    public String signup(String userName,String password){
+
+        Users user = null;
+
+        if(StringUtils.isNotBlank(userName)&&
+                StringUtils.isNotBlank(password)){
+
+            user =  usersService.getUserByName(userName);
+
+            if(user==null)
+                return UsersService.USER_EXIST;
+
+            user.setUsername(userName);
+            password = MD5.md5crypt(password);
+            user.setPassword(password);
+
+            if(usersService.saveUser(user)==0){
+
+                return UsersService.SIGNUP_SUCCESS;
+            }
+        }
+        return UsersService.SIGNUP_ERROR;
 
     }
 }
