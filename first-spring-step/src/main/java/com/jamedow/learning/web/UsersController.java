@@ -2,6 +2,7 @@ package com.jamedow.learning.web;
 
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
+import com.jamedow.learning.utils.Constant;
 import com.jamedow.learning.utils.MD5.MD5;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UsersController {
 
 
 
-    @RequestMapping("/accessLogin")
+    @RequestMapping(value = "/accessLogin",produces = {"application/text;charset=UTF-8"})
     @ResponseBody
     public String accessLogin(String userName, String password){
 
@@ -51,25 +52,25 @@ public class UsersController {
 
     }
 
-    @RequestMapping("/signup")
+    @RequestMapping(value ="/signup",produces = {"application/text;charset=UTF-8"})
     @ResponseBody
     public String signup(String userName,String password){
-
-        Users user = null;
 
         if(StringUtils.isNotBlank(userName)&&
                 StringUtils.isNotBlank(password)){
 
-            user =  usersService.getUserByName(userName);
+            Users user =  usersService.getUserByName(userName);
 
-            if(user==null)
-                return UsersService.USER_EXIST;
+            if(user!=null)
+                return UsersService.USER_EXIST;//用户已存在
 
+            user = new Users();
+            user.setId((long)(Constant.ZERO));
             user.setUsername(userName);
             password = MD5.md5crypt(password);
             user.setPassword(password);
 
-            if(usersService.saveUser(user)==0){
+            if((Constant.ZERO)!=usersService.saveUser(user)){
 
                 return UsersService.SIGNUP_SUCCESS;
             }
