@@ -58,20 +58,25 @@
             $("#signupBody,#signupSubmit").remove();
             $("#loginBody").addClass("signup-dialog-body");
             $("#loginBody").removeClass("dialog-body");
-            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div class='form-group'>" +
+            $("#loginBody").append("<div class='modal-body'' id='signupBody'><div style='height: 79px'>" +
                     "<label for='newUserName'>用户名</label> " +
-                    "<input type='text' name='newUserName' class='form-control' id='newUserName' " +
-                    "placeholder='6-15位，允许输入英文、数字、中文、_'> "+
-                    " <p id = 'newNameError' class ='errorInfo pFont'>( ¯ □ ¯ )6-15位，允许输入英文、数字、中文、_</p>"+
+                    "<div>"+
+                    "<input type='text' name='newUserName' class='form-control' style='width: 80%;float:left' id='newUserName' " +
+                    "placeholder='6-15位，英文、数字、中文、_'> "+
+                    "<label class='testName' id = 'testUserName' onclick='testUserName()'>检测</label> " +
+                    "</div>"+
+                    "<div id= 'newNameError' class='alertText errorInfo alert alert-danger ' role='alert'>6-15位，允许输入英文、数字、中文、_</div>"+
+                    "<div id= 'newNameSuccess' class='alertText errorInfo alert alert-success ' role='alert'>用户名可使用</div>"+
+                    "<div id= 'newNameExist' class='alertText errorInfo alert alert-warning ' role='alert'>( ¯ □ ¯ )用户名已存在</div>"+
                     "</div>" +
                     " <div class='form-group' > <label for='newPassword'>密码</label>" +
                     " <input type='password'  name='newPassword' class='form-control' id='newPassword' " +
                     "placeholder='6-16位密码，区分大小写，不能用空格'> </div>" +
-                     " <p id = 'newPwdError' class ='errorInfo pFont'>请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>"+
+                    "<div id= 'newPwdError' class='alertText errorInfo alert alert-danger ' role='alert'>请输入6-16位密码，不能使用空格(‘▽′)Ψ </div>"+
                     " <div class='form-group'> <label for='passwordConfirm'>确认密码</label> " +
                     "<input type='password'  name='passwordConfirm' class='form-control' id='passwordConfirm' " +
                     "placeholder='请再次输入密码'> </div> " +
-                    " <p id = 'pwdAgainError' class ='errorInfo pFont'>密码不一致(‘▽′)Ψ </p>"+
+                    "<div id= 'pwdAgainError' class='alertText errorInfo alert alert-warning ' role='alert'>密码不一致(‘▽′)Ψ</div>"+
                     "</div><button type='button' id='signupSubmit' onclick='signupSubmit()' class='btn btn-primary loginButton' " +
                     "data-dismiss='modal'><span  aria-hidden='true'></span>注册</button>");
             $(".errorInfo").hide();
@@ -126,28 +131,58 @@
         });
 
 
+
+
     });
 
+    function testUserName(){
+
+        $(".errorInfo").hide();
+        var userName = $("#newUserName").val();
+        var regex=/^[0-9A-Za-z_\u4e00-\u9fa5]{6,15}$/;
+
+        if(regex.exec(userName)!=null){
+
+            var url="${ctx}/login/testName";
+            ajaxPost(url,{"userName":userName},
+
+                    function(value){
+
+                        if("用户存在"==value ){
+
+                            $("#newNameExist").show();
+                        }else {
+                            $("#newNameSuccess").show();
+                            $("#loginDialog").modal("show");
+                        }
+                    },null,false );
+
+        }else {
+            $("#newNameError").show();
+        }
+    }
     function  signupSubmit(){
 
+        var testSuccess = 0;//用户名或密码格式不对则非零
         $(".errorInfo").hide();
         var newUserName = $("#newUserName").val();
         var regex=/^[0-9A-Za-z_\u4e00-\u9fa5]{6,15}$/;
-
-        if(regex.exec(newUserName)==null){
+        if(regex.exec(newUserName)==null)
 
             $("#newNameError").show();
-            return false;
+        else{
+            testSuccess++;
         }
         var newPassword = $("#newPassword").val();
         var regStr = /^[0-9A-Za-z]{6,16}$/;
-        if(regStr.exec(newPassword)==null){
+        if(regStr.exec(newPassword)==null)
 
             $("#newPwdError").show();
-            return false;
+        else{
+            testSuccess++;
         }
         var passwordConfirm = $("#passwordConfirm").val();
-        if(newPassword == passwordConfirm){
+        if((newPassword == passwordConfirm)&&(testSuccess==0)){
 
                 var url="${ctx}/login/signup";
                 ajaxPost(url,{"userName":newUserName,"password":newPassword},
@@ -158,6 +193,7 @@
                                 dialogShow("注册成功");
                                 closeDialog();
                             }else {
+                                $("#signupError").show();
                                 $("#loginDialog").modal("show");
                             }
                         },null,false );
@@ -229,20 +265,22 @@
 <style  >
     .action-title
     {
-        border-bottom:1px solid #f0310b;
-        color: #f02312;
+        border-bottom:1px solid #339999;
+        color: #339999;
     }
     .dialog-body
     {
-        height: 382px;
+        height: 369px;
         width: 326px;
     }
     .signup-dialog-body
     {
-        height: 382px;
+        height: 369px;
         width: 326px;
     }
     .loginButton{
+        background-color: #008B8B;
+        border-color: #008B8B;
         position: absolute;
         right:10%;
         width:80%;
@@ -262,34 +300,49 @@
         margin-bottom: 0px;
         margin-top: 0px;;
     }
+    .testName{
+        margin: 0;
+        color:#339999;
+        padding-top:5%;
+        padding-left:10%;
+        cursor:pointer;
+    }
+    .alertText{
+        padding: 0px;
+    }
+    .closeButton{
+        margin-top: -7px;
+        font-size: 39px;
+        font-weight: 200;
+    }
 </style>
 
     <div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog"  role="document">
             <div class="modal-content dialog-body dialogPosition" id="loginBody" >
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class = "header_title">
-                        <span id = "signin" class = "action-title titleFont" style="cursor:pointer">登录</span>
-                        <span id = "signup" class = "titleFont" style="cursor:pointer">注册</span>
+                <div class="modal-header" >
+                    <button type="button" class="closeButton close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class = "header_title" style="margin: 0px">
+                        <span id = "signin" class = "action-title titleFont" style="padding-bottom:14px;cursor:pointer">登录</span>
+                        <span id = "signup" class = "titleFont" style="padding-bottom:14px;cursor:pointer">注册</span>
                     </h4>
                 </div>
                 <div class="modal-body" id = "signinBody">
 
                     <div style="height:24px">
-                        <p id = "signInError" class ="errorInfo pFont">用户名或密码错误</p>
+                        <div  id = "signInError" class="errorInfo alertText alert alert-danger" role="alert">用户名或密码错误</div>
                     </div>
                     <div style="height:84px">
                         <label for="userName">用户名</label>
                         <input type="text" name="userName" class="form-control" id="userName" placeholder="请输入用户名/账号">
-                        <p id = "userError" class ="errorInfo pFont">请输入正确的用户名或者账号( ¯ □ ¯ )</p>
+                        <div  id = "userError" class="errorInfo alertText alert alert-danger" role="alert">请输入正确的用户名或者账号( ¯ □ ¯ )</div>
                     </div>
                     <div style="height:84px">
                         <label for="password">密码</label>
                         <input type="password"  name="password" class="form-control" id="password" placeholder="请输入密码">
-                        <p id = "pwdError" class ="errorInfo pFont">请输入6-16位密码，不能使用空格(‘▽′)Ψ </p>
+                        <div  id = "pwdError" class="errorInfo alertText alert alert-danger" role="alert">请输入6-16位密码，不能使用空格(‘▽′)Ψ </div>
                     </div>
-                    <div class="checkbox checkMargin">
+                    <div class="checkbox checkMargin" style="margin-top: 6%">
                         <label>
                             <input id ="remember" name="remember" type="checkbox"> 记住密码
                         </label>
