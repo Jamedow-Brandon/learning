@@ -21,28 +21,26 @@ public class UsersController {
     private UsersService usersService;
 
 
-
-
-    @RequestMapping(value = "/accessLogin",produces = {"application/text;charset=UTF-8"})
+    @RequestMapping(value = "/accessLogin", produces = {"application/text;charset=UTF-8"})
     @ResponseBody
-    public String accessLogin(String userName, String password){
+    public String accessLogin(String userName, String password) {
 
-        if(StringUtils.isBlank(userName))
+        if (StringUtils.isBlank(userName))
             return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
         Users users = usersService.getUserByName(userName);
-        if(users == null)
+        if (users == null)
             users = usersService.getUserByEmail(userName);
 
-        if(users == null)
+        if (users == null)
             users = usersService.getUserByMobile(userName);
 
-        if(users == null)
+        if (users == null)
             return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
         password = MD5.md5crypt(password);
 
-        if(!password.equals(users.getPassword()))
+        if (!password.equals(users.getPassword()))
 
             return UsersService.ACCOUNT_OR_PASSWORD_ERROR;
 
@@ -52,30 +50,48 @@ public class UsersController {
 
     }
 
-    @RequestMapping(value ="/signup",produces = {"application/text;charset=UTF-8"})
+    @RequestMapping(value = "/signup", produces = {"application/text;charset=UTF-8"})
     @ResponseBody
-    public String signup(String userName,String password){
+    public String signup(String userName, String password) {
 
-        if(StringUtils.isNotBlank(userName)&&
-                StringUtils.isNotBlank(password)){
+        if (StringUtils.isNotBlank(userName) &&
+                StringUtils.isNotBlank(password)) {
 
-            Users user =  usersService.getUserByName(userName);
+            Users user = usersService.getUserByName(userName);
 
-            if(user!=null)
+            if (user != null)
                 return UsersService.USER_EXIST;//用户已存在
 
             user = new Users();
-            user.setId((long)(Constant.ZERO));
+            user.setId((long) (Constant.ZERO));
             user.setUsername(userName);
             password = MD5.md5crypt(password);
             user.setPassword(password);
 
-            if((Constant.ZERO)!=usersService.saveUser(user)){
+            if ((Constant.ZERO) != usersService.saveUser(user)) {
 
                 return UsersService.SIGNUP_SUCCESS;
+
             }
         }
         return UsersService.SIGNUP_ERROR;
+
+    }
+
+    /**
+     * 判断用户名是否已存在
+     * @param userName
+     * @return
+     */
+    @RequestMapping(value = "/testName", produces = {"application/text;charset=UTF-8"})
+    @ResponseBody
+    public String testName(String userName) {
+
+        Users user = usersService.getUserByName(userName);
+        if (user != null)
+            return UsersService.USER_EXIST;//用户已存在
+
+        return UsersService.NOT_ACCOUNT;//用户不存在
 
     }
 }
