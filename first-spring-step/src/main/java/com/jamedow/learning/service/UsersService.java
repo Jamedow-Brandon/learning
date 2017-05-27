@@ -8,6 +8,20 @@ import com.jamedow.learning.entity.Users;
 
 public interface UsersService {
 
+    public static final String LOGIN_ERROR="登录失败";
+
+    public static final String LOGIN_SUCCESS="登录成功";
+
+    public static final String NOT_ACCOUNT = "用户不存在";
+
+    public static final String ACCOUNT_OR_PASSWORD_ERROR = "用户账号或密码错误";
+
+    public static final String SIGNUP_SUCCESS="注册成功";
+
+    public static final String SIGNUP_ERROR="注册失败";
+
+    public static final String USER_EXIST="用户存在";
+
     /**
      * 新增或修改用户
      * @param users
