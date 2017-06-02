@@ -110,34 +110,34 @@
 </div>
 
 <script type="text/html" id="signinTemplate">
-    <div class='modal-body' id='signupBody'>
-        <div style='height: 84px'>
-            <label for='newUserName'>用户名</label>
+    <div class="modal-body" id="signupBody">
+        <div style="height: 84px">
+            <label for="newUserName">用户名</label>
             <div>
-                <input type='text' name='newUserName' class='form-control' style='width: 80%;float:left'
-                       id='newUserName' placeholder='6-15位，英文、数字、中文、_'/>
-                <label class='testName' id='testUserName' onclick='testUserName()'>检测</label>
+                <input type="text" name="newUserName" class="form-control" style="width: 80%;float:left"
+                       id="newUserName" placeholder="6-15位，英文、数字、中文、_"/>
+                <label class="testName" id="testUserName" onclick="testUserName()">检测</label>
             </div>
-            <div id='newNameError' class='alertText errorInfo alert alert-danger ' role='alert'>6-15位，允许输入英文、数字、中文、_
+            <div id="newNameError" class="alertText errorInfo alert alert-danger " role="alert">6-15位，允许输入英文、数字、中文、_
             </div>
-            <div id='newNameSuccess' class='alertText errorInfo alert alert-success ' role='alert'>用户名可使用</div>
-            <div id='newNameExist' class='alertText errorInfo alert alert-warning ' role='alert'>( ¯ □ ¯ )用户名已存在</div>
+            <div id="newNameSuccess" class="alertText errorInfo alert alert-success " role="alert">用户名可使用</div>
+            <div id="newNameExist" class="alertText errorInfo alert alert-warning " role="alert">( ¯ □ ¯ )用户名已存在</div>
         </div>
-        <div class='form-group'>
-            <label for='newPassword'>密码</label>
-            <input type='password' name='newPassword' class='form-control' id='newPassword'
-                   placeholder='6-16位密码，区分大小写，不能用空格'/>
+        <div class="form-group">
+            <label for="newPassword">密码</label>
+            <input type="password" name="newPassword" class="form-control" id="newPassword"
+                   placeholder="6-16位密码，区分大小写，不能用空格"/>
         </div>
-        <div id='newPwdError' class='alertText errorInfo alert alert-danger ' role='alert'>请输入6-16位密码，不能使用空格(‘▽′)Ψ</div>
-        <div class='form-group'>
-            <label for='passwordConfirm'>确认密码</label>
-            <input type='password' name='passwordConfirm' class='form-control' id='passwordConfirm'
-                   placeholder='请再次输入密码'/>
+        <div id="newPwdError" class="alertText errorInfo alert alert-danger " role="alert">请输入6-16位密码，不能使用空格(‘▽′)Ψ</div>
+        <div class="form-group">
+            <label for="passwordConfirm">确认密码</label>
+            <input type="password" name="passwordConfirm" class="form-control" id="passwordConfirm"
+                   placeholder="请再次输入密码"/>
         </div>
-        <div id='pwdAgainError' class='alertText errorInfo alert alert-warning ' role='alert'>密码不一致(‘▽′)Ψ</div>
+        <div id="pwdAgainError" class="alertText errorInfo alert alert-warning " role="alert">密码不一致(‘▽′)Ψ</div>
     </div>
-    <button type='button' id='signupSubmit' onclick='signupSubmit()' class='btn btn-primary loginButton'>
-        <span aria-hidden='true'>注册</span>
+    <button type="button" id="signupSubmit" onclick="signupSubmit()" class="btn btn-primary loginButton">
+        <span aria-hidden="true">注册</span>
     </button>
 </script>
 <script type="text/javascript" src="${ctx}/static/template.js"></script>
