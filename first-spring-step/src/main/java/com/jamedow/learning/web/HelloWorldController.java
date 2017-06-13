@@ -55,6 +55,15 @@ public class HelloWorldController {
         return view;
     }
 
+    @RequestMapping("/toHomePage")
+    public ModelAndView toHomePage(){
+
+        ModelAndView view = new ModelAndView();
+        view.setViewName("homePage");
+        return view;
+
+    }
+
     @RequestMapping("adduser")
     public String addUser(Users users, RedirectAttributes redirectAttributes) throws Exception {
         logger.info("add user {} start", users.getUsername());
