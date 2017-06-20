@@ -1,13 +1,11 @@
 package com.jamedow.learning.service;
 
 import com.jamedow.learning.entity.Users;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by 365 on 2016/12/12 0012.
  */
 
-@Service
 public interface UsersService {
 
     public static final String LOGIN_ERROR="登录失败";
