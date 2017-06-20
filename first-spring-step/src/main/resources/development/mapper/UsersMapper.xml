@@ -2,17 +2,92 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jamedow.learning.mapper.UsersMapper">
     <resultMap id="BaseResultMap" type="com.jamedow.learning.entity.Users">
-        <id column="id" jdbcType="BIGINT" property="id"/>
-        <result column="username" jdbcType="VARCHAR" property="username"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="delstatus" jdbcType="VARCHAR" property="delstatus" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     </resultMap>
-    <sql id="Base_Column_List">
-        id, username, password, email
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
     </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, username, password, email, delstatus, mobile
+    </sql>
+    <select id="selectByExample" parameterType="com.jamedow.learning.entity.UsersExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'true' as QUERYID,
+        <include refid="Base_Column_List" />
+        from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from users
         where id = #{id,jdbcType=BIGINT}
     </select>
@@ -20,11 +95,19 @@
         delete from users
         where id = #{id,jdbcType=BIGINT}
     </delete>
+    <delete id="deleteByExample" parameterType="com.jamedow.learning.entity.UsersExample">
+        delete from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
     <insert id="insert" parameterType="com.jamedow.learning.entity.Users">
         insert into users (id, username, password,
-        email)
+        email, delstatus, mobile
+        )
         values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{email,jdbcType=VARCHAR})
+        #{email,jdbcType=VARCHAR}, #{delstatus,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}
+        )
     </insert>
     <insert id="insertSelective" parameterType="com.jamedow.learning.entity.Users">
         insert into users
@@ -41,6 +124,12 @@
             <if test="email != null">
                 email,
             </if>
+            <if test="delstatus != null">
+                delstatus,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -55,8 +144,58 @@
             <if test="email != null">
                 #{email,jdbcType=VARCHAR},
             </if>
+            <if test="delstatus != null">
+                #{delstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
+    <select id="countByExample" parameterType="com.jamedow.learning.entity.UsersExample" resultType="java.lang.Long">
+        select count(*) from users
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update users
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.username != null">
+                username = #{record.username,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null">
+                email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.delstatus != null">
+                delstatus = #{record.delstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mobile != null">
+                mobile = #{record.mobile,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update users
+        set id = #{record.id,jdbcType=BIGINT},
+        username = #{record.username,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+        email = #{record.email,jdbcType=VARCHAR},
+        delstatus = #{record.delstatus,jdbcType=VARCHAR},
+        mobile = #{record.mobile,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.jamedow.learning.entity.Users">
         update users
         <set>
@@ -69,6 +208,12 @@
             <if test="email != null">
                 email = #{email,jdbcType=VARCHAR},
             </if>
+            <if test="delstatus != null">
+                delstatus = #{delstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
@@ -76,7 +221,9 @@
         update users
         set username = #{username,jdbcType=VARCHAR},
         password = #{password,jdbcType=VARCHAR},
-        email = #{email,jdbcType=VARCHAR}
+        email = #{email,jdbcType=VARCHAR},
+        delstatus = #{delstatus,jdbcType=VARCHAR},
+        mobile = #{mobile,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
 </mapper>

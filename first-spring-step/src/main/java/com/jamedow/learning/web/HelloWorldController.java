@@ -1,13 +1,15 @@
 package com.jamedow.learning.web;
 
+import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import com.alibaba.fastjson.JSONObject;
 import com.jamedow.learning.entity.Users;
 import com.jamedow.learning.service.UsersService;
+import com.jamedow.learning.utils.rabbitmq.RabbitMQUtils;
 import com.jamedow.learning.utils.redis.RedisPoolManager;
+import com.jamedow.learning.utils.webcollector.BingCrawler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,15 +23,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/")
 public class HelloWorldController {
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
-
+    private final String VIRTUAL_HOST = "webcollector";
+    private final String QUEUE = "queue";
     @Autowired
     private UsersService usersService;
-    @Value("${wechat.token}")
-    private String sToken;
-    @Value("${wechat.encodingaeskey}")
-    private String sEncodingAESKey;
-    @Value("${wechat.cropid}")
-    private String sCorpID;
     @Autowired
     private RedisPoolManager redis;
 
@@ -52,6 +49,27 @@ public class HelloWorldController {
         view.addObject("user", new Users());
         //设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
         view.setViewName("hello");
+
+        try {
+            String keyword = "公司";
+            int maxPageNum = 3;
+            BingCrawler crawler = new BingCrawler("depth_crawler", false);
+            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
+                String url = BingCrawler.createBingUrl(keyword, pageNum);
+                crawler.addSeed(new CrawlDatum(url)
+                        .putMetaData("keyword", keyword)
+                        .putMetaData("pageNum", pageNum + "")
+                        .putMetaData("pageType", "searchEngine")
+                        .putMetaData("depth", "1"));
+            }
+
+            crawler.start(maxPageNum);
+
+            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+
         return view;
     }
 
