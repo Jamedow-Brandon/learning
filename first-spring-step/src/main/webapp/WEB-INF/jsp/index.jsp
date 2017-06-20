@@ -16,11 +16,17 @@
     <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
 </head>
 <body>
-<div class="index-mask">
+<div class="index-mask" id="indexPresent">
     <div class="index-mask_top"></div>
     <div class="index-mask_below"></div>
 </div>
-<script src="${ctx}/static/jquery/jquery-3.1.1.js"></script>
-<script src="${ctx}/static/script/application.js"></script>
+<script type="application/javascript" src="${ctx}/static/jquery/jquery-3.1.1.js"></script>
+<script type="application/javascript" src="${ctx}/static/script/application.js"></script>
+<script type="application/javascript">
+    $("#indexPresent").on("click", function () {
+        $(".index-mask_top").animate({"margin-top": "-62%"});
+        $(".index-mask_below").animate({"margin-top": "124%"});
+    });
+</script>
 </body>
 </html>

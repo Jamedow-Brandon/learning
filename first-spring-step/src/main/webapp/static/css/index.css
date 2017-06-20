@@ -6,14 +6,15 @@ html, body {
 
 .index-mask {
     height: 100%;
+    overflow: hidden;
 }
 
 .index-mask_top {
     height: 62%;
-    background-color: #000;
+    background: url("../img/index-present-top.jpg");
 }
 
 .index-mask_below {
     height: 38%;
-    background-color: #fff;
+    background: url("../img/index-present-below.jpg");
 }
