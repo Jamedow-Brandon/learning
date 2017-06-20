@@ -1,0 +1,17 @@
+html, body {
+    height: 100%
+}
+
+.index-mask {
+    height: 100%;
+}
+
+.index-mask_top {
+    height: 62%;
+    background-color: #000;
+}
+
+.index-mask_below {
+    height: 38%;
+    background-color: #fff;
+}

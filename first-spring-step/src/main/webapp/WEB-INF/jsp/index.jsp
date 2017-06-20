@@ -10,13 +10,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>一叶梧桐落</title>
+    <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
 </head>
 <body>
-
-Hello <a href="javascript:HISTORY.goToUrl('aaa')">${name}</a>!
-</body>
-
+<div class="index-mask">
+    <div class="index-mask_top"></div>
+    <div class="index-mask_below"></div>
+</div>
 <script src="${ctx}/static/jquery/jquery-3.1.1.js"></script>
-<script src="${ctx}/static/application.js"></script>
+<script src="${ctx}/static/script/application.js"></script>
+</body>
 </html>
