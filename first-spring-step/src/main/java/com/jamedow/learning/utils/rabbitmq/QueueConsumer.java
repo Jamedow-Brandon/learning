@@ -1,5 +1,6 @@
 package com.jamedow.learning.utils.rabbitmq;
 
+import com.jamedow.learning.utils.webcollector.CompanyCrawler;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.Envelope;
@@ -7,8 +8,6 @@ import com.rabbitmq.client.ShutdownSignalException;
 import org.apache.commons.lang3.SerializationUtils;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 /**
@@ -42,9 +41,20 @@ public class QueueConsumer extends EndPoint implements Runnable, Consumer {
     @Override
     public void handleDelivery(String consumerTag, Envelope env,
                                AMQP.BasicProperties props, byte[] body) throws IOException {
-        Map map = (HashMap) SerializationUtils.deserialize(body);
-        System.out.println("Message Number " + map.get("message number") + " received.");
+        String url = SerializationUtils.deserialize(body);
 
+        try {
+            System.out.println("Message url " + url + " received.");
+            System.out.println("Message url " + url + " received.");
+            System.out.println("Message url " + url + " received.");
+            CompanyCrawler crawler = new CompanyCrawler("crawler", false);
+            crawler.addSeed(url);
+
+            crawler.setThreads(1);
+            crawler.start(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleCancel(String consumerTag) {
