@@ -1,20 +1,48 @@
-html, body {
+html, body, h1, span {
     margin: 0;
     padding: 0;
     height: 100%
 }
 
+.index-container {
+
+}
+
+/*index mask start*/
 .index-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 100%;
     overflow: hidden;
+    background-color: #fff;
 }
 
 .index-mask_top {
     height: 62%;
-    background: url("../img/index-present-top.jpg");
+    background: url("../img/index-present-top.jpg") no-repeat center;
 }
 
 .index-mask_below {
     height: 38%;
-    background: url("../img/index-present-below.jpg");
+    background: url("../img/index-present-below.jpg") no-repeat center;
 }
+
+.index-mask--title {
+    font-family: 微软雅黑;
+    font-size: 3rem;
+    padding-top: 3rem;
+    color: #5A4446;
+    text-align: center;
+}
+
+.index-mask--open {
+    font-family: 微软雅黑;
+    font-size: 3rem;
+    color: #5A4446;
+    text-align: center;
+    cursor: pointer;
+}
+
+/*index mask end*/
