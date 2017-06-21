@@ -19,11 +19,17 @@
 
 <div class="index-container">
     <div class="index-container_toy">玩具专区</div>
+    <div class="index-container_a">玩具专区</div>
+    <div class="index-container_a">玩具专区</div>
+    <div class="index-container_toy">玩具专区</div>
+    <div class="index-container_a">玩具专区</div>
+    <div class="index-container_a">玩具专区</div>
+    <div class="index-container_a">玩具专区</div>
 </div>
 
 
 <!-- index mask start-->
-<div class="index-mask" id="indexPresent">
+<div class="index-mask" id="indexPresent" style="display:none">
     <div class="index-mask_top">
         <h1 class="index-mask--title">还在想过节送什么？快来这里看看吧！</h1>
         <div class="index-mask--open">点击打开</div>
