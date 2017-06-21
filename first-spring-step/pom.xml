@@ -207,6 +207,13 @@
             <version>6.12.18</version>
         </dependency>
 
+        <!--taobao-sdk-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>17.05.11</version>
+        </dependency>
+
         <!--webcollector-->
         <dependency>
             <groupId>cn.edu.hfut.dmic.webcollector</groupId>
