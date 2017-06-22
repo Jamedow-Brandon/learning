@@ -26,7 +26,7 @@ html, body {
     float: left;
 }
 
-.index-container--toy {
+.index-container--square {
     margin: 8px;
     width: 15rem;
     height: 13rem;
@@ -34,7 +34,7 @@ html, body {
     float: left;
 }
 
-.index-container--old {
+.index-container--vertical {
     margin: 8px;
     width: 15rem;
     height: 27.5rem;
@@ -42,7 +42,7 @@ html, body {
     float: left;
 }
 
-.index-container--girl {
+.index-container--across {
     margin: 8px;
     width: 31.5rem;
     height: 13rem;
