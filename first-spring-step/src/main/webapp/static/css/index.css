@@ -1,29 +1,59 @@
-html, body, h1, span {
+html, body, h1, span, div {
     margin: 0;
     padding: 0;
-    height: 100%
+}
+
+html, body {
+    height: 100%;
 }
 
 .index-container {
     margin: 5px auto 5px auto;
-    padding: 8px;
-    width: 61.8rem;
-    height: 38rem;
+    width: 75rem;
+    height: 46.25rem;
     border: 4px solid #000;
 }
 
-.index-container_toy {
+.index-container_left {
+    width: 50.25rem;
+    height: 100%;
+    float: left;
+}
+
+.index-container_right {
+    width: 24.75rem;
+    height: 100%;
+    float: left;
+}
+
+.index-container--toy {
     margin: 8px;
-    width: 39rem;
-    height: 11rem;
+    width: 15rem;
+    height: 13rem;
     border: 4px solid #000;
     float: left;
 }
 
-.index-container_a {
+.index-container--old {
     margin: 8px;
-    width: 19rem;
-    height: 11rem;
+    width: 15rem;
+    height: 27.5rem;
+    border: 4px solid #000;
+    float: left;
+}
+
+.index-container--girl {
+    margin: 8px;
+    width: 31.5rem;
+    height: 13rem;
+    border: 4px solid #000;
+    float: left;
+}
+
+.index-container--video {
+    margin: 8px;
+    width: 23rem;
+    height: 13rem;
     border: 4px solid #000;
     float: left;
 }

@@ -11,6 +11,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>一叶梧桐落</title>
     <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
@@ -18,13 +19,18 @@
 <body>
 
 <div class="index-container">
-    <div class="index-container_toy">玩具专区</div>
-    <div class="index-container_a">玩具专区</div>
-    <div class="index-container_a">玩具专区</div>
-    <div class="index-container_toy">玩具专区</div>
-    <div class="index-container_a">玩具专区</div>
-    <div class="index-container_a">玩具专区</div>
-    <div class="index-container_a">玩具专区</div>
+    <div class="index-container_left">
+        <div class="index-container--toy">玩具专区</div>
+        <div class="index-container--girl">玩具专区</div>
+        <div class="index-container--old">玩具专区</div>
+        <div class="index-container--toy">玩具专区</div>
+        <div class="index-container--toy">玩具专区</div>
+        <div class="index-container--girl">玩具专区</div>
+    </div>
+    <div class="index-container_right">
+        <div class="index-container--video">玩具专区</div>
+        <div class="index-container--video">玩具专区</div>
+    </div>
 </div>
 
 
