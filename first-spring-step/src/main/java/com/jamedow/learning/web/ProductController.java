@@ -23,9 +23,9 @@ public class ProductController {
     private RedisPoolManager redis;
 
     @RequestMapping(value = "list")
-    public ModelAndView index() {
+    public ModelAndView list(String channel) {
         ModelAndView view = new ModelAndView();
-        view.addObject("name", "jamedow");
+        view.addObject("channel", channel);
         view.setViewName("product/list");
         return view;
     }

@@ -20,12 +20,12 @@
 
 <div class="index-container">
     <div class="index-container_left">
-        <div channel="1" class="index-container--square" style="background-color: red">玩具专区</div>
-        <div channel="2" class="index-container--across" style="background-color: orange">玩具专区</div>
-        <div channel="3" class="index-container--vertical" style="background-color: yellow">玩具专区</div>
-        <div channel="4" class="index-container--square" style="background-color: green">玩具专区</div>
-        <div channel="5" class="index-container--square" style="background-color: blue">玩具专区</div>
-        <div channel="6" class="index-container--across" style="background-color: purple">玩具专区</div>
+        <div class="index-container--square" style="background-color: red">玩具专区</div>
+        <div class="index-container--across" style="background-color: orange">玩具专区</div>
+        <div class="index-container--vertical" style="background-color: yellow">玩具专区</div>
+        <div class="index-container--square" style="background-color: green">玩具专区</div>
+        <div class="index-container--square" style="background-color: blue">玩具专区</div>
+        <div class="index-container--across" style="background-color: purple">玩具专区</div>
     </div>
     <div class="index-container_right">
         <div class="index-container--video" style="background-color: pink">玩具专区</div>
@@ -52,11 +52,6 @@
             $("#indexPresent").hide();
         });
         $(".index-mask_below").animate({"margin-top": "124%"}, 1500);
-    });
-
-    $(".index-container_left div").on("click", function () {
-        var channel = $(this).attr("channel");
-        window.open("${ctx}/product/list?channel=" + channel);
     });
 </script>
 </body>
