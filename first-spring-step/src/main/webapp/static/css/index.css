@@ -6,17 +6,36 @@ html, body, h1, span, div {
 html, body {
     height: 100%;
     font-size: 100%;
-    background-color: #fff;
+    background-color: #fdffdf;
+}
+
+.floor img {
+    width: 100%;
+    height: 100%;
 }
 
 .floor-left {
-    height: 20rem;
-    border: 1px solid black;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #fff;
 }
 
 .floor-right {
-    height: 10rem;
-    border: 1px solid black;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+.child {
+    background-color: #daf9ca;
+}
+
+.girl {
+    background-color: #efcee8;
+}
+
+.boy {
+    background-color: #f3d7b5;
 }
 
 /*index mask start*/
