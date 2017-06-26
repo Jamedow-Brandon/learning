@@ -18,21 +18,22 @@
 </head>
 <body>
 
-<div class="index-container col-md-10 col-xs-12">
-    <div channel="1" class="index-container--vertical col-md-4 col-xs-12 col-md-offset-1">
-        <img class="img-rounded col-md-11 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+<div class="container">
+    <div class="col-xs-12">
+        <h2 class="text-center bg-info">儿童玩具</h2>
+        <div class="col-md-8 col-xs-12 col-md-offset-2 col-xs-offset-0">
+            <div class="col-md-5 col-xs-12 floor-left">aa</div>
+            <div class="col-md-3 col-xs-6 floor-right">bb</div>
+            <div class="col-md-3 col-xs-6 floor-right">cc</div>
+            <div class="col-md-3 col-xs-6 floor-right">cc</div>
+            <div class="col-md-3 col-xs-6 floor-right">cc</div>
+        </div>
     </div>
-    <div channel="1" class="index-container--square col-md-3 col-xs-6">
-        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+    <div class="col-xs-12">
+        <h2 class="text-center bg-danger">女生礼物</h2>
     </div>
-    <div channel="1" class="index-container--square col-md-3 col-xs-6">
-        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
-    </div>
-    <div channel="1" class="index-container--square col-md-3 col-xs-6">
-        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
-    </div>
-    <div channel="1" class="index-container--square col-md-3 col-xs-6">
-        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+    <div class="col-xs-12">
+        <h2 class="text-center bg-success">男生礼物</h2>
     </div>
 </div>
 

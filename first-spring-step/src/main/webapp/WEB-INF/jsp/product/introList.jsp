@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="${ctx}/static/css/product-intro.css"/>
 </head>
 <body>
-<div id="container">
+<div id="container" class="container">
     <c:forEach begin="0" end="5" step="1">
-        <div class="product-intro col-md-10">
+        <div class="product-intro col-md-12">
             <img class="col-md-3 col-xs-12 img-thumbnail" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg"/>
             <h1 class="col-md-9 text-center">宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具</h1>
             <article class="col-md-9">

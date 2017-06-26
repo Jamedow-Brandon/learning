@@ -6,19 +6,18 @@ html, body, h1, span, div {
 html, body {
     height: 100%;
     font-size: 100%;
-    background-color: #eee;
-}
-
-.index-container {
-    margin: auto;
-    border: 0.25rem solid #000;
-}
-
-.index-container div {
     background-color: #fff;
-    cursor: pointer;
 }
 
+.floor-left {
+    height: 20rem;
+    border: 1px solid black;
+}
+
+.floor-right {
+    height: 10rem;
+    border: 1px solid black;
+}
 
 /*index mask start*/
 .index-mask {
