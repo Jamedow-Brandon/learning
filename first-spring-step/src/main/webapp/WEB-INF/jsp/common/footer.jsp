@@ -5,22 +5,3 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 <script type="application/javascript" src="${ctx}/static/script/application.js"></script>
-<%--<script>--%>
-<%--(function (doc, win) {--%>
-<%--var docEl = doc.documentElement,--%>
-<%--resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',--%>
-<%--recalc = function () {--%>
-<%--var clientWidth = docEl.clientWidth;--%>
-<%--if (!clientWidth) return;--%>
-<%--if(clientWidth>=640){--%>
-<%--docEl.style.fontSize = '18px';--%>
-<%--}else{--%>
-<%--docEl.style.fontSize = 18 * (clientWidth / 640) + 'px';--%>
-<%--}--%>
-<%--};--%>
-
-<%--if (!doc.addEventListener) return;--%>
-<%--win.addEventListener(resizeEvt, recalc, false);--%>
-<%--doc.addEventListener('DOMContentLoaded', recalc, false);--%>
-<%--})(document, window);--%>
-<%--</script>--%>

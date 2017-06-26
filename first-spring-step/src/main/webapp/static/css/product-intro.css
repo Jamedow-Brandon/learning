@@ -15,8 +15,6 @@ html, body {
     background-color: #fff;
     text-decoration: none;
     margin: 1rem auto 0.25rem auto;
-    width: 75rem;
-    height: 27rem;
 }
 
 .product-intro article {
@@ -25,6 +23,5 @@ html, body {
 
 .product-intro article p {
     padding: 2rem;
-    height: 18rem;
     line-height: 2rem;
 }

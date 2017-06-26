@@ -18,28 +18,21 @@
 </head>
 <body>
 
-<div class="index-container">
-    <div class="index-container_left col-md-8">
-        <img channel="1" class="index-container--vertical col-md-4 img-thumbnail"
-             src="http://zhaoyuanb2c.sdgxyj.com/res/9999010/img/mall/shop/2016081421033455784.png" alt=""/>
-        <img channel="2" class="index-container--square col-md-3 img-thumbnail"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJb0sc4N3A6klswtbfvN06P7D84DT5VXoiAEcoFYTMidauP6MBEA"
-             alt=""/>
-        <img channel="2" class="index-container--square col-md-3 img-thumbnail"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv6w85Dor0VuGVaGRhZ9QEbdkOqL7kzdyGLeyU5e61ZujrCvdCcg"
-             alt=""/>
-        <img channel="2" class="index-container--square col-md-3 img-thumbnail"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3O-TATbjP-F9JZTcb6CEYG7htR4tY2GN8OBk_AKzHHyrcim007A"
-             alt=""/>
-        <img channel="2" class="index-container--square col-md-3 img-thumbnail"
-             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3_PdRbw-luzRhRc3goW-G-BG40q1Mru5GBRh_fowa64Pmr0qHvQ"
-             alt=""/>
-        <img channel="2" class="index-container--square col-md-11 img-thumbnail"
-             src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+<div class="index-container col-md-10 col-xs-12">
+    <div channel="1" class="index-container--vertical col-md-4 col-xs-12 col-md-offset-1">
+        <img class="img-rounded col-md-11 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
     </div>
-    <div class="index-container_right col-md-4">
-        <div class="index-container--video col-md-11" style="background-color: pink">玩具专区</div>
-        <div class="index-container--video col-md-11">玩具专区</div>
+    <div channel="1" class="index-container--square col-md-3 col-xs-6">
+        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+    </div>
+    <div channel="1" class="index-container--square col-md-3 col-xs-6">
+        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+    </div>
+    <div channel="1" class="index-container--square col-md-3 col-xs-6">
+        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
+    </div>
+    <div channel="1" class="index-container--square col-md-3 col-xs-6">
+        <img class="img-rounded col-md-8 col-xs-8" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg" alt=""/>
     </div>
 </div>
 
@@ -63,7 +56,7 @@
         $(".index-mask_below").animate({"margin-top": "124%"}, 1500);
     });
 
-    $(".index-container_left img").on("click", function () {
+    $(".index-container img").on("click", function () {
         var channel = $(this).attr("channel");
         window.open("${ctx}/product/introList?channel=" + channel);
     });

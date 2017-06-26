@@ -17,11 +17,10 @@
 <body>
 <div id="container">
     <c:forEach begin="0" end="5" step="1">
-        <div class="product-intro">
-            <img class="col-md-3 img-thumbnail" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg"/>
-            <h1 class="col-md-9 text-center">宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具</h1>
-            <hr/>
-            <article class="col-sm-9">
+        <div class="product-intro col-md-10">
+            <img class="col-md-3 col-xs-12 img-thumbnail" src="http://cued.xunlei.com/demos/publ/img/P_000.jpg"/>
+            <h1 class="col-md-9 text-center">宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具</h1>
+            <article class="col-md-9">
                 <p class="bg-warning">
                     宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝
                     宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝玩具宝贝
