@@ -22,6 +22,14 @@ public class ProductController {
     @Autowired
     private RedisPoolManager redis;
 
+    @RequestMapping(value = "introList")
+    public ModelAndView introList(String channel) {
+        ModelAndView view = new ModelAndView();
+        view.addObject("channel", channel);
+        view.setViewName("product/introList");
+        return view;
+    }
+
     @RequestMapping(value = "list")
     public ModelAndView list(String channel) {
         ModelAndView view = new ModelAndView();

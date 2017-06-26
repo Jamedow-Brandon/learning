@@ -66,7 +66,7 @@
             var aEle = document.createElement("a");
             aEle.href = "###";
             aEle.className = "pic_a";
-            aEle.innerHTML = '<img src="' + imgUrl + '" /><strong>' + "测试商品XXX" + '</strong><strong>￥' + index + '</strong>';
+            aEle.innerHTML = '<img src="' + imgUrl + '" /><strong>' + "测试商品XXX" + '</strong><strong style="float:right;">￥' + index + '.00</strong>';
             column.appendChild(aEle);
 
             if (index >= 160) {
