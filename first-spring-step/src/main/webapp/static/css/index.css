@@ -81,15 +81,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .index-mask--title {
     font-family: 微软雅黑;
-    font-size: 3rem;
-    padding-top: 3rem;
+    font-size: 3em;
+    padding-top: 3em;
     color: #5A4446;
     text-align: center;
 }
 
 .index-mask--open {
     font-family: 微软雅黑;
-    font-size: 3rem;
+    font-size: 3em;
     color: #5A4446;
     text-align: center;
     cursor: pointer;
