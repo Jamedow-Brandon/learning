@@ -98,9 +98,9 @@
         $(".index-mask_below").animate({"margin-top": "124%"}, 1500);
     });
 
-    $(".index-container img").on("click", function () {
-        var channel = $(this).attr("channel");
-        window.open("${ctx}/product/introList?channel=" + channel);
+    $(".block .ahead-food").on("click", function () {
+        var categoryId = $(this).parents("block").attr("categoryId");
+        window.open("${ctx}/product/introList?categoryId=" + categoryId);
     });
 </script>
 </body>
