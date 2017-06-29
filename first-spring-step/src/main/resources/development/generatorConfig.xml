@@ -22,20 +22,20 @@
                         password="${jdbc.password}"/>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.jamedow.learning.entity"
+        <javaModelGenerator targetPackage="com.jamedow.laodoufang.entity"
                             targetProject="D:/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="com.jamedow.learning.mapper"
+        <sqlMapGenerator targetPackage="com.jamedow.laodoufang.mapper"
                          targetProject="D:/">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="com.jamedow.learning.mapper"
+        <javaClientGenerator targetPackage="com.jamedow.laodoufang.mapper"
                              targetProject="D:/" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
@@ -45,7 +45,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="product" domainObjectName="Product"
+        <table tableName="category" domainObjectName="Category"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">

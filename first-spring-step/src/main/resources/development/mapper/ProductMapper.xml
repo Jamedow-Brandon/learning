@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jamedow.learning.mapper.ProductMapper">
-    <resultMap id="BaseResultMap" type="com.jamedow.learning.entity.Product">
+<mapper namespace="com.jamedow.laodoufang.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Product">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="price" jdbcType="INTEGER" property="price"/>
@@ -13,7 +13,7 @@
         <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
         <result column="category" jdbcType="INTEGER" property="category"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.learning.entity.Product">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.laodoufang.entity.Product">
         <result column="detail" jdbcType="LONGVARCHAR" property="detail"/>
     </resultMap>
     <sql id="Example_Where_Clause">
@@ -83,7 +83,7 @@
     <sql id="Blob_Column_List">
     detail
   </sql>
-    <select id="selectByExampleWithBLOBs" parameterType="com.jamedow.learning.entity.ProductExample"
+    <select id="selectByExampleWithBLOBs" parameterType="com.jamedow.laodoufang.entity.ProductExample"
             resultMap="ResultMapWithBLOBs">
         select
         <if test="distinct">
@@ -101,7 +101,7 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByExample" parameterType="com.jamedow.learning.entity.ProductExample" resultMap="BaseResultMap">
+    <select id="selectByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
@@ -128,13 +128,13 @@
     delete from product
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByExample" parameterType="com.jamedow.learning.entity.ProductExample">
+    <delete id="deleteByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample">
         delete from product
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.jamedow.learning.entity.Product">
+    <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Product">
     insert into product (id, name, price, 
       sales_volume, intro, create_time, 
       traffic_volume, link_url, img_url, 
@@ -144,7 +144,7 @@
       #{trafficVolume,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
       #{category,jdbcType=INTEGER}, #{detail,jdbcType=LONGVARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.jamedow.learning.entity.Product">
+    <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Product">
         insert into product
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -217,7 +217,8 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.jamedow.learning.entity.ProductExample" resultType="java.lang.Long">
+    <select id="countByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample"
+            resultType="java.lang.Long">
         select count(*) from product
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -297,7 +298,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.jamedow.learning.entity.Product">
+    <update id="updateByPrimaryKeySelective" parameterType="com.jamedow.laodoufang.entity.Product">
         update product
         <set>
             <if test="name != null">
@@ -333,7 +334,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jamedow.learning.entity.Product">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jamedow.laodoufang.entity.Product">
     update product
     set name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},
@@ -347,7 +348,7 @@
       detail = #{detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <update id="updateByPrimaryKey" parameterType="com.jamedow.learning.entity.Product">
+    <update id="updateByPrimaryKey" parameterType="com.jamedow.laodoufang.entity.Product">
     update product
     set name = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=INTEGER},

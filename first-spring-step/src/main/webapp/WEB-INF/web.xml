@@ -75,7 +75,7 @@
     <!-- learningFilter filter -->
     <!--<filter>-->
     <!--<filter-name>learningFilter</filter-name>-->
-    <!--<filter-class>com.jamedow.learning.common.system.filter.LearningFilter</filter-class>-->
+    <!--<filter-clcom.jamedow.laodoufangngning.common.system.filter.LearningFilter</filter-class>-->
     <!--</filter>-->
     <!--<filter-mapping>-->
     <!--<filter-name>learningFilter</filter-name>-->

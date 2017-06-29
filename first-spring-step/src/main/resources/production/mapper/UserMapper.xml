@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jamedow.learning.mapper.UsersMapper">
-    <resultMap id="users" type="com.jamedow.learning.entity.Users">
+<mapper namespace="com.jamedow.laodoufang.mapper.UsersMapper">
+    <resultMap id="users" type="com.jamedow.laodoufang.entity.Users">
         <id property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="email" column="email"/>
     </resultMap>
 
-    <insert id="insertUser" parameterType="com.jamedow.learning.entity.Users" keyProperty="id">
+    <insert id="insertUser" parameterType="com.jamedow.laodoufang.entity.Users" keyProperty="id">
         insert into users(username,password)
         values
         (#{username},#{password});

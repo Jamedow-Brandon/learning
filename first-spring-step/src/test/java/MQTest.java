@@ -1,5 +1,5 @@
-import com.jamedow.learning.utils.rabbitmq.Producer;
-import com.jamedow.learning.utils.rabbitmq.QueueConsumer;
+import com.jamedow.laodoufang.utils.rabbitmq.Producer;
+import com.jamedow.laodoufang.utils.rabbitmq.QueueConsumer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

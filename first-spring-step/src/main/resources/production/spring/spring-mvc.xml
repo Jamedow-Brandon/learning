@@ -8,7 +8,7 @@
             http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 使用Annotation自动注册Bean,只扫描@Controller -->
-    <!--<context:component-scan base-package="com.jamedow.learning.web">&lt;!&ndash; base-package 如果多个，用“,”分隔 &ndash;&gt;-->
+    <!--<context:component-scan base-packacom.jamedow.laodoufangngning.web">&lt;!&ndash; base-package 如果多个，用“,”分隔 &ndash;&gt;-->
     <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     <!--</context:component-scan>-->
 
