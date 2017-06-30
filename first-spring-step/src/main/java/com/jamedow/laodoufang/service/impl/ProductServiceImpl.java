@@ -28,4 +28,9 @@ public class ProductServiceImpl implements ProductService {
         example.createCriteria().andCategoryEqualTo(categoryId);
         return productMapper.selectByExample(example);
     }
+
+    @Override
+    public Product getProductById(Integer productId) {
+        return productMapper.selectByPrimaryKey(productId);
+    }
 }

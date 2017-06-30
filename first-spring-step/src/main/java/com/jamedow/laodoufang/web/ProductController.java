@@ -47,4 +47,15 @@ public class ProductController {
         view.setViewName("product/list");
         return view;
     }
+
+    @RequestMapping(value = "detail")
+    public ModelAndView detail(Integer productId) {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("product/detail");
+
+        Product product = productService.getProductById(productId);
+
+        view.addObject("product", product);
+        return view;
+    }
 }

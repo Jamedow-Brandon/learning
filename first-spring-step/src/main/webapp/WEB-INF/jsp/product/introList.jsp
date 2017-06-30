@@ -19,7 +19,9 @@
     <c:forEach items="${products}" var="product">
         <div class="product-intro col-md-12">
             <img class="col-md-3 col-xs-12 img-thumbnail" src="${product.imgUrl}"/>
-            <h1 class="col-md-9 text-center">${product.name}</h1>
+            <h1 class="col-md-9 text-center">
+                <a href="${ctx}/product/detail?productId=${product.id}">${product.name}</a>
+            </h1>
             <article class="col-md-9">
                 <p class="bg-warning">${product.intro}</p>
             </article>
