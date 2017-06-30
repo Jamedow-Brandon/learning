@@ -99,7 +99,7 @@
     });
 
     $(".block .ahead-food").on("click", function () {
-        var categoryId = $(this).parents("block").attr("categoryId");
+        var categoryId = $(this).parent().attr("categoryId");
         window.open("${ctx}/product/introList?categoryId=" + categoryId);
     });
 </script>
