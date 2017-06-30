@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 17em;
 }
 
-.block img {
+.block img:hover {
     border: 10px solid transparent;
     border-image: url(../img/border.png) 10 10 round;
 }
@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     right: 10px;
     bottom: 10px;
-    background: rgba(39, 174, 96, .6);
+    background: #284641;
     color: #fff;
     text-align: center;
     border-radius: 2px;
@@ -169,6 +169,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #back-to-top:hover {
     background: #27ae60;
+}
+
+#back-to-top:active {
+    background: #284641;
 }
 
 #back-to-top i {

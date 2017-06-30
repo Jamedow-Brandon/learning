@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
 </head>
 <body>
-
 <header class="site-header">
     <div>
         <h1>老豆坊</h1>
@@ -55,7 +54,7 @@
 </div>
 <!--index mask end-->
 
-<a href="#" id="back-to-top" style="display: none;">
+<a href="#2" id="back-to-top" style="display: none;">
     <i class="fa fa-angle-up"></i>
 </a>
 <%@include file="common/footer.jsp" %>
