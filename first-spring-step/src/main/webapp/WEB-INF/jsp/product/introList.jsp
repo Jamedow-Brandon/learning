@@ -11,7 +11,7 @@
 <html lang="zh-CN">
 <head>
     <%@include file="../common/header.jsp" %>
-    <title>${title}</title>
+    <title>${category.name}</title>
     <link rel="stylesheet" href="${ctx}/static/css/product-intro.css"/>
 </head>
 <body>
