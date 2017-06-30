@@ -18,31 +18,9 @@
 </head>
 <body>
 
-<header class="site-header">
-    <nav class="navbar navbar-static-top main-navbar" id="top">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
-                        aria-controls="bs-navbar" aria-expanded="false"><span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand brand-bootcdn text-hide"
-                   onclick="_hmt.push(['_trackEvent', 'main-navbar', 'click', 'main-navbar-bootcdn'])">老豆坊</a> <a
-                    href="https://www.upyun.com/" class="navbar-brand brand-upyun text-hide" target="_blank"
-                    onclick="_hmt.push(['_trackEvent', 'main-navbar', 'click', 'main-navbar-upyun'])">又拍云</a></div>
-            <nav id="bs-navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/api/" onclick="_hmt.push(['_trackEvent', 'main-navbar', 'click', 'api'])"
-                           target="_blank">API</a></li>
-                    <li><a href="http://blog.bootcdn.cn/"
-                           onclick="_hmt.push(['_trackEvent', 'main-navbar', 'click', 'blog'])" target="_blank">博客</a>
-                    </li>
-                    <li><a href="/about/" onclick="_hmt.push(['_trackEvent', 'main-navbar', 'click', 'about'])">关于</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </nav>
+<header>
+    <div class="site-header">
+    </div>
 </header>
 
 <c:forEach items="${categories}" var="category">

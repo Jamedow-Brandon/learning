@@ -16,6 +16,17 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+.site-header {
+    height: 8em;
+    background: url(../img/signage.jpg) no-repeat left;
+}
+
+.site-header h1 b {
+    margin: 1em 0;
+    font-size: 2em;
+    text-indent: -1000px;
+}
+
 .floor {
     padding: 2em;
 }
