@@ -18,8 +18,9 @@
 </head>
 <body>
 
-<header>
-    <div class="site-header">
+<header class="site-header">
+    <div>
+        <h1>老豆坊</h1>
     </div>
 </header>
 

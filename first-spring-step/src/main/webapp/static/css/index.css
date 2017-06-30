@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
     background: url(../img/signage.jpg) no-repeat left;
 }
 
-.site-header h1 b {
+.site-header h1 {
     margin: 1em 0;
     font-size: 2em;
     text-indent: -1000px;
