@@ -4,7 +4,7 @@ body > header, body > section, body > footer {
     clear: both;
 }
 
-body {
+html, body {
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
@@ -17,18 +17,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-header {
-    height: 8em;
+    height: 8rem;
     background: url(../img/signage.jpg) no-repeat left;
 }
 
 .site-header h1 {
-    margin: 1em 0;
-    font-size: 2em;
+    margin: 1rem 0;
+    font-size: 2rem;
     text-indent: -1000px;
 }
 
 .floor {
-    padding: 2em;
+    padding: 2rem;
 }
 
 .night {
@@ -51,24 +51,24 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     display: block;
     clear: both;
-    padding: 0 20px 30px;
+    padding: 0 1rem 2rem;
 }
 
 .block h2 {
-    margin: 1em 0;
-    font-size: 2em;
+    margin: 1rem 0;
+    font-size: 2rem;
 }
 
 .block h2 b {
     margin: 1rem;
-    font-size: 2em;
+    font-size: 4rem;
 }
 
 .block img {
     float: left;
-    margin: 1.75em 2em 2.5em 1.5em;
-    width: 20em;
-    height: 17em;
+    margin: 1.75rem 2rem 2.5rem 1.5rem;
+    width: 20rem;
+    height: 17rem;
 }
 
 .block img:hover {
@@ -77,13 +77,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .block p {
-    margin: 1.75em 0;
-    font-size: 1.15em;
-    text-indent: 2em;
+    margin: 1.75rem 0;
+    font-size: 1.25rem;
+    text-indent: 2rem;
 }
 
 .ahead-food {
-    margin: 2em 2em 0 0;
+    margin: 2rem 2rem 0 0;
 }
 
 .night h2 b {
@@ -139,15 +139,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .index-mask--title {
     font-family: 微软雅黑;
-    font-size: 3em;
-    padding-top: 3em;
+    font-size: 3rem;
+    padding-top: 3rem;
     color: #5A4446;
     text-align: center;
 }
 
 .index-mask--open {
     font-family: 微软雅黑;
-    font-size: 3em;
+    font-size: 3rem;
     color: #5A4446;
     text-align: center;
     cursor: pointer;
