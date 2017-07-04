@@ -19,6 +19,8 @@ html, body {
 
 .product-detail article {
     margin-top: 2rem;
+    max-width: 750px;
+    float: right;
 }
 
 .product-detail article p {

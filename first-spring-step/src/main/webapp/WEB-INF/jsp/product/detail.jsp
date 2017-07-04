@@ -19,6 +19,9 @@
     <div class="product-detail col-md-12">
         <img class="col-md-3 col-xs-12 img-thumbnail" src="${product.imgUrl}"/>
         <h1 class="col-md-9 text-center">${product.name}</h1>
+        <div class="">
+            <div></div>
+        </div>
         <article>
             ${product.detail}
         </article>
