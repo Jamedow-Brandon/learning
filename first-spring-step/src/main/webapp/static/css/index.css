@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .block h2 {
     margin: 1rem 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 
 .block h2 b {
@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .block p {
     margin: 1.75rem 0;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-indent: 2rem;
 }
 
