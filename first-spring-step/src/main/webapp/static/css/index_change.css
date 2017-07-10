@@ -72,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-.block img:hover {
+.block .night img:hover {
     border: 10px solid transparent;
     border-image: url(../img/border.png) 10 10 round;
 }
