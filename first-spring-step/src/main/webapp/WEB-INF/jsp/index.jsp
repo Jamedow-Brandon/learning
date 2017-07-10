@@ -13,8 +13,8 @@
     <%@include file="common/header.jsp" %>
     <title>老豆坊</title>
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="老豆坊,美食,零食">
-    <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。"/>
+    <meta name="keywords" content="老豆坊,美食,零食,爸爸做的菜">
+    <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。老豆坊。老豆，广州话老窦，父亲的尊称；老豆坊，意为爸爸做的菜。"/>
     <meta name="googlebot" content="index, follow">
     <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
 </head>
