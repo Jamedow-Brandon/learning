@@ -19,7 +19,7 @@ public class DomainFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        if (!request.getRequestURL().toString().contains("www.laodou.site")) {
+        if (!request.getRequestURL().toString().contains("www.laodou.site") && !request.getRequestURL().toString().contains("localhost")) {
             ((HttpServletResponse) servletResponse).sendError(404, "对不起，您访问的页面不存在");
             return;
         }

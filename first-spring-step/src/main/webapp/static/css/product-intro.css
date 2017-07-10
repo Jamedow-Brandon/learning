@@ -18,10 +18,21 @@ html, body {
 }
 
 .product-intro article {
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .product-intro article p {
-    padding: 2rem;
+    padding: 0.25rem;
     line-height: 2rem;
+}
+
+.go-buy {
+    margin: 0 2rem 0 0;
+    float: right;
+    cursor: pointer;
+}
+
+.go-buy img {
+    width: 4rem;
+    height: 4rem;
 }

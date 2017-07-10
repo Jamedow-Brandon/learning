@@ -32,8 +32,7 @@
                 <img src="${childCategory.imgUrl}"/>
                 <div>
                     <h2>${category.name}<b>${childCategory.name}</b></h2>
-                    <p>
-                            ${childCategory.intro}</p>
+                    <p>${childCategory.intro}</p>
                 </div>
                 <div class="clear"></div>
                 <div class="ahead-food">向美食进军</div>
