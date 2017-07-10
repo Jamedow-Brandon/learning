@@ -25,14 +25,13 @@
         margin: 0 auto;
         height: 292px;
         writing-mode: vertical-rl;/*从右向左 从左向右是 writing-mode: vertical-lr;*/
-    //writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
-    //border:1px solid #333;
+        //writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
+        //border:1px solid #333;
         font-family: simsun;
         margin: 1.75rem 0;
         font-size: 1.1rem;
         text-indent: 2rem;
         float: right;
-
         padding-right: 11%;
         cursor: pointer;
     }
@@ -46,20 +45,26 @@
         text-shadow:2px 1px 30px #afac88;
     }
 
-    .night .category-name{
+    .category-name{
         float: right;
         writing-mode: vertical-rl;
-        color: #ab8051;
-    //border:1px solid #333;
         line-height:1.3;
         height:400px;
         cursor: pointer;
+    }
+
+    .night .category-name{
+        color: #ab8051;
     }
     .category{
         padding-right: 15%;
     }
     .category-all{
         margin-left: 15%;margin-right: 15%
+    }
+    .sea img{
+        border-radius:126px;
+        border:5px solid #348ec4;
     }
     @media (max-width: 600px) {
         .category-all {
@@ -144,14 +149,12 @@
     $(document).ready(function(){
         var intro = $(".intro");
         for(var i = 0;i < intro.length;i++){
-            console.log(intro);
-            var content = intro[i].html();
-            console.log(content);
-            if(content.length>100)
-                content=content.substr(0,100)+"...";
-            intro[i].html(content);
+            var content = intro[i].innerHTML;
+            if(content.length>130)
+                content=content.substr(0,130)+"...";
+            intro[i].innerHTML = content;
         }
-        debugger;
+
     })
 
 </script>
