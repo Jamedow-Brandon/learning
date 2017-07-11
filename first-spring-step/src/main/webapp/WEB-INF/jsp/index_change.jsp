@@ -45,6 +45,11 @@
         text-shadow:2px 1px 30px #afac88;
     }
 
+    .sea .ahead-food:hover
+    {
+        text-shadow:2px 1px 30px #b2d003;
+    }
+
     .category-name{
         float: right;
         writing-mode: vertical-rl;

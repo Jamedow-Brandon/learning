@@ -72,11 +72,17 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-.block .night img:hover {
+.night img{
+
     border: 10px solid transparent;
     border-image: url(../img/border.png) 10 10 round;
 }
-
+.night img:hover {
+    border: 0px;
+}
+.sea img:hover {
+    box-shadow:7px 8px 30px rgba(232, 254, 67, 0.31);
+}
 .block p {
     margin: 1.75rem 0;
     font-size: 1.1rem;
