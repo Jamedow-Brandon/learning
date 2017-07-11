@@ -46,9 +46,10 @@
     </section>
 </c:forEach>
 
-<footer id="footer" class="footer hidden-print">
-    <div class="copy-right"><span>© 2013-2017</span> <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a>
-        <span>京公网安备11010802014853</span></div>
+<footer id="footer">
+    <div class="copy-right">
+        <p>浙ICP备17018975号-1</p>
+    </div>
 </footer>
 <!-- index mask start-->
 <div class="index-mask" id="indexPresent" style="display: none">
