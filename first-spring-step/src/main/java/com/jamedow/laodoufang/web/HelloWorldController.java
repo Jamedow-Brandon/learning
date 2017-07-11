@@ -39,7 +39,7 @@ public class HelloWorldController {
     @RequestMapping(value = "")
     public ModelAndView index() {
         ModelAndView view = new ModelAndView();
-        view.setViewName("index_change");
+        view.setViewName("index");
 
         List<Category> categories = categoryService.getAllCategories();
         view.addObject("categories", categories);

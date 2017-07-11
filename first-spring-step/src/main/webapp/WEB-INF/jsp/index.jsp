@@ -13,11 +13,12 @@
     <%@include file="common/header.jsp" %>
     <title>老豆坊</title>
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="老豆坊,美食,零食,爸爸做的菜">
-    <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。老豆坊。老豆，广州话老窦，父亲的尊称；老豆坊，意为爸爸做的菜。"/>
+    <meta name="keywords" content="老豆坊,美食,零食">
+    <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。"/>
     <meta name="googlebot" content="index, follow">
     <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
 </head>
+
 <body>
 <header class="site-header">
     <div>
@@ -27,17 +28,21 @@
 
 <c:forEach items="${categories}" var="category">
     <section class="floor ${category.categoryCode}">
-        <c:forEach items="${category.childrenCategories}" var="childCategory">
-            <div class="block" categoryId="${childCategory.id}">
-                <img src="${childCategory.imgUrl}"/>
-                <div>
-                    <h2>${category.name}<b>${childCategory.name}</b></h2>
-                    <p>${childCategory.intro}</p>
+        <div class="category-all">
+            <c:forEach items="${category.childrenCategories}" var="childCategory">
+                <div class="col-md-6 col-xs-12">
+                    <div class="block" categoryId="${childCategory.id}">
+                        <img src="${childCategory.imgUrl}"/>
+                        <div class="category col-md-12">
+                            <h2 class="category-name">${category.name}<b>${childCategory.name}</b></h2>
+                            <div class="intro">${childCategory.intro}</div>
+                            <div class="clear"></div>
+                            <div class="ahead-food">向美食进军</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="clear"></div>
-                <div class="ahead-food">向美食进军</div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </section>
 </c:forEach>
 
@@ -78,9 +83,21 @@
     });
 
     $(".block .ahead-food").on("click", function () {
-        var categoryId = $(this).parent().attr("categoryId");
+        var categoryId = $(this).parent().parent().attr("categoryId");
         window.open("${ctx}/product/introList?categoryId=" + categoryId);
     });
+
+    $(document).ready(function () {
+        var intro = $(".intro");
+        for (var i = 0; i < intro.length; i++) {
+            var content = intro[i].innerHTML;
+            if (content.length > 130)
+                content = content.substr(0, 130) + "...";
+            intro[i].innerHTML = content;
+        }
+
+    })
+
 </script>
 </body>
 </html>

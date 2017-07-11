@@ -5,11 +5,16 @@ body > header, body > section, body > footer {
 }
 
 html, body {
-    font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: Sea, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
+}
+
+@font-face {
+    font-family: Sea;
+    src: url(../ttf/index.ttf);
 }
 
 .clear {
@@ -42,8 +47,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spicy {
-    background: linear-gradient(to right, #1a1a1a, #caa703, #1a1a1a);
-    color: #0d0d0f;
+    background: #a18659 url(../img/spicy-background.jpg) top;
+    color: #a18659;
 }
 
 .block {
@@ -55,13 +60,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .block h2 {
-    margin: 1rem 0;
+    margin: 0rem 0;
     font-size: 1.8rem;
 }
 
 .block h2 b {
-    margin: 1rem;
-    font-size: 4rem;
+    margin: 1rem 0 1rem 0;
+    font-size: 2.6rem;
+    font-family: 华文行楷;
 }
 
 .block img {
@@ -72,19 +78,92 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-.block img:hover {
+.night img {
+
     border: 10px solid transparent;
     border-image: url(../img/border.png) 10 10 round;
+}
+
+.night img:hover {
+    border: 0px;
+}
+
+.sea img:hover {
+    box-shadow: 7px 8px 30px rgba(232, 254, 67, 0.31);
+}
+
+.intro {
+    margin: 0 auto;
+    height: 292px;
+    width: 225px;
+    writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
+    font-family: simsun;
+    margin: 1.75rem 0;
+    font-size: 1.1rem;
+    text-indent: 2rem;
+    float: right;
+    padding-right: 11%;
+}
+
+.night .intro {
+    color: rgb(187, 168, 149);
+}
+
+.category-name {
+    float: right;
+    writing-mode: vertical-rl;
+    line-height: 1.3;
+    height: 400px;
+}
+
+.night .category-name {
+    color: #ab8051;
+}
+
+.category {
+    padding-right: 15%;
+}
+
+.category-all {
+    margin-left: 15%;
+    margin-right: 15%
+}
+
+.ahead-food {
+    margin: 12rem 2rem 0 0;
+    height: 9rem;
+    writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
+    font-size: 1.5rem;
+}
+
+.sea img {
+    border-radius: 126px;
+    border: 5px solid #348ec4;
+}
+
+@media (max-width: 600px) {
+    .category-all {
+        margin-left: -10%;
+        margin-right: 0
+    }
+
+    .intro {
+        height: 300px;
+    }
+
+    .category {
+        padding-right: 2%;
+    }
+
+    .ahead-food {
+        margin: 2rem 0rem 0 0;
+    }
 }
 
 .block p {
     margin: 1.75rem 0;
     font-size: 1.1rem;
     text-indent: 2rem;
-}
-
-.ahead-food {
-    margin: 2rem 2rem 0 0;
 }
 
 .night h2 b {
@@ -108,13 +187,58 @@ h1, h2, h3, h4, h5, h6 {
 .sea .ahead-food {
     float: right;
     cursor: pointer;
-    color: #fff7a4;
+    color: #e0b800;
 }
 
 .spicy .ahead-food {
     float: right;
     cursor: pointer;
-    color: #0d0d0f;
+    color: #eee;
+}
+
+.night .ahead-food:hover {
+    text-shadow: 0 0 10px brown,
+    0 0 20px brown,
+    0 0 30px brown,
+    0 0 40px brown,
+    0 0 50px brown,
+    0 0 60px brown,
+    0 0 10px brown,
+    0 0 20px brown,
+    0 0 30px brown,
+    0 0 40px brown,
+    0 0 50px brown,
+    0 0 60px brown;
+}
+
+.sea .ahead-food:hover {
+    text-shadow: 0 0 10px #e0b800,
+    0 0 20px #e0b800,
+    0 0 30px #e0b800,
+    0 0 40px #e0b800,
+    0 0 50px #e0b800,
+    0 0 60px #e0b800,
+    0 0 10px #e0b800,
+    0 0 20px #e0b800,
+    0 0 30px #e0b800,
+    0 0 40px #e0b800,
+    0 0 50px #e0b800,
+    0 0 60px #e0b800;
+}
+
+.spicy .ahead-food:hover {
+    text-shadow: 0 0 10px #eee,
+    0 0 20px #eee,
+    0 0 30px #eee,
+    0 0 40px #eee,
+    0 0 50px #eee,
+    0 0 60px #eee,
+    0 0 10px #eee,
+    0 0 20px #eee,
+    0 0 30px #eee,
+    0 0 40px #eee,
+    0 0 50px #eee,
+    0 0 60px #eee;
 }
 
 /*index mask start*/
