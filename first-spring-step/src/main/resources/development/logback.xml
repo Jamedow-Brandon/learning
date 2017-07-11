@@ -76,7 +76,7 @@ debug:当此属性设置为true时，将打印出logback内部日志信息，实
     level:用来设置打印级别，大小写无关： 从高到地低 OFF 、FATAL 、ERROR 、WARN 、INFO 、DEBUG 、TRACE 、ALL，还有一个特俗值INHERITED或者同义词NULL，
           代表强制执行上级的级别。如果未设置此属性，那么当前logger将会继承上级的级别
     additivity:是否向上级logger传递打印信息。默认是true-->
-    <logger name="com.jamedow.learning" level="debug" additivity="true">
+    <logger name="com.jamedow.laodoufang" level="debug" additivity="true">
         <appender-ref ref="file"/>
         <!-- <appender-ref ref="STDOUT" /> -->
     </logger>

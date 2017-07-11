@@ -1,6 +1,6 @@
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
-import com.jamedow.learning.utils.rabbitmq.QueueConsumer;
-import com.jamedow.learning.utils.webcollector.BingCrawler;
+import com.jamedow.laodoufang.utils.rabbitmq.QueueConsumer;
+import com.jamedow.laodoufang.utils.webcollector.BingCrawler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

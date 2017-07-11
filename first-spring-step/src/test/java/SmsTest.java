@@ -1,4 +1,4 @@
-import com.jamedow.learning.plugin.ali.sms.SendMessage;
+import com.jamedow.laodoufang.plugin.ali.sms.SendMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

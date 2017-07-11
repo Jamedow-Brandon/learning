@@ -1,0 +1,38 @@
+html, body, h1, span, div {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: #eee;
+    font-size: 100%;
+}
+
+.product-intro {
+    display: block;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-decoration: none;
+    margin: 1rem auto 0.25rem auto;
+}
+
+.product-intro article {
+    margin-top: 1rem;
+}
+
+.product-intro article p {
+    padding: 0.25rem;
+    line-height: 2rem;
+}
+
+.go-buy {
+    margin: 0 2rem 0 0;
+    float: right;
+    cursor: pointer;
+}
+
+.go-buy img {
+    width: 4rem;
+    height: 4rem;
+}

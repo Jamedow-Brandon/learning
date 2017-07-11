@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="rabbitMQUtils"
-          class="com.jamedow.learning.utils.rabbitmq.RabbitMQUtils">
+          class="com.jamedow.laodoufang.utils.rabbitmq.RabbitMQUtils">
         <property name="host" value="${rabbitmq.host}"/>
         <property name="port" value="${rabbitmq.port}"/>
         <property name="username" value="${rabbitmq.username}"/>
