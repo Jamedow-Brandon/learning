@@ -15,20 +15,20 @@ public class ProductExample {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -744,6 +744,196 @@ public class ProductExample {
             addCriterion("category not between", value1, value2, "category");
             return (Criteria) this;
         }
+
+        public Criteria andTagsIsNull() {
+            addCriterion("tags is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsIsNotNull() {
+            addCriterion("tags is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsEqualTo(String value) {
+            addCriterion("tags =", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotEqualTo(String value) {
+            addCriterion("tags <>", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThan(String value) {
+            addCriterion("tags >", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsGreaterThanOrEqualTo(String value) {
+            addCriterion("tags >=", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThan(String value) {
+            addCriterion("tags <", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLessThanOrEqualTo(String value) {
+            addCriterion("tags <=", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsLike(String value) {
+            addCriterion("tags like", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotLike(String value) {
+            addCriterion("tags not like", value, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsIn(List<String> values) {
+            addCriterion("tags in", values, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotIn(List<String> values) {
+            addCriterion("tags not in", values, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsBetween(String value1, String value2) {
+            addCriterion("tags between", value1, value2, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andTagsNotBetween(String value1, String value2) {
+            addCriterion("tags not between", value1, value2, "tags");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpIsNull() {
+            addCriterion("vote_up is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpIsNotNull() {
+            addCriterion("vote_up is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpEqualTo(Integer value) {
+            addCriterion("vote_up =", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpNotEqualTo(Integer value) {
+            addCriterion("vote_up <>", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpGreaterThan(Integer value) {
+            addCriterion("vote_up >", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpGreaterThanOrEqualTo(Integer value) {
+            addCriterion("vote_up >=", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpLessThan(Integer value) {
+            addCriterion("vote_up <", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpLessThanOrEqualTo(Integer value) {
+            addCriterion("vote_up <=", value, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpIn(List<Integer> values) {
+            addCriterion("vote_up in", values, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpNotIn(List<Integer> values) {
+            addCriterion("vote_up not in", values, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpBetween(Integer value1, Integer value2) {
+            addCriterion("vote_up between", value1, value2, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteUpNotBetween(Integer value1, Integer value2) {
+            addCriterion("vote_up not between", value1, value2, "voteUp");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownIsNull() {
+            addCriterion("vote_down is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownIsNotNull() {
+            addCriterion("vote_down is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownEqualTo(Integer value) {
+            addCriterion("vote_down =", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownNotEqualTo(Integer value) {
+            addCriterion("vote_down <>", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownGreaterThan(Integer value) {
+            addCriterion("vote_down >", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownGreaterThanOrEqualTo(Integer value) {
+            addCriterion("vote_down >=", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownLessThan(Integer value) {
+            addCriterion("vote_down <", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownLessThanOrEqualTo(Integer value) {
+            addCriterion("vote_down <=", value, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownIn(List<Integer> values) {
+            addCriterion("vote_down in", values, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownNotIn(List<Integer> values) {
+            addCriterion("vote_down not in", values, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownBetween(Integer value1, Integer value2) {
+            addCriterion("vote_down between", value1, value2, "voteDown");
+            return (Criteria) this;
+        }
+
+        public Criteria andVoteDownNotBetween(Integer value1, Integer value2) {
+            addCriterion("vote_down not between", value1, value2, "voteDown");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
@@ -769,6 +959,38 @@ public class ProductExample {
         private boolean listValue;
 
         private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
 
         protected Criterion(String condition) {
             super();
@@ -804,38 +1026,6 @@ public class ProductExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

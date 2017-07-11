@@ -23,6 +23,12 @@ public class Product {
 
     private Integer category;
 
+    private String tags;
+
+    private Integer voteUp;
+
+    private Integer voteDown;
+
     private String detail;
 
     public Integer getId() {
@@ -103,6 +109,30 @@ public class Product {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public Integer getVoteUp() {
+        return voteUp;
+    }
+
+    public void setVoteUp(Integer voteUp) {
+        this.voteUp = voteUp;
+    }
+
+    public Integer getVoteDown() {
+        return voteDown;
+    }
+
+    public void setVoteDown(Integer voteDown) {
+        this.voteDown = voteDown;
     }
 
     public String getDetail() {
