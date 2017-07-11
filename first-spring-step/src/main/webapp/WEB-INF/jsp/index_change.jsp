@@ -18,71 +18,7 @@
     <meta name="googlebot" content="index, follow">
     <link rel="stylesheet" href="${ctx}/static/css/index_change.css"/>
 </head>
-<style>
 
-
-    .intro{
-        margin: 0 auto;
-        height: 292px;
-        writing-mode: vertical-rl;/*从右向左 从左向右是 writing-mode: vertical-lr;*/
-        //writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
-        //border:1px solid #333;
-        font-family: simsun;
-        margin: 1.75rem 0;
-        font-size: 1.1rem;
-        text-indent: 2rem;
-        float: right;
-        padding-right: 11%;
-        cursor: pointer;
-    }
-    .night .intro{
-        color:rgb(187, 168, 149);
-
-
-    }
-    .night .ahead-food:hover
-    {
-        text-shadow:2px 1px 30px #afac88;
-    }
-
-    .sea .ahead-food:hover
-    {
-        text-shadow:2px 1px 30px #b2d003;
-    }
-
-    .category-name{
-        float: right;
-        writing-mode: vertical-rl;
-        line-height:1.3;
-        height:400px;
-        cursor: pointer;
-    }
-
-    .night .category-name{
-        color: #ab8051;
-    }
-    .category{
-        padding-right: 15%;
-    }
-    .category-all{
-        margin-left: 15%;margin-right: 15%
-    }
-    .sea img{
-        border-radius:126px;
-        border:5px solid #348ec4;
-    }
-    @media (max-width: 600px) {
-        .category-all {
-            margin-left: -10%;margin-right:0
-        }
-        .intro{
-            height: 239px;
-        }
-        .category{
-            padding-right: 2%;
-        }
-    }
-</style>
 <body>
 <header class="site-header">
     <div>
