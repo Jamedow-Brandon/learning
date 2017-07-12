@@ -1,30 +1,83 @@
-body {
-    background-color: #eee;
-    font-size: 84%;
-    text-align: justify;
+body > header, body > section, body > footer {
+    float: left;
+    width: 100%;
+    clear: both;
 }
 
-.column {
-    display: inline-block;
-    vertical-align: top;
+html, body {
+    font-family: Consolas, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
-.pic_a {
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.clear {
     display: block;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    text-decoration: none;
+    clear: both;
 }
 
-.pic_a img {
-    display: block;
-    margin: 0 auto 5px;
-    border: 0;
-    vertical-align: bottom;
+.site-header {
+    height: 8rem;
+    background: url(../img/signage.jpg) no-repeat left;
 }
 
-.pic_a strong {
-    color: #333;
+.site-header h1 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    text-indent: -1000px;
+}
+
+.filter-area {
+    margin-top: 9rem;
+}
+
+.pitch-on p {
+    margin: 0.25rem 1rem 0.25rem 0.25rem;
+    float: left;
+}
+
+.pitch-on ul {
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+}
+
+.pitch-on ul li {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
+    float: left;
+}
+
+.pitch-on ul li span {
+    margin: 0.25rem 0 0.25rem 0.25rem;
+    cursor: pointer;
+}
+
+.waiting-for-selection p {
+    margin: 0.25rem 1rem 0.25rem 0.25rem;
+    float: left;
+}
+
+.waiting-for-selection ul {
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+}
+
+.waiting-for-selection ul li {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
+    float: left;
+}
+
+.waiting-for-selection ul li span {
+    margin: 0.25rem 0 0.25rem 0.25rem;
+    cursor: pointer;
 }

@@ -8,6 +8,12 @@ html, body {
     font-family: Sea, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
+@media (max-width: 600px) {
+    html, body {
+        font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    }
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
@@ -19,6 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .clear {
     display: block;
+    clear: both;
 }
 
 .site-header {
@@ -67,7 +74,6 @@ h1, h2, h3, h4, h5, h6 {
 .block h2 b {
     margin: 1rem 0 1rem 0;
     font-size: 2.6rem;
-    font-family: 华文行楷;
 }
 
 .block img {
@@ -93,12 +99,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .intro {
-    margin: 0 auto;
-    height: 292px;
-    width: 225px;
+    height: 22rem;
+    width: 12rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
     font-family: simsun;
-    margin: 1.75rem 0;
+    margin: 1.75rem 1rem 1.75rem 0;
     font-size: 1.1rem;
     text-indent: 2rem;
     float: right;
@@ -147,16 +152,16 @@ h1, h2, h3, h4, h5, h6 {
         margin-right: 0
     }
 
-    .intro {
-        height: 300px;
-    }
-
     .category {
         padding-right: 2%;
     }
 
+    .intro {
+        margin-right: 0;
+    }
+
     .ahead-food {
-        margin: 2rem 0rem 0 0;
+        margin: 12rem 0 0 0;
     }
 }
 

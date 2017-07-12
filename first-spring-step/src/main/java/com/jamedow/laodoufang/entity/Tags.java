@@ -5,8 +5,6 @@ public class Tags {
 
     private String name;
 
-    private String genus;
-
     public Integer getId() {
         return id;
     }
@@ -21,13 +19,5 @@ public class Tags {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getGenus() {
-        return genus;
-    }
-
-    public void setGenus(String genus) {
-        this.genus = genus;
     }
 }

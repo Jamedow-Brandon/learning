@@ -1,0 +1,30 @@
+body {
+    background-color: #eee;
+    font-size: 84%;
+    text-align: justify;
+}
+
+.column {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.pic_a {
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.pic_a img {
+    display: block;
+    margin: 0 auto 5px;
+    border: 0;
+    vertical-align: bottom;
+}
+
+.pic_a strong {
+    color: #333;
+}
