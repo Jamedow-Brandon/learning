@@ -8,6 +8,12 @@ html, body {
     font-family: Sea, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
+@media (max-width: 600px) {
+    html, body {
+        font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    }
+}
+
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
@@ -67,7 +73,6 @@ h1, h2, h3, h4, h5, h6 {
 .block h2 b {
     margin: 1rem 0 1rem 0;
     font-size: 2.6rem;
-    font-family: 华文行楷;
 }
 
 .block img {

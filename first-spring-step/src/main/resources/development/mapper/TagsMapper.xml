@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Tags">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="genus" jdbcType="CHAR" property="genus" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, genus
+      id, name
   </sql>
   <select id="selectByExample" parameterType="com.jamedow.laodoufang.entity.TagsExample" resultMap="BaseResultMap">
     select
@@ -99,8 +98,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Tags">
-    insert into tags (id, name, genus)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{genus,jdbcType=CHAR})
+      insert into tags (id, name)
+      values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Tags">
     insert into tags
@@ -111,9 +110,6 @@
       <if test="name != null">
         name,
       </if>
-      <if test="genus != null">
-        genus,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -121,9 +117,6 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="genus != null">
-        #{genus,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -142,9 +135,6 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.genus != null">
-        genus = #{record.genus,jdbcType=CHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -153,8 +143,7 @@
   <update id="updateByExample" parameterType="map">
     update tags
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      genus = #{record.genus,jdbcType=CHAR}
+      name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -165,16 +154,12 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="genus != null">
-        genus = #{genus,jdbcType=CHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jamedow.laodoufang.entity.Tags">
     update tags
-    set name = #{name,jdbcType=VARCHAR},
-      genus = #{genus,jdbcType=CHAR}
+      set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
