@@ -64,7 +64,7 @@
 
     var tags = ${tags};
     $(function () {
-        var tagsHtml = template('tagsTemplate', {tags: tags[0].tags});
+        var tagsHtml = template('tagsTemplate', {tags: tags});
         $(".param-children ul").html(tagsHtml);
 
         paramBindClick();
@@ -73,16 +73,26 @@
     function paramBindClick() {
         $(".param-children li").on("click", function () {
             console.log($(this));
-            var param = $(this);
-            if (param.attr("isLeaf") === "0") {
-                param.off();
-                param.on("click", function () {
-                    var index = $.inArray(param.html(), tags);
+            var $param = $(this);
+            if ($param.attr("isLeaf") === "0") {
+                $param.off();
+                $param.on("click", function () {
+                    var index = $.inArray($param.html(), tags);
                     console.log(index)
                     debugger
                 });
-                $(".param-parent ul").append(param);
+                $(".param-parent ul").append($param);
             }
+        });
+    }
+
+    function getBrothersTags(_tagsId) {
+        $.ajax({
+            url: "${ctx}/product/getBrothersByTagsId",
+            data: {
+                tagsId: ""
+            }
+
         });
     }
 </script>

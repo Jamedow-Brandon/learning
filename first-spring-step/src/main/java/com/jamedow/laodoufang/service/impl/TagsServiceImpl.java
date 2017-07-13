@@ -51,4 +51,28 @@ public class TagsServiceImpl implements TagsService {
         tagsExample.createCriteria().andIdIn(tagsIds);
         return tagsMapper.selectByExample(tagsExample);
     }
+
+    @Override
+    public List<Tags> getBrothersByTagsId(Integer tagsId) {
+        List<Tags> brothersTags = new ArrayList<>();
+        TagsRelExample tagsRelExample = new TagsRelExample();
+        tagsRelExample.createCriteria().andTagIdEqualTo(tagsId);
+        List<TagsRel> tagsRels = tagsRelMapper.selectByExample(tagsRelExample);
+
+        if (tagsRels != null && tagsRels.size() != 0) {
+            tagsRelExample.clear();
+            tagsRelExample.createCriteria().andParentIdEqualTo(tagsRels.get(0).getParentId());
+            List<TagsRel> brothersTagsRels = tagsRelMapper.selectByExample(tagsRelExample);
+
+            List<Integer> tagsIds = new ArrayList<>();
+            for (TagsRel tagsRel : brothersTagsRels) {
+                tagsIds.add(tagsRel.getTagId());
+            }
+
+            TagsExample tagsExample = new TagsExample();
+            tagsExample.createCriteria().andIdIn(tagsIds);
+            brothersTags = tagsMapper.selectByExample(tagsExample);
+        }
+        return brothersTags;
+    }
 }

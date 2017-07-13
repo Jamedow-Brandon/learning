@@ -13,4 +13,6 @@ public interface TagsService {
     int saveTag(Tags tags);
 
     List<Tags> getTagsByParentId(Integer parentId);
+
+    List<Tags> getBrothersByTagsId(Integer tagsId);
 }

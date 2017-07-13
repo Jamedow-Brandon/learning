@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -65,5 +66,12 @@ public class ProductController {
 
         view.addObject("product", product);
         return view;
+    }
+
+    @RequestMapping(value = "getBrothersByTagsId")
+    @ResponseBody
+    public Object getBrothersByTagsId(Integer tagsId) {
+        List<Tags> brothersTags = tagsService.getBrothersByTagsId(tagsId);
+        return brothersTags;
     }
 }
