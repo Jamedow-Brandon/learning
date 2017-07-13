@@ -32,6 +32,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 9rem;
 }
 
+.pitch-on {
+    border: 1px solid #000;
+}
+
 .pitch-on p {
     margin: 0.25rem 1rem 0.25rem 0.25rem;
     float: left;
@@ -57,27 +61,63 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
+.pitch-on div {
+    margin: 0.25rem 0 0.25rem 0.25rem;
+}
+
+.pitch-on div input {
+    margin: 0.25rem 0 0.25rem 0.25rem;
+}
+
+.waiting-for-selection {
+    margin: 1rem 0;
+}
+
 .waiting-for-selection p {
     margin: 0.25rem 1rem 0.25rem 0.25rem;
+    height: 200px;
     float: left;
 }
 
-.waiting-for-selection ul {
+.waiting-for-selection .param-parent {
+    width: 100%;
+    height: 2rem;
+    margin: 0.25rem 0;
+    border-radius: 5px;
+}
+
+.waiting-for-selection .param-parent ul {
     list-style-type: none;
     margin: 0;
     width: 100%;
 }
 
-.waiting-for-selection ul li {
+.waiting-for-selection .param-parent ul li {
     border: 1px solid black;
-    border-radius: 5px;
     text-align: center;
-    margin: 0.25rem 0.5rem;
+    margin: 0.25rem 0;
     padding: 0 0.5rem;
     float: left;
+    cursor: pointer;
 }
 
-.waiting-for-selection ul li span {
-    margin: 0.25rem 0 0.25rem 0.25rem;
+.waiting-for-selection .param-children {
+    width: 100%;
+    margin: 0.25rem 0;
+    border-radius: 5px;
+}
+
+.waiting-for-selection .param-children ul {
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+}
+
+.waiting-for-selection .param-children ul li {
+    border: 1px solid black;
+    text-align: center;
+    margin: 0.25rem 0;
+    padding: 0 0.5rem;
+    float: left;
     cursor: pointer;
 }

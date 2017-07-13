@@ -1,7 +1,6 @@
 package com.jamedow.laodoufang.web;
 
 import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
-import com.alibaba.fastjson.JSONObject;
 import com.jamedow.laodoufang.entity.Category;
 import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CategoryService;
@@ -9,6 +8,7 @@ import com.jamedow.laodoufang.service.UsersService;
 import com.jamedow.laodoufang.utils.rabbitmq.RabbitMQUtils;
 import com.jamedow.laodoufang.utils.redis.RedisPoolManager;
 import com.jamedow.laodoufang.utils.webcollector.BingCrawler;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,7 +135,7 @@ public class HelloWorldController {
         redis.setCacheWithSec("name", "aa", 1000);
         String name = redis.getCache("name");
         logger.info("==========test1===========");
-        return jsonObject.toJSONString();
+        return jsonObject.toString();
     }
 
     /**

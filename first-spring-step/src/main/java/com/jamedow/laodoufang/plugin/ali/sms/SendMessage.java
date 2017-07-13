@@ -1,10 +1,10 @@
 package com.jamedow.laodoufang.plugin.ali.sms;
 
-import com.alibaba.fastjson.JSONObject;
 import com.taobao.api.DefaultTaobaoClient;
 import com.taobao.api.TaobaoClient;
 import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public class SendMessage {
             req.setSmsFreeSignName("梧桐落");
             JSONObject smsParams = new JSONObject();
             smsParams.put("number", "3726");
-            req.setSmsParamString(smsParams.toJSONString());
+            req.setSmsParamString(smsParams.toString());
             req.setRecNum("15358183725");
             req.setSmsTemplateCode("SMS_60970057");
             AlibabaAliqinFcSmsNumSendResponse rsp = client.execute(req);

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Tags">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+      <result column="is_leaf" jdbcType="CHAR" property="isLeaf"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-      id, name
+      id, name, is_leaf
   </sql>
   <select id="selectByExample" parameterType="com.jamedow.laodoufang.entity.TagsExample" resultMap="BaseResultMap">
     select
@@ -98,8 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Tags">
-      insert into tags (id, name)
-      values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+      insert into tags (id, name, is_leaf
+      )
+      values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{isLeaf,jdbcType=CHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Tags">
     insert into tags
@@ -110,6 +113,9 @@
       <if test="name != null">
         name,
       </if>
+        <if test="isLeaf != null">
+            is_leaf,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -118,6 +124,9 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+        <if test="isLeaf != null">
+            #{isLeaf,jdbcType=CHAR},
+        </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.jamedow.laodoufang.entity.TagsExample" resultType="java.lang.Long">
@@ -135,6 +144,9 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+        <if test="record.isLeaf != null">
+            is_leaf = #{record.isLeaf,jdbcType=CHAR},
+        </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -143,7 +155,8 @@
   <update id="updateByExample" parameterType="map">
     update tags
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR}
+      name = #{record.name,jdbcType=VARCHAR},
+      is_leaf = #{record.isLeaf,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -154,12 +167,16 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+        <if test="isLeaf != null">
+            is_leaf = #{isLeaf,jdbcType=CHAR},
+        </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jamedow.laodoufang.entity.Tags">
     update tags
-      set name = #{name,jdbcType=VARCHAR}
+      set name = #{name,jdbcType=VARCHAR},
+      is_leaf = #{isLeaf,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
