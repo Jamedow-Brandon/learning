@@ -77,6 +77,7 @@
             if ($param.attr("isLeaf") === "0") {
                 $param.off();
                 $param.on("click", function () {
+                    $(this).remove();
                     getBrothersTags($(this).attr("tagId"));
                 });
                 $(".param-parent ul").append($param);
@@ -86,13 +87,15 @@
 
     function getBrothersTags(_tagsId) {
         $.ajax({
+            type: "get",
             url: "${ctx}/product/getBrothersByTagsId",
             data: {
                 tagsId: _tagsId
             },
-            dataType: "application/json",
+            dataType: "json",
             success: function (data) {
                 var tagsHtml = template('tagsTemplate', {tags: data});
+                console.log(tagsHtml)
                 $(".param-children ul").html(tagsHtml);
 
                 paramBindClick();
