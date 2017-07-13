@@ -24,11 +24,11 @@
         <div class="pitch-on">
             <p>已选属性：</p>
             <ul>
-                <li>香辣<span class="icon-remove-circle"></span></li>
-                <li>对虾<span class="icon-remove-circle"></span></li>
-                <li>油炸<span class="icon-remove-circle"></span></li>
-                <li>油炸<span class="icon-remove-circle"></span></li>
-                <li>油炸油油油油油油<span class="icon-remove-circle"></span></li>
+                <li>香辣<span class="fa fa-times-circle-o"></span></li>
+                <li>对虾<span class="fa fa-times-circle-o"></span></li>
+                <li>油炸<span class="fa fa-times-circle-o"></span></li>
+                <li>油炸<span class="fa fa-times-circle-o"></span></li>
+                <li>油炸油油油油油油<span class="fa fa-times-circle-o"></span></li>
             </ul>
             <div>只看官方<input type="checkbox"/></div>
         </div>
@@ -54,11 +54,37 @@
     </div>
 </div>
 <%@include file="../common/footer.jsp" %>
+<script type="text/html" id="tagsTemplate">
+    {{each tags as tag}}
+    <li tagId="{{tag.id}}" isLeaf="{{tag.isLeaf}}">{{tag.name}}</li>
+    {{/each}}
+</script>
+<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript">
-    $(".param-children li").on("click", function () {
-        console.log($(this));
-        $(".param-parent ul").append($(this));
+
+    var tags = ${tags};
+    $(function () {
+        var tagsHtml = template('tagsTemplate', {tags: tags[0].tags});
+        $(".param-children ul").html(tagsHtml);
+
+        paramBindClick();
     });
+
+    function paramBindClick() {
+        $(".param-children li").on("click", function () {
+            console.log($(this));
+            var param = $(this);
+            if (param.attr("isLeaf") === "0") {
+                param.off();
+                param.on("click", function () {
+                    var index = $.inArray(param.html(), tags);
+                    console.log(index)
+                    debugger
+                });
+                $(".param-parent ul").append(param);
+            }
+        });
+    }
 </script>
 </body>
 </html>
