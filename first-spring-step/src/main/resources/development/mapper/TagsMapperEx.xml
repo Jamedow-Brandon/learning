@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jamedow.laodoufang.mapper.TagsMapperEx">
+    <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Tags">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="queryClassify" resultMap="BaseResultMap">
+        SELECT
+        t.id,t.name
+    from
+        tags t
+    inner join tags_rel tr
+    on t.id = tr.tag_id
+    and tr.parent_id  ='0'
+    order by id
+    </select>
+
+    <select id="queryTagByClassify" parameterType = "java.lang.Integer" resultMap="BaseResultMap" >
+        select  t.id,t.name
+        from tags t inner join tags_rel tr
+        on t.id = tr.tag_id
+        and tr.parent_id = #{classifyId}
+    </select>
+</mapper>
