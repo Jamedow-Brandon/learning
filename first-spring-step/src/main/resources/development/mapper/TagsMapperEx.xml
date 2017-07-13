@@ -13,7 +13,7 @@
         tags t
     inner join tags_rel tr
     on t.id = tr.tag_id
-    and tr.parent_id  ='0'
+    and tr.parent_id ='0'
     order by id
     </select>
 

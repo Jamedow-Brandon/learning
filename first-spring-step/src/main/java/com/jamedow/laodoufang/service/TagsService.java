@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TagsService {
 
-    int saveTag(Tags tags);
+    int saveTag( Tags tags);
 
     /**
      * 查找分类
