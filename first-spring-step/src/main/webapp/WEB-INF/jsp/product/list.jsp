@@ -77,9 +77,7 @@
             if ($param.attr("isLeaf") === "0") {
                 $param.off();
                 $param.on("click", function () {
-                    var index = $.inArray($param.html(), tags);
-                    console.log(index)
-                    debugger
+                    getBrothersTags($(this).attr("tagId"));
                 });
                 $(".param-parent ul").append($param);
             }
@@ -90,7 +88,14 @@
         $.ajax({
             url: "${ctx}/product/getBrothersByTagsId",
             data: {
-                tagsId: ""
+                tagsId: _tagsId
+            },
+            dataType: "application/json",
+            success: function (data) {
+                var tagsHtml = template('tagsTemplate', {tags: data});
+                $(".param-children ul").html(tagsHtml);
+
+                paramBindClick();
             }
 
         });

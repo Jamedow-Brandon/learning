@@ -68,7 +68,7 @@ public class ProductController {
         return view;
     }
 
-    @RequestMapping(value = "getBrothersByTagsId")
+    @RequestMapping(value = "getBrothersByTagsId", produces = "application/json;charset=utf-8")
     @ResponseBody
     public Object getBrothersByTagsId(Integer tagsId) {
         List<Tags> brothersTags = tagsService.getBrothersByTagsId(tagsId);
