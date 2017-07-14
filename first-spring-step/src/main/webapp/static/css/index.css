@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 12rem 2rem 0 0;
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .sea img {
@@ -189,6 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .ahead-food {
         margin: 12rem 0 0 0;
+        font-size: 1.5rem;
     }
 }
 
@@ -213,7 +214,7 @@ h1, h2, h3, h4, h5, h6 {
 .night .ahead-food {
     float: right;
     cursor: pointer;
-    color: brown;
+    color: #d0e9ff;
 }
 
 .sea .ahead-food {
@@ -229,28 +230,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .night .ahead-food:hover {
-    text-shadow: 0 0 10px brown,
-    0 0 20px brown,
-    0 0 30px brown,
-    0 0 40px brown,
-    0 0 50px brown,
-    0 0 60px brown,
-    0 0 10px brown,
-    0 0 20px brown,
-    0 0 30px brown,
-    0 0 40px brown,
-    0 0 50px brown,
-    0 0 60px brown;
+    text-shadow: 0 0 10px #d0e9ff,
+    0 0 20px #d0e9ff,
+    0 0 30px #d0e9ff,
+    0 0 40px #d0e9ff,
+    0 0 50px #d0e9ff,
+    0 0 60px #d0e9ff;
 }
 
 .sea .ahead-food:hover {
     text-shadow: 0 0 10px #e0b800,
-    0 0 20px #e0b800,
-    0 0 30px #e0b800,
-    0 0 40px #e0b800,
-    0 0 50px #e0b800,
-    0 0 60px #e0b800,
-    0 0 10px #e0b800,
     0 0 20px #e0b800,
     0 0 30px #e0b800,
     0 0 40px #e0b800,
@@ -260,12 +249,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .spicy .ahead-food:hover {
     text-shadow: 0 0 10px #eee,
-    0 0 20px #eee,
-    0 0 30px #eee,
-    0 0 40px #eee,
-    0 0 50px #eee,
-    0 0 60px #eee,
-    0 0 10px #eee,
     0 0 20px #eee,
     0 0 30px #eee,
     0 0 40px #eee,
