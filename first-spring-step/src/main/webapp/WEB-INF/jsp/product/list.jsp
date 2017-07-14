@@ -23,23 +23,17 @@
     <div class="filter-area">
         <div class="pitch-on">
             <p>已选属性：</p>
-            <ul>
-            </ul>
+            <ul></ul>
             <div>只看官方<input type="checkbox"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
             <p>待选属性：</p>
             <div class="param-parent">
-                <ul>
-                </ul>
+                <ul></ul>
             </div>
             <div class="param-children">
-                <ul>
-                    <li>虾</li>
-                    <li>蟹</li>
-                    <li>青菜</li>
-                </ul>
+                <ul></ul>
                 <div class="clear"></div>
             </div>
         </div>
