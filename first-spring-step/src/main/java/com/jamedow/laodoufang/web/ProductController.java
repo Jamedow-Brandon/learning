@@ -68,6 +68,13 @@ public class ProductController {
         return view;
     }
 
+    @RequestMapping(value = "getChildrenTags", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String getChildrenTags(Integer tagsId) {
+        List<Tags> childrenTags = tagsService.getTagsByParentId(tagsId);
+        return JSONArray.fromObject(childrenTags).toString();
+    }
+
     @RequestMapping(value = "getBrothersByTagsId", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String getBrothersByTagsId(Integer tagsId) {

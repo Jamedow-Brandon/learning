@@ -24,11 +24,6 @@
         <div class="pitch-on">
             <p>已选属性：</p>
             <ul>
-                <li>香辣<span class="fa fa-times-circle-o"></span></li>
-                <li>对虾<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸油油油油油油<span class="fa fa-times-circle-o"></span></li>
             </ul>
             <div>只看官方<input type="checkbox"/></div>
         </div>
@@ -37,8 +32,6 @@
             <p>待选属性：</p>
             <div class="param-parent">
                 <ul>
-                    <li class="toggle-down">食材</li>
-                    <li>海味</li>
                 </ul>
             </div>
             <div class="param-children">
@@ -59,6 +52,9 @@
     <li tagId="{{tag.id}}" isLeaf="{{tag.isLeaf}}">{{tag.name}}</li>
     {{/each}}
 </script>
+<script type="text/html" id="pitchTemplate">
+    <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
+</script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript">
 
@@ -72,19 +68,50 @@
 
     function paramBindClick() {
         $(".param-children li").on("click", function () {
-            console.log($(this));
             var $param = $(this);
             if ($param.attr("isLeaf") === "0") {
+                getChildrenTags($param.attr("tagId"));
                 $param.off();
                 $param.on("click", function () {
+                    $(this).nextAll().remove();
                     $(this).remove();
                     getBrothersTags($(this).attr("tagId"));
                 });
                 $(".param-parent ul").append($param);
+            } else {
+                var tagsHtml = template('pitchTemplate',
+                    {
+                        id: $param.attr("tagId"),
+                        name: $param.html()
+                    });
+                $(".pitch-on ul").append(tagsHtml);
+                $(".pitch-on ul li span").off();
+                $(".pitch-on ul li span").on("click", function () {
+                    $(this).parents("li").remove();
+                })
+
             }
         });
     }
 
+    function getChildrenTags(_tagsId) {
+        $.ajax({
+            type: "get",
+            url: "${ctx}/product/getChildrenTags",
+            data: {
+                tagsId: _tagsId
+            },
+            dataType: "json",
+            success: function (data) {
+                var tagsHtml = template('tagsTemplate', {tags: data});
+                console.log(tagsHtml)
+                $(".param-children ul").html(tagsHtml);
+
+                paramBindClick();
+            }
+
+        });
+    }
     function getBrothersTags(_tagsId) {
         $.ajax({
             type: "get",
@@ -95,7 +122,6 @@
             dataType: "json",
             success: function (data) {
                 var tagsHtml = template('tagsTemplate', {tags: data});
-                console.log(tagsHtml)
                 $(".param-children ul").html(tagsHtml);
 
                 paramBindClick();
