@@ -1,10 +1,12 @@
 package com.jamedow.laodoufang.web.manage;
 
 import com.jamedow.laodoufang.entity.Tags;
+import com.jamedow.laodoufang.service.TagsRelService;
 import com.jamedow.laodoufang.service.TagsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -20,6 +22,9 @@ public class TagsController {
     @Autowired
     private TagsService tagsService;
 
+    @Autowired
+    private TagsRelService tagsRelService;
+
     @RequestMapping("/tagsManage")
     public ModelAndView tagsManage(){
 
@@ -32,6 +37,7 @@ public class TagsController {
     }
 
     @RequestMapping("/deleteClassify")
+    @ResponseBody
     public String deleteClassify(int classifyId){
 
         String result = tagsService.deleteTags(classifyId);
@@ -47,15 +53,28 @@ public class TagsController {
     }
 
     @RequestMapping("/addClassify")
+    @ResponseBody
     public Tags addClassify(String name){
+
 
         Tags tags = new Tags();
         tags.setName(name);
 
-        int result = tagsService.saveTag(tags);
-        if(result != 0)
-            return tags;
-        return null;
+        tags = tagsService.saveClassify(tags);
+        return tags;
+    }
+
+    @RequestMapping("/editorClassify")
+    @ResponseBody
+    public Tags editorClassify(int id,String name){
+
+
+        Tags tags = new Tags();
+        tags.setId(id);
+        tags.setName(name);
+
+        tags = tagsService.saveClassify(tags);
+        return tags;
     }
 
 

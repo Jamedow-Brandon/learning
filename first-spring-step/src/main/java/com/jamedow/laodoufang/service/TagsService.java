@@ -31,4 +31,22 @@ public interface TagsService {
      * @return
      */
     String deleteTags(int tagsId);
+
+    List<Tags> getTagsByParentId(Integer parentId);
+
+    /**
+     * 添加或修改classify
+     * @param tags
+     * @return
+     */
+    Tags saveClassify(Tags tags);
+
+    /**
+     * 根据条件查找Tags
+     * @param tags
+     * @return
+     */
+    public List<Tags> queryTags(Tags tags);
+
+
 }

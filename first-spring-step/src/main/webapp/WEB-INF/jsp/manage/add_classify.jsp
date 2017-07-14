@@ -14,6 +14,24 @@
     <script type="text/javascript" src="${ctx}/static/ajax-dialog.js"></script>
     <script src = "${ctx}/static/layer/layer.js"></script>
 </head>
+<style>
+    #name-text{
+        margin-top: 7%;
+        margin-left: 10%;
+        margin-right: 8%;
+    }
+    #addClassify,#cancel{
+        font-weight: 400;
+        margin-top: 10%;
+        padding:5px 15px;
+        color:#fff;
+        background-color:#69b49f;
+        margin-left:26%;
+    }
+    #cancel{
+        margin-left: 16%;
+    }
+</style>
 <script>
     $(document).ready(function(){
 
@@ -30,14 +48,17 @@
 
                         if(classify != null){
 
-                            var newClassify = "<label class = 'classify-items' id='"+classify.id+"' onclick='chooseClassify(\'"+classify.id+"\')'>"+classify.name+"</label>"
-                            $(".classify-content").append(newClassify);
-                            window.parent.location="javascript:closeDialog()";
+                            if(classify.id == 0){
+                                layer.msg(classify.name);
+                                return ;
+                            }
+
+                            window.parent.location="javascript:appendClassify('"+classify.id+"','"+classify.name+"')";
 
                         }else{
                             layer.msg("添加失败");
                         }
-                    },null,null);
+                    },null,false);
 
         });
 
@@ -49,9 +70,11 @@
 </script>
 
 <body>
-<label>名称</label>
+<label id = "name-text" >名称:</label>
 <input id = "name" type = "text"/>
-<input id = "addClassify" type = "button" value="确认"/>
-<input id = "cancel" type = "button" value="取消"/>
+<div>
+    <label id = "addClassify" >确认</label>
+    <label id = "cancel" >取消</label>
+</div>
 </body>
 </html>

@@ -48,6 +48,7 @@
     $(document).ready(function(){
 
         $(".classify-items:first").addClass("choose-item");
+        $("#classifyId").val($(".classify-items:first").val());
     })
 
     function chooseClassify(classifyId){
@@ -59,18 +60,33 @@
 
     function deleteClassify(){
 
-        var classifyId = $("#classifyId").val();
-        if(classifyId!=null){
-            var url = "${ctx}/tags/deleteClassify?classifyId="+classifyId;
-            ajaxPost(url,null,
-                    function(result){
 
-                        if(result = "删除成功")
-                            $("#"+classifyId).remove();
-                        layer.msg(result);
+        layer.msg('确定删除该标签吗？', {
+            time: 20000, //20s后自动关闭
+            btn: ['确定', '取消'],
+            yes: function(){
 
-            },null,null);
-        }
+                var classifyId = $("#classifyId").val();
+                if(classifyId!=null){
+                    var url = "${ctx}/tags/deleteClassify?classifyId="+classifyId;
+                    ajaxPost(url,null,
+                            function(result){
+
+                                if(result = "删除成功"){
+
+                                    $("#"+classifyId).remove();
+                                    $(".classify-items:first").addClass("choose-item");
+                                    $("#classifyId").val($(".classify-items:first").val());
+                                }
+                                layer.msg(result);
+
+                            },null,null);
+                }
+            },
+            btn2: function(){}
+        });
+
+
     }
 
     function addClassify(){
@@ -79,15 +95,46 @@
         layer.open({
             type: 2,
             title: "添加分类",
-            area: ['420px', '240px'], //宽高
+            area: ['380px', '200px'], //宽高
             content: '${ctx}/tags/toAddClassify'
         });
-        //openDialog(url,"添加分类",300,200,false);
+
+    }
+
+    function appendClassify(id,name){
+
+        var newClassify = "<label class = 'classify-items' id='"+id+"' onclick='chooseClassify(\'"+id+"\')'>"+name+"</label>"
+        $(".classify-content").append(newClassify);
+        chooseClassify(id);
+        layer.closeAll();
     }
 
     function closeDialog(){
 
         layer.closeAll();
+    }
+
+    function editorClassify(){
+
+        layer.prompt({title: '编辑', formType: 2}, function(text, index){
+
+            var classifyId = $("#classifyId").val();
+            var url = "${ctx}/tags/editorClassify";
+
+            ajaxPost(url,{"id":classifyId,"name":text},function(classify){
+
+                if(classify.id != 0){
+
+                    $("#"+classifyId).html(text);
+                    layer.closeAll();
+                }else{
+
+                    layer.msg(classify.name);
+                }
+            })
+
+
+        });
     }
 </script>
 <body>

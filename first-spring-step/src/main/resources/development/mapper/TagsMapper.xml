@@ -97,9 +97,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Tags">
-      insert into tags (id, name)
-      values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jamedow.laodoufang.entity.Tags">
+      insert into tags (id, name,is_leaf)
+      values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},#{isLeaf,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Tags">
     insert into tags

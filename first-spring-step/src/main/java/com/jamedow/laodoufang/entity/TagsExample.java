@@ -233,6 +233,76 @@ public class TagsExample {
             addCriterion("name not between", value1, value2, "name");
             return (Criteria) this;
         }
+
+        public Criteria andIsLeafIsNull() {
+            addCriterion("is_leaf is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafIsNotNull() {
+            addCriterion("is_leaf is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafEqualTo(String value) {
+            addCriterion("is_leaf =", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafNotEqualTo(String value) {
+            addCriterion("is_leaf <>", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafGreaterThan(String value) {
+            addCriterion("is_leaf >", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafGreaterThanOrEqualTo(String value) {
+            addCriterion("is_leaf >=", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafLessThan(String value) {
+            addCriterion("is_leaf <", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafLessThanOrEqualTo(String value) {
+            addCriterion("is_leaf <=", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafLike(String value) {
+            addCriterion("is_leaf like", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafNotLike(String value) {
+            addCriterion("is_leaf not like", value, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafIn(List<String> values) {
+            addCriterion("is_leaf in", values, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafNotIn(List<String> values) {
+            addCriterion("is_leaf not in", values, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafBetween(String value1, String value2) {
+            addCriterion("is_leaf between", value1, value2, "isLeaf");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsLeafNotBetween(String value1, String value2) {
+            addCriterion("is_leaf not between", value1, value2, "isLeaf");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
