@@ -5,7 +5,7 @@ body > header, body > section, body > footer {
 }
 
 html, body {
-    font-family: Sea, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: Index, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @font-face {
-    font-family: Sea;
+    font-family: Index;
     src: url(../ttf/index.ttf);
 }
 
@@ -29,14 +29,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-header {
-    height: 8rem;
-    background: url(../img/signage.jpg) no-repeat left;
+    width: 100%;
+    background: #292a30;
 }
 
-.site-header h1 {
+.site-header .logo {
+    width: 3rem;
+    height: 3.5rem;
+    margin: 0.75rem 0.5rem 0.25rem 1rem;
+    float: left;
+}
+
+.site-header .h1 {
+    width: 12rem;
+    height: 4rem;
+    margin: 0.25rem 0;
+    float: left;
+}
+
+.site-header .user {
     margin: 1rem 0;
-    font-size: 2rem;
-    text-indent: -1000px;
+    font-size: 1.2rem;
+    color: #eee;
+    float: right;
+}
+
+.site-header .user .photo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 126px;
+    border: 1px solid #000;
 }
 
 .floor {
@@ -79,13 +101,12 @@ h1, h2, h3, h4, h5, h6 {
 .block img {
     float: left;
     margin: 1.75rem 2rem 2.5rem 1.5rem;
-    width: 20rem;
-    height: 17rem;
+    width: 17rem;
+    height: 15rem;
     display: block;
 }
 
 .night img {
-
     border: 10px solid transparent;
     border-image: url(../img/border.png) 10 10 round;
 }
@@ -147,6 +168,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 600px) {
+    .site-header .h1 {
+        width: 9rem;
+        height: 3rem;
+        margin: 1rem 0;
+    }
+
     .category-all {
         margin-left: -10%;
         margin-right: 0
