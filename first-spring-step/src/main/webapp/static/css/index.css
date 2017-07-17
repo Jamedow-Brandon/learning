@@ -101,8 +101,8 @@ h1, h2, h3, h4, h5, h6 {
 .block img {
     float: left;
     margin: 1.75rem 2rem 2.5rem 1.5rem;
-    width: 17rem;
-    height: 15rem;
+    width: 20rem;
+    height: 18rem;
     display: block;
 }
 
@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
     text-indent: 2rem;
     float: right;
-    padding-right: 11%;
+    padding-right: 5%;
 }
 
 .night .intro {
@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .category {
-    padding-right: 15%;
+    padding-right: 30%;
 }
 
 .category-all {

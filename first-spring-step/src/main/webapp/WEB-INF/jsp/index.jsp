@@ -16,7 +16,7 @@
     <meta name="keywords" content="老豆坊,美食,零食">
     <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。"/>
     <meta name="googlebot" content="index, follow">
-    <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/index.css?v=20170717"/>
 </head>
 
 <body>
