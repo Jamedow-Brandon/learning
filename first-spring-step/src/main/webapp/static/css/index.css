@@ -28,39 +28,6 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
 }
 
-.site-header {
-    width: 100%;
-    background: #292a30;
-}
-
-.site-header .logo {
-    width: 3rem;
-    height: 3.5rem;
-    margin: 0.75rem 0.5rem 0.25rem 1rem;
-    float: left;
-}
-
-.site-header .h1 {
-    width: 12rem;
-    height: 4rem;
-    margin: 0.25rem 0;
-    float: left;
-}
-
-.site-header .user {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    color: #eee;
-    float: right;
-}
-
-.site-header .user .photo {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 126px;
-    border: 1px solid #000;
-}
-
 .floor {
     padding: 2rem;
 }

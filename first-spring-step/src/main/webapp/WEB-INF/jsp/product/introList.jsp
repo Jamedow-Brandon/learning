@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${ctx}/static/css/product-intro.css"/>
 </head>
 <body>
+<%@include file="../common/site-nav.jsp" %>
 <div id="container" class="container">
     <c:forEach items="${products}" var="product" varStatus="index">
         <div class="product-intro col-md-12">

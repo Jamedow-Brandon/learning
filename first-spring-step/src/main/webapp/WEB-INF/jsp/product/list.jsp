@@ -14,11 +14,7 @@
     <link rel="stylesheet" href="${ctx}/static/css/product-list.css"/>
 </head>
 <body>
-<header class="site-header">
-    <div>
-        <h1>老豆坊</h1>
-    </div>
-</header>
+<%@include file="../common/site-nav.jsp" %>
 <div class="container">
     <div class="filter-area">
         <div class="pitch-on">
