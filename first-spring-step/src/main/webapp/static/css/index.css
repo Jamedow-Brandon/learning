@@ -55,14 +55,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 1rem 2rem;
 }
 
-.block h2 {
+.block h3 {
     margin: 0rem 0;
     font-size: 1.8rem;
 }
 
-.block h2 b {
+.block h3 b {
     margin: 1rem 0 1rem 0;
-    font-size: 2.6rem;
+    font-size: 3.5rem;
 }
 
 .block img {
@@ -141,6 +141,23 @@ h1, h2, h3, h4, h5, h6 {
         margin: 1rem 0;
     }
 
+    .site-header .logo {
+        display: none;
+    }
+
+    .site-header .search-field {
+        width: 15rem;
+    }
+
+    .site-header .search-box-input {
+        width: 10rem;
+        height: 2rem;
+    }
+
+    .site-header .search-box-input input {
+        width: 10rem;
+    }
+
     .category-all {
         margin-left: -10%;
         margin-right: 0
@@ -166,15 +183,15 @@ h1, h2, h3, h4, h5, h6 {
     text-indent: 2rem;
 }
 
-.night h2 b {
+.night h3 b {
     color: #008B8B;
 }
 
-.sea h2 b {
+.sea h3 b {
     color: #e0b800;
 }
 
-.spicy h2 b {
+.spicy h3 b {
     color: #9e1313;
 }
 
