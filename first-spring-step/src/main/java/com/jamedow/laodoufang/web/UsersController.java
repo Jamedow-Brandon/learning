@@ -5,10 +5,13 @@ import com.jamedow.laodoufang.service.UsersService;
 import com.jamedow.laodoufang.utils.Constant;
 import com.jamedow.laodoufang.utils.MD5.MD5;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by yoyo on 2017/2/15.
@@ -16,9 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/login")
 public class UsersController {
-
+    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
     @Autowired
     private UsersService usersService;
+
+    @RequestMapping("hello")
+    public ModelAndView hello() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("login");
+        return view;
+    }
 
 
     @RequestMapping(value = "/accessLogin", produces = {"application/text;charset=UTF-8"})
@@ -80,6 +90,7 @@ public class UsersController {
 
     /**
      * 判断用户名是否已存在
+     *
      * @param userName
      * @return
      */

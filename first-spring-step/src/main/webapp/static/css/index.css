@@ -5,22 +5,17 @@ body > header, body > section, body > footer {
 }
 
 html, body {
-    font-family: Index, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
 }
 
 @media (max-width: 600px) {
     html, body {
-        font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+        font-family: "华文新魏", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
     }
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-}
-
-@font-face {
-    font-family: Index;
-    src: url(../ttf/index.ttf);
 }
 
 .clear {
@@ -56,11 +51,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .block h2 {
-    margin: 0rem 0;
+    margin: 0;
     font-size: 1.8rem;
 }
 
-.block h2 b {
+.block h2 span {
+    min-height: 4rem;
     margin: 1rem 0 1rem 0;
     font-size: 2.6rem;
 }
@@ -79,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .night img:hover {
-    border: 0px;
+    border: 0;
 }
 
 .sea img:hover {
@@ -123,10 +119,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ahead-food {
-    margin: 12rem 2rem 0 0;
+    margin: 12rem 1rem 0 0;
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
 .sea img {
@@ -166,15 +162,15 @@ h1, h2, h3, h4, h5, h6 {
     text-indent: 2rem;
 }
 
-.night h2 b {
+.night h2 span {
     color: #008B8B;
 }
 
-.sea h2 b {
+.sea h2 span {
     color: #e0b800;
 }
 
-.spicy h2 b {
+.spicy h2 span {
     color: #9e1313;
 }
 
