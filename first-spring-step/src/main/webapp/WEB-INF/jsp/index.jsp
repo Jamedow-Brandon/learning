@@ -41,11 +41,8 @@
     </section>
 </c:forEach>
 
-<footer id="footer">
-    <div class="copy-right">
-        <p>浙ICP备17018975号-1</p>
-    </div>
-</footer>
+<%@include file="common/copy-right.jsp" %>
+
 <!-- index mask start-->
 <div class="index-mask" id="indexPresent" style="display: none">
     <div class="index-mask_top">

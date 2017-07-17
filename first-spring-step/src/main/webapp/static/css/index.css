@@ -223,20 +223,6 @@ h1, h2, h3, h4, h5, h6 {
     0 0 60px #eee;
 }
 
-.copy-right {
-    width: 100%;
-    padding: 2rem 0;
-    background: #292a30;
-}
-
-.copy-right p {
-    font-family: Arial;
-    text-align: center;
-    color: #fff;;
-    line-height: 1rem;
-    font-size: 0.7rem;
-}
-
 /*index mask start*/
 .index-mask {
     height: 100%;

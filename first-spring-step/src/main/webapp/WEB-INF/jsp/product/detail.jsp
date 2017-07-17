@@ -28,6 +28,7 @@
         </article>
     </div>
 </div>
+<%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
 </body>
 </html>

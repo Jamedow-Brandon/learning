@@ -36,6 +36,7 @@
         <div class="sort-by"></div>
     </div>
 </div>
+<%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
 <script type="text/html" id="tagsTemplate">
     {{each tags as tag}}

@@ -30,3 +30,17 @@
     border-radius: 126px;
     border: 1px solid #000;
 }
+
+.copy-right {
+    width: 100%;
+    padding: 2rem 0;
+    background: #292a30;
+}
+
+.copy-right p {
+    font-family: Arial;
+    text-align: center;
+    color: #fff;;
+    line-height: 1rem;
+    font-size: 0.7rem;
+}
