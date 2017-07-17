@@ -140,7 +140,7 @@
         <span aria-hidden="true">注册</span>
     </button>
 </script>
-<script type="text/javascript" src="${ctx}/static/template.js"></script>
+<script type="text/javascript" src="${ctx}/static/script/template.js"></script>
 <script>
     $(document).ready(function () {
 
