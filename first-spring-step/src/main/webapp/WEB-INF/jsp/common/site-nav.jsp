@@ -28,9 +28,16 @@
                     </c:if>
 
                     <c:if test="${not empty user}">
-                        <img class="photo"
-                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
-                             alt="头像">
+                        <c:if test="${empty user.photo}">
+                            <img class="photo"
+                                 src="${ctx}/static/img/default-photo.png"
+                                 alt="头像"/>
+                        </c:if>
+                        <c:if test="${not empty user.photo}">
+                            <img class="photo"
+                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
+                                 alt="头像"/>
+                        </c:if>
                         <span>个人中心</span>
                     </c:if>
                 </div>
