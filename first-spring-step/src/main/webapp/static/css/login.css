@@ -14,14 +14,44 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-bg {
-    margin-left: -20rem;
+    background-image: url(http://www.quchi.vip/wp-content/uploads/2017/03/1580171.jpg);
+    height: 800px;
 }
 
 .content-layout {
     width: 20rem;
     height: 20rem;
-    padding: 1.5rem;
+    padding: 1rem;
+    background: #292a30;
+    color: #ab8051;
     position: absolute;
     top: 10rem;
     left: 75rem;
+}
+
+.content-layout .login-title {
+    font-size: 2rem;
+}
+
+.content-layout .static-form label {
+    font-size: 1.5rem;
+    margin: 0.5rem;
+}
+
+.content-layout .static-form input {
+    height: 2rem;
+}
+
+.content-layout .static-form .field {
+    margin: 2rem;
+}
+
+.content-layout .static-form .J_Submit {
+    margin: 0 4.5rem 3rem 5.5rem;
+    width: 9rem;
+    height: 3rem;
+}
+
+.content-layout .login-links {
+    margin: 0 2.5rem;
 }

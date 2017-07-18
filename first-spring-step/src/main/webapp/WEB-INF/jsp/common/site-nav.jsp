@@ -14,18 +14,25 @@
                     </h2>
                 </div>
                 <div class="search-field">
-                    <div class="search-box-input">
-                        <input type="text"/>
-                    </div>
-                    <button class="btn-search">搜索</button>
+                    <form action="${ctx}/product/list" method="get">
+                        <div class="search-box-input">
+                            <input type="text" name="searchKeyWord" placeholder="请输入菜名"/>
+                        </div>
+                        <button class="btn-search" type="submit">搜索</button>
+                    </form>
                 </div>
 
                 <div class="user">
-                    <%--<span><a href="#2">登录</a>|<a href="#2">注册</a></span>--%>
-                    <img class="photo"
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
-                         alt="头像">
-                    <span>个人中心</span>
+                    <c:if test="${empty user}">
+                        <span><a class="login-button" href="${ctx}/user/login">登录</a></span>
+                    </c:if>
+
+                    <c:if test="${not empty user}">
+                        <img class="photo"
+                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
+                             alt="头像">
+                        <span>个人中心</span>
+                    </c:if>
                 </div>
             </nav>
         </div>

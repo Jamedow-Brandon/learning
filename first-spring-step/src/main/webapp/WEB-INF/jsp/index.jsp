@@ -55,9 +55,6 @@
 </div>
 <!--index mask end-->
 
-<a href="#2" id="back-to-top" style="display: none;">
-    <i class="fa fa-angle-up"></i>
-</a>
 <%@include file="common/footer.jsp" %>
 <script type="application/javascript">
     !function (t) {

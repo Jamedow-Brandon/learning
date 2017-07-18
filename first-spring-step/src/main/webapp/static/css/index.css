@@ -118,10 +118,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ahead-food {
-    margin: 12rem 2rem 0 0;
+    margin: 12rem 1rem 0 0;
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .sea img {
@@ -248,45 +248,3 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     cursor: pointer;
 }
-
-/*index mask end*/
-
-#back-to-top {
-    position: fixed;
-    right: 10px;
-    bottom: 10px;
-    background: #284641;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    z-index: 1;
-    display: none;
-}
-
-#back-to-top:hover {
-    background: #27ae60;
-}
-
-#back-to-top:active {
-    background: #284641;
-}
-
-#back-to-top i {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-}
-
-.fa-angle-up:before {
-    content: "\f106";
-}
-
-.fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-

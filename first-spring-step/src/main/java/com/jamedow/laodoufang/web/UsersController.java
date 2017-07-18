@@ -17,13 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by yoyo on 2017/2/15.
  */
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class UsersController {
     private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
     @Autowired
     private UsersService usersService;
 
-    @RequestMapping("hello")
+    @RequestMapping("login")
     public ModelAndView hello() {
         ModelAndView view = new ModelAndView();
         view.setViewName("login");
