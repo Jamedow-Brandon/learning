@@ -30,7 +30,7 @@
                     <div class="block" categoryId="${childCategory.id}">
                         <img src="${childCategory.imgUrl}"/>
                         <div class="category col-md-12">
-                            <h2 class="category-name">${category.name}<span>${childCategory.name}</span></h2>
+                            <h3 class="category-name">${category.name}<b>${childCategory.name}</b></h3>
                             <div class="intro">${childCategory.intro}</div>
                             <div class="ahead-food">向美食进军</div>
                         </div>
