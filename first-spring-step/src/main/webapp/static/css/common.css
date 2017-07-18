@@ -7,7 +7,14 @@
     float: left;
 }
 
-.site-header a {
+.site-header .logo-area h1 a {
+    width: 17rem;
+    display: block;
+    text-indent: -9999px;
+}
+
+.site-header .logo-area h2 a {
+    height: 0;
     display: block;
     text-indent: -9999px;
 }
@@ -16,7 +23,7 @@
     width: 12rem;
     height: 4rem;
     margin: 0.25rem 0;
-    float: left;
+    float: right;
 }
 
 .site-header .logo-area .icon {
@@ -75,6 +82,41 @@
     height: 2.5rem;
     border-radius: 126px;
     border: 1px solid #000;
+}
+
+@media (max-width: 600px) {
+    .site-header .user {
+        position: absolute;
+        top: 4.5rem;
+        left: 24rem;
+    }
+
+    .site-header .user span {
+        display: none;
+    }
+
+    .site-header .h1 {
+        width: 9rem;
+        height: 3rem;
+        margin: 1rem 0;
+    }
+
+    .site-header .logo {
+        display: none;
+    }
+
+    .site-header .search-field {
+        width: 15rem;
+    }
+
+    .site-header .search-box-input {
+        width: 10rem;
+        height: 2rem;
+    }
+
+    .site-header .search-box-input input {
+        width: 10rem;
+    }
 }
 
 .copy-right {
