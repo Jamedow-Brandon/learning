@@ -47,6 +47,10 @@
         background-color: #5fa391;
         color: #fff;
     }
+
+    #container{
+        height: 450px;
+    }
 </style>
 <script>
     $(document).ready(function(){
@@ -294,8 +298,39 @@
             });
         }
     }
+
+    function deleteTagsTwo(){
+
+        layer.msg('确定删除该标签吗？', {
+            time: 20000, //20s后自动关闭
+            btn: ['确定', '取消'],
+            yes: function(){
+
+                var tagsId = $("#tagsTwoId").val();
+                if(tagsId!=null){
+                    var url = "${ctx}/tags/deleteClassify?classifyId="+tagsId;
+                    ajaxPost(url,null,
+                            function(result){
+
+                                if(result == "删除成功"){
+
+                                    $("#"+tagsId).remove();
+                                    chooseTagsOne($("#tagsOneId").val());
+                                }
+                                layer.msg(result);
+
+                            },null,null);
+                }
+            },
+
+            btn2: function(){}
+        });
+
+    }
 </script>
 <body>
+<%@include file="../common/site-nav.jsp" %>
+<div id="container" class="container">
     <div class = "classify col-md-12">
         <span class = "classify-title" >分类：</span>
         <div class = "classify-content">
@@ -330,6 +365,7 @@
         <label alt="修改" class = "fa fa-pencil fa-lg"  onclick="editorTagsTwo()"></label>
         <label alt="删除" class = "fa fa-trash-o fa-lg"  onclick="deleteTagsTwo()"></label>
     </div>
-
+</div>
+<%@include file="../common/copy-right.jsp" %>
 </body>
 </html>

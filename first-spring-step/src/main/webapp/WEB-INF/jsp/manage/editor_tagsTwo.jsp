@@ -59,16 +59,12 @@
         for(var i = 0;i<parentId.length;i++){
             parentIds.push(parentId[i].value);
         }
-        console.log(parentIds);
-        $("#classify").select2().val([4,7]).trigger("change");
+        $("#tagsTwo").select2().val(parentIds).trigger("change");
 
         var tagsTwoId = window.parent.document.getElementById("tagsTwoId").value;//原来的名称
         $("#name").val(window.parent.document.getElementById(tagsTwoId).innerHTML);
 
         $("#addTagsTwo").click(function(){
-
-
-
 
             var name = $("#name").val();
             if(name == ""){
@@ -88,20 +84,19 @@
             var url = "${ctx}/tags/editorTagsTwo";
             if(tagsOneIds!=null){
 
-                console.log(name+","+tagsOneIds);
-                ajaxPost(url,{name:name,tagsOneIds:tagsOneIds.join(",")},
+                ajaxPost(url,{id:tagsTwoId,name:name,tagsOneIds:tagsOneIds.join(",")},
                         function(result){
 
                             if(result != null){
 
-                                if(result != "保存成功"){
+                                if(result != "修改成功"){
                                     layer.msg(result);
                                     return ;
                                 }
-                                window.parent.location="javascript:changeTagsTwo()";
+                                window.parent.location="javascript:appendTagsTwo()";
 
                             }else{
-                                layer.msg("保存成功");
+                                layer.msg("修改失败");
                             }
                         },null,false);
             }

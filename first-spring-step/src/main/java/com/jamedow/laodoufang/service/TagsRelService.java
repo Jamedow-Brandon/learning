@@ -29,4 +29,6 @@ public interface TagsRelService {
      * @return
      */
     int save(TagsRel tagsRel);
+
+    public int deleteRelByTagId(int tagsId);
 }

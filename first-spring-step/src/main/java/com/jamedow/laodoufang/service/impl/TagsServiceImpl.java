@@ -118,14 +118,11 @@ public class TagsServiceImpl implements TagsService {
             int result = tagsMapper.deleteByPrimaryKey(tagsId);
             if(result != 0 ){
 
-                TagsRel tagsRel = new TagsRel();
-                tagsRel.setTagId(tagsId);
-                List<TagsRel> tagsRelList = tagsRelService.queryTagsRel(tagsRel);//删除关联表中的记录
-                for(TagsRel t : tagsRelList){
-
-                    tagsRelService.deleteTagsRel(t.getId());
-                }
-                return "删除成功";
+                TagsRelExample example = new TagsRelExample();
+                TagsRelExample.Criteria criteria = example.createCriteria();
+                criteria.andTagIdEqualTo(tagsId);
+                if(tagsRelMapper.deleteByExample(example)!=0)
+                    return "删除成功";
             }
             return "删除失败";
         }
