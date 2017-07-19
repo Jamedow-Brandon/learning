@@ -28,39 +28,6 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
 }
 
-.site-header {
-    width: 100%;
-    background: #292a30;
-}
-
-.site-header .logo {
-    width: 3rem;
-    height: 3.5rem;
-    margin: 0.75rem 0.5rem 0.25rem 1rem;
-    float: left;
-}
-
-.site-header .h1 {
-    width: 12rem;
-    height: 4rem;
-    margin: 0.25rem 0;
-    float: left;
-}
-
-.site-header .user {
-    margin: 1rem 0;
-    font-size: 1.2rem;
-    color: #eee;
-    float: right;
-}
-
-.site-header .user .photo {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 126px;
-    border: 1px solid #000;
-}
-
 .floor {
     padding: 2rem;
 }
@@ -88,21 +55,21 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 1rem 2rem;
 }
 
-.block h2 {
+.block h3 {
     margin: 0rem 0;
     font-size: 1.8rem;
 }
 
-.block h2 b {
+.block h3 b {
     margin: 1rem 0 1rem 0;
-    font-size: 2.6rem;
+    font-size: 3.5rem;
 }
 
 .block img {
     float: left;
     margin: 1.75rem 2rem 2.5rem 1.5rem;
-    width: 17rem;
-    height: 15rem;
+    width: 20rem;
+    height: 18rem;
     display: block;
 }
 
@@ -128,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
     text-indent: 2rem;
     float: right;
-    padding-right: 11%;
+    padding-right: 5%;
 }
 
 .night .intro {
@@ -147,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .category {
-    padding-right: 15%;
+    padding-right: 30%;
 }
 
 .category-all {
@@ -159,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
     margin: 12rem 2rem 0 0;
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .sea img {
@@ -172,6 +139,23 @@ h1, h2, h3, h4, h5, h6 {
         width: 9rem;
         height: 3rem;
         margin: 1rem 0;
+    }
+
+    .site-header .logo {
+        display: none;
+    }
+
+    .site-header .search-field {
+        width: 15rem;
+    }
+
+    .site-header .search-box-input {
+        width: 10rem;
+        height: 2rem;
+    }
+
+    .site-header .search-box-input input {
+        width: 10rem;
     }
 
     .category-all {
@@ -189,6 +173,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .ahead-food {
         margin: 12rem 0 0 0;
+        font-size: 1.5rem;
     }
 }
 
@@ -198,22 +183,22 @@ h1, h2, h3, h4, h5, h6 {
     text-indent: 2rem;
 }
 
-.night h2 b {
+.night h3 b {
     color: #008B8B;
 }
 
-.sea h2 b {
+.sea h3 b {
     color: #e0b800;
 }
 
-.spicy h2 b {
+.spicy h3 b {
     color: #9e1313;
 }
 
 .night .ahead-food {
     float: right;
     cursor: pointer;
-    color: brown;
+    color: #d0e9ff;
 }
 
 .sea .ahead-food {
@@ -229,28 +214,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .night .ahead-food:hover {
-    text-shadow: 0 0 10px brown,
-    0 0 20px brown,
-    0 0 30px brown,
-    0 0 40px brown,
-    0 0 50px brown,
-    0 0 60px brown,
-    0 0 10px brown,
-    0 0 20px brown,
-    0 0 30px brown,
-    0 0 40px brown,
-    0 0 50px brown,
-    0 0 60px brown;
+    text-shadow: 0 0 10px #d0e9ff,
+    0 0 20px #d0e9ff,
+    0 0 30px #d0e9ff,
+    0 0 40px #d0e9ff,
+    0 0 50px #d0e9ff,
+    0 0 60px #d0e9ff;
 }
 
 .sea .ahead-food:hover {
     text-shadow: 0 0 10px #e0b800,
-    0 0 20px #e0b800,
-    0 0 30px #e0b800,
-    0 0 40px #e0b800,
-    0 0 50px #e0b800,
-    0 0 60px #e0b800,
-    0 0 10px #e0b800,
     0 0 20px #e0b800,
     0 0 30px #e0b800,
     0 0 40px #e0b800,
@@ -264,27 +237,7 @@ h1, h2, h3, h4, h5, h6 {
     0 0 30px #eee,
     0 0 40px #eee,
     0 0 50px #eee,
-    0 0 60px #eee,
-    0 0 10px #eee,
-    0 0 20px #eee,
-    0 0 30px #eee,
-    0 0 40px #eee,
-    0 0 50px #eee,
     0 0 60px #eee;
-}
-
-.copy-right {
-    width: 100%;
-    padding: 35px 0;
-    background: #292a30;
-}
-
-.copy-right p {
-    font-family: Arial;
-    text-align: center;
-    color: #fff;;
-    line-height: 1rem;
-    font-size: 0.7rem;
 }
 
 /*index mask start*/

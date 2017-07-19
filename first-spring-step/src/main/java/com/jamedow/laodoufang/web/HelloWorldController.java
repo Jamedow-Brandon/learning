@@ -1,13 +1,10 @@
 package com.jamedow.laodoufang.web;
 
-import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import com.jamedow.laodoufang.entity.Category;
 import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CategoryService;
 import com.jamedow.laodoufang.service.UsersService;
-import com.jamedow.laodoufang.utils.rabbitmq.RabbitMQUtils;
 import com.jamedow.laodoufang.utils.redis.RedisPoolManager;
-import com.jamedow.laodoufang.utils.webcollector.BingCrawler;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,21 +57,21 @@ public class HelloWorldController {
         view.setViewName("hello");
 
         try {
-            String keyword = "公司";
-            int maxPageNum = 3;
-            BingCrawler crawler = new BingCrawler("depth_crawler", false);
-            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
-                String url = BingCrawler.createBingUrl(keyword, pageNum);
-                crawler.addSeed(new CrawlDatum(url)
-                        .putMetaData("keyword", keyword)
-                        .putMetaData("pageNum", pageNum + "")
-                        .putMetaData("pageType", "searchEngine")
-                        .putMetaData("depth", "1"));
-            }
-
-            crawler.start(maxPageNum);
-
-            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
+//            String keyword = "公司";
+//            int maxPageNum = 3;
+//            BingCrawler crawler = new BingCrawler("depth_crawler", false);
+//            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
+//                String url = BingCrawler.createBingUrl(keyword, pageNum);
+//                crawler.addSeed(new CrawlDatum(url)
+//                        .putMetaData("keyword", keyword)
+//                        .putMetaData("pageNum", pageNum + "")
+//                        .putMetaData("pageType", "searchEngine")
+//                        .putMetaData("depth", "1"));
+//            }
+//
+//            crawler.start(maxPageNum);
+//
+//            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

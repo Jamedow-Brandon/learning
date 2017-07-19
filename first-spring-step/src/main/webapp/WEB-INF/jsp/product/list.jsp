@@ -14,11 +14,7 @@
     <link rel="stylesheet" href="${ctx}/static/css/product-list.css"/>
 </head>
 <body>
-<header class="site-header">
-    <div>
-        <h1>老豆坊</h1>
-    </div>
-</header>
+<%@include file="../common/site-nav.jsp" %>
 <div class="container">
     <div class="filter-area">
         <div class="pitch-on">
@@ -46,6 +42,7 @@
         <div class="sort-by"></div>
     </div>
 </div>
+<%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
 <script type="text/html" id="tagsTemplate">
     {{each tags as tag}}

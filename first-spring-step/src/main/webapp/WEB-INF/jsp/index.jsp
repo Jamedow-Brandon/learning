@@ -16,28 +16,11 @@
     <meta name="keywords" content="老豆坊,美食,零食">
     <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。"/>
     <meta name="googlebot" content="index, follow">
-    <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/index.css?v=20170717"/>
 </head>
 
 <body>
-<header>
-    <div class="site-header">
-        <div class="container">
-            <nav>
-                <img class="logo" src="${ctx}/static/img/logo.png" alt="logo"/>
-                <img class="h1" src="${ctx}/static/img/H1.png" alt="店招"/>
-
-                <div class="user">
-                    <%--<span><a href="#2">登录</a>|<a href="#2">注册</a></span>--%>
-                    <img class="photo"
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
-                         alt="头像">
-                    <span>个人中心</span>
-                </div>
-            </nav>
-        </div>
-    </div>
-</header>
+<%@include file="common/site-nav.jsp" %>
 
 <c:forEach items="${categories}" var="category">
     <section class="floor ${category.categoryCode}">
@@ -47,7 +30,7 @@
                     <div class="block" categoryId="${childCategory.id}">
                         <img src="${childCategory.imgUrl}"/>
                         <div class="category col-md-12">
-                            <h2 class="category-name">${category.name}<b>${childCategory.name}</b></h2>
+                            <h3 class="category-name">${category.name}<b>${childCategory.name}</b></h3>
                             <div class="intro">${childCategory.intro}</div>
                             <div class="ahead-food">向美食进军</div>
                         </div>
@@ -58,11 +41,8 @@
     </section>
 </c:forEach>
 
-<footer id="footer">
-    <div class="copy-right">
-        <p>浙ICP备17018975号-1</p>
-    </div>
-</footer>
+<%@include file="common/copy-right.jsp" %>
+
 <!-- index mask start-->
 <div class="index-mask" id="indexPresent" style="display: none">
     <div class="index-mask_top">

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${ctx}/static/css/product-detail.css"/>
 </head>
 <body>
+<%@include file="../common/site-nav.jsp" %>
 <div id="container" class="container">
     <div class="product-detail col-md-12">
         <img class="col-md-3 col-xs-12 img-thumbnail" src="${product.imgUrl}"/>
@@ -27,6 +28,7 @@
         </article>
     </div>
 </div>
+<%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
 </body>
 </html>

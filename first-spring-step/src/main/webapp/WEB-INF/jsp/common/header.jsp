@@ -11,6 +11,7 @@
       integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <link rel="stylesheet" href="${ctx}/static/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="${ctx}/static/css/common.css">
 <script>
     var _hmt = _hmt || [];
     (function () {
