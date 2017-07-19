@@ -41,6 +41,7 @@ function ajaxGet(geturl, getdata, functionSuccess, functionError, showData){
  * @param showData	发送成功时 是否显示返回的消息  true：显示， false：不显示
  */
 function ajaxPost(postUrl, postData, functionSuccess, functionError, showData){
+
     $.ajax({
         type : "post",
         url : postUrl,

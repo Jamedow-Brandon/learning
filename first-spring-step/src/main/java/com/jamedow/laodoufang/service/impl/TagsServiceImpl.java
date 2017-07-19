@@ -4,6 +4,7 @@ import com.jamedow.laodoufang.entity.Tags;
 import com.jamedow.laodoufang.entity.TagsExample;
 import com.jamedow.laodoufang.entity.TagsRel;
 import com.jamedow.laodoufang.entity.TagsRelExample;
+import com.jamedow.laodoufang.entity.ex.TagsExt;
 import com.jamedow.laodoufang.mapper.TagsMapper;
 import com.jamedow.laodoufang.mapper.TagsMapperEx;
 import com.jamedow.laodoufang.mapper.TagsRelMapper;
@@ -42,6 +43,55 @@ public class TagsServiceImpl implements TagsService {
             return tagsMapper.updateByPrimaryKeySelective(tags);
         }
         return tagsMapper.insert(tags);
+    }
+
+
+
+    @Override
+    public List<Tags> getBrothersByTagsId(Integer tagsId) {
+        List<Tags> brothersTags = new ArrayList<>();
+        TagsRelExample tagsRelExample = new TagsRelExample();
+        tagsRelExample.createCriteria().andTagIdEqualTo(tagsId);
+        List<TagsRel> tagsRels = tagsRelMapper.selectByExample(tagsRelExample);
+
+        if (tagsRels != null && tagsRels.size() != 0) {
+            tagsRelExample.clear();
+            tagsRelExample.createCriteria().andParentIdEqualTo(tagsRels.get(0).getParentId());
+            List<TagsRel> brothersTagsRels = tagsRelMapper.selectByExample(tagsRelExample);
+
+            List<Integer> tagsIds = new ArrayList<>();
+            for (TagsRel tagsRel : brothersTagsRels) {
+                tagsIds.add(tagsRel.getTagId());
+            }
+
+            TagsExample tagsExample = new TagsExample();
+            tagsExample.createCriteria().andIdIn(tagsIds);
+            brothersTags = tagsMapper.selectByExample(tagsExample);
+        }
+        return brothersTags;
+    }
+
+    @Override
+    public List<TagsExt> queryClassifyAndChilds() {
+
+        List<Tags> classifyList = tagsMapperEx.queryClassify();
+        List<TagsExt> tagsExtList = new ArrayList<TagsExt>();
+        for(Tags t : classifyList){
+
+            List<Tags> tagsList = tagsMapperEx.queryTagByClassify(t.getId());
+            TagsExt tagsExt = new TagsExt();
+            tagsExt.setId(t.getId());
+            tagsExt.setName(t.getName());
+            tagsExt.setChildrenTagsList(tagsList);
+            tagsExtList.add(tagsExt);
+        }
+        return tagsExtList;
+    }
+
+    @Override
+    public List<Tags> getParentsByTags(int tagsId) {
+        List<Tags> classifyList = tagsMapperEx.queryParentByTags(tagsId);
+        return  classifyList;
     }
 
     @Override
@@ -104,7 +154,7 @@ public class TagsServiceImpl implements TagsService {
     public Tags saveClassify(Tags tags) {
 
         Tags oldTags = new Tags();
-        oldTags = tags;
+        oldTags.setId(tags.getId());
         List<Tags> tagsList = queryTags(tags);//检查是否有重名
         if(tagsList.size() == 0){
 

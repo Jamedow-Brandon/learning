@@ -16,10 +16,14 @@
     <script type="text/javascript" src="${ctx}/static/ajax-dialog.js"></script>
     <script src = "${ctx}/static/layer/layer.js"></script>
     <script src="${ctx}/static/dialog/dialog-min.js"></script>
+
 </head>
 <style>
+    .classify,.tags-one,.tags-two{
+        margin-top: 1%;
+    }
 
-    .classify-items{
+    .classify-items,.tags-one-items,.tags-two-items{
         float: left;
         font-weight: 400;
         margin-right: 1%;
@@ -35,7 +39,7 @@
         margin-top: 1%;
     }
 
-    .classify-title{
+    .classify-title,.tags-one-title,.tags-two-title{
         float: left;
         margin-top: 5px;
     }
@@ -47,15 +51,67 @@
 <script>
     $(document).ready(function(){
 
-        $(".classify-items:first").addClass("choose-item");
-        $("#classifyId").val($(".classify-items:first").val());
+        chooseClassify($(".classify-items:first").attr("id"));
+
     })
 
-    function chooseClassify(classifyId){
+    function chooseClassify(classifyId){//选择分类，显示所包含的一级分类
 
         $(".classify-items").removeClass("choose-item");
         $("#"+classifyId).addClass("choose-item");
         $("#classifyId").val(classifyId);
+
+        var url =  "${ctx}/tags/searchTagsOneByClassify?classifyId="+classifyId;
+        ajaxPost(url,null,
+                function(tagsList){
+
+                    if(tagsList.length>0){
+
+                        var appendTags = "";
+                        for(var i= 0;i < tagsList.length;i++){
+                            appendTags +="<label class = 'tags-one-items' id='"+tagsList[i].id+"' onclick='chooseTagsOne(\""+tagsList[i].id+"\")'>"+tagsList[i].name+"</label>";
+                        }
+                        $(".tags-one-content").html("");
+                        $(".tags-one-content").append(appendTags);
+                        chooseTagsOne($(".tags-one-items:first").attr('id'));
+                    }
+
+        },null,false);
+    }
+
+
+    function chooseTagsOne(tagsId){
+
+        $(".tags-one-items").removeClass("choose-item");
+        $("#"+tagsId).addClass("choose-item");
+        $("#tagsOneId").val(tagsId);
+
+        var url =  "${ctx}/tags/searchTagsOneByClassify?classifyId="+tagsId;
+        ajaxPost(url,null,
+                function(tagsList){
+
+                    if(tagsList.length>0){
+
+                        var appendTags = "";
+                        for(var i= 0;i < tagsList.length;i++){
+                            appendTags +="<label class = 'tags-two-items' id='"+tagsList[i].id+"' onclick='chooseTagsTwo(\""+tagsList[i].id+"\")'>"+tagsList[i].name+"</label>";
+                        }
+                        $(".tags-two-content").html("");
+                        $(".tags-two-content").append(appendTags);
+                        chooseTagsTwo($(".tags-two-items:first").attr('id'));
+                    }else{
+                        $(".tags-two-content").html("<span style = 'float: left;margin-left: 4px;margin-top: 4px'><b>没有子标签</b></span>");
+                    }
+
+                },null,false);
+    }
+
+
+    function chooseTagsTwo(tagsId) {
+
+        $(".tags-two-items").removeClass("choose-item");
+        $("#" + tagsId).addClass("choose-item");
+        $("#tagsTwoId").val(tagsId);
     }
 
     function deleteClassify(){
@@ -72,11 +128,10 @@
                     ajaxPost(url,null,
                             function(result){
 
-                                if(result = "删除成功"){
+                                if(result == "删除成功"){
 
                                     $("#"+classifyId).remove();
-                                    $(".classify-items:first").addClass("choose-item");
-                                    $("#classifyId").val($(".classify-items:first").val());
+                                    chooseClassify($(".classify-items:first").attr("id"))
                                 }
                                 layer.msg(result);
 
@@ -91,7 +146,6 @@
 
     function addClassify(){
 
-        var url = "${ctx}/tags/toAddClassify";
         layer.open({
             type: 2,
             title: "添加分类",
@@ -103,9 +157,15 @@
 
     function appendClassify(id,name){
 
-        var newClassify = "<label class = 'classify-items' id='"+id+"' onclick='chooseClassify(\'"+id+"\')'>"+name+"</label>"
+        var newClassify = "<label class = 'classify-items' id='"+id+"' onclick='chooseClassify(\""+id+"\")'>"+name+"</label>"
         $(".classify-content").append(newClassify);
         chooseClassify(id);
+        layer.closeAll();
+    }
+
+    function changeClassify(id,name){
+
+        $("#"+id).html(name);
         layer.closeAll();
     }
 
@@ -116,29 +176,127 @@
 
     function editorClassify(){
 
-        layer.prompt({title: '编辑', formType: 2}, function(text, index){
+        var classifyId = $("#classifyId").val();
+        if(classifyId!=null){
 
-            var classifyId = $("#classifyId").val();
-            var url = "${ctx}/tags/editorClassify";
+            layer.open({
+                type: 2,
+                title: "编辑分类",
+                area: ['380px', '200px'], //宽高
+                content: '${ctx}/tags/toEditorClassify?classifyId='+classifyId
+            });
+        }
 
-            ajaxPost(url,{"id":classifyId,"name":text},function(classify){
-
-                if(classify.id != 0){
-
-                    $("#"+classifyId).html(text);
-                    layer.closeAll();
-                }else{
-
-                    layer.msg(classify.name);
-                }
-            })
+    }
 
 
+    function addTagsOne(){
+
+        layer.open({
+            type: 2,
+            title: "添加一级",
+            area: ['380px', '200px'], //宽高
+            content: '${ctx}/tags/toAddTagsOne'
         });
+    }
+
+    function appendTagsOne(id,name){
+
+        var newTagsOne = "<label class = 'tags-one-items' id='"+id+"' onclick='chooseTagsOne(\""+id+"\")'>"+name+"</label>"
+        $(".tags-one-content").append(newTagsOne);
+        chooseTagsOne(id);
+        layer.closeAll();
+    }
+
+    function editorTagsOne(){
+
+        var tagsOneId = $("#tagsOneId").val();
+        if(tagsOneId!=null){
+
+            layer.open({
+                type: 2,
+                title: "编辑一级",
+                area: ['380px', '300px'], //宽高
+                content: '${ctx}/tags/toEditorTagsOne?tagsOneId='+tagsOneId
+            });
+        }
+    }
+
+    function deleteTagsOne(){
+
+        layer.msg('确定删除该标签吗？', {
+            time: 20000, //20s后自动关闭
+            btn: ['确定', '取消'],
+            yes: function(){
+
+                var tagsId = $("#tagsOneId").val();
+                if(tagsId!=null){
+                    var url = "${ctx}/tags/deleteClassify?classifyId="+tagsId;
+                    ajaxPost(url,null,
+                            function(result){
+
+                                if(result == "删除成功"){
+
+                                    $("#"+tagsId).remove();
+                                    chooseTagsOne($(".tags-one-items:first").attr("id"));
+                                }
+                                layer.msg(result);
+
+                            },null,null);
+                }
+            },
+
+            btn2: function(){}
+        });
+
+    }
+
+    function changeTagsOne(tagsId,parentId,tagsName){
+
+        if(parentId!=$("#classifyId").val()){//父标签改变，当前父标签下的改一级标签移除
+
+            $("#"+tagsId).remove();
+            chooseClassify($("#classifyId").val());
+        }else{
+            $("#"+tagsId).html(tagsName);
+        }
+
+        layer.closeAll();
+    }
+
+    function addTagsTwo(){
+
+        layer.open({
+            type: 2,
+            title: "添加二级",
+            area: ['500px', '400px'], //宽高
+            content: '${ctx}/tags/toAddTagsTwo'
+        });
+    }
+
+    function appendTagsTwo(){//添加二级标签后更新
+
+        layer.closeAll();
+        var tagsOneId = $("#tagsOneId").val();
+        chooseTagsOne(tagsOneId);
+    }
+
+    function editorTagsTwo(){
+
+        var tagsTwoId = $("#tagsTwoId").val();
+        if(tagsTwoId!=null){
+
+            layer.open({
+                type: 2,
+                title: "编辑二级",
+                area: ['500px', '400px'], //宽高
+                content: '${ctx}/tags/toEditorTagsTwo?tagsTwoId='+tagsTwoId
+            });
+        }
     }
 </script>
 <body>
-    <div class = "classify">
+    <div class = "classify col-md-12">
         <span class = "classify-title" >分类：</span>
         <div class = "classify-content">
             <c:forEach items="${classifyList}" var="classify"  varStatus="status">
@@ -149,6 +307,28 @@
         <label alt="添加" class = "fa fa-plus fa-lg"  onclick="addClassify()"></label>
         <label alt="修改" class = "fa fa-pencil fa-lg"  onclick="editorClassify()"></label>
         <label alt="删除" class = "fa fa-trash-o fa-lg"  onclick="deleteClassify()"></label>
+    </div>
+
+    <div class = "tags-one col-md-12">
+        <span class = "tags-one-title">一级：</span>
+        <div class = "tags-one-content">
+
+        </div>
+        <input id = "tagsOneId" type = "hidden" />
+        <label alt="添加" class = "fa fa-plus fa-lg"  onclick="addTagsOne()"></label>
+        <label alt="修改" class = "fa fa-pencil fa-lg"  onclick="editorTagsOne()"></label>
+        <label alt="删除" class = "fa fa-trash-o fa-lg"  onclick="deleteTagsOne()"></label>
+    </div>
+
+    <div class = "tags-two col-md-12">
+        <span class = "tags-two-title">二级：</span>
+        <div class = "tags-two-content">
+
+        </div>
+        <input id = "tagsTwoId" type = "hidden" />
+        <label alt="添加" class = "fa fa-plus fa-lg"  onclick="addTagsTwo()"></label>
+        <label alt="修改" class = "fa fa-pencil fa-lg"  onclick="editorTagsTwo()"></label>
+        <label alt="删除" class = "fa fa-trash-o fa-lg"  onclick="deleteTagsTwo()"></label>
     </div>
 
 </body>

@@ -16,4 +16,6 @@ public interface TagsMapperEx {
 
     public List<Tags> queryTagByClassify( int classifyId);
 
+    public List<Tags> queryParentByTags( int tagsId);
+
 }

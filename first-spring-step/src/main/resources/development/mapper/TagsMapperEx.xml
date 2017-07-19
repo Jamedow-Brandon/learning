@@ -24,4 +24,10 @@
         and tr.parent_id = #{classifyId}
     </select>
 
+    <select id="queryParentByTags" parameterType = "java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT t.id,t.name from tags t INNER JOIN tags_rel tr
+	    on tr.parent_id = t.id
+	    and tr.tag_id = #{tagsId}
+    </select>
+
 </mapper>

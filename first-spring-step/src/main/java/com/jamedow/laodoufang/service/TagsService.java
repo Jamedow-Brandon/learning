@@ -1,6 +1,7 @@
 package com.jamedow.laodoufang.service;
 
 import com.jamedow.laodoufang.entity.Tags;
+import com.jamedow.laodoufang.entity.ex.TagsExt;
 
 import java.util.List;
 
@@ -49,4 +50,18 @@ public interface TagsService {
     public List<Tags> queryTags(Tags tags);
 
 
+    List<Tags> getBrothersByTagsId(Integer tagsId);
+
+
+    /**
+     * 查找分类以及所包含的以及标签
+     * @return
+     */
+    List<TagsExt> queryClassifyAndChilds();
+
+    /**
+     * 根据子标签找出所有父标签
+     * @return
+     */
+    List<Tags> getParentsByTags(int tagsId);
 }

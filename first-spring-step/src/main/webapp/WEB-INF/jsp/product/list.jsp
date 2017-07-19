@@ -36,17 +36,10 @@
         <div class="waiting-for-selection">
             <p>待选属性：</p>
             <div class="param-parent">
-                <ul>
-                    <li class="toggle-down">食材</li>
-                    <li>海味</li>
-                </ul>
+                <ul></ul>
             </div>
             <div class="param-children">
-                <ul>
-                    <li>虾</li>
-                    <li>蟹</li>
-                    <li>青菜</li>
-                </ul>
+                <ul></ul>
                 <div class="clear"></div>
             </div>
         </div>
@@ -59,12 +52,15 @@
     <li tagId="{{tag.id}}" isLeaf="{{tag.isLeaf}}">{{tag.name}}</li>
     {{/each}}
 </script>
+<script type="text/html" id="pitchTemplate">
+    <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
+</script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript">
 
     var tags = ${tags};
     $(function () {
-        var tagsHtml = template('tagsTemplate', {tags: tags[0].tags});
+        var tagsHtml = template('tagsTemplate', {tags: tags});
         $(".param-children ul").html(tagsHtml);
 
         paramBindClick();
@@ -72,17 +68,65 @@
 
     function paramBindClick() {
         $(".param-children li").on("click", function () {
-            console.log($(this));
-            var param = $(this);
-            if (param.attr("isLeaf") === "0") {
-                param.off();
-                param.on("click", function () {
-                    var index = $.inArray(param.html(), tags);
-                    console.log(index)
-                    debugger
+            var $param = $(this);
+            if ($param.attr("isLeaf") === "0") {
+                getChildrenTags($param.attr("tagId"));
+                $param.off();
+                $param.on("click", function () {
+                    $(this).nextAll().remove();
+                    $(this).remove();
+                    getBrothersTags($(this).attr("tagId"));
                 });
-                $(".param-parent ul").append(param);
+                $(".param-parent ul").append($param);
+            } else {
+                var tagsHtml = template('pitchTemplate',
+                    {
+                        id: $param.attr("tagId"),
+                        name: $param.html()
+                    });
+                $(".pitch-on ul").append(tagsHtml);
+                $(".pitch-on ul li span").off();
+                $(".pitch-on ul li span").on("click", function () {
+                    $(this).parents("li").remove();
+                })
+
             }
+        });
+    }
+
+    function getChildrenTags(_tagsId) {
+        $.ajax({
+            type: "get",
+            url: "${ctx}/product/getChildrenTags",
+            data: {
+                tagsId: _tagsId
+            },
+            dataType: "json",
+            success: function (data) {
+                var tagsHtml = template('tagsTemplate', {tags: data});
+                console.log(tagsHtml)
+                $(".param-children ul").html(tagsHtml);
+
+                paramBindClick();
+            }
+
+        });
+    }
+    function getBrothersTags(_tagsId) {
+        $.ajax({
+            type: "get",
+            url: "${ctx}/product/getBrothersByTagsId",
+            data: {
+                tagsId: _tagsId
+            },
+            dataType: "json",
+            success: function (data) {
+                var tagsHtml = template('tagsTemplate', {tags: data});
+                $(".param-children ul").html(tagsHtml);
+
+                paramBindClick();
+            }
+
         });
     }
 </script>
