@@ -54,7 +54,7 @@
                     <a href="https://passport.taobao.com/ac/nick_find.htm?from_site=0&amp;lang=zh_CN&amp;login_id=&amp;app_name=tbTop"
                        target="_blank">忘记会员名</a>
 
-                    <a href="http://reg.taobao.com/member/newbie.htm?from=login" class="register"
+                    <a href="${ctx}/user/register" class="register"
                        target="_blank"
                        tabindex="7">免费注册</a>
 

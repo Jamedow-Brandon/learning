@@ -5,18 +5,18 @@
             <nav>
                 <div class="logo-area">
                     <h1>
-                        <a href="//www.laodou.site">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
-                                                            alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
+                        <a href="//${ctx}/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
+                                                    alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
                                                                              alt="店招"/></a>
                     </h1>
                     <h2>
-                        <a href="//www.laodou.site">老豆坊</a>
+                        <a href="//${ctx}/">老豆坊</a>
                     </h2>
                 </div>
                 <div class="search-field">
                     <form action="${ctx}/product/list" method="get">
                         <div class="search-box-input">
-                            <input type="text" name="searchKeyWord" placeholder="请输入菜名"/>
+                            <input type="text" name="searchKeyWord" placeholder="请输入你想做的菜"/>
                         </div>
                         <button class="btn-search" type="submit">搜索</button>
                     </form>

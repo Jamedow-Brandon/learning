@@ -24,9 +24,17 @@ public class UsersController {
     private UsersService usersService;
 
     @RequestMapping("login")
-    public ModelAndView hello() {
+    public ModelAndView login() {
         ModelAndView view = new ModelAndView();
         view.setViewName("login");
+        return view;
+    }
+
+
+    @RequestMapping("register")
+    public ModelAndView register() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("register");
         return view;
     }
 
