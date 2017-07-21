@@ -29,7 +29,7 @@ public class UsersServiceImpl implements UsersService{
         if(Constant.ZERO!=users.getId()) {
             return usersMapper.updateByPrimaryKeySelective(users);
         }
-        users.setDelstatus(Constant.Y);
+        users.setDelStatus(Constant.Y);
         return usersMapper.insert(users);
 
     }
@@ -63,10 +63,9 @@ public class UsersServiceImpl implements UsersService{
             userName = userName.trim();
             UsersExample example = new UsersExample();
             UsersExample.Criteria criteria = example.createCriteria();
-            criteria.andDelstatusEqualTo(Constant.Y).andUsernameEqualTo(userName);
+            criteria.andDelStatusEqualTo(Constant.Y).andUsernameEqualTo(userName);
             List<Users> usersList = usersMapper.selectByExample(example);
             if (usersList != null && !usersList.isEmpty()) {
-
                 return usersList.get(0);
             }
         }
@@ -82,7 +81,7 @@ public class UsersServiceImpl implements UsersService{
             userEmail = userEmail.trim();
             UsersExample example = new UsersExample();
             UsersExample.Criteria criteria = example.createCriteria();
-            criteria.andDelstatusEqualTo(Constant.Y).andEmailEqualTo(userEmail);
+            criteria.andDelStatusEqualTo(Constant.Y).andEmailEqualTo(userEmail);
             List<Users> usersList = usersMapper.selectByExample(example);
             if (usersList != null && !usersList.isEmpty()) {
 
@@ -100,7 +99,7 @@ public class UsersServiceImpl implements UsersService{
             userMobile = userMobile.trim();
             UsersExample example = new UsersExample();
             UsersExample.Criteria criteria = example.createCriteria();
-            criteria.andDelstatusEqualTo(Constant.Y).andMobileEqualTo(userMobile);
+            criteria.andDelStatusEqualTo(Constant.Y).andMobileEqualTo(userMobile);
             List<Users> usersList = usersMapper.selectByExample(example);
             if (usersList != null && !usersList.isEmpty()) {
 

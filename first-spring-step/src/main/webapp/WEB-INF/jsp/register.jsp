@@ -21,39 +21,39 @@
     <div class="login-bg"></div>
     <div class="content-layout">
         <div class="static-form " id="J_StaticForm">
-            <form action="/member/login.jhtml?redirectURL=http%3A%2F%2Fwww.taobao.com%2F" method="post" id="J_Form">
-                <div class="field">
-                    <label for="newUserName">用户名</label>
-                    <input type="text" name="newUserName"
-                           id="newUserName" placeholder="6-15位，英文、数字、中文、_"/>
-                    <label class="testName" id="testUserName">检测</label>
-                    <div id="newNameError" class="alertText errorInfo alert alert-danger " role="alert">
-                        6-15位，允许输入英文、数字、中文、_
-                    </div>
-                    <div id="newNameSuccess" class="alertText errorInfo alert alert-success " role="alert">用户名可使用</div>
-                    <div id="newNameExist" class="alertText errorInfo alert alert-warning " role="alert">( ¯ □ ¯
-                        )用户名已存在
-                    </div>
+            <%--<form action="/member/login.jhtml?redirectURL=http%3A%2F%2Fwww.taobao.com%2F" method="post" id="J_Form">--%>
+            <div class="field">
+                <label for="newUserName">用户名</label>
+                <input type="text" name="newUserName"
+                       id="newUserName" placeholder="6-15位，英文、数字、中文、_"/>
+                <label class="testName" id="testUserName">检测</label>
+                <div id="newNameError" class="alertText errorInfo alert alert-danger " role="alert">
+                    6-15位，允许输入英文、数字、中文、_
                 </div>
-                <div class="form-group field">
-                    <label for="newPassword">密码</label>
-                    <input type="password" name="newPassword" id="newPassword"
-                           placeholder="6-16位密码，区分大小写，不能用空格"/>
+                <div id="newNameSuccess" class="alertText errorInfo alert alert-success " role="alert">用户名可使用</div>
+                <div id="newNameExist" class="alertText errorInfo alert alert-warning " role="alert">( ¯ □ ¯
+                    )用户名已存在
                 </div>
-                <div id="newPwdError" class="alertText errorInfo alert alert-danger " role="alert">
-                    请输入6-16位密码，不能使用空格(‘▽′)Ψ
-                </div>
-                <div class="form-group field">
-                    <label for="passwordConfirm">确认密码</label>
-                    <input type="password" name="passwordConfirm" id="passwordConfirm"
-                           placeholder="请再次输入密码"/>
-                </div>
-                <div id="pwdAgainError" class="alertText errorInfo alert alert-warning " role="alert">密码不一致(‘▽′)Ψ</div>
-                <div class="submit">
-                    <button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在注册...">注册
-                    </button>
-                </div>
-            </form>
+            </div>
+            <div class="form-group field">
+                <label for="newPassword">密码</label>
+                <input type="password" name="newPassword" id="newPassword"
+                       placeholder="6-16位密码，区分大小写，不能用空格"/>
+            </div>
+            <div id="newPwdError" class="alertText errorInfo alert alert-danger " role="alert">
+                请输入6-16位密码，不能使用空格(‘▽′)Ψ
+            </div>
+            <div class="form-group field">
+                <label for="passwordConfirm">确认密码</label>
+                <input type="password" name="passwordConfirm" id="passwordConfirm"
+                       placeholder="请再次输入密码"/>
+            </div>
+            <div id="pwdAgainError" class="alertText errorInfo alert alert-warning " role="alert">密码不一致(‘▽′)Ψ</div>
+            <div class="submit">
+                <button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在注册...">注册
+                </button>
+            </div>
+            <%--</form>--%>
         </div>
     </div>
     <%@include file="common/copy-right.jsp" %>
@@ -96,7 +96,6 @@
         }
 
         function signUpSubmit() {
-
             var testSuccess = 0;//用户名或密码格式不对则非零
             $(".errorInfo").hide();
             var newUserName = $("#newUserName").val();
@@ -109,17 +108,15 @@
             var regStr = /^[0-9A-Za-z]{6,16}$/;
             if (regStr.exec(newPassword) == null) {
                 $("#newPwdError").show();
-            } else {
-                testSuccess++;
+                return false;
             }
             var passwordConfirm = $("#passwordConfirm").val();
-            if ((newPassword == passwordConfirm) && (testSuccess == 0)) {
-
-                var url = "${ctx}/login/signup";
-                ajaxPost(url, {"userName": newUserName, "password": newPassword},
-
-                    function (value) {
-
+            if ((newPassword == passwordConfirm)) {
+                $.ajax({
+                    url: "${ctx}/user/signup",
+                    data: {"userName": newUserName, "password": newPassword},
+                    success: function (value) {
+                        debugger;
                         if ("注册成功" == value) {
                             dialogShow("注册成功");
                             closeDialog();
@@ -127,12 +124,12 @@
                             $("#signupError").show();
                             $("#loginDialog").modal("show");
                         }
-                    }, null, false);
+                    }
+                });
             } else {
                 $("#pwdAgainError").show();
+                return false;
             }
-
-
         }
     </script>
 </body>

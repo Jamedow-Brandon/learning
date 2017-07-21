@@ -74,7 +74,7 @@
 
 .site-header .user {
     margin: 1rem 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #eee;
     float: right;
 }
@@ -86,7 +86,17 @@
 
 .site-header .user .login-button:hover {
     text-decoration: none;
-    color: #8c8c77;
+    color: darkgreen;
+}
+
+.site-header .user .logout-button {
+    text-decoration: none;
+    color: #ab8051;
+}
+
+.site-header .user .logout-button:hover {
+    text-decoration: none;
+    color: brown;
 }
 
 .site-header .user .photo {

@@ -35,10 +35,11 @@
                         </c:if>
                         <c:if test="${not empty user.photo}">
                             <img class="photo"
-                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWQlEJLSCnHKoJZJhoiciw4YRoazrkKrh-IpRLwo2L4bOcUnoEUg"
+                                 src="${user.photo}"
                                  alt="头像"/>
                         </c:if>
                         <span>个人中心</span>
+                        <span><a class="logout-button" href="${ctx}/user/logout">退出</a></span>
                     </c:if>
                 </div>
             </nav>
