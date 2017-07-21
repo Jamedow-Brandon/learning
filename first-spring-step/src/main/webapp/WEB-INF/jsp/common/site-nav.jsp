@@ -38,7 +38,7 @@
                                  src="${user.photo}"
                                  alt="头像"/>
                         </c:if>
-                        <span>个人中心</span>
+                        <span>个人中心</span> |
                         <span><a class="logout-button" href="${ctx}/user/logout">退出</a></span>
                     </c:if>
                 </div>

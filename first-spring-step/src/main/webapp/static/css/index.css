@@ -4,20 +4,6 @@ body > header, body > section, body > footer {
     clear: both;
 }
 
-html, body {
-    font-family: Lato, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
-}
-
-@media (max-width: 600px) {
-    html, body {
-        font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
-    }
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-}
-
 .clear {
     display: block;
     clear: both;
@@ -109,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .category {
-    padding-right: 30%;
+    padding-right: 25%;
 }
 
 .category-all {
