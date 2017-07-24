@@ -4,6 +4,7 @@
 }
 
 .content-layout {
+    box-shadow:3px 5px 18px #726e4a;
     width: 20rem;
     height: 20rem;
     padding: 1rem;
@@ -28,13 +29,13 @@
 }
 
 .content-layout .static-form .field {
-    margin: 2rem;
+    margin: 2rem 1rem;
 }
 
 .content-layout .static-form .J_Submit {
-    margin: 0 4.5rem 3rem 5.5rem;
-    width: 9rem;
-    height: 3rem;
+    margin:0 4.5rem 1rem 4rem;
+    width:12rem;
+    height: 2rem;
 }
 
 .content-layout .login-links {

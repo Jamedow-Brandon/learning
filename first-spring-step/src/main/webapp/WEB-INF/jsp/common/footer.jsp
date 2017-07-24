@@ -15,10 +15,13 @@
             recalc = function () {
                 var clientWidth = docEl.clientWidth;
                 if (!clientWidth) return;
-                if (clientWidth >= 640) {
+                if (1300>=clientWidth&&clientWidth >= 640) {
+                    docEl.style.fontSize = '13px';
+                } else if(clientWidth > 1300){
                     docEl.style.fontSize = '15px';
-                } else {
+                } else{
                     docEl.style.fontSize = 24 * (clientWidth / 640) + 'px';
+
                 }
             };
 

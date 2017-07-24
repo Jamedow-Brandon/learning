@@ -40,9 +40,9 @@
                        maxlength="40" tabindex="2" autocomplete="off" aria-placeholder="登录密码"/>
             </div>
             <div class="submit">
-                <button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在登录...">登
+                <label type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在登录...">登
                     录
-                </button>
+                </label>
             </div>
 
 

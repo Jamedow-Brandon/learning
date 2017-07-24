@@ -13,6 +13,7 @@
     <%@include file="common/header.jsp" %>
     <title>登录</title>
     <link rel="stylesheet" href="${ctx}/static/css/register.css"/>
+
 </head>
 
 <body>
@@ -58,6 +59,7 @@
     </div>
     <%@include file="common/copy-right.jsp" %>
     <%@include file="common/footer.jsp" %>
+    <script src = "${ctx}/static/layer/layer.js"></script>
     <script type="application/javascript">
         $(function () {
             $("#testUserName").on("click", function () {
@@ -115,8 +117,9 @@
                     url: "${ctx}/user/signup",
                     data: {"userName": newUserName, "password": newPassword},
                     success: function (value) {
+                        console.log(value);
                         if ("注册成功" == value) {
-                            dialogShow("注册成功");
+                            layer.msg("注册成功");
                         } else {
                             $("#signupError").show();
                         }
