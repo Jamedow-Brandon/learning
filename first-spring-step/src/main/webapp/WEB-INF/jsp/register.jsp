@@ -76,19 +76,19 @@
 
             if (regex.exec(userName) != null) {
 
-                var url = "${ctx}/user/testName";
-                ajaxPost(url, {"userName": userName},
-
-                    function (value) {
+                $.ajax({
+                    url: "${ctx}/user/testName",
+                    data: {"userName": userName},
+                    success: function (value) {
 
                         if ("用户存在" == value) {
 
                             $("#newNameExist").show();
                         } else {
                             $("#newNameSuccess").show();
-                            $("#loginDialog").modal("show");
                         }
-                    }, null, false);
+                    }
+                });
 
             } else {
                 $("#newNameError").show();
@@ -96,7 +96,6 @@
         }
 
         function signUpSubmit() {
-            var testSuccess = 0;//用户名或密码格式不对则非零
             $(".errorInfo").hide();
             var newUserName = $("#newUserName").val();
             var regex = /^[0-9A-Za-z_\u4e00-\u9fa5]{6,15}$/;
@@ -116,13 +115,10 @@
                     url: "${ctx}/user/signup",
                     data: {"userName": newUserName, "password": newPassword},
                     success: function (value) {
-                        debugger;
                         if ("注册成功" == value) {
                             dialogShow("注册成功");
-                            closeDialog();
                         } else {
                             $("#signupError").show();
-                            $("#loginDialog").modal("show");
                         }
                     }
                 });
