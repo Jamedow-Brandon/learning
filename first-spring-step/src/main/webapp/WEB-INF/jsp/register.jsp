@@ -76,7 +76,7 @@
 
             if (regex.exec(userName) != null) {
 
-                var url = "${ctx}/login/testName";
+                var url = "${ctx}/user/testName";
                 ajaxPost(url, {"userName": userName},
 
                     function (value) {
