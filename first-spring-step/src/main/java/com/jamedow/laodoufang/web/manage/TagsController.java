@@ -250,7 +250,41 @@ public class TagsController {
         return view;
     }
 
+    @RequestMapping(value = "/editorTagsTwo", produces = {"application/text;charset=UTF-8"})
+    @ResponseBody
+    public String editorTagsTwo(int id,String name,String tagsOneIds){
 
+        String[] tagsOneIdsArray = tagsOneIds.split(",");
+
+        Tags tags = new Tags();
+        tags.setName(name);
+        List<Tags> tagsList = tagsService.queryTags(tags);//检查是否有重名
+
+        if(tagsList.size() == 0||(tagsList.get(0).getId() == id)){//没有重名或者跟自身标签重名
+
+            tags.setId(id);
+            int result = tagsService.saveTag(tags);
+
+            result = tagsRelService.deleteRelByTagId(id)*result;//删除原来的父标签
+            for (String aTagsOneIdsArray : tagsOneIdsArray) {
+
+                TagsRel tagsRel = new TagsRel();
+                tagsRel.setTagId(id);
+                tagsRel.setParentId(Integer.parseInt(aTagsOneIdsArray));
+                result = tagsRelService.save(tagsRel);
+            }
+            if(result!=0)
+                return "修改成功";
+            else{
+                return "修改失败";
+            }
+
+        }else {
+            return "标签重名，请修改";
+        }
+    }
+
+  
 
 
 }

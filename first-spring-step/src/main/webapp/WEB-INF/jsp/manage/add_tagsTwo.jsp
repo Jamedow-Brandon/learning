@@ -83,7 +83,7 @@
                                 window.parent.location="javascript:appendTagsTwo()";
 
                             }else{
-                                layer.msg("保存成功");
+                                layer.msg("保存失败");
                             }
                         },null,false);
             }

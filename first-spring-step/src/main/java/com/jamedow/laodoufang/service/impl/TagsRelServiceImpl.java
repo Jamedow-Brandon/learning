@@ -3,6 +3,7 @@ package com.jamedow.laodoufang.service.impl;
 import com.jamedow.laodoufang.entity.TagsRel;
 import com.jamedow.laodoufang.entity.TagsRelExample;
 import com.jamedow.laodoufang.mapper.TagsRelMapper;
+import com.jamedow.laodoufang.mapper.TagsRelMapperEx;
 import com.jamedow.laodoufang.service.TagsRelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class TagsRelServiceImpl implements TagsRelService {
 
     @Autowired
     private TagsRelMapper tagsRelMapper;
+
+    @Autowired
+    private TagsRelMapperEx tagsRelMapperEx;
 
     @Override
     public List<TagsRel> queryTagsRel(TagsRel tagsRel) {
@@ -54,5 +58,14 @@ public class TagsRelServiceImpl implements TagsRelService {
 
 
 
+    }
+
+    @Override
+    public int deleteRelByTagId(int tagsId) {
+
+        TagsRelExample example = new TagsRelExample();
+        TagsRelExample.Criteria criteria = example.createCriteria();
+        criteria.andTagIdEqualTo(tagsId);
+        return tagsRelMapper.deleteByExample(example);
     }
 }
