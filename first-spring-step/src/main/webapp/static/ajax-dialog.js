@@ -41,6 +41,7 @@ function ajaxGet(geturl, getdata, functionSuccess, functionError, showData){
  * @param showData	发送成功时 是否显示返回的消息  true：显示， false：不显示
  */
 function ajaxPost(postUrl, postData, functionSuccess, functionError, showData){
+
     $.ajax({
         type : "post",
         url : postUrl,
@@ -50,14 +51,14 @@ function ajaxPost(postUrl, postData, functionSuccess, functionError, showData){
             if(showData==false){
 
             }else{
-                dialogShow(data);
+                layer.msg(data);
             }
             if(functionSuccess!=null){
                 functionSuccess(data);
             }
         },
         error : function() {
-            dialogShow("操作失败,请刷新页面后重试");
+            layer.msg("操作失败,请刷新页面后重试");
             if(functionError!=null){
                 functionError();
             }
@@ -178,14 +179,15 @@ function ajaxPostJson(postUrl, postData, functionSuccess, functionError, showDat
             if(showData==false){
 
             }else{
-                dialogShow(data);
+                layer.show(data);
+
             }
             if(functionSuccess!=null){
                 functionSuccess(data);
             }
         },
         error : function() {
-            dialogShow("操作失败,请刷新页面后重试");
+            layer.show("操作失败,请刷新页面后重试");
             if(functionError!=null){
                 functionError();
             }
