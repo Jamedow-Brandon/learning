@@ -29,6 +29,10 @@ public class Product {
 
     private Integer voteDown;
 
+    private String isOfficial;
+
+    private Integer userId;
+
     private String detail;
 
     public Integer getId() {
@@ -133,6 +137,22 @@ public class Product {
 
     public void setVoteDown(Integer voteDown) {
         this.voteDown = voteDown;
+    }
+
+    public String getIsOfficial() {
+        return isOfficial;
+    }
+
+    public void setIsOfficial(String isOfficial) {
+        this.isOfficial = isOfficial;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getDetail() {
