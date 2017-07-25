@@ -47,21 +47,23 @@ public interface TagsService {
      * @param tags
      * @return
      */
-    public List<Tags> queryTags(Tags tags);
+    List<Tags> queryTags(Tags tags);
 
 
     List<Tags> getBrothersByTagsId(Integer tagsId);
 
 
     /**
-     * 查找分类以及所包含的以及标签
+     * 查找分类以及所包含的子标签
      * @return
      */
-    List<TagsExt> queryClassifyAndChilds();
+    List<TagsExt> queryClassifyAndChildren();
 
     /**
      * 根据子标签找出所有父标签
      * @return
      */
     List<Tags> getParentsByTags(int tagsId);
+
+    List<Tags> getLeaves();
 }
