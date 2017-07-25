@@ -1,3 +1,12 @@
+html, body {
+    font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-size: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
 .site-header {
     width: 100%;
     background: #292a30;
@@ -7,7 +16,14 @@
     float: left;
 }
 
-.site-header a {
+.site-header .logo-area h1 a {
+    width: 17rem;
+    display: block;
+    text-indent: -9999px;
+}
+
+.site-header .logo-area h2 a {
+    height: 0;
     display: block;
     text-indent: -9999px;
 }
@@ -16,7 +32,7 @@
     width: 12rem;
     height: 4rem;
     margin: 0.25rem 0;
-    float: left;
+    float: right;
 }
 
 .site-header .logo-area .icon {
@@ -51,6 +67,8 @@
     width: 25rem;
     height: 2rem;
     border: none;
+    padding-left: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .site-header .btn-search {
@@ -65,9 +83,29 @@
 
 .site-header .user {
     margin: 1rem 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #eee;
     float: right;
+}
+
+.site-header .user .login-button {
+    text-decoration: none;
+    color: #ab8051;
+}
+
+.site-header .user .login-button:hover {
+    text-decoration: none;
+    color: darkgreen;
+}
+
+.site-header .user .logout-button {
+    text-decoration: none;
+    color: #ab8051;
+}
+
+.site-header .user .logout-button:hover {
+    text-decoration: none;
+    color: brown;
 }
 
 .site-header .user .photo {
@@ -75,6 +113,41 @@
     height: 2.5rem;
     border-radius: 126px;
     border: 1px solid #000;
+}
+
+@media (max-width: 600px) {
+    .site-header .user {
+        position: absolute;
+        top: 4.5rem;
+        left: 24rem;
+    }
+
+    .site-header .user span {
+        display: none;
+    }
+
+    .site-header .h1 {
+        width: 9rem;
+        height: 3rem;
+        margin: 1rem 0;
+    }
+
+    .site-header .logo {
+        display: none;
+    }
+
+    .site-header .search-field {
+        width: 15rem;
+    }
+
+    .site-header .search-box-input {
+        width: 10rem;
+        height: 2rem;
+    }
+
+    .site-header .search-box-input input {
+        width: 10rem;
+    }
 }
 
 .copy-right {
@@ -89,4 +162,30 @@
     color: #fff;;
     line-height: 1rem;
     font-size: 0.7rem;
+}
+
+#back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background: #284641;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    z-index: 1;
+    display: none;
+}
+
+#back-to-top:hover {
+    background: #27ae60;
+}
+
+#back-to-top:active {
+    background: #284641;
+}
+
+#back-to-top i {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
 }

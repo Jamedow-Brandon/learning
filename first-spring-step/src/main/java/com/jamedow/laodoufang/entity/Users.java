@@ -1,8 +1,6 @@
 package com.jamedow.laodoufang.entity;
 
-import java.io.Serializable;
-
-public class Users implements Serializable {
+public class Users {
     private Long id;
 
     private String username;
@@ -11,9 +9,11 @@ public class Users implements Serializable {
 
     private String email;
 
-    private String delstatus;
+    private String delStatus;
 
     private String mobile;
+
+    private String photo;
 
     public Long getId() {
         return id;
@@ -47,12 +47,12 @@ public class Users implements Serializable {
         this.email = email;
     }
 
-    public String getDelstatus() {
-        return delstatus;
+    public String getDelStatus() {
+        return delStatus;
     }
 
-    public void setDelstatus(String delstatus) {
-        this.delstatus = delstatus;
+    public void setDelStatus(String delStatus) {
+        this.delStatus = delStatus;
     }
 
     public String getMobile() {
@@ -61,5 +61,13 @@ public class Users implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

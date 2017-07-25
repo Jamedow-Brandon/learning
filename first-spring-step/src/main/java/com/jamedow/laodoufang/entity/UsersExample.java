@@ -374,73 +374,73 @@ public class UsersExample {
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusIsNull() {
-            addCriterion("delstatus is null");
+        public Criteria andDelStatusIsNull() {
+            addCriterion("del_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusIsNotNull() {
-            addCriterion("delstatus is not null");
+        public Criteria andDelStatusIsNotNull() {
+            addCriterion("del_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusEqualTo(String value) {
-            addCriterion("delstatus =", value, "delstatus");
+        public Criteria andDelStatusEqualTo(String value) {
+            addCriterion("del_status =", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusNotEqualTo(String value) {
-            addCriterion("delstatus <>", value, "delstatus");
+        public Criteria andDelStatusNotEqualTo(String value) {
+            addCriterion("del_status <>", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusGreaterThan(String value) {
-            addCriterion("delstatus >", value, "delstatus");
+        public Criteria andDelStatusGreaterThan(String value) {
+            addCriterion("del_status >", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusGreaterThanOrEqualTo(String value) {
-            addCriterion("delstatus >=", value, "delstatus");
+        public Criteria andDelStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("del_status >=", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusLessThan(String value) {
-            addCriterion("delstatus <", value, "delstatus");
+        public Criteria andDelStatusLessThan(String value) {
+            addCriterion("del_status <", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusLessThanOrEqualTo(String value) {
-            addCriterion("delstatus <=", value, "delstatus");
+        public Criteria andDelStatusLessThanOrEqualTo(String value) {
+            addCriterion("del_status <=", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusLike(String value) {
-            addCriterion("delstatus like", value, "delstatus");
+        public Criteria andDelStatusLike(String value) {
+            addCriterion("del_status like", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusNotLike(String value) {
-            addCriterion("delstatus not like", value, "delstatus");
+        public Criteria andDelStatusNotLike(String value) {
+            addCriterion("del_status not like", value, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusIn(List<String> values) {
-            addCriterion("delstatus in", values, "delstatus");
+        public Criteria andDelStatusIn(List<String> values) {
+            addCriterion("del_status in", values, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusNotIn(List<String> values) {
-            addCriterion("delstatus not in", values, "delstatus");
+        public Criteria andDelStatusNotIn(List<String> values) {
+            addCriterion("del_status not in", values, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusBetween(String value1, String value2) {
-            addCriterion("delstatus between", value1, value2, "delstatus");
+        public Criteria andDelStatusBetween(String value1, String value2) {
+            addCriterion("del_status between", value1, value2, "delStatus");
             return (Criteria) this;
         }
 
-        public Criteria andDelstatusNotBetween(String value1, String value2) {
-            addCriterion("delstatus not between", value1, value2, "delstatus");
+        public Criteria andDelStatusNotBetween(String value1, String value2) {
+            addCriterion("del_status not between", value1, value2, "delStatus");
             return (Criteria) this;
         }
 
@@ -511,6 +511,76 @@ public class UsersExample {
 
         public Criteria andMobileNotBetween(String value1, String value2) {
             addCriterion("mobile not between", value1, value2, "mobile");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIsNull() {
+            addCriterion("photo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIsNotNull() {
+            addCriterion("photo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoEqualTo(String value) {
+            addCriterion("photo =", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotEqualTo(String value) {
+            addCriterion("photo <>", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoGreaterThan(String value) {
+            addCriterion("photo >", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoGreaterThanOrEqualTo(String value) {
+            addCriterion("photo >=", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLessThan(String value) {
+            addCriterion("photo <", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLessThanOrEqualTo(String value) {
+            addCriterion("photo <=", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoLike(String value) {
+            addCriterion("photo like", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotLike(String value) {
+            addCriterion("photo not like", value, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoIn(List<String> values) {
+            addCriterion("photo in", values, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotIn(List<String> values) {
+            addCriterion("photo not in", values, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoBetween(String value1, String value2) {
+            addCriterion("photo between", value1, value2, "photo");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotoNotBetween(String value1, String value2) {
+            addCriterion("photo not between", value1, value2, "photo");
             return (Criteria) this;
         }
     }

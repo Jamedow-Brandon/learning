@@ -13,9 +13,9 @@ public class Constant {
 
     public static final int ZERO = 0;
 
-    public static final String Y = "Y";
+    public static final String Y = "1";
 
-    public static final String N = "N";
+    public static final String N = "0";
 
 
 

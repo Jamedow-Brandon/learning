@@ -13,9 +13,11 @@
     <%@include file="common/header.jsp" %>
     <title>老豆坊</title>
     <meta name="robots" content="index, follow">
-    <meta name="keywords" content="老豆坊,美食,零食">
+    <meta name="keywords" content="老豆坊,菜谱,美食,零食">
     <meta name=”description” content="下午茶吃什么？夜宵吃什么？看电影吃什么？聚会吃什么？来老豆坊，一切的问题都会得到解决。"/>
     <meta name="googlebot" content="index, follow">
+    <meta name="Author" contect="张雨桐老豆">
+
     <link rel="stylesheet" href="${ctx}/static/css/index.css?v=20170717"/>
 </head>
 
@@ -53,9 +55,6 @@
 </div>
 <!--index mask end-->
 
-<a href="#2" id="back-to-top" style="display: none;">
-    <i class="fa fa-angle-up"></i>
-</a>
 <%@include file="common/footer.jsp" %>
 <script type="application/javascript">
     !function (t) {
