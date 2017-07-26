@@ -44,6 +44,7 @@ body > header, body > section, body > footer {
 .block h3 b {
     margin: 1rem 0 1rem 0;
     font-size: 3.5rem;
+    font-family: 华文新魏, sans-serif;
 }
 
 .block img {
@@ -108,6 +109,7 @@ body > header, body > section, body > footer {
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
     font-size: 1.1rem;
+    font-family: 华文新魏, sans-serif;
 }
 
 .sea img {

@@ -19,13 +19,7 @@
     <div class="filter-area">
         <div class="pitch-on">
             <p>已选属性：</p>
-            <ul>
-                <li>香辣<span class="fa fa-times-circle-o"></span></li>
-                <li>对虾<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸<span class="fa fa-times-circle-o"></span></li>
-                <li>油炸油油油油油油<span class="fa fa-times-circle-o"></span></li>
-            </ul>
+            <ul></ul>
             <div>只看官方<input type="checkbox"/></div>
         </div>
         <div class="clear"></div>
@@ -94,14 +88,13 @@
     function getChildrenTags(_tagsId) {
         $.ajax({
             type: "get",
-            url: "${ctx}/product/getChildrenTags",
+            url: "${ctx}/recipe/getChildrenTags",
             data: {
                 tagsId: _tagsId
             },
             dataType: "json",
             success: function (data) {
                 var tagsHtml = template('tagsTemplate', {tags: data});
-                console.log(tagsHtml)
                 $(".param-children ul").html(tagsHtml);
 
                 paramBindClick();
@@ -112,7 +105,7 @@
     function getBrothersTags(_tagsId) {
         $.ajax({
             type: "get",
-            url: "${ctx}/product/getBrothersByTagsId",
+            url: "${ctx}/recipe/getBrothersByTagsId",
             data: {
                 tagsId: _tagsId
             },
