@@ -5,12 +5,12 @@
             <nav>
                 <div class="logo-area">
                     <h1>
-                        <a href="//${ctx}/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
-                                                    alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
+                        <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
+                                                             alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
                                                                              alt="店招"/></a>
                     </h1>
                     <h2>
-                        <a href="//${ctx}/">老豆坊</a>
+                        <a href="//www.laodou.site/">老豆坊</a>
                     </h2>
                 </div>
                 <div class="search-field">
