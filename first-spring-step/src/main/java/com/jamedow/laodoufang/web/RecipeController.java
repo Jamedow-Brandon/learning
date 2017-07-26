@@ -34,7 +34,7 @@ public class RecipeController {
     @RequestMapping(value = "list")
     public ModelAndView list() {
         ModelAndView view = new ModelAndView();
-        view.setViewName("recipe/list");
+        view.setViewName("recipe/re_list");
 
         List<Tags> tags = tagsService.getTagsByParentId(0);
 
