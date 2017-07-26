@@ -1,5 +1,5 @@
 html, body {
-    font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
     font-size: 15px;
 }
 
@@ -150,6 +150,27 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+header nav {
+    height: 4rem;
+    background-color: #292a30;
+}
+
+header nav ul {
+    width: 50%;
+    height: 3rem;
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+header nav ul li {
+    width: 7rem;
+    height: 3rem;
+    float: left;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
 .copy-right {
     width: 100%;
     padding: 2rem 0;
@@ -157,7 +178,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .copy-right p {
-    font-family: Arial;
     text-align: center;
     color: #fff;;
     line-height: 1rem;

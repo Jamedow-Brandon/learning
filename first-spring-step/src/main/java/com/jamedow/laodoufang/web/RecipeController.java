@@ -39,10 +39,6 @@ public class RecipeController {
         List<Tags> tags = tagsService.getTagsByParentId(0);
 
         view.addObject("tags", JSONArray.fromObject(tags));
-
-        List<Tags> fodders = tagsService.getTagsByParentId(2);
-
-        view.addObject("fodders", JSONArray.fromObject(fodders));
         return view;
     }
 

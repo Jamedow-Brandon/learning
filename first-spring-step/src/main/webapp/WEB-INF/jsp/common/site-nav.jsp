@@ -2,7 +2,6 @@
 <header>
     <div class="site-header">
         <div class="container">
-            <nav>
                 <div class="logo-area">
                     <h1>
                         <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
@@ -14,7 +13,7 @@
                     </h2>
                 </div>
                 <div class="search-field">
-                    <form action="${ctx}/product/list" method="get">
+                    <form action="${ctx}/recipe/list" method="get">
                         <div class="search-box-input">
                             <input type="text" name="searchKeyWord" placeholder="请输入你想做的菜"/>
                         </div>
@@ -42,7 +41,15 @@
                         <span><a class="logout-button" href="${ctx}/user/logout">退出</a></span>
                     </c:if>
                 </div>
-            </nav>
         </div>
     </div>
+    <nav>
+        <div class="ribbon">
+            <ul class="ribbon-content">
+                <li><a>首页</a></li>
+                <li><a>食谱</a></li>
+                <li><a>零食</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
