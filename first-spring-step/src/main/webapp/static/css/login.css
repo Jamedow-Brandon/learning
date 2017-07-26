@@ -1,22 +1,32 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
 .login-bg {
     background-image: url(http://www.quchi.vip/wp-content/uploads/2017/03/1580171.jpg);
     height: 800px;
 }
 
 .content-layout {
+    font-family:Microsoft YaHei;
+    border-radius:6px;
     box-shadow:3px 5px 18px #726e4a;
     width: 20rem;
-    height: 20rem;
+    height: 22rem;
     padding: 1rem;
-    background: #292a30;
+    background: rgba(255, 255, 255, 0.87);
     color: #ab8051;
     position: absolute;
-    top: 10rem;
-    left: 75rem;
+    top: 12rem;
+    left: 40rem;
 }
 
 .content-layout .login-title {
     font-size: 2rem;
+}
+
+.content-layout .login-text {
+    width:80%;
+    display: initial;
 }
 
 .content-layout .static-form label {
@@ -32,12 +42,36 @@
     margin: 2rem 1rem;
 }
 
+.content-layout .static-form .pwd-field {
+    margin-bottom: 0;
+}
+
+.content-layout .static-form .forget-pwd {
+    float: right;
+    margin-right: 9%;
+    margin-bottom: 4rem;
+}
+
+.content-layout .static-form a {
+    color:#8c8c77;
+}
+
 .content-layout .static-form .J_Submit {
+    cursor: pointer;
+    font-size: 1.3rem;
+    color:#fff;
+    padding-left:21%;
+    border-radius: 6px;
+    background-color: #8c8c77;
     margin:0 4.5rem 1rem 4rem;
-    width:12rem;
+    width:11rem;
     height: 2rem;
 }
 
 .content-layout .login-links {
-    margin: 0 2.5rem;
+    margin: 0 0 1.5rem 2.5rem;
+}
+
+.content-layout .login-links .register {
+    margin-left: 5rem;
 }

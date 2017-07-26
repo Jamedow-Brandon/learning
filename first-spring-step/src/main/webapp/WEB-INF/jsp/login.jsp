@@ -11,7 +11,7 @@
 <html lang="zh-CN">
 <head>
     <%@include file="common/header.jsp" %>
-    <title>登录</title>
+    <title>老豆坊</title>
     <link rel="stylesheet" href="${ctx}/static/css/login.css"/>
 </head>
 
@@ -19,7 +19,7 @@
 <%@include file="common/site-nav.jsp" %>
 <div class="content">
     <div class="login-bg"></div>
-    <div class="content-layout">
+    <div class="content-layout" >
         <div class="static-form " id="J_StaticForm">
             <%--<form action="/member/login.jhtml?redirectURL=http%3A%2F%2Fwww.taobao.com%2F" method="post" id="J_Form">--%>
             <div id="J_Message" style="display:none;" class="login-msg error">
@@ -29,16 +29,19 @@
 
             </div>
             <!-- 手机号登录 -->
-            <div class="field ph-hide username-field ">
+            <div class="form-group field ph-hide username-field ">
                 <label for="userName" class="fa fa-user-o"></label>
-                <input type="text" name="userName" id="userName" class="login-text J_UserName"
+                <input type="text" name="userName" id="userName" class="login-text J_UserName form-control"
                        value="" maxlength="32" tabindex="1" placeholder="会员名/邮箱/手机号"/>
             </div>
-            <div class="field pwd-field">
+            <div class="form-group field pwd-field ">
                 <label for="password" class="fa fa-user-secret"> </label>
-                <input type="password" name="password" id="password" class="login-text"
+                <input type="password" name="password" id="password" class="login-text form-control"
                        maxlength="40" tabindex="2" autocomplete="off" aria-placeholder="登录密码"/>
             </div>
+             <a href="https://passport.taobao.com/ac/password_find.htm?from_site=0&amp;lang=zh_CN&amp;login_id=&amp;app_name=tbTop"
+                   tabindex="6" class="forget-pwd" target="_blank">
+                    忘记密码</a>
             <div class="submit">
                 <label type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在登录...">登
                     录
@@ -47,16 +50,14 @@
 
 
             <div class="login-links">
-                <a href="https://passport.taobao.com/ac/password_find.htm?from_site=0&amp;lang=zh_CN&amp;login_id=&amp;app_name=tbTop"
-                   tabindex="6" class="forget-pwd" target="_blank">
-                    忘记密码</a>
+
 
                 <a href="https://passport.taobao.com/ac/nick_find.htm?from_site=0&amp;lang=zh_CN&amp;login_id=&amp;app_name=tbTop"
                    target="_blank">忘记会员名</a>
 
                 <a href="${ctx}/user/register" class="register"
                    target="_blank"
-                   tabindex="7">免费注册</a>
+                   tabindex="7">注册</a>
 
             </div>
             <input type="hidden" name="um_token" value="HV01PAAZ0b870f7eda5e7383596c74060078722a"><input

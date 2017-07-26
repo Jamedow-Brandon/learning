@@ -11,7 +11,7 @@
 <html lang="zh-CN">
 <head>
     <%@include file="common/header.jsp" %>
-    <title>登录</title>
+    <title>老豆坊</title>
     <link rel="stylesheet" href="${ctx}/static/css/register.css"/>
 
 </head>
@@ -21,13 +21,15 @@
 <div class="content">
     <div class="login-bg"></div>
     <div class="content-layout">
-        <div class="static-form " id="J_StaticForm">
+        <div class="static-form form-inline" id="J_StaticForm">
             <%--<form action="/member/login.jhtml?redirectURL=http%3A%2F%2Fwww.taobao.com%2F" method="post" id="J_Form">--%>
-            <div class="field">
-                <label for="newUserName">用户名</label>
-                <input type="text" name="newUserName"
-                       id="newUserName" placeholder="6-15位，英文、数字、中文、_"/>
-                <label class="testName" id="testUserName">检测</label>
+            <span id = "tip">注册成为老豆坊的一员(๑´ڡ`๑) </span>
+            <div class="form-group field">
+                <div class="input-group">
+                    <input type="text" name="newUserName" class="form-control"
+                       id="newUserName" placeholder="请输入用户名"/>
+                    <div class="input-group-addon testName" id="testUserName">检测</div>
+                </div>
                 <div id="newNameError" class="alertText errorInfo alert alert-danger " role="alert">
                     6-15位，允许输入英文、数字、中文、_
                 </div>
@@ -37,22 +39,21 @@
                 </div>
             </div>
             <div class="form-group field">
-                <label for="newPassword">密码</label>
-                <input type="password" name="newPassword" id="newPassword"
-                       placeholder="6-16位密码，区分大小写，不能用空格"/>
+                <input type="password" name="newPassword" id="newPassword" class="form-control"
+                       placeholder="请输入密码"/>
+                <div id="newPwdError" class="alertText errorInfo alert alert-danger " role="alert">
+                    请输入6-16位密码，不能使用空格(‘▽′)Ψ
+                </div>
             </div>
-            <div id="newPwdError" class="alertText errorInfo alert alert-danger " role="alert">
-                请输入6-16位密码，不能使用空格(‘▽′)Ψ
-            </div>
+
             <div class="form-group field">
-                <label for="passwordConfirm">确认密码</label>
-                <input type="password" name="passwordConfirm" id="passwordConfirm"
+                <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
                        placeholder="请再次输入密码"/>
+                <div id="pwdAgainError" class="alertText errorInfo alert alert-warning " role="alert">密码不一致(‘▽′)Ψ</div>
             </div>
-            <div id="pwdAgainError" class="alertText errorInfo alert alert-warning " role="alert">密码不一致(‘▽′)Ψ</div>
             <div class="submit">
-                <button type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在注册...">注册
-                </button>
+                <label type="submit" class="J_Submit" tabindex="3" id="J_SubmitStatic" data-ing="正在注册...">注册
+                </label>
             </div>
             <%--</form>--%>
         </div>
@@ -120,6 +121,7 @@
                         console.log(value);
                         if ("注册成功" == value) {
                             layer.msg("注册成功");
+
                         } else {
                             $("#signupError").show();
                         }
