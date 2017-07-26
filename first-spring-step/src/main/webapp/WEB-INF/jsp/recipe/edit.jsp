@@ -22,15 +22,15 @@
     <form action="${ctx}/recipe/add" method="post">
         <div class="form-group">
             <label for="title">菜名：</label>
-            <input id="title" type="text" class="form-control"/>
+            <input id="title" type="text" class="form-control" placeholder="请输入菜名"/>
         </div>
         <div class="form-group">
             <label for="intro">简介：</label>
-            <input id="intro" type="text" class="form-control"/>
+            <input id="intro" type="text" class="form-control" placeholder="请输入简介"/>
         </div>
         <div class="form-group">
             <label>标签：</label>
-            <select class="js-example-basic-multiple form-control" multiple="multiple">
+            <select class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择标签">
                 <c:forEach items="${tags}" var="tag">
                     <option value="${tag.id}">${tag.name}</option>
                 </c:forEach>
@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <label>主料：</label>
-            <select class="js-example-basic-multiple form-control" multiple="multiple">
+            <select class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择主料">
                 <c:forEach items="${fodders}" var="fodder">
                     <optgroup label="${fodder.name}">
                         <c:forEach items="${fodder.tags}" var="tag">
@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
             <label>辅料：</label>
-            <select class="js-example-basic-multiple form-control" multiple="multiple">
+            <select class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择辅料">
                 <c:forEach items="${fodders}" var="fodder">
                     <optgroup label="${fodder.name}">
                         <c:forEach items="${fodder.tags}" var="tag">
