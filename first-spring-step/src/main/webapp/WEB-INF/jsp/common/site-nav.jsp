@@ -2,54 +2,54 @@
 <header>
     <div class="site-header">
         <div class="container">
-                <div class="logo-area">
-                    <h1>
-                        <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
-                                                             alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
-                                                                             alt="店招"/></a>
-                    </h1>
-                    <h2>
-                        <a href="//www.laodou.site/">老豆坊</a>
-                    </h2>
-                </div>
-                <div class="search-field">
-                    <form action="${ctx}/recipe/list" method="get">
-                        <div class="search-box-input">
-                            <input type="text" name="searchKeyWord" placeholder="请输入你想做的菜"/>
-                        </div>
-                        <button class="btn-search" type="submit">搜索</button>
-                    </form>
-                </div>
+            <div class="logo-area">
+                <h1>
+                    <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
+                                                         alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
+                                                                          alt="店招"/></a>
+                </h1>
+                <h2>
+                    <a href="//www.laodou.site/">老豆坊</a>
+                </h2>
+            </div>
+            <div class="search-field">
+                <form action="${ctx}/recipe/list" method="get">
+                    <div class="search-box-input">
+                        <input type="text" name="searchKeyWord" placeholder="请输入你想做的菜"/>
+                    </div>
+                    <button class="btn-search" type="submit">搜索</button>
+                </form>
+            </div>
 
-                <div class="user">
-                    <c:if test="${empty user}">
-                        <span><a class="login-button" href="${ctx}/user/login">登录</a></span>
-                    </c:if>
+            <div class="user">
+                <c:if test="${empty user}">
+                    <span><a class="login-button" href="${ctx}/user/login">登录</a></span>
+                </c:if>
 
-                    <c:if test="${not empty user}">
-                        <c:if test="${empty user.photo}">
-                            <img class="photo"
-                                 src="${ctx}/static/img/default-photo.png"
-                                 alt="头像"/>
-                        </c:if>
-                        <c:if test="${not empty user.photo}">
-                            <img class="photo"
-                                 src="${user.photo}"
-                                 alt="头像"/>
-                        </c:if>
-                        <span>个人中心</span> |
-                        <span><a class="logout-button" href="${ctx}/user/logout">退出</a></span>
+                <c:if test="${not empty user}">
+                    <c:if test="${empty user.photo}">
+                        <img class="photo"
+                             src="${ctx}/static/img/default-photo.png"
+                             alt="头像"/>
                     </c:if>
-                </div>
+                    <c:if test="${not empty user.photo}">
+                        <img class="photo"
+                             src="${user.photo}"
+                             alt="头像"/>
+                    </c:if>
+                    <span>个人中心</span> |
+                    <span><a class="logout-button" href="${ctx}/user/logout">退出</a></span>
+                </c:if>
+            </div>
         </div>
     </div>
     <nav>
-        <div class="ribbon">
-            <ul class="ribbon-content">
-                <li><a>首页</a></li>
-                <li><a>食谱</a></li>
-                <li><a>零食</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li>首页</li>
+            <li>食谱零食</li>
+            <li>零食</li>
+            <li>零食零食</li>
+            <li>零食</li>
+        </ul>
     </nav>
 </header>
