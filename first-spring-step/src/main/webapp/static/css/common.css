@@ -9,6 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header {
     width: 100%;
+    height: 6rem;
     background: #292a30;
 }
 
@@ -151,25 +152,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 header nav {
-    height: 4rem;
-    background-color: #292a30;
+    height: 3rem;
+    background-color: #1d2f3b;
 }
 
 header nav ul {
     width: 50%;
-    height: 3rem;
-    list-style-type: none;
     margin: 0 auto;
+    list-style-type: none;
 }
 
 header nav ul li {
-    width: 7rem;
-    height: 3rem;
-    float: left;
-    font-size: 2rem;
     text-align: center;
+    float: left;
+    line-height: 3rem;
+    padding: 0 2rem;
+    color: #bcd0c5;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
+header nav ul li:hover {
+    height: 3.4rem;
+    margin: -0.2rem;
+    padding: 0 2.2rem;
+    line-height: 3.4rem;
+    background-color: #528870;
+    color: #fdecd0;
+    border-radius: 5px;
+}
 
 .copy-right {
     width: 100%;
