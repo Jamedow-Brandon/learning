@@ -30,6 +30,7 @@
                 <ul></ul>
                 <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
         <div class="sort-by"></div>
     </div>
@@ -68,11 +69,16 @@
                 });
                 $(".param-parent ul").append($param);
             } else {
+                if (!checkTags($param.attr("tagId"))) {
+                    return false;
+                }
+                console.log(!checkTags($param.attr("tagId")))
+
                 var tagsHtml = template('pitchTemplate',
-                        {
-                            id: $param.attr("tagId"),
-                            name: $param.html()
-                        });
+                    {
+                        id: $param.attr("tagId"),
+                        name: $param.html()
+                    });
                 $(".pitch-on ul").append(tagsHtml);
                 $(".pitch-on ul li span").off();
                 $(".pitch-on ul li span").on("click", function () {
@@ -81,6 +87,23 @@
 
             }
         });
+    }
+
+    /**
+     * 校验重复标签
+     * @param id 点击标签id
+     * @returns {boolean}
+     */
+    function checkTags(id) {
+        var selectedTags = $(".pitch-on li");
+        var flag = true;
+        selectedTags.each(function (index, tag) {
+            if ($(tag).attr("tagId") === id) {
+                flag = false;
+                return false;
+            }
+        });
+        return flag;
     }
 
     function getChildrenTags(_tagsId) {
