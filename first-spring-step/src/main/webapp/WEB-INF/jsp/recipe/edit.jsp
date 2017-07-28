@@ -47,6 +47,7 @@
                     </optgroup>
                 </c:forEach>
             </select>
+            <div class="params form-inline"></div>
         </div>
         <div class="form-group">
             <label>辅料：</label>
@@ -59,6 +60,7 @@
                     </optgroup>
                 </c:forEach>
             </select>
+            <div class="params form-inline"></div>
         </div>
         <div class="form-group">
             <label>步骤：</label>
@@ -71,12 +73,30 @@
 
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
+<script type="text/html" id="paramTemplate">
+    <div>
+        <span class="col-sm-1 control-label">{{name}}：</span><input type="text" class="form-control cm-xl-1"
+                                                                    tagId="{{value}}"/>
+    </div>
+</script>
 <script type="application/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
 <script type="application/javascript" src="${ctx}/static/select2/dist/js/select2.js"></script>
+<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript">
     CKEDITOR.replace('detail');
 
-    $(".js-example-basic-multiple").select2();
+    $(".js-example-basic-multiple").select2({
+        allowClear: true
+    });
+    $(".js-example-basic-multiple:gt(0)").on("change", function () {
+        var $select = $(this);
+        var selectedParams = $select.find("option:selected");
+        var paramHtml = "";
+        selectedParams.each(function (index, param) {
+            paramHtml += template("paramTemplate", {name: param.text, value: param.value});
+        });
+        $select.parent().find(".params").html(paramHtml);
+    })
 </script>
 </body>
 </html>
