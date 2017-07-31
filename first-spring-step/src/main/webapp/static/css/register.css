@@ -4,14 +4,22 @@
 }
 
 .content-layout {
-    width: 50rem;
-    height: 40rem;
-    padding: 5rem 0 0 8rem;
-    background: #292a30;
+    font-size: 1rem;
+    font-family:Microsoft YaHei;
+    border-radius:6px;
+    box-shadow:3px 5px 18px #726e4a;
+    width: 28rem;
+    height: 27rem;
+    padding: 3rem 0 0 4rem;
+    background: rgba(255, 255, 255, 0.87);
     color: #ab8051;
     position: absolute;
-    top: 7rem;
-    left: 30%;
+    top: 11rem;
+    left: 34%;
+}
+
+#testUserName{
+    cursor: pointer;
 }
 
 .content-layout .login-title {
@@ -29,18 +37,28 @@
 }
 
 .content-layout .static-form input {
-    height: 2rem;
-    width: 20rem;
+    height: 3rem;
+    width: 18rem;
+}
+
+.content-layout #tip{
+    margin-left: 1rem;
 }
 
 .content-layout .static-form .field {
-    margin: 2rem;
+    margin: 1rem;
 }
 
 .content-layout .static-form .J_Submit {
-    margin: 0 4.5rem 3rem 12.5rem;
-    width: 10rem;
-    height: 3rem;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color:#fff;
+    padding-left:17%;
+    border-radius: 6px;
+    background-color: #8c8c77;
+    margin:2.4rem 4.5rem 1rem 4rem;
+    width:11rem;
+    height: 2rem;
 }
 
 .content-layout .login-links {
@@ -48,5 +66,8 @@
 }
 
 .errorInfo {
+    padding-top: 0;
+    margin-bottom :0;
+    height:1.6rem;
     display: none;
 }
