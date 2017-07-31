@@ -33,6 +33,10 @@ public class Product {
 
     private Integer userId;
 
+    private String ingredient;
+
+    private String burdening;
+
     private String detail;
 
     public Integer getId() {
@@ -153,6 +157,22 @@ public class Product {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public String getBurdening() {
+        return burdening;
+    }
+
+    public void setBurdening(String burdening) {
+        this.burdening = burdening;
     }
 
     public String getDetail() {

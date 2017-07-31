@@ -1,0 +1,16 @@
+html, body, h1, span, div {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: #292a30;
+    font-size: 100%;
+}
+
+.content {
+    background-color: #eee;
+    color: #008B8B;
+    margin: 2rem auto;
+    padding: 2rem;
+}

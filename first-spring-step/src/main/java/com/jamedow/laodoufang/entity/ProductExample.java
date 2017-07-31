@@ -1064,6 +1064,146 @@ public class ProductExample {
             addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
+
+        public Criteria andIngredientIsNull() {
+            addCriterion("ingredient is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientIsNotNull() {
+            addCriterion("ingredient is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientEqualTo(String value) {
+            addCriterion("ingredient =", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientNotEqualTo(String value) {
+            addCriterion("ingredient <>", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientGreaterThan(String value) {
+            addCriterion("ingredient >", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientGreaterThanOrEqualTo(String value) {
+            addCriterion("ingredient >=", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientLessThan(String value) {
+            addCriterion("ingredient <", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientLessThanOrEqualTo(String value) {
+            addCriterion("ingredient <=", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientLike(String value) {
+            addCriterion("ingredient like", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientNotLike(String value) {
+            addCriterion("ingredient not like", value, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientIn(List<String> values) {
+            addCriterion("ingredient in", values, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientNotIn(List<String> values) {
+            addCriterion("ingredient not in", values, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientBetween(String value1, String value2) {
+            addCriterion("ingredient between", value1, value2, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andIngredientNotBetween(String value1, String value2) {
+            addCriterion("ingredient not between", value1, value2, "ingredient");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningIsNull() {
+            addCriterion("burdening is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningIsNotNull() {
+            addCriterion("burdening is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningEqualTo(String value) {
+            addCriterion("burdening =", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningNotEqualTo(String value) {
+            addCriterion("burdening <>", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningGreaterThan(String value) {
+            addCriterion("burdening >", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningGreaterThanOrEqualTo(String value) {
+            addCriterion("burdening >=", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningLessThan(String value) {
+            addCriterion("burdening <", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningLessThanOrEqualTo(String value) {
+            addCriterion("burdening <=", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningLike(String value) {
+            addCriterion("burdening like", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningNotLike(String value) {
+            addCriterion("burdening not like", value, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningIn(List<String> values) {
+            addCriterion("burdening in", values, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningNotIn(List<String> values) {
+            addCriterion("burdening not in", values, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningBetween(String value1, String value2) {
+            addCriterion("burdening between", value1, value2, "burdening");
+            return (Criteria) this;
+        }
+
+        public Criteria andBurdeningNotBetween(String value1, String value2) {
+            addCriterion("burdening not between", value1, value2, "burdening");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

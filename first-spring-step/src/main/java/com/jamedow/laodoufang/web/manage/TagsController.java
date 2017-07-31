@@ -197,7 +197,7 @@ public class TagsController {
     public ModelAndView toAddTagsTwo(){
 
         ModelAndView model = new ModelAndView();
-        List<TagsExt> tagsExtList = tagsService.queryClassifyAndChilds();
+        List<TagsExt> tagsExtList = tagsService.queryClassifyAndChildren();
         model.addObject("tagsExtList",tagsExtList);
         model.setViewName("manage/add_tagsTwo");
         return model;
@@ -241,7 +241,7 @@ public class TagsController {
     public ModelAndView toEditorTagsTwo(int tagsTwoId){
 
         ModelAndView view = new ModelAndView();
-        List<TagsExt> tagsExtList = tagsService.queryClassifyAndChilds();//所有分类以及所包含的一级标签
+        List<TagsExt> tagsExtList = tagsService.queryClassifyAndChildren();//所有分类以及所包含的一级标签
         view.addObject("tagsExtList",tagsExtList);
         List<Tags> parentList = tagsService.getParentsByTags(tagsTwoId);//该标签的所有父标签
         view.addObject("parentList",parentList);

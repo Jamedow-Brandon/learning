@@ -1,5 +1,5 @@
 html, body {
-    font-family: 华文新魏, "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "微软雅黑", sans-serif;
     font-size: 15px;
 }
 
@@ -9,6 +9,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .site-header {
     width: 100%;
+    height: 6rem;
     background: #292a30;
 }
 
@@ -150,6 +151,37 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+header nav {
+    height: 3rem;
+    background-color: #1d2f3b;
+}
+
+header nav ul {
+    width: 50%;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+header nav ul li {
+    text-align: center;
+    float: left;
+    line-height: 3rem;
+    padding: 0 2rem;
+    color: #bcd0c5;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+header nav ul li:hover {
+    height: 3.4rem;
+    margin: -0.2rem;
+    padding: 0 2.2rem;
+    line-height: 3.4rem;
+    background-color: #528870;
+    color: #fdecd0;
+    border-radius: 5px;
+}
+
 .copy-right {
     width: 100%;
     padding: 2rem 0;
@@ -157,11 +189,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .copy-right p {
-    font-family: Arial;
     text-align: center;
     color: #fff;;
     line-height: 1rem;
     font-size: 0.7rem;
+}
+
+.copy-right #wb {
+    float: right;
+    padding-right: 7rem;
+
 }
 
 #back-to-top {

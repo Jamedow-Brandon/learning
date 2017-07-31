@@ -15,8 +15,10 @@
     <result column="tags" jdbcType="VARCHAR" property="tags" />
     <result column="vote_up" jdbcType="INTEGER" property="voteUp" />
     <result column="vote_down" jdbcType="INTEGER" property="voteDown" />
-      <result column="is_official" jdbcType="CHAR" property="isOfficial"/>
-      <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    <result column="is_official" jdbcType="CHAR" property="isOfficial"/>
+    <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    <result column="ingredient" jdbcType="VARCHAR" property="ingredient"/>
+    <result column="burdening" jdbcType="VARCHAR" property="burdening"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.laodoufang.entity.Product">
     <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
@@ -81,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, name, price, sales_volume, intro, create_time, traffic_volume, link_url, img_url,
-      category, tags, vote_up, vote_down, is_official, user_id
+    category, tags, vote_up, vote_down, is_official, user_id, ingredient, burdening
   </sql>
   <sql id="Blob_Column_List">
     detail
@@ -139,16 +141,18 @@
   <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Product">
     insert into product (id, name, price, 
       sales_volume, intro, create_time, 
-      traffic_volume, link_url, img_url, 
-      category, tags, vote_up,
-      vote_down, is_official, user_id,
-      detail)
+      traffic_volume, link_url, img_url,
+    category, tags, vote_up,
+    vote_down, is_official, user_id,
+    ingredient, burdening, detail
+    )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
       #{salesVolume,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{trafficVolume,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
-      #{category,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR}, #{voteUp,jdbcType=INTEGER},
-      #{voteDown,jdbcType=INTEGER}, #{isOfficial,jdbcType=CHAR}, #{userId,jdbcType=INTEGER},
-      #{detail,jdbcType=LONGVARCHAR})
+      #{trafficVolume,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+    #{category,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR}, #{voteUp,jdbcType=INTEGER},
+    #{voteDown,jdbcType=INTEGER}, #{isOfficial,jdbcType=CHAR}, #{userId,jdbcType=INTEGER},
+    #{ingredient,jdbcType=VARCHAR}, #{burdening,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Product">
     insert into product
@@ -192,12 +196,18 @@
       <if test="voteDown != null">
         vote_down,
       </if>
-        <if test="isOfficial != null">
-            is_official,
-        </if>
-        <if test="userId != null">
-            user_id,
-        </if>
+      <if test="isOfficial != null">
+        is_official,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="ingredient != null">
+        ingredient,
+      </if>
+      <if test="burdening != null">
+        burdening,
+      </if>
       <if test="detail != null">
         detail,
       </if>
@@ -242,12 +252,18 @@
       <if test="voteDown != null">
         #{voteDown,jdbcType=INTEGER},
       </if>
-        <if test="isOfficial != null">
-            #{isOfficial,jdbcType=CHAR},
-        </if>
-        <if test="userId != null">
-            #{userId,jdbcType=INTEGER},
-        </if>
+      <if test="isOfficial != null">
+        #{isOfficial,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ingredient != null">
+        #{ingredient,jdbcType=VARCHAR},
+      </if>
+      <if test="burdening != null">
+        #{burdening,jdbcType=VARCHAR},
+      </if>
       <if test="detail != null">
         #{detail,jdbcType=LONGVARCHAR},
       </if>
@@ -301,12 +317,18 @@
       <if test="record.voteDown != null">
         vote_down = #{record.voteDown,jdbcType=INTEGER},
       </if>
-        <if test="record.isOfficial != null">
-            is_official = #{record.isOfficial,jdbcType=CHAR},
-        </if>
-        <if test="record.userId != null">
-            user_id = #{record.userId,jdbcType=INTEGER},
-        </if>
+      <if test="record.isOfficial != null">
+        is_official = #{record.isOfficial,jdbcType=CHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ingredient != null">
+        ingredient = #{record.ingredient,jdbcType=VARCHAR},
+      </if>
+      <if test="record.burdening != null">
+        burdening = #{record.burdening,jdbcType=VARCHAR},
+      </if>
       <if test="record.detail != null">
         detail = #{record.detail,jdbcType=LONGVARCHAR},
       </if>
@@ -332,6 +354,8 @@
       vote_down = #{record.voteDown,jdbcType=INTEGER},
       is_official = #{record.isOfficial,jdbcType=CHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
+    ingredient = #{record.ingredient,jdbcType=VARCHAR},
+    burdening = #{record.burdening,jdbcType=VARCHAR},
       detail = #{record.detail,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -353,7 +377,9 @@
       vote_up = #{record.voteUp,jdbcType=INTEGER},
       vote_down = #{record.voteDown,jdbcType=INTEGER},
       is_official = #{record.isOfficial,jdbcType=CHAR},
-      user_id = #{record.userId,jdbcType=INTEGER}
+    user_id = #{record.userId,jdbcType=INTEGER},
+    ingredient = #{record.ingredient,jdbcType=VARCHAR},
+    burdening = #{record.burdening,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -397,12 +423,18 @@
       <if test="voteDown != null">
         vote_down = #{voteDown,jdbcType=INTEGER},
       </if>
-        <if test="isOfficial != null">
-            is_official = #{isOfficial,jdbcType=CHAR},
-        </if>
-        <if test="userId != null">
-            user_id = #{userId,jdbcType=INTEGER},
-        </if>
+      <if test="isOfficial != null">
+        is_official = #{isOfficial,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ingredient != null">
+        ingredient = #{ingredient,jdbcType=VARCHAR},
+      </if>
+      <if test="burdening != null">
+        burdening = #{burdening,jdbcType=VARCHAR},
+      </if>
       <if test="detail != null">
         detail = #{detail,jdbcType=LONGVARCHAR},
       </if>
@@ -425,6 +457,8 @@
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
       user_id = #{userId,jdbcType=INTEGER},
+    ingredient = #{ingredient,jdbcType=VARCHAR},
+    burdening = #{burdening,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -443,7 +477,9 @@
       vote_up = #{voteUp,jdbcType=INTEGER},
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
-      user_id = #{userId,jdbcType=INTEGER}
+    user_id = #{userId,jdbcType=INTEGER},
+    ingredient = #{ingredient,jdbcType=VARCHAR},
+    burdening = #{burdening,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

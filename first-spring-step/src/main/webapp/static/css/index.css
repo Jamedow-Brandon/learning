@@ -44,6 +44,7 @@ body > header, body > section, body > footer {
 .block h3 b {
     margin: 1rem 0 1rem 0;
     font-size: 3.5rem;
+    font-family: 华文新魏, sans-serif;
 }
 
 .block img {
@@ -72,7 +73,7 @@ body > header, body > section, body > footer {
     width: 12rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
     font-family: simsun;
-    margin: 1.75rem 1rem 1.75rem 0;
+    margin: 1.75rem 0 1.75rem 0;
     font-size: 1.1rem;
     text-indent: 2rem;
     float: right;
@@ -104,10 +105,11 @@ body > header, body > section, body > footer {
 }
 
 .ahead-food {
-    margin: 12rem 1rem 0 0;
+    margin: 13rem 1rem 0 0;
     height: 9rem;
     writing-mode: vertical-rl; /*从右向左 从左向右是 writing-mode: vertical-lr;*/
     font-size: 1.1rem;
+    font-family: 华文新魏, sans-serif;
 }
 
 .sea img {
@@ -156,7 +158,7 @@ body > header, body > section, body > footer {
 .night .ahead-food {
     float: right;
     cursor: pointer;
-    color: #d0e9ff;
+    color: #b49873;
 }
 
 .sea .ahead-food {
@@ -172,12 +174,13 @@ body > header, body > section, body > footer {
 }
 
 .night .ahead-food:hover {
+    color:#ddc8ac;
     text-shadow: 0 0 10px #d0e9ff,
-    0 0 20px #d0e9ff,
-    0 0 30px #d0e9ff,
-    0 0 40px #d0e9ff,
-    0 0 50px #d0e9ff,
-    0 0 60px #d0e9ff;
+0 0 20px #d0e9ff,
+0 0 30px #d0e9ff,
+0 0 40px #d0e9ff,
+0 0 50px #d0e9ff,
+0 0 60px #d0e9ff;
 }
 
 .sea .ahead-food:hover {
