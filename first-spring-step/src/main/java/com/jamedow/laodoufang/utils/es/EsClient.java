@@ -22,10 +22,14 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
  * Description
@@ -238,5 +242,28 @@ public class EsClient {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+        try {
+            XContentBuilder builder = jsonBuilder()
+                    .startObject()
+                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
+                    .startObject("name").field("analyze", "string").field("store", "yes").endObject()
+                    .startObject("intro").field("type", "string").field("store", "yes").endObject()
+                    .startObject("createTime").field("type", new Date()).field("store", "yes").endObject()
+                    .startObject("linkUrl").field("type", "string").field("store", "yes").endObject()
+                    .startObject("imgUrl").field("type", "string").field("store", "yes").endObject()
+                    .startObject("tags").field("analyze", "string").field("store", "yes").endObject()
+                    .startObject("voteUp").field("type", "integer").field("store", "yes").endObject()
+                    .startObject("voteDown").field("type", "integer").field("store", "yes").endObject()
+                    .startObject("isOfficial").field("type", "string").field("store", "yes").endObject()
+                    .startObject("userId").field("type", "string").field("store", "yes").endObject()
+                    .startObject("trafficVolume").field("type", "integer").field("store", "yes").endObject()
+                    .startObject("ingredient").field("analyze", "string").field("store", "yes").endObject()
+                    .startObject("burdening").field("analyze", "string").field("store", "yes").endObject()
+                    .endObject();
+
+            EsClient.addType("recipe_index", "recipe", builder);
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 }

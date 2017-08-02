@@ -13,4 +13,6 @@ public interface RecipeService {
     List<Recipe> getRecipesByCategoryId(Integer categoryId);
 
     Recipe getRecipeById(Integer recipeId);
+
+    int saveRecipe(Recipe recipe);
 }

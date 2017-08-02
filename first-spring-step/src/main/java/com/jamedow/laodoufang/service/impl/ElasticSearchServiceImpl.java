@@ -47,6 +47,8 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
                     .startObject("ingredient").field("analyze", "string").field("store", "yes").endObject()
                     .startObject("burdening").field("analyze", "string").field("store", "yes").endObject()
                     .endObject();
+
+            EsClient.addType("recipe_index", "recipe", builder);
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }

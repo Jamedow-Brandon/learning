@@ -33,4 +33,9 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe getRecipeById(Integer recipeId) {
         return recipeMapper.selectByPrimaryKey(recipeId);
     }
+
+    @Override
+    public int saveRecipe(Recipe recipe) {
+        return recipeMapper.insert(recipe);
+    }
 }
