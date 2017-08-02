@@ -26,7 +26,7 @@ public class FTPUtils {
         FileInputStream fis = null;
 
         try {
-            ftpClient.connect("114.215.41.113", 21);
+            ftpClient.connect("106.14.210.31", 21);
             ftpClient.login("vsftp", "Zhangliang@520");
             int reply = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {

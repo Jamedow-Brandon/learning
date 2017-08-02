@@ -29,7 +29,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
  * Created by Administrator on 2017/8/1.
  */
 public class EsClient {
-    private static final String host = "114.215.41.113";     //节点IP
+    private static final String host = "106.14.210.31";     //节点IP
     private static final String clusterName = "elasticsearch";     //集群名称
     static Client client;
     private static Logger logger = LoggerFactory.getLogger(EsClient.class);
