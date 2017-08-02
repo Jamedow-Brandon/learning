@@ -1,7 +1,5 @@
 package com.jamedow.laodoufang.entity;
 
-import java.util.List;
-
 public class Category {
     private Integer id;
 
@@ -17,9 +15,7 @@ public class Category {
 
     private String intro;
 
-    private String categoryCode;
-
-    private List<Category> childrenCategories;
+    private String code;
 
     public Integer getId() {
         return id;
@@ -77,19 +73,11 @@ public class Category {
         this.intro = intro;
     }
 
-    public String getCategoryCode() {
-        return categoryCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
-    }
-
-    public List<Category> getChildrenCategories() {
-        return childrenCategories;
-    }
-
-    public void setChildrenCategories(List<Category> childrenCategories) {
-        this.childrenCategories = childrenCategories;
+    public void setCode(String code) {
+        this.code = code;
     }
 }
