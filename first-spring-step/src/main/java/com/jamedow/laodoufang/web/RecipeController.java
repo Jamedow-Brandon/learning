@@ -1,9 +1,9 @@
 package com.jamedow.laodoufang.web;
 
-import com.jamedow.laodoufang.entity.Product;
+import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.Tags;
 import com.jamedow.laodoufang.service.CategoryService;
-import com.jamedow.laodoufang.service.ProductService;
+import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.service.TagsService;
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class RecipeController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
-    private ProductService productService;
+    private RecipeService recipeService;
     @Autowired
     private TagsService tagsService;
 
@@ -47,7 +47,7 @@ public class RecipeController {
         ModelAndView view = new ModelAndView();
         view.setViewName("recipe/edit");
 
-        Product recipe = productService.getProductById(recipeId);
+        Recipe recipe = recipeService.getRecipeById(recipeId);
 
         view.addObject("recipe", recipe);
 

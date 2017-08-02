@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ProductExample {
+public class RecipeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ProductExample() {
+    public RecipeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -235,126 +235,6 @@ public class ProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceIsNull() {
-            addCriterion("price is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceIsNotNull() {
-            addCriterion("price is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceEqualTo(Integer value) {
-            addCriterion("price =", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceNotEqualTo(Integer value) {
-            addCriterion("price <>", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceGreaterThan(Integer value) {
-            addCriterion("price >", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
-            addCriterion("price >=", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceLessThan(Integer value) {
-            addCriterion("price <", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
-            addCriterion("price <=", value, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceIn(List<Integer> values) {
-            addCriterion("price in", values, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceNotIn(List<Integer> values) {
-            addCriterion("price not in", values, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
-            addCriterion("price between", value1, value2, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
-            addCriterion("price not between", value1, value2, "price");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeIsNull() {
-            addCriterion("sales_volume is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeIsNotNull() {
-            addCriterion("sales_volume is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeEqualTo(Integer value) {
-            addCriterion("sales_volume =", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeNotEqualTo(Integer value) {
-            addCriterion("sales_volume <>", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeGreaterThan(Integer value) {
-            addCriterion("sales_volume >", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("sales_volume >=", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeLessThan(Integer value) {
-            addCriterion("sales_volume <", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeLessThanOrEqualTo(Integer value) {
-            addCriterion("sales_volume <=", value, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeIn(List<Integer> values) {
-            addCriterion("sales_volume in", values, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeNotIn(List<Integer> values) {
-            addCriterion("sales_volume not in", values, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeBetween(Integer value1, Integer value2) {
-            addCriterion("sales_volume between", value1, value2, "salesVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andSalesVolumeNotBetween(Integer value1, Integer value2) {
-            addCriterion("sales_volume not between", value1, value2, "salesVolume");
-            return (Criteria) this;
-        }
-
         public Criteria andIntroIsNull() {
             addCriterion("intro is null");
             return (Criteria) this;
@@ -482,66 +362,6 @@ public class ProductExample {
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
             addCriterion("create_time not between", value1, value2, "createTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeIsNull() {
-            addCriterion("traffic_volume is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeIsNotNull() {
-            addCriterion("traffic_volume is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeEqualTo(Integer value) {
-            addCriterion("traffic_volume =", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeNotEqualTo(Integer value) {
-            addCriterion("traffic_volume <>", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeGreaterThan(Integer value) {
-            addCriterion("traffic_volume >", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("traffic_volume >=", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeLessThan(Integer value) {
-            addCriterion("traffic_volume <", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeLessThanOrEqualTo(Integer value) {
-            addCriterion("traffic_volume <=", value, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeIn(List<Integer> values) {
-            addCriterion("traffic_volume in", values, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeNotIn(List<Integer> values) {
-            addCriterion("traffic_volume not in", values, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeBetween(Integer value1, Integer value2) {
-            addCriterion("traffic_volume between", value1, value2, "trafficVolume");
-            return (Criteria) this;
-        }
-
-        public Criteria andTrafficVolumeNotBetween(Integer value1, Integer value2) {
-            addCriterion("traffic_volume not between", value1, value2, "trafficVolume");
             return (Criteria) this;
         }
 
@@ -1062,6 +882,66 @@ public class ProductExample {
 
         public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
             addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeIsNull() {
+            addCriterion("traffic_volume is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeIsNotNull() {
+            addCriterion("traffic_volume is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeEqualTo(Integer value) {
+            addCriterion("traffic_volume =", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeNotEqualTo(Integer value) {
+            addCriterion("traffic_volume <>", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeGreaterThan(Integer value) {
+            addCriterion("traffic_volume >", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("traffic_volume >=", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeLessThan(Integer value) {
+            addCriterion("traffic_volume <", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeLessThanOrEqualTo(Integer value) {
+            addCriterion("traffic_volume <=", value, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeIn(List<Integer> values) {
+            addCriterion("traffic_volume in", values, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeNotIn(List<Integer> values) {
+            addCriterion("traffic_volume not in", values, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeBetween(Integer value1, Integer value2) {
+            addCriterion("traffic_volume between", value1, value2, "trafficVolume");
+            return (Criteria) this;
+        }
+
+        public Criteria andTrafficVolumeNotBetween(Integer value1, Integer value2) {
+            addCriterion("traffic_volume not between", value1, value2, "trafficVolume");
             return (Criteria) this;
         }
 

@@ -1,7 +1,6 @@
-package com.jamedow.laodoufang.utils.elasticsearch;
+package com.jamedow.laodoufang.utils.es;
 
 import com.jamedow.laodoufang.utils.StringUtils;
-import org.elasticsearch.action.admin.cluster.health.ClusterHealthResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
@@ -10,35 +9,33 @@ import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.Requests;
-import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
  * Description
  * <p>
  * Created by Administrator on 2017/8/1.
  */
-public class EsClient<T> implements EsClientInterface<T> {
+public class EsClient {
     private static final String hosts = "106.14.210.31:9200";     //节点IP
     private static final String host = "106.14.210.31";     //节点IP
-    private static final String clusterName = "elasticsearch";     //集群名称
+    private static final String clusterName = "es";     //集群名称
     private static Logger logger = LoggerFactory.getLogger(EsClient.class);
     private static Client client;
 
@@ -50,7 +47,7 @@ public class EsClient<T> implements EsClientInterface<T> {
                 .build();
         try {
             // 集群地址配置
-            List<InetSocketTransportAddress> list = new ArrayList<InetSocketTransportAddress>();
+            List<InetSocketTransportAddress> list = new ArrayList<>();
             if (StringUtils.isNotEmpty(hosts)) {
                 String[] strArr = hosts.split(",");
                 for (String str : strArr) {
@@ -78,12 +75,6 @@ public class EsClient<T> implements EsClientInterface<T> {
         }
     }
 
-    public static void closeESClient() {
-        if (client != null) {
-            client.close();
-        }
-    }
-
     /**
      * 创建索引
      *
@@ -107,10 +98,9 @@ public class EsClient<T> implements EsClientInterface<T> {
     }
 
     /**
-     * 删除索引
+     * 根据索引名称删除索引
      *
      * @param indexName 索引名称
-     * @return
      */
     public static void deleteIndex(String indexName) {
         if (!isIndexExists(indexName)) {
@@ -140,19 +130,6 @@ public class EsClient<T> implements EsClientInterface<T> {
         return isExistsResponse.isExists();
     }
 
-
-    //集群状态
-    public static void clusterStatus() {
-        //注意集群的client获取方式略有不同，
-        ClusterAdminClient clusterAdminClient = client.admin().cluster();
-        ClusterHealthResponse healths = clusterAdminClient.prepareHealth().get();
-        String clusterName = healths.getClusterName();
-        int numberOfDataNodes = healths.getNumberOfDataNodes();
-        int numberOfNodes = healths.getNumberOfNodes();
-        ClusterHealthStatus status = healths.getStatus();
-        logger.debug(clusterName + "###" + numberOfDataNodes + "###" + status.name());
-
-    }
 
     /**
      * 创建类型
@@ -189,30 +166,57 @@ public class EsClient<T> implements EsClientInterface<T> {
     }
 
     /**
-     * 通过ID查询数据
+     * 更新文档
      *
-     * @param index 索引
-     * @param type  类型
-     * @param id    文档id
+     * @param indexName 索引
+     * @param type      类型
+     * @param builder   文档对象
+     */
+    public static void updateDocument(String indexName, String type, String id, XContentBuilder builder) {
+        UpdateRequest updateRequest = new UpdateRequest(indexName, type, id);
+        updateRequest.doc(builder);
+        try {
+            client.update(updateRequest).get();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+
+    /**
+     * 查询数据
+     *
+     * @param index        索引
+     * @param type         类型
+     * @param queryBuilder 查询条件
      * @return
      */
-    public static SearchResponse search(String index, String type, String id) {
-        return client.prepareSearch(index).setTypes(type).setQuery(QueryBuilders.termQuery("id", id)).execute().actionGet();
+    public static SearchResponse search(String index, String type, QueryBuilder queryBuilder) {
+        SearchResponse response = client.prepareSearch(index).setTypes(type).setQuery(queryBuilder).execute().actionGet();
+        SearchHits hits = response.getHits();
+        if (hits.getTotalHits() > 0) {
+            for (SearchHit hit : hits) {
+                logger.debug("score:" + hit.getScore() + ":\t" + hit.getSource());// .get("title")
+            }
+        } else {
+            logger.debug("搜到0条结果");
+        }
+        return response;
     }
 
     public static void main(String[] args) {
-        try {
+//        try {
 //        // 定义索引字段属性,其实这里就是组合json,可以参考curl 方式创建索引的json格式  此处blog 和执行时blog必须一致
-            XContentBuilder builder = jsonBuilder()
-                    .startObject()
-                    .startObject("blog")
-                    .startObject("properties")
-                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("title").field("type", "string").field("store", "yes").endObject()
-                    .startObject("content").field("type", "string").field("store", "yes").endObject()
-                    .endObject()
-                    .endObject()
-                    .endObject();
+//            XContentBuilder builder = jsonBuilder()
+//                    .startObject()
+//                    .startObject("blog")
+//                    .startObject("properties")
+//                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
+//                    .startObject("title").field("type", "string").field("store", "yes").endObject()
+//                    .startObject("content").field("type", "string").field("store", "yes").endObject()
+//                    .endObject()
+//                    .endObject()
+//                    .endObject();
 //        // 创建数据json 注意此ID是一个字段不是上面查询的id
 //        XContentBuilder builder = jsonBuilder()
 //                .startObject()
@@ -223,15 +227,16 @@ public class EsClient<T> implements EsClientInterface<T> {
 //            EsClient.createIndex("test");    //创建索引  相当于关系型数据库的  数据库
 //            EsClient.addType("test","blog");                // 创建类型，相当于关系型数据库的 表
 //            EsClient.createDocument("test","blog");             //插入数据，相当于关系数据库的 记录
+//            //e.g.1: 查询title字段中包含hibernate关键字的文档:
+//
+//            QueryBuilder qb1 = termQuery("title", "hibernate");
+//            //e.g.2: 查询title字段或content字段中包含Git关键字的文档:
+//
+//            QueryBuilder qb2= QueryBuilders.multiMatchQuery("git", "title","content");
 //        SearchResponse search = EsClient.search("test", "blog", "2");    //获取数据
-            logger.debug("==={}===", builder.string());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public XContentBuilder convertBean2Builder(T t) {
-        return null;
+//            logger.debug("==={}===", builder.string());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

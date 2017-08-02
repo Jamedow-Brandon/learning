@@ -2,20 +2,14 @@ package com.jamedow.laodoufang.entity;
 
 import java.util.Date;
 
-public class Product {
+public class Recipe {
     private Integer id;
 
     private String name;
 
-    private Integer price;
-
-    private Integer salesVolume;
-
     private String intro;
 
     private Date createTime;
-
-    private Integer trafficVolume;
 
     private String linkUrl;
 
@@ -32,6 +26,8 @@ public class Product {
     private String isOfficial;
 
     private Integer userId;
+
+    private Integer trafficVolume;
 
     private String ingredient;
 
@@ -55,22 +51,6 @@ public class Product {
         this.name = name;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getSalesVolume() {
-        return salesVolume;
-    }
-
-    public void setSalesVolume(Integer salesVolume) {
-        this.salesVolume = salesVolume;
-    }
-
     public String getIntro() {
         return intro;
     }
@@ -85,14 +65,6 @@ public class Product {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public Integer getTrafficVolume() {
-        return trafficVolume;
-    }
-
-    public void setTrafficVolume(Integer trafficVolume) {
-        this.trafficVolume = trafficVolume;
     }
 
     public String getLinkUrl() {
@@ -157,6 +129,14 @@ public class Product {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getTrafficVolume() {
+        return trafficVolume;
+    }
+
+    public void setTrafficVolume(Integer trafficVolume) {
+        this.trafficVolume = trafficVolume;
     }
 
     public String getIngredient() {

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jamedow.laodoufang.mapper.ProductMapper">
-  <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Product">
+<mapper namespace="com.jamedow.laodoufang.mapper.RecipeMapper">
+  <resultMap id="BaseResultMap" type="com.jamedow.laodoufang.entity.Recipe">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="price" jdbcType="INTEGER" property="price" />
-    <result column="sales_volume" jdbcType="INTEGER" property="salesVolume" />
     <result column="intro" jdbcType="VARCHAR" property="intro" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="traffic_volume" jdbcType="INTEGER" property="trafficVolume" />
     <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
     <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
     <result column="category" jdbcType="INTEGER" property="category" />
@@ -17,10 +14,11 @@
     <result column="vote_down" jdbcType="INTEGER" property="voteDown" />
     <result column="is_official" jdbcType="CHAR" property="isOfficial"/>
     <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    <result column="traffic_volume" jdbcType="INTEGER" property="trafficVolume"/>
     <result column="ingredient" jdbcType="VARCHAR" property="ingredient"/>
     <result column="burdening" jdbcType="VARCHAR" property="burdening"/>
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.laodoufang.entity.Product">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.laodoufang.entity.Recipe">
     <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -82,13 +80,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, price, sales_volume, intro, create_time, traffic_volume, link_url, img_url,
-    category, tags, vote_up, vote_down, is_official, user_id, ingredient, burdening
+    id, name, intro, create_time, link_url, img_url, category, tags, vote_up, vote_down,
+    is_official, user_id, traffic_volume, ingredient, burdening
   </sql>
   <sql id="Blob_Column_List">
     detail
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.jamedow.laodoufang.entity.ProductExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.jamedow.laodoufang.entity.RecipeExample"
+          resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -97,7 +96,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from product
+    from recipe
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -105,14 +104,14 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jamedow.laodoufang.entity.RecipeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from product
+    from recipe
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -125,37 +124,35 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from product
+    from recipe
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from product
+    delete from recipe
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample">
-    delete from product
+  <delete id="deleteByExample" parameterType="com.jamedow.laodoufang.entity.RecipeExample">
+    delete from recipe
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Product">
-    insert into product (id, name, price, 
-      sales_volume, intro, create_time, 
-      traffic_volume, link_url, img_url,
+  <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Recipe">
+    insert into recipe (id, name, intro,
+    create_time, link_url, img_url,
     category, tags, vote_up,
     vote_down, is_official, user_id,
-    ingredient, burdening, detail
-    )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{salesVolume,jdbcType=INTEGER}, #{intro,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{trafficVolume,jdbcType=INTEGER}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+    traffic_volume, ingredient, burdening,
+    detail)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
     #{category,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR}, #{voteUp,jdbcType=INTEGER},
     #{voteDown,jdbcType=INTEGER}, #{isOfficial,jdbcType=CHAR}, #{userId,jdbcType=INTEGER},
-    #{ingredient,jdbcType=VARCHAR}, #{burdening,jdbcType=VARCHAR}, #{detail,jdbcType=LONGVARCHAR}
-    )
+    #{trafficVolume,jdbcType=INTEGER}, #{ingredient,jdbcType=VARCHAR}, #{burdening,jdbcType=VARCHAR},
+    #{detail,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Product">
-    insert into product
+  <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Recipe">
+    insert into recipe
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -163,20 +160,11 @@
       <if test="name != null">
         name,
       </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="salesVolume != null">
-        sales_volume,
-      </if>
       <if test="intro != null">
         intro,
       </if>
       <if test="createTime != null">
         create_time,
-      </if>
-      <if test="trafficVolume != null">
-        traffic_volume,
       </if>
       <if test="linkUrl != null">
         link_url,
@@ -202,6 +190,9 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="trafficVolume != null">
+        traffic_volume,
+      </if>
       <if test="ingredient != null">
         ingredient,
       </if>
@@ -219,20 +210,11 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="price != null">
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="salesVolume != null">
-        #{salesVolume,jdbcType=INTEGER},
-      </if>
       <if test="intro != null">
         #{intro,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="trafficVolume != null">
-        #{trafficVolume,jdbcType=INTEGER},
       </if>
       <if test="linkUrl != null">
         #{linkUrl,jdbcType=VARCHAR},
@@ -258,6 +240,9 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="trafficVolume != null">
+        #{trafficVolume,jdbcType=INTEGER},
+      </if>
       <if test="ingredient != null">
         #{ingredient,jdbcType=VARCHAR},
       </if>
@@ -269,14 +254,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jamedow.laodoufang.entity.ProductExample" resultType="java.lang.Long">
-    select count(*) from product
+  <select id="countByExample" parameterType="com.jamedow.laodoufang.entity.RecipeExample" resultType="java.lang.Long">
+    select count(*) from recipe
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update product
+    update recipe
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
@@ -284,20 +269,11 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=INTEGER},
-      </if>
-      <if test="record.salesVolume != null">
-        sales_volume = #{record.salesVolume,jdbcType=INTEGER},
-      </if>
       <if test="record.intro != null">
         intro = #{record.intro,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.trafficVolume != null">
-        traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
       </if>
       <if test="record.linkUrl != null">
         link_url = #{record.linkUrl,jdbcType=VARCHAR},
@@ -323,6 +299,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.trafficVolume != null">
+        traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
+      </if>
       <if test="record.ingredient != null">
         ingredient = #{record.ingredient,jdbcType=VARCHAR},
       </if>
@@ -338,14 +317,11 @@
     </if>
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
-    update product
+    update recipe
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
-      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
       intro = #{record.intro,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
       link_url = #{record.linkUrl,jdbcType=VARCHAR},
       img_url = #{record.imgUrl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=INTEGER},
@@ -354,6 +330,7 @@
       vote_down = #{record.voteDown,jdbcType=INTEGER},
       is_official = #{record.isOfficial,jdbcType=CHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
+    traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
     ingredient = #{record.ingredient,jdbcType=VARCHAR},
     burdening = #{record.burdening,jdbcType=VARCHAR},
       detail = #{record.detail,jdbcType=LONGVARCHAR}
@@ -362,14 +339,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update product
+    update recipe
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
-      sales_volume = #{record.salesVolume,jdbcType=INTEGER},
       intro = #{record.intro,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
       link_url = #{record.linkUrl,jdbcType=VARCHAR},
       img_url = #{record.imgUrl,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=INTEGER},
@@ -378,32 +352,24 @@
       vote_down = #{record.voteDown,jdbcType=INTEGER},
       is_official = #{record.isOfficial,jdbcType=CHAR},
     user_id = #{record.userId,jdbcType=INTEGER},
+    traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
     ingredient = #{record.ingredient,jdbcType=VARCHAR},
     burdening = #{record.burdening,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jamedow.laodoufang.entity.Product">
-    update product
+  <update id="updateByPrimaryKeySelective" parameterType="com.jamedow.laodoufang.entity.Recipe">
+    update recipe
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        price = #{price,jdbcType=INTEGER},
-      </if>
-      <if test="salesVolume != null">
-        sales_volume = #{salesVolume,jdbcType=INTEGER},
       </if>
       <if test="intro != null">
         intro = #{intro,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="trafficVolume != null">
-        traffic_volume = #{trafficVolume,jdbcType=INTEGER},
       </if>
       <if test="linkUrl != null">
         link_url = #{linkUrl,jdbcType=VARCHAR},
@@ -429,6 +395,9 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="trafficVolume != null">
+        traffic_volume = #{trafficVolume,jdbcType=INTEGER},
+      </if>
       <if test="ingredient != null">
         ingredient = #{ingredient,jdbcType=VARCHAR},
       </if>
@@ -441,14 +410,11 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jamedow.laodoufang.entity.Product">
-    update product
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jamedow.laodoufang.entity.Recipe">
+    update recipe
     set name = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      sales_volume = #{salesVolume,jdbcType=INTEGER},
       intro = #{intro,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      traffic_volume = #{trafficVolume,jdbcType=INTEGER},
       link_url = #{linkUrl,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       category = #{category,jdbcType=INTEGER},
@@ -457,19 +423,17 @@
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
       user_id = #{userId,jdbcType=INTEGER},
+    traffic_volume = #{trafficVolume,jdbcType=INTEGER},
     ingredient = #{ingredient,jdbcType=VARCHAR},
     burdening = #{burdening,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jamedow.laodoufang.entity.Product">
-    update product
+  <update id="updateByPrimaryKey" parameterType="com.jamedow.laodoufang.entity.Recipe">
+    update recipe
     set name = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      sales_volume = #{salesVolume,jdbcType=INTEGER},
       intro = #{intro,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      traffic_volume = #{trafficVolume,jdbcType=INTEGER},
       link_url = #{linkUrl,jdbcType=VARCHAR},
       img_url = #{imgUrl,jdbcType=VARCHAR},
       category = #{category,jdbcType=INTEGER},
@@ -478,6 +442,7 @@
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
     user_id = #{userId,jdbcType=INTEGER},
+    traffic_volume = #{trafficVolume,jdbcType=INTEGER},
     ingredient = #{ingredient,jdbcType=VARCHAR},
     burdening = #{burdening,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

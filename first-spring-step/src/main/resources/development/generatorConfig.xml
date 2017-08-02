@@ -45,7 +45,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="tags" domainObjectName="Tags"
+        <table tableName="recipe" domainObjectName="Recipe"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
