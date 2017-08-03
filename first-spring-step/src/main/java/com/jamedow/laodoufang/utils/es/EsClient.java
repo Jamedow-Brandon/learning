@@ -1,6 +1,7 @@
 package com.jamedow.laodoufang.utils.es;
 
 import com.jamedow.laodoufang.utils.StringUtils;
+import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequest;
@@ -187,6 +188,19 @@ public class EsClient {
         }
     }
 
+    public static List<String> analyze(String content) {
+        AnalyzeResponse response = client.admin().indices()
+                .prepareAnalyze(content)//内容
+                .setAnalyzer("standard")//指定分词器
+                .execute().actionGet();//执行
+        List<AnalyzeResponse.AnalyzeToken> tokens = response.getTokens();
+        List<String> keywords = new ArrayList<>();
+        for (AnalyzeResponse.AnalyzeToken token : tokens) {
+            keywords.add(token.getTerm());
+        }
+        return keywords;
+    }
+
 
     /**
      * 查询数据
@@ -260,5 +274,6 @@ public class EsClient {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
+        analyze("我想吃排骨");
     }
 }

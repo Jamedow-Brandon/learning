@@ -2,7 +2,6 @@ import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.utils.es.EsClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 import static org.elasticsearch.index.query.QueryBuilders.termQuery;
@@ -61,13 +61,11 @@ public class EsTest {
 
     @Test
     public void testSearch() throws Exception {
-        QueryBuilder qb1 = termQuery("name", "吃");
-        QueryBuilder qb2 = termQuery("name", "排");
-        QueryBuilder qb3 = termQuery("name", "骨");
+        List<String> keywords = EsClient.analyze("我好想吃排骨");
         BoolQueryBuilder bool = QueryBuilders.boolQuery();
-        bool.should(qb1);
-        bool.should(qb2);
-        bool.should(qb3);
+        for (String keyword : keywords) {
+            bool.should(termQuery("name", keyword));
+        }
         EsClient.search("laodoufang", "recipe", bool, 0, 10);
     }
 }

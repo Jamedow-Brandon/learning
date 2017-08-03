@@ -8,5 +8,5 @@ package com.jamedow.laodoufang.service;
 public interface ElasticSearchService {
 
 
-    void insertRecipe(Integer recipeId);
+    void search(String content, int page, int pageSize);
 }
