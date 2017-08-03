@@ -65,4 +65,9 @@ public class RecipeServiceImpl implements RecipeService {
         EsClient.createDocument("laodoufang", "recipe", builder);
         return result;
     }
+
+    @Override
+    public List<Recipe> queryAll() {
+        return recipeMapper.selectByExample(new RecipeExample());
+    }
 }

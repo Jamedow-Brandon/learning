@@ -191,7 +191,7 @@ public class EsClient {
     public static List<String> analyze(String content) {
         AnalyzeResponse response = client.admin().indices()
                 .prepareAnalyze(content)//内容
-                .setAnalyzer("standard")//指定分词器
+                .setAnalyzer("ik_max_word")//指定分词器
                 .execute().actionGet();//执行
         List<AnalyzeResponse.AnalyzeToken> tokens = response.getTokens();
         List<String> keywords = new ArrayList<>();

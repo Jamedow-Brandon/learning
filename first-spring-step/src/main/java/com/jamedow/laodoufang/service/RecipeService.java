@@ -15,4 +15,6 @@ public interface RecipeService {
     Recipe getRecipeById(Integer recipeId);
 
     int saveRecipe(Recipe recipe) throws Exception;
+
+    List<Recipe> queryAll();
 }
