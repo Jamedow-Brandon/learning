@@ -70,13 +70,13 @@ public class RecipeTest {
         burdening1.put("id", 119);
         burdening1.put("name", "葡萄");
         burdening1.put("volume", "二勺");
-        ingredients.add(burdening1);
+        burdenings.add(burdening1);
 
         JSONObject burdening2 = new JSONObject();
         burdening1.put("id", 116);
         burdening1.put("name", "石榴");
         burdening1.put("volume", "适量");
-        ingredients.add(burdening2);
+        burdenings.add(burdening2);
         recipe.setBurdening(burdenings.toString());
 
         recipeService.saveRecipe(recipe);

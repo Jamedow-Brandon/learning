@@ -27,25 +27,23 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     @Override
     public void insertRecipe(Integer recipeId) {
         Recipe recipe = recipeService.getRecipeById(recipeId);
-
-
         try {
             XContentBuilder builder = jsonBuilder()
                     .startObject()
-                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("name").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("intro").field("type", "string").field("store", "yes").endObject()
-                    .startObject("createTime").field("type", "string").field("store", "yes").endObject()
-                    .startObject("linkUrl").field("type", "string").field("store", "yes").endObject()
-                    .startObject("imgUrl").field("type", "string").field("store", "yes").endObject()
-                    .startObject("tags").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("voteUp").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("voteDown").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("isOfficial").field("type", "string").field("store", "yes").endObject()
-                    .startObject("userId").field("type", "string").field("store", "yes").endObject()
-                    .startObject("trafficVolume").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("ingredient").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("burdening").field("analyze", "string").field("store", "yes").endObject()
+                    .field("id", recipe.getId())
+                    .field("name", recipe.getName())
+                    .field("intro", recipe.getIntro())
+                    .field("createTime", recipe.getCreateTime())
+                    .field("linkUrl", recipe.getLinkUrl())
+                    .field("imgUrl", recipe.getImgUrl())
+                    .field("tags", recipe.getTags())
+                    .field("voteUp", recipe.getVoteUp())
+                    .field("voteDown", recipe.getVoteDown())
+                    .field("isOfficial", recipe.getIsOfficial())
+                    .field("userId", recipe.getUserId())
+                    .field("trafficVolume", recipe.getTrafficVolume())
+                    .field("ingredient", recipe.getIngredient())
+                    .field("burdening", recipe.getBurdening())
                     .endObject();
 
             EsClient.addType("recipe_index", "recipe", builder);

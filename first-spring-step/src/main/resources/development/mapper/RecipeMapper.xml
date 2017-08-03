@@ -137,7 +137,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jamedow.laodoufang.entity.Recipe">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.jamedow.laodoufang.entity.Recipe">
     insert into recipe (id, name, intro,
     create_time, link_url, img_url,
     category, tags, vote_up,

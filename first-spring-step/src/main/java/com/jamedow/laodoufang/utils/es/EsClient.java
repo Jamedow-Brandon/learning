@@ -9,6 +9,7 @@ import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.Requests;
@@ -22,14 +23,10 @@ import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 /**
  * Description
@@ -43,6 +40,9 @@ public class EsClient {
     private static Logger logger = LoggerFactory.getLogger(EsClient.class);
     private static Client client;
 
+    /**
+     * indices(表) types(表) documents(行) fields(列)
+     */
     static {
         // 通过setting对象指定集群配置信息, 配置的集群名
         Settings settings = Settings.builder().put("cluster.name", clusterName) // 设置集群名
@@ -154,8 +154,9 @@ public class EsClient {
      * @param type      类型
      * @param builder   文档对象
      */
-    public static IndexResponse createDocument(String indexName, String type, XContentBuilder builder) {
-        return client.prepareIndex(indexName, type).setSource(builder).execute().actionGet();
+    public static void createDocument(String indexName, String type, XContentBuilder builder) {
+        IndexResponse indexResponse = client.prepareIndex(indexName, type).setSource(builder).execute().actionGet();
+        logger.debug("create document {}", indexResponse.status());
     }
 
     /**
@@ -195,8 +196,25 @@ public class EsClient {
      * @param queryBuilder 查询条件
      * @return
      */
-    public static SearchResponse search(String index, String type, QueryBuilder queryBuilder) {
-        SearchResponse response = client.prepareSearch(index).setTypes(type).setQuery(queryBuilder).execute().actionGet();
+    public static SearchResponse search(String index, String type, QueryBuilder queryBuilder, int from, int size) {
+        SearchResponse response = client.prepareSearch(index)
+                // 设置查询索引类型
+                .setTypes(type)
+                // 设置查询类型
+                // 1.SearchType.DFS_QUERY_THEN_FETCH = 精确查询
+                // 2.SearchType.SCAN = 扫描查询,无序
+                // 3.SearchType.COUNT = 不设置的话,这个为默认值,还有的自己去试试吧
+                .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
+                // 设置查询关键词
+                .setQuery(queryBuilder)
+                // 设置查询的起点
+                .setFrom(from)
+                // 设置查询结果集的最大条数
+                .setSize(size)
+                // 设置是否按查询匹配度排序
+                .setExplain(true)
+                .execute()
+                .actionGet();
         SearchHits hits = response.getHits();
         if (hits.getTotalHits() > 0) {
             for (SearchHit hit : hits) {
@@ -215,9 +233,9 @@ public class EsClient {
 //                    .startObject()
 //                    .startObject("blog")
 //                    .startObject("properties")
-//                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
-//                    .startObject("title").field("type", "string").field("store", "yes").endObject()
-//                    .startObject("content").field("type", "string").field("store", "yes").endObject()
+//                    .startObject("id").field("type", "integer").endObject()
+//                    .startObject("title").field("type", "string").endObject()
+//                    .startObject("content").field("type", "string").endObject()
 //                    .endObject()
 //                    .endObject()
 //                    .endObject();
@@ -242,28 +260,5 @@ public class EsClient {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        try {
-            XContentBuilder builder = jsonBuilder()
-                    .startObject()
-                    .startObject("id").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("name").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("intro").field("type", "string").field("store", "yes").endObject()
-                    .startObject("createTime").field("type", new Date()).field("store", "yes").endObject()
-                    .startObject("linkUrl").field("type", "string").field("store", "yes").endObject()
-                    .startObject("imgUrl").field("type", "string").field("store", "yes").endObject()
-                    .startObject("tags").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("voteUp").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("voteDown").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("isOfficial").field("type", "string").field("store", "yes").endObject()
-                    .startObject("userId").field("type", "string").field("store", "yes").endObject()
-                    .startObject("trafficVolume").field("type", "integer").field("store", "yes").endObject()
-                    .startObject("ingredient").field("analyze", "string").field("store", "yes").endObject()
-                    .startObject("burdening").field("analyze", "string").field("store", "yes").endObject()
-                    .endObject();
-
-            EsClient.addType("recipe_index", "recipe", builder);
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
     }
 }

@@ -14,5 +14,5 @@ public interface RecipeService {
 
     Recipe getRecipeById(Integer recipeId);
 
-    int saveRecipe(Recipe recipe);
+    int saveRecipe(Recipe recipe) throws Exception;
 }
