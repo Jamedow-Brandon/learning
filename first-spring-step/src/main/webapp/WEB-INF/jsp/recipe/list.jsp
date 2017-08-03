@@ -18,13 +18,11 @@
 <div class="container">
     <div class="filter-area">
         <div class="pitch-on">
-            <p>已选属性：</p>
             <ul></ul>
             <div>只看官方<input type="checkbox"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
-            <p>待选属性：</p>
             <div class="param-parent">
                 <ul></ul>
             </div>
@@ -32,6 +30,7 @@
                 <ul></ul>
                 <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
         <div class="sort-by"></div>
     </div>
@@ -70,6 +69,11 @@
                 });
                 $(".param-parent ul").append($param);
             } else {
+                if (!checkTags($param.attr("tagId"))) {
+                    return false;
+                }
+                console.log(!checkTags($param.attr("tagId")))
+
                 var tagsHtml = template('pitchTemplate',
                     {
                         id: $param.attr("tagId"),
@@ -83,6 +87,23 @@
 
             }
         });
+    }
+
+    /**
+     * 校验重复标签
+     * @param id 点击标签id
+     * @returns {boolean}
+     */
+    function checkTags(id) {
+        var selectedTags = $(".pitch-on li");
+        var flag = true;
+        selectedTags.each(function (index, tag) {
+            if ($(tag).attr("tagId") === id) {
+                flag = false;
+                return false;
+            }
+        });
+        return flag;
     }
 
     function getChildrenTags(_tagsId) {
