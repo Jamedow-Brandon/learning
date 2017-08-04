@@ -26,12 +26,12 @@ public class RecipeTest {
     @Test
     public void testMain() throws Exception {
         Recipe recipe = new Recipe();
-        recipe.setName("糖醋排骨");
+        recipe.setName("砂锅土豆粉");
         recipe.setIntro("糖醋排骨很好吃，酸酸甜甜");
         recipe.setDetail("糖醋排骨做法:1.2.3.4");
         recipe.setCreateTime(new Date());
         recipe.setLinkUrl("");
-        recipe.setImgUrl("");
+        recipe.setImgUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502459540&di=2b3fcce54cdeb2501e518df373c9b76e&imgtype=jpg&er=1&src=http%3A%2F%2Fimg-cdn.hopetrip.com.hk%2Fnews3%2FBFCBDE849E081BAE%2F9%2F9261D386A8BB9ED0CE4E.jpg");
         recipe.setCategory(1);
 
         JSONArray tags = new JSONArray();

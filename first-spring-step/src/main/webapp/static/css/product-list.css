@@ -122,3 +122,34 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
     cursor: pointer;
 }
+
+.recipe-list {
+    height: 60rem;
+    margin: 0 1rem;
+}
+
+.recipe {
+    width: 35rem;
+    height: 18rem;
+    margin: 0.5rem;
+    border: 1px solid #fdecd0;
+    float: left;
+}
+
+.recipe img {
+    height: 13rem;
+    margin: 0 1rem 1rem 1rem;
+    float: left;
+}
+
+.recipe h3 {
+    width: 33rem;
+    margin: 1rem;
+    text-align: center;
+    color: #91bfbf;
+}
+
+.recipe p {
+    text-indent: 2rem;
+    margin: 2rem 0;
+}
