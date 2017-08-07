@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,8 +21,8 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/")
-public class HelloWorldController {
-    private static final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
+public class IndexController {
+    private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
     private final String VIRTUAL_HOST = "webcollector";
     private final String QUEUE = "queue";
     @Autowired
@@ -76,46 +75,6 @@ public class HelloWorldController {
             logger.error(e.getMessage(), e);
         }
 
-        return view;
-    }
-
-    @RequestMapping("/toHomePage")
-    public ModelAndView toHomePage() {
-
-        ModelAndView view = new ModelAndView();
-        view.setViewName("homePage");
-        return view;
-
-    }
-
-    @RequestMapping("adduser")
-    public String addUser(Users users, RedirectAttributes redirectAttributes) throws Exception {
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        logger.info("add user {} start", users.getUsername());
-        try {
-            usersService.saveUser(users);
-        } catch (Exception e) {
-            logger.error("add user {} error", users.getUsername());
-            redirectAttributes.addFlashAttribute("message", "error");
-        }
-        redirectAttributes.addFlashAttribute("message", "ok");
-        return "redirect:hello";
-    }
-
-    @RequestMapping("waterfall")
-    public ModelAndView waterfall() {
-        ModelAndView view = new ModelAndView();
-        view.setViewName("waterfall-layout");
         return view;
     }
 

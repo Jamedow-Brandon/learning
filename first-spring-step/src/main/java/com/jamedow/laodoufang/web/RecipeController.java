@@ -45,7 +45,7 @@ public class RecipeController {
     @RequestMapping(value = "add")
     public ModelAndView detail(Integer recipeId) {
         ModelAndView view = new ModelAndView();
-        view.setViewName("recipe/edit");
+        view.setViewName("recipe/recipeEdit");
 
         Recipe recipe = recipeService.getRecipeById(recipeId);
 

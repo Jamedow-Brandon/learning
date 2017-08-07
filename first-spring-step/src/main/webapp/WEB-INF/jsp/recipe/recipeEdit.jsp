@@ -15,7 +15,7 @@
     <!--引入CSS-->
     <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/css/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/css/webuploader-style.css">
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-add.css"/>
+    <link rel="stylesheet" href="${ctx}/static/css/recipe-edit.css"/>
     <title>Title</title>
 </head>
 <body>
@@ -108,27 +108,29 @@
                                                                     tagId="{{value}}"/>
     </div>
 </script>
+<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
 <script type="application/javascript" src="${ctx}/static/select2/dist/js/select2.js"></script>
 <script type="application/javascript" src="${ctx}/static/webuploader/dist/webuploader.js"></script>
-<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript" src="${ctx}/static/script/upload.js"></script>
 <script type="application/javascript">
-    CKEDITOR.replace('detail');
+    $(function () {
+        CKEDITOR.replace('detail');
 
-    $(".js-example-basic-multiple").select2({
-        allowClear: true
-    });
-
-    $(".js-example-basic-multiple:gt(0)").on("change", function () {
-        var $select = $(this);
-        var selectedParams = $select.find("option:selected");
-        var paramHtml = "";
-        selectedParams.each(function (index, param) {
-            paramHtml += template("paramTemplate", {name: param.text, value: param.value});
+        $(".js-example-basic-multiple").select2({
+            allowClear: true
         });
-        $select.parent().find(".params").html(paramHtml);
-    })
+
+        $(".js-example-basic-multiple:gt(0)").on("change", function () {
+            var $select = $(this);
+            var selectedParams = $select.find("option:selected");
+            var paramHtml = "";
+            selectedParams.each(function (index, param) {
+                paramHtml += template("paramTemplate", {name: param.text, value: param.value});
+            });
+            $select.parent().find(".params").html(paramHtml);
+        })
+    });
 </script>
 </body>
 </html>
