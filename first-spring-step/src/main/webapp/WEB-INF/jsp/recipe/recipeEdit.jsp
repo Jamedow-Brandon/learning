@@ -109,6 +109,9 @@
     </div>
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script type="text/javascript">
+    var filebrowserUploadUrl = '${ctx}/common/addSection?resouceType=recipe_detail';
+</script>
 <script type="application/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
 <script type="application/javascript" src="${ctx}/static/select2/dist/js/select2.js"></script>
 <script type="application/javascript" src="${ctx}/static/webuploader/dist/webuploader.js"></script>

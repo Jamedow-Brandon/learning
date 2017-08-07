@@ -164,193 +164,193 @@ public class BaseAttachmentExample {
             return (Criteria) this;
         }
 
-        public Criteria andResourceidIsNull() {
-            addCriterion("resourceId is null");
+        public Criteria andResourceIdIsNull() {
+            addCriterion("resource_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidIsNotNull() {
-            addCriterion("resourceId is not null");
+        public Criteria andResourceIdIsNotNull() {
+            addCriterion("resource_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidEqualTo(Integer value) {
-            addCriterion("resourceId =", value, "resourceid");
+        public Criteria andResourceIdEqualTo(Integer value) {
+            addCriterion("resource_id =", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidNotEqualTo(Integer value) {
-            addCriterion("resourceId <>", value, "resourceid");
+        public Criteria andResourceIdNotEqualTo(Integer value) {
+            addCriterion("resource_id <>", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidGreaterThan(Integer value) {
-            addCriterion("resourceId >", value, "resourceid");
+        public Criteria andResourceIdGreaterThan(Integer value) {
+            addCriterion("resource_id >", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("resourceId >=", value, "resourceid");
+        public Criteria andResourceIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("resource_id >=", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidLessThan(Integer value) {
-            addCriterion("resourceId <", value, "resourceid");
+        public Criteria andResourceIdLessThan(Integer value) {
+            addCriterion("resource_id <", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidLessThanOrEqualTo(Integer value) {
-            addCriterion("resourceId <=", value, "resourceid");
+        public Criteria andResourceIdLessThanOrEqualTo(Integer value) {
+            addCriterion("resource_id <=", value, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidIn(List<Integer> values) {
-            addCriterion("resourceId in", values, "resourceid");
+        public Criteria andResourceIdIn(List<Integer> values) {
+            addCriterion("resource_id in", values, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidNotIn(List<Integer> values) {
-            addCriterion("resourceId not in", values, "resourceid");
+        public Criteria andResourceIdNotIn(List<Integer> values) {
+            addCriterion("resource_id not in", values, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidBetween(Integer value1, Integer value2) {
-            addCriterion("resourceId between", value1, value2, "resourceid");
+        public Criteria andResourceIdBetween(Integer value1, Integer value2) {
+            addCriterion("resource_id between", value1, value2, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourceidNotBetween(Integer value1, Integer value2) {
-            addCriterion("resourceId not between", value1, value2, "resourceid");
+        public Criteria andResourceIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("resource_id not between", value1, value2, "resourceId");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeIsNull() {
-            addCriterion("resourceType is null");
+        public Criteria andResourceTypeIsNull() {
+            addCriterion("resource_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeIsNotNull() {
-            addCriterion("resourceType is not null");
+        public Criteria andResourceTypeIsNotNull() {
+            addCriterion("resource_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeEqualTo(String value) {
-            addCriterion("resourceType =", value, "resourcetype");
+        public Criteria andResourceTypeEqualTo(String value) {
+            addCriterion("resource_type =", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeNotEqualTo(String value) {
-            addCriterion("resourceType <>", value, "resourcetype");
+        public Criteria andResourceTypeNotEqualTo(String value) {
+            addCriterion("resource_type <>", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeGreaterThan(String value) {
-            addCriterion("resourceType >", value, "resourcetype");
+        public Criteria andResourceTypeGreaterThan(String value) {
+            addCriterion("resource_type >", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeGreaterThanOrEqualTo(String value) {
-            addCriterion("resourceType >=", value, "resourcetype");
+        public Criteria andResourceTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("resource_type >=", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeLessThan(String value) {
-            addCriterion("resourceType <", value, "resourcetype");
+        public Criteria andResourceTypeLessThan(String value) {
+            addCriterion("resource_type <", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeLessThanOrEqualTo(String value) {
-            addCriterion("resourceType <=", value, "resourcetype");
+        public Criteria andResourceTypeLessThanOrEqualTo(String value) {
+            addCriterion("resource_type <=", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeLike(String value) {
-            addCriterion("resourceType like", value, "resourcetype");
+        public Criteria andResourceTypeLike(String value) {
+            addCriterion("resource_type like", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeNotLike(String value) {
-            addCriterion("resourceType not like", value, "resourcetype");
+        public Criteria andResourceTypeNotLike(String value) {
+            addCriterion("resource_type not like", value, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeIn(List<String> values) {
-            addCriterion("resourceType in", values, "resourcetype");
+        public Criteria andResourceTypeIn(List<String> values) {
+            addCriterion("resource_type in", values, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeNotIn(List<String> values) {
-            addCriterion("resourceType not in", values, "resourcetype");
+        public Criteria andResourceTypeNotIn(List<String> values) {
+            addCriterion("resource_type not in", values, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeBetween(String value1, String value2) {
-            addCriterion("resourceType between", value1, value2, "resourcetype");
+        public Criteria andResourceTypeBetween(String value1, String value2) {
+            addCriterion("resource_type between", value1, value2, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andResourcetypeNotBetween(String value1, String value2) {
-            addCriterion("resourceType not between", value1, value2, "resourcetype");
+        public Criteria andResourceTypeNotBetween(String value1, String value2) {
+            addCriterion("resource_type not between", value1, value2, "resourceType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeIsNull() {
-            addCriterion("bizType is null");
+        public Criteria andBizTypeIsNull() {
+            addCriterion("biz_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeIsNotNull() {
-            addCriterion("bizType is not null");
+        public Criteria andBizTypeIsNotNull() {
+            addCriterion("biz_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeEqualTo(Integer value) {
-            addCriterion("bizType =", value, "biztype");
+        public Criteria andBizTypeEqualTo(Integer value) {
+            addCriterion("biz_type =", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeNotEqualTo(Integer value) {
-            addCriterion("bizType <>", value, "biztype");
+        public Criteria andBizTypeNotEqualTo(Integer value) {
+            addCriterion("biz_type <>", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeGreaterThan(Integer value) {
-            addCriterion("bizType >", value, "biztype");
+        public Criteria andBizTypeGreaterThan(Integer value) {
+            addCriterion("biz_type >", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("bizType >=", value, "biztype");
+        public Criteria andBizTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("biz_type >=", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeLessThan(Integer value) {
-            addCriterion("bizType <", value, "biztype");
+        public Criteria andBizTypeLessThan(Integer value) {
+            addCriterion("biz_type <", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeLessThanOrEqualTo(Integer value) {
-            addCriterion("bizType <=", value, "biztype");
+        public Criteria andBizTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("biz_type <=", value, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeIn(List<Integer> values) {
-            addCriterion("bizType in", values, "biztype");
+        public Criteria andBizTypeIn(List<Integer> values) {
+            addCriterion("biz_type in", values, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeNotIn(List<Integer> values) {
-            addCriterion("bizType not in", values, "biztype");
+        public Criteria andBizTypeNotIn(List<Integer> values) {
+            addCriterion("biz_type not in", values, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeBetween(Integer value1, Integer value2) {
-            addCriterion("bizType between", value1, value2, "biztype");
+        public Criteria andBizTypeBetween(Integer value1, Integer value2) {
+            addCriterion("biz_type between", value1, value2, "bizType");
             return (Criteria) this;
         }
 
-        public Criteria andBiztypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("bizType not between", value1, value2, "biztype");
+        public Criteria andBizTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("biz_type not between", value1, value2, "bizType");
             return (Criteria) this;
         }
 
@@ -424,63 +424,63 @@ public class BaseAttachmentExample {
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidIsNull() {
-            addCriterion("attachmentTypeId is null");
+        public Criteria andAttachmentTypeIdIsNull() {
+            addCriterion("attachment_type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidIsNotNull() {
-            addCriterion("attachmentTypeId is not null");
+        public Criteria andAttachmentTypeIdIsNotNull() {
+            addCriterion("attachment_type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidEqualTo(Integer value) {
-            addCriterion("attachmentTypeId =", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdEqualTo(Integer value) {
+            addCriterion("attachment_type_id =", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidNotEqualTo(Integer value) {
-            addCriterion("attachmentTypeId <>", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdNotEqualTo(Integer value) {
+            addCriterion("attachment_type_id <>", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidGreaterThan(Integer value) {
-            addCriterion("attachmentTypeId >", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdGreaterThan(Integer value) {
+            addCriterion("attachment_type_id >", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("attachmentTypeId >=", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("attachment_type_id >=", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidLessThan(Integer value) {
-            addCriterion("attachmentTypeId <", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdLessThan(Integer value) {
+            addCriterion("attachment_type_id <", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidLessThanOrEqualTo(Integer value) {
-            addCriterion("attachmentTypeId <=", value, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("attachment_type_id <=", value, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidIn(List<Integer> values) {
-            addCriterion("attachmentTypeId in", values, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdIn(List<Integer> values) {
+            addCriterion("attachment_type_id in", values, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidNotIn(List<Integer> values) {
-            addCriterion("attachmentTypeId not in", values, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdNotIn(List<Integer> values) {
+            addCriterion("attachment_type_id not in", values, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidBetween(Integer value1, Integer value2) {
-            addCriterion("attachmentTypeId between", value1, value2, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("attachment_type_id between", value1, value2, "attachmentTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andAttachmenttypeidNotBetween(Integer value1, Integer value2) {
-            addCriterion("attachmentTypeId not between", value1, value2, "attachmenttypeid");
+        public Criteria andAttachmentTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("attachment_type_id not between", value1, value2, "attachmentTypeId");
             return (Criteria) this;
         }
 
@@ -614,133 +614,133 @@ public class BaseAttachmentExample {
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathIsNull() {
-            addCriterion("remotePath is null");
+        public Criteria andRemotePathIsNull() {
+            addCriterion("remote_path is null");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathIsNotNull() {
-            addCriterion("remotePath is not null");
+        public Criteria andRemotePathIsNotNull() {
+            addCriterion("remote_path is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathEqualTo(String value) {
-            addCriterion("remotePath =", value, "remotepath");
+        public Criteria andRemotePathEqualTo(String value) {
+            addCriterion("remote_path =", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathNotEqualTo(String value) {
-            addCriterion("remotePath <>", value, "remotepath");
+        public Criteria andRemotePathNotEqualTo(String value) {
+            addCriterion("remote_path <>", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathGreaterThan(String value) {
-            addCriterion("remotePath >", value, "remotepath");
+        public Criteria andRemotePathGreaterThan(String value) {
+            addCriterion("remote_path >", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathGreaterThanOrEqualTo(String value) {
-            addCriterion("remotePath >=", value, "remotepath");
+        public Criteria andRemotePathGreaterThanOrEqualTo(String value) {
+            addCriterion("remote_path >=", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathLessThan(String value) {
-            addCriterion("remotePath <", value, "remotepath");
+        public Criteria andRemotePathLessThan(String value) {
+            addCriterion("remote_path <", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathLessThanOrEqualTo(String value) {
-            addCriterion("remotePath <=", value, "remotepath");
+        public Criteria andRemotePathLessThanOrEqualTo(String value) {
+            addCriterion("remote_path <=", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathLike(String value) {
-            addCriterion("remotePath like", value, "remotepath");
+        public Criteria andRemotePathLike(String value) {
+            addCriterion("remote_path like", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathNotLike(String value) {
-            addCriterion("remotePath not like", value, "remotepath");
+        public Criteria andRemotePathNotLike(String value) {
+            addCriterion("remote_path not like", value, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathIn(List<String> values) {
-            addCriterion("remotePath in", values, "remotepath");
+        public Criteria andRemotePathIn(List<String> values) {
+            addCriterion("remote_path in", values, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathNotIn(List<String> values) {
-            addCriterion("remotePath not in", values, "remotepath");
+        public Criteria andRemotePathNotIn(List<String> values) {
+            addCriterion("remote_path not in", values, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathBetween(String value1, String value2) {
-            addCriterion("remotePath between", value1, value2, "remotepath");
+        public Criteria andRemotePathBetween(String value1, String value2) {
+            addCriterion("remote_path between", value1, value2, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemotepathNotBetween(String value1, String value2) {
-            addCriterion("remotePath not between", value1, value2, "remotepath");
+        public Criteria andRemotePathNotBetween(String value1, String value2) {
+            addCriterion("remote_path not between", value1, value2, "remotePath");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidIsNull() {
-            addCriterion("remoteServerUrlId is null");
+        public Criteria andRemoteServerUrliidIsNull() {
+            addCriterion("remote_server_urliId is null");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidIsNotNull() {
-            addCriterion("remoteServerUrlId is not null");
+        public Criteria andRemoteServerUrliidIsNotNull() {
+            addCriterion("remote_server_urliId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidEqualTo(Integer value) {
-            addCriterion("remoteServerUrlId =", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidEqualTo(Integer value) {
+            addCriterion("remote_server_urliId =", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidNotEqualTo(Integer value) {
-            addCriterion("remoteServerUrlId <>", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidNotEqualTo(Integer value) {
+            addCriterion("remote_server_urliId <>", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidGreaterThan(Integer value) {
-            addCriterion("remoteServerUrlId >", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidGreaterThan(Integer value) {
+            addCriterion("remote_server_urliId >", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("remoteServerUrlId >=", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("remote_server_urliId >=", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidLessThan(Integer value) {
-            addCriterion("remoteServerUrlId <", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidLessThan(Integer value) {
+            addCriterion("remote_server_urliId <", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidLessThanOrEqualTo(Integer value) {
-            addCriterion("remoteServerUrlId <=", value, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidLessThanOrEqualTo(Integer value) {
+            addCriterion("remote_server_urliId <=", value, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidIn(List<Integer> values) {
-            addCriterion("remoteServerUrlId in", values, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidIn(List<Integer> values) {
+            addCriterion("remote_server_urliId in", values, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidNotIn(List<Integer> values) {
-            addCriterion("remoteServerUrlId not in", values, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidNotIn(List<Integer> values) {
+            addCriterion("remote_server_urliId not in", values, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidBetween(Integer value1, Integer value2) {
-            addCriterion("remoteServerUrlId between", value1, value2, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidBetween(Integer value1, Integer value2) {
+            addCriterion("remote_server_urliId between", value1, value2, "remoteServerUrliid");
             return (Criteria) this;
         }
 
-        public Criteria andRemoteserverurlidNotBetween(Integer value1, Integer value2) {
-            addCriterion("remoteServerUrlId not between", value1, value2, "remoteserverurlid");
+        public Criteria andRemoteServerUrliidNotBetween(Integer value1, Integer value2) {
+            addCriterion("remote_server_urliId not between", value1, value2, "remoteServerUrliid");
             return (Criteria) this;
         }
 

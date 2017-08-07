@@ -3,23 +3,23 @@ package com.jamedow.laodoufang.entity;
 public class BaseAttachment {
     private Integer id;
 
-    private Integer resourceid;
+    private Integer resourceId;
 
-    private String resourcetype;
+    private String resourceType;
 
-    private Integer biztype;
+    private Integer bizType;
 
     private String name;
 
-    private Integer attachmenttypeid;
+    private Integer attachmentTypeId;
 
     private String suffix;
 
-    private Long size;
+    private long size;
 
-    private String remotepath;
+    private String remotePath;
 
-    private Integer remoteserverurlid;
+    private Integer remoteServerUrliid;
 
     private String remark;
 
@@ -31,28 +31,28 @@ public class BaseAttachment {
         this.id = id;
     }
 
-    public Integer getResourceid() {
-        return resourceid;
+    public Integer getResourceId() {
+        return resourceId;
     }
 
-    public void setResourceid(Integer resourceid) {
-        this.resourceid = resourceid;
+    public void setResourceId(Integer resourceId) {
+        this.resourceId = resourceId;
     }
 
-    public String getResourcetype() {
-        return resourcetype;
+    public String getResourceType() {
+        return resourceType;
     }
 
-    public void setResourcetype(String resourcetype) {
-        this.resourcetype = resourcetype;
+    public void setResourceType(String resourceType) {
+        this.resourceType = resourceType;
     }
 
-    public Integer getBiztype() {
-        return biztype;
+    public Integer getBizType() {
+        return bizType;
     }
 
-    public void setBiztype(Integer biztype) {
-        this.biztype = biztype;
+    public void setBizType(Integer bizType) {
+        this.bizType = bizType;
     }
 
     public String getName() {
@@ -63,12 +63,12 @@ public class BaseAttachment {
         this.name = name;
     }
 
-    public Integer getAttachmenttypeid() {
-        return attachmenttypeid;
+    public Integer getAttachmentTypeId() {
+        return attachmentTypeId;
     }
 
-    public void setAttachmenttypeid(Integer attachmenttypeid) {
-        this.attachmenttypeid = attachmenttypeid;
+    public void setAttachmentTypeId(Integer attachmentTypeId) {
+        this.attachmentTypeId = attachmentTypeId;
     }
 
     public String getSuffix() {
@@ -79,28 +79,28 @@ public class BaseAttachment {
         this.suffix = suffix;
     }
 
-    public Long getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(Long size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
-    public String getRemotepath() {
-        return remotepath;
+    public String getRemotePath() {
+        return remotePath;
     }
 
-    public void setRemotepath(String remotepath) {
-        this.remotepath = remotepath;
+    public void setRemotePath(String remotePath) {
+        this.remotePath = remotePath;
     }
 
-    public Integer getRemoteserverurlid() {
-        return remoteserverurlid;
+    public Integer getRemoteServerUrliid() {
+        return remoteServerUrliid;
     }
 
-    public void setRemoteserverurlid(Integer remoteserverurlid) {
-        this.remoteserverurlid = remoteserverurlid;
+    public void setRemoteServerUrliid(Integer remoteServerUrliid) {
+        this.remoteServerUrliid = remoteServerUrliid;
     }
 
     public String getRemark() {
