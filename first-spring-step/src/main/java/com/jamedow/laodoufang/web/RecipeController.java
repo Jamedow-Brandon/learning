@@ -2,6 +2,7 @@ package com.jamedow.laodoufang.web;
 
 import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.Tags;
+import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CategoryService;
 import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.service.TagsService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -45,7 +47,7 @@ public class RecipeController {
     @RequestMapping(value = "add")
     public ModelAndView detail(Integer recipeId) {
         ModelAndView view = new ModelAndView();
-        view.setViewName("recipe/edit");
+        view.setViewName("recipe/recipeEdit");
 
         Recipe recipe = recipeService.getRecipeById(recipeId);
 
@@ -69,6 +71,7 @@ public class RecipeController {
     @RequestMapping(value = "getChildrenTags", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String getChildrenTags(Integer tagsId) {
+
         List<Tags> childrenTags = tagsService.getTagsByParentId(tagsId);
         return JSONArray.fromObject(childrenTags).toString();
     }
@@ -76,7 +79,21 @@ public class RecipeController {
     @RequestMapping(value = "getBrothersByTagsId", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String getBrothersByTagsId(Integer tagsId) {
+
         List<Tags> brothersTags = tagsService.getBrothersByTagsId(tagsId);
         return JSONArray.fromObject(brothersTags).toString();
+    }
+
+    @RequestMapping("/saveMenu")
+    @ResponseBody
+    public String saveMenu(HttpSession session,String name,String intro,String tags,String ingredient,String burdening){
+
+
+        Users user = (Users)session.getAttribute("user");
+        if(null != user){
+
+            return recipeService.saveRecipeAndRel(user,name,intro,tags,ingredient,burdening);
+        }
+        return null;
     }
 }

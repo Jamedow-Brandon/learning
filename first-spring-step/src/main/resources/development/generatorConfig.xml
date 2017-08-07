@@ -9,7 +9,7 @@
     <properties resource="properties/jdbc.properties"/>
 
     <classPathEntry
-            location="C:\Users\jamedow\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
+            location="C:\Users\365\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
 
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -45,7 +45,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="category" domainObjectName="Category"
+        <table tableName="base_attachment" domainObjectName="BaseAttachment"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
