@@ -2,6 +2,7 @@ package com.jamedow.laodoufang.service.impl;
 
 import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.RecipeExample;
+import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.mapper.RecipeMapper;
 import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.utils.es.EsClient;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 
 import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
@@ -43,6 +45,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int saveRecipe(Recipe recipe) throws Exception {
+        if (null != recipe.getId()) {
+            return recipeMapper.updateByPrimaryKeySelective(recipe);
+        }
         int result = recipeMapper.insert(recipe);
         XContentBuilder builder = jsonBuilder()
                 .startObject()
@@ -70,4 +75,39 @@ public class RecipeServiceImpl implements RecipeService {
     public List<Recipe> queryAll() {
         return recipeMapper.selectByExample(new RecipeExample());
     }
+
+    @Override
+    public String saveRecipeAndRel(Users user, String name, String intro, String tags, String ingredient, String burdening) {
+        Recipe recipe = new Recipe();
+        recipe.setName(name);
+        recipe.setIntro(intro);
+        recipe.setBurdening(burdening);
+        recipe.setIngredient(ingredient);
+        recipe.setUserId(user.getId().intValue());
+        recipe.setTags(tags);
+        recipe.setIsOfficial("0");
+        recipe.setCreateTime(Calendar.getInstance().getTime());
+        int result = 0;
+        try {
+            result = saveRecipe(recipe);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*if((result !=0) && (null!=recipe.getId())){
+            String[] tagsArray = tags.split(",");
+            for(String tag : tagsArray){
+
+                RecipeTagsRel RecipeTagsRel = new RecipeTagsRel();
+                RecipeTagsRel.setRecipeId(Recipe.getId());
+                RecipeTagsRel.setTagsId(Integer.parseInt(tag));
+                result = RecipeTagsRelMapper.insert(RecipeTagsRel)*result;
+            }
+        }*/
+        if(result != 0)
+            return "保存成功";
+        return "保存失败";
+
+    }
+
 }
