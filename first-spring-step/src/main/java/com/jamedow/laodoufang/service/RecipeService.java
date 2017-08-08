@@ -1,6 +1,7 @@
 package com.jamedow.laodoufang.service;
 
 import com.jamedow.laodoufang.entity.Recipe;
+import com.jamedow.laodoufang.entity.Users;
 
 import java.util.List;
 
@@ -17,4 +18,10 @@ public interface RecipeService {
     int saveRecipe(Recipe recipe) throws Exception;
 
     List<Recipe> queryAll();
+
+    /**
+     * 保存食谱以及食谱和标签关联
+     * @return
+     */
+    String saveRecipeAndRel(Users user, String name, String intro, String tags, String ingredient, String burdening);
 }
