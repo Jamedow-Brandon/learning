@@ -100,10 +100,14 @@ public class FTPUtils {
         FileInputStream fis = null;
 
         try {
+            //连接ftp
             ftpClient.connect("106.14.210.31", 21);
+            //登录ftp
             ftpClient.login("vsftp", "Zhangliang@520");
+            //返回状态吗 200-300 登录成功
             int reply = ftpClient.getReplyCode();
             if (!FTPReply.isPositiveCompletion(reply)) {
+                //重新连接
                 ftpClient.disconnect();
             }
             File srcFile = new File("F:\\user\\Desktop\\large-8.jpg");
@@ -119,7 +123,7 @@ public class FTPUtils {
             if (ftpClient.isConnected()) {
                 ftpClient.storeFile("large-8.jpg", fis);
             }
-
+            //断开连接
             ftpClient.logout();
         } catch (IOException e) {
             e.printStackTrace();
