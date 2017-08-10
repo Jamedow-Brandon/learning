@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Description
+ * Ftp 上传 下载工具类
  * <p>
  * Created by Administrator on 2017/7/18.
  */
@@ -24,14 +24,19 @@ public class FTPUtils {
 
     private final String EMPTY = "";
 
+    //连接地址
     @Value("${ftp.host}")
     private String host;
+   //FTP 端口号
     @Value("${ftp.port}")
     private String port;
+    //用户名
     @Value("${ftp.username}")
     private String username;
+    //密码
     @Value("${ftp.password}")
     private String password;
+    //图片前缀
     @Value("${ftp.server}")
     private String ftpServer;
 
@@ -54,6 +59,7 @@ public class FTPUtils {
                 ftpClient.disconnect();
             }
             File srcFile = new File("F:\\user\\Desktop\\large-8.jpg");
+            //读取文件
             fis = new FileInputStream(srcFile);
             //设置上传目录
             ftpClient.changeWorkingDirectory("user/photo");
