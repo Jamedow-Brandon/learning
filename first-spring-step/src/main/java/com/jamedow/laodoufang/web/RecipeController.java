@@ -33,6 +33,7 @@ public class RecipeController {
     @Autowired
     private TagsService tagsService;
 
+
     @RequestMapping(value = "list")
     public ModelAndView list() {
         ModelAndView view = new ModelAndView();
@@ -47,7 +48,7 @@ public class RecipeController {
     @RequestMapping(value = "add")
     public ModelAndView detail(Integer recipeId) {
         ModelAndView view = new ModelAndView();
-        view.setViewName("recipe/add");
+        view.setViewName("recipe/recipeEdit");
 
         Recipe recipe = recipeService.getRecipeById(recipeId);
 

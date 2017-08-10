@@ -30,6 +30,8 @@ public class CommonController {
     private static final long MAX_SIZE_OF_UPLOAD_FILE = 10485760;
     @Autowired
     private BaseAttachmentService attachmentService;
+    @Autowired
+    private FTPUtils ftpUtils;
 
     /**
      * 功能描述: <br>
@@ -60,7 +62,7 @@ public class CommonController {
             attachment.setResourceType(resourceType);
             attachment.setSize(fileSize);
             attachment.setSuffix(fileLocationAttribute.getSuffix());
-            remotePath = FTPUtils.uploadFile(fileLocationAttribute
+            remotePath = ftpUtils.uploadFile(fileLocationAttribute
                     .getStoreLocation().getPath(), "recipe/detail");
             attachment.setRemotePath(remotePath);
 
