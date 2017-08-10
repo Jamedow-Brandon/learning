@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Description
+ * Ftp 上传 下载工具类
  * <p>
  * Created by Administrator on 2017/7/18.
  */
@@ -23,19 +23,30 @@ public class FTPUtils {
     private static final String EMPTY = "";
 
     private static FTPClient ftpClient;
-
+    /**
+     * 连接地址
+     */
     private static String ftpHost;
+    /**
+     * FTP 端口号
+     */
     private static int ftpPort;
 
     static {
+        //静态块 在类加载的时候就执行
         try {
             //从配置文件中获取
+            //ftp IP地址
             ftpHost = MemoryPropertyPlaceholderConfigurer.getContextProperty("ftp.host");
+            //ftp端口号
             ftpPort = Integer.valueOf(MemoryPropertyPlaceholderConfigurer.getContextProperty("ftp.port"));
-
+            //用户名
             String userName = MemoryPropertyPlaceholderConfigurer.getContextProperty("ftp.username");
-            String password = MemoryPropertyPlaceholderConfigurer.getContextProperty("ftp.password");
+           //密码
+             String password = MemoryPropertyPlaceholderConfigurer.getContextProperty("ftp.password");
+            //连接FTP
             ftpClient.connect(ftpHost, ftpPort);
+            //登录FTP
             ftpClient.login(userName, password);
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,6 +68,7 @@ public class FTPUtils {
         }
         String fileUrl = EMPTY;
         try {
+            //读取文件
             FileInputStream fis = new FileInputStream(file);
             //设置上传目录
             ftpClient.changeWorkingDirectory(dirName);
