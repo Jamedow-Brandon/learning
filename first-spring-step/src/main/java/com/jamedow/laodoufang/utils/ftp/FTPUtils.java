@@ -1,8 +1,7 @@
 package com.jamedow.laodoufang.utils.ftp;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
-import org.apache.commons.net.ftp.FTPReply;
+import org.apache.commons.net.ftp.FTPFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +26,7 @@ public class FTPUtils {
     //连接地址
     @Value("${ftp.host}")
     private String host;
-   //FTP 端口号
+    //FTP 端口号
     @Value("${ftp.port}")
     private String port;
     //用户名
@@ -40,60 +39,63 @@ public class FTPUtils {
     @Value("${ftp.server}")
     private String ftpServer;
 
-    /**
-     * FTP上传单个文件测试
-     */
-    public static void testUpload() {
-        FTPClient ftpClient = new FTPClient();
-        FileInputStream fis = null;
-
-        try {
-            //连接ftp
-            ftpClient.connect("106.14.210.31", 21);
-            //登录ftp
-            ftpClient.login("vsftp", "Zhangliang@520");
-            //返回状态吗 200-300 登录成功
-            int reply = ftpClient.getReplyCode();
-            if (!FTPReply.isPositiveCompletion(reply)) {
-                //重新连接
-                ftpClient.disconnect();
-            }
-            File srcFile = new File("F:\\user\\Desktop\\large-8.jpg");
-            //读取文件
-            fis = new FileInputStream(srcFile);
-            //设置上传目录
-            ftpClient.changeWorkingDirectory("user/photo");
-//            ftpClient.setBufferSize(1024);
-//            ftpClient.setControlEncoding("UTF-8");
-            //设置文件类型（二进制）
-            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-            //使用ftp被动模式
-            ftpClient.enterLocalPassiveMode();
-
-            if (ftpClient.isConnected()) {
-                ftpClient.storeFile("large-8.jpg", fis);
-            }
-            //断开连接
-            ftpClient.logout();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("FTP客户端出错！", e);
-        } finally {
-            try {
-                fis.close();
-                if (ftpClient.isConnected()) {
-                    ftpClient.disconnect();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new RuntimeException("关闭FTP连接发生异常！", e);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        testUpload();
-    }
+//    /**
+//     * FTP上传单个文件测试
+//     */
+//    public  void testUpload() {
+//        FTPClient ftpClient = new FTPClient();
+//        FileInputStream fis = null;
+//
+//        try {
+//            //连接ftp
+//            ftpClient.connect("106.14.210.31", 21);
+//            //登录ftp
+//            ftpClient.login("vsftp", "Zhangliang@520");
+//            //返回状态吗 200-300 登录成功
+//            int reply = ftpClient.getReplyCode();
+//            if (!FTPReply.isPositiveCompletion(reply)) {
+//                //重新连接
+//                ftpClient.disconnect();
+//            }
+//            File srcFile = new File("F:\\user\\Desktop\\large-8.jpg");
+//            //读取文件
+//            fis = new FileInputStream(srcFile);
+//            //设置上传目录
+//            if (!ftpClient.changeWorkingDirectory("media/user/photo")) {
+//                //创建目录
+//                CreateDirectory(ftpClient, "media/user/photo");
+//            }
+////            ftpClient.setBufferSize(1024);
+////            ftpClient.setControlEncoding("UTF-8");
+//            //设置文件类型（二进制）
+//            ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+//            //使用ftp被动模式
+//            ftpClient.enterLocalPassiveMode();
+//
+//            if (ftpClient.isConnected()) {
+//                ftpClient.storeFile("large-8.jpg", fis);
+//            }
+//            //断开连接
+//            ftpClient.logout();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("FTP客户端出错！", e);
+//        } finally {
+//            try {
+//                fis.close();
+//                if (ftpClient.isConnected()) {
+//                    ftpClient.disconnect();
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//                throw new RuntimeException("关闭FTP连接发生异常！", e);
+//            }
+//        }
+//    }
+//
+//    public  void main(String[] args) {
+//        testUpload();
+//    }
 
     /**
      * 上传本地文件
@@ -102,7 +104,7 @@ public class FTPUtils {
      * @return 可访问的文件URL；<br>
      * return <b>""</b> if fail
      */
-    public String uploadFile(String localFilename, String dirName) {
+    public String uploadFile(String localFilename, String destDirName, String fileName) {
         FTPClient ftpClient = new FTPClient();
         FileInputStream fis = null;
         File file = new File(localFilename);
@@ -118,18 +120,24 @@ public class FTPUtils {
 
             fis = new FileInputStream(file);
             //设置上传目录
-            ftpClient.changeWorkingDirectory(dirName);
+            if (!ftpClient.changeWorkingDirectory(destDirName)) {
+                //创建目录
+                CreateDirectory(ftpClient, destDirName);
+            }
 //            ftpClient.setBufferSize(1024);
 //            ftpClient.setControlEncoding("UTF-8");
             //设置文件类型（二进制）
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
+            //使用ftp被动模式
             ftpClient.enterLocalPassiveMode();
 
             if (ftpClient.isConnected()) {
-                ftpClient.storeFile("large-8.jpg", fis);
+                ftpClient.storeFile(fileName, fis);
             }
 
-            fileUrl = ftpServer + dirName + file.getName();
+            //图片在服务器上的访问地址
+            fileUrl = ftpServer + destDirName + "/" + fileName;
+            //断开连接
             ftpClient.logout();
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -146,20 +154,6 @@ public class FTPUtils {
             }
         }
         return fileUrl;
-    }
-
-    /**
-     * 获取文件后缀名，不含.
-     *
-     * @param fileName
-     * @return 文件后缀
-     */
-    public String getFileSuffix(String fileName) {
-        String suffix = EMPTY;
-        if (!StringUtils.isBlank(fileName)) {
-            suffix = fileName.substring(fileName.lastIndexOf('.') + 1);
-        }
-        return suffix;
     }
 
     /**
@@ -196,5 +190,94 @@ public class FTPUtils {
                 throw new RuntimeException("关闭FTP连接发生异常！", e);
             }
         }
+    }
+
+    //创建多层目录文件，如果有ftp服务器已存在该文件，则不创建，如果无，则创建
+    public boolean CreateDirectory(FTPClient ftpClient, String remote) throws IOException {
+        boolean success = true;
+        String directory = remote + "/";
+//        String directory = remote.substring(0, remote.lastIndexOf("/") + 1);
+        // 如果远程目录不存在，则递归创建远程服务器目录
+        if (!directory.equalsIgnoreCase("/") && !changeWorkingDirectory(ftpClient, new String(directory))) {
+            int start = 0;
+            int end = 0;
+            if (directory.startsWith("/")) {
+                start = 1;
+            } else {
+                start = 0;
+            }
+            end = directory.indexOf("/", start);
+            String path = "";
+            String paths = "";
+            while (true) {
+
+                String subDirectory = new String(remote.substring(start, end).getBytes("GBK"), "iso-8859-1");
+                path = path + "/" + subDirectory;
+                if (!existFile(ftpClient, path)) {
+                    if (makeDirectory(ftpClient, subDirectory)) {
+                        changeWorkingDirectory(ftpClient, subDirectory);
+                    } else {
+                        logger.debug("创建目录[" + subDirectory + "]失败");
+                        changeWorkingDirectory(ftpClient, subDirectory);
+                    }
+                } else {
+                    changeWorkingDirectory(ftpClient, subDirectory);
+                }
+
+                paths = paths + "/" + subDirectory;
+                start = end + 1;
+                end = directory.indexOf("/", start);
+                // 检查所有目录是否创建完毕
+                if (end <= start) {
+                    break;
+                }
+            }
+        }
+        return success;
+    }
+
+    //判断ftp服务器文件是否存在
+    public boolean existFile(FTPClient ftpClient, String path) throws IOException {
+        boolean flag = false;
+        FTPFile[] ftpFileArr = ftpClient.listFiles(path);
+        if (ftpFileArr.length > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+
+    //创建目录
+    public boolean makeDirectory(FTPClient ftpClient, String dir) {
+        boolean flag = true;
+        try {
+            flag = ftpClient.makeDirectory(dir);
+            if (flag) {
+                logger.debug("创建文件夹" + dir + " 成功！");
+
+            } else {
+                logger.debug("创建文件夹" + dir + " 失败！");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    //改变目录路径
+    public boolean changeWorkingDirectory(FTPClient ftpClient, String directory) {
+        boolean flag = true;
+        try {
+            flag = ftpClient.changeWorkingDirectory(directory);
+            if (flag) {
+                logger.debug("进入文件夹" + directory + " 成功！");
+
+            } else {
+                logger.debug("进入文件夹" + directory + " 失败！");
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return flag;
     }
 }

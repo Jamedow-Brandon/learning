@@ -63,7 +63,7 @@ public class CommonController {
             attachment.setSize(fileSize);
             attachment.setSuffix(fileLocationAttribute.getSuffix());
             remotePath = ftpUtils.uploadFile(fileLocationAttribute
-                    .getStoreLocation().getPath(), "recipe/detail");
+                    .getStoreLocation().getPath(), "media/recipe/detail", file.getOriginalFilename());
             attachment.setRemotePath(remotePath);
 
             attachments.add(attachment);
@@ -71,6 +71,53 @@ public class CommonController {
             logger.error(e.getMessage(), e);
         }
         return remotePath;
+    }
+
+    /**
+     * 功能描述: <br>
+     * 保存附件
+     *
+     * @param request
+     * @author chengjianfang
+     * @version [v1.0.0, 2015年1月29日]
+     * @since [产品/模块版本](可选)
+     */
+    @RequestMapping(value = "/addSectionForCKEditor", method = {RequestMethod.POST})
+    @ResponseBody
+    public String addSectionForCKEditor(@RequestParam(value = "upload", required = false) MultipartFile file,
+                                        String CKEditorFuncNum, String resourceType) {
+        List<BaseAttachment> attachments = new ArrayList<>();
+        logger.debug("==addSection==start=======");
+        String remotePath = "";
+        try {
+            logger.debug("==addSection==fileName:{}==", file.getOriginalFilename());
+            logger.debug("===>>fileType:{}>>===", file.getContentType());
+            BaseAttachment attachment = new BaseAttachment();
+
+            FileLocationAttribute fileLocationAttribute = new FileLocationAttribute(file);
+            long fileSize = fileLocationAttribute.getSize();
+            if (fileSize > MAX_SIZE_OF_UPLOAD_FILE) {
+                return "MAX_SIZE";
+            }
+            attachment.setName(file.getOriginalFilename());
+            attachment.setResourceType(resourceType);
+            attachment.setSize(fileSize);
+            attachment.setSuffix(fileLocationAttribute.getSuffix());
+            remotePath = ftpUtils.uploadFile(fileLocationAttribute
+                    .getStoreLocation().getPath(), "media/recipe/detail", file.getOriginalFilename());
+            attachment.setRemotePath(remotePath);
+
+            attachments.add(attachment);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        // 返回“图像”选项卡并显示图片
+        StringBuilder content = new StringBuilder();
+        content.append("<script type=\"text/javascript\">");
+        content.append("window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum
+                + ",'" + remotePath + "','')");
+        content.append("</script>");
+        return content.toString();
     }
 
     /**
