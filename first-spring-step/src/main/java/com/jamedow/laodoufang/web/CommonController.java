@@ -1,6 +1,7 @@
 package com.jamedow.laodoufang.web;
 
 import com.jamedow.laodoufang.entity.BaseAttachment;
+import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.BaseAttachmentService;
 import com.jamedow.laodoufang.utils.FileLocationAttribute;
 import com.jamedow.laodoufang.utils.ftp.FTPUtils;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,11 @@ public class CommonController {
      */
     @RequestMapping(value = "/addSection", method = {RequestMethod.POST})
     @ResponseBody
-    public String addSection(@RequestParam(value = "file", required = false) MultipartFile file, String resourceType) {
+    public String addSection(HttpSession session, @RequestParam(value = "file", required = false) MultipartFile file, String resourceType) {
+        Users users = (Users) session.getAttribute("user");
+        if (users == null) {
+            return "UN_LOGIN";
+        }
         List<BaseAttachment> attachments = new ArrayList<>();
         logger.debug("==addSection==start=======");
         String remotePath = "";
@@ -61,6 +67,7 @@ public class CommonController {
             }
             //根据resourceType计算ftp存放路径
             String dirPath = "media/" + StringUtils.join(resourceType.split("_"), "/");
+            attachment.setResourceId(Long.valueOf(users.getMobile()));
             attachment.setName(file.getOriginalFilename());
             attachment.setResourceType(resourceType);
             attachment.setSize(fileSize);//图片大小

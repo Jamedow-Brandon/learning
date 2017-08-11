@@ -1,7 +1,7 @@
 package com.jamedow.laodoufang.entity;
 
 public class Users {
-    private Long id;
+    private Integer id;
 
     private String username;
 
@@ -15,11 +15,11 @@ public class Users {
 
     private String photo;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
