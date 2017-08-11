@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="${ctx}/static/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="${ctx}/static/css/common.css">
 <script>
+    var ctx = '${ctx}';
     var _hmt = _hmt || [];
     (function () {
         var hm = document.createElement("script");

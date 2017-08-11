@@ -12,7 +12,9 @@
 <head>
     <%@include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${ctx}/static/select2/dist/css/select2.min.css"/>
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-add.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/css/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/examples/image-upload/style.css">
+    <link rel="stylesheet" href="${ctx}/static/css/recipe-edit.css"/>
     <title>老豆坊</title>
 </head>
 <body>
@@ -20,13 +22,38 @@
 
 <div class="container content">
     <form action="${ctx}/recipe/add" method="post">
+        <div id="wrapper">
+            <div id="container">
+                <!--头部，相册选择和格式选择-->
+
+                <div id="uploader">
+                    <div class="queueList">
+                        <div id="dndArea" class="placeholder">
+                            <div id="filePicker"></div>
+                            <p>或将照片拖到这里</p>
+                        </div>
+                    </div>
+                    <div class="statusBar" style="display:none;">
+                        <div class="progress">
+                            <span class="text">0%</span>
+                            <span class="percentage"></span>
+                        </div>
+                        <div class="info"></div>
+                        <div class="btns">
+                            <div id="filePicker2"></div>
+                            <div class="uploadBtn">开始上传</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <label for="title">菜名：</label>
-            <input id="title" type="text" class="form-control" placeholder="请输入菜名"/>
+            <input id="title" type="text" class="form-control" placeholder="请输入菜名" maxlength="20"/>
         </div>
         <div class="form-group">
             <label for="intro">简介：</label>
-            <input id="intro" type="text" class="form-control" placeholder="请输入简介"/>
+            <textarea id="intro" class="form-control" rows="5" cols="20" placeholder="请输入简介"></textarea>
         </div>
         <div class="form-group">
             <label>标签：</label>
@@ -38,7 +65,8 @@
         </div>
         <div class="form-group">
             <label>主料：</label>
-            <select id = "ingredient" class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择主料">
+            <select id="ingredients" class="js-example-basic-multiple form-control" multiple="multiple"
+                    placeholder="请选择主料">
                 <c:forEach items="${fodders}" var="fodder">
                     <optgroup label="${fodder.name}">
                         <c:forEach items="${fodder.tags}" var="tag">
@@ -51,7 +79,8 @@
         </div>
         <div class="form-group">
             <label>辅料：</label>
-            <select id = "burdening" class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择辅料">
+            <select id="burdenings" class="js-example-basic-multiple form-control" multiple="multiple"
+                    placeholder="请选择辅料">
                 <c:forEach items="${fodders}" var="fodder">
                     <optgroup label="${fodder.name}">
                         <c:forEach items="${fodder.tags}" var="tag">
@@ -80,9 +109,11 @@
                                                                     tagId="{{value}}"/>
     </div>
 </script>
+<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
 <script type="application/javascript" src="${ctx}/static/select2/dist/js/select2.js"></script>
-<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script type="application/javascript" src="${ctx}/static/webuploader/dist/webuploader.js"></script>
+<script type="application/javascript" src="${ctx}/static/webuploader/examples/image-upload/upload.js"></script>
 <script src = "${ctx}/static/layer/layer.js"></script>
 <script type="application/javascript">
     CKEDITOR.replace('detail');
@@ -134,15 +165,15 @@
         tags =JSON.stringify(jsonArray3);
 
 
-        var selectedIngredient = $("#ingredient").find("option:selected");//主料
+        var selectedIngredient = $("#ingredients").find("option:selected");//主料
         var weight = $(".weight");//分量
         if(selectedIngredient.length == 0){
             layer.msg("请选择至少一个主料");
             return ;
         }
 
-        var ingredient ="[]";//json存储主料
-        var jsonArray = eval('('+ingredient+')');
+        var ingredients = "[]";//json存储主料
+        var jsonArray = eval('(' + ingredients + ')');
         var i=0;
         selectedIngredient.each(function (index, param) {
             var arr =
@@ -154,11 +185,11 @@
             jsonArray.push(arr);
             i++;
         })
-        ingredient =JSON.stringify(jsonArray);
+        ingredients = JSON.stringify(jsonArray);
 
-        var selectedBurdening = $("#burdening").find("option:selected");//选择的辅料
-        var burdening ="[]";//json存储辅料
-        var jsonArray2 = eval('('+burdening+')');
+        var selectedBurdening = $("#burdenings").find("option:selected");//选择的辅料
+        var burdenings = "[]";//json存储辅料
+        var jsonArray2 = eval('(' + burdenings + ')');
         var j=0;//选择的辅料下标
         selectedBurdening.each(function (index, param) {
             var arr =
@@ -170,7 +201,7 @@
             jsonArray2.push(arr);
             i++;
         })
-        burdening =JSON.stringify(jsonArray2);
+        burdenings = JSON.stringify(jsonArray2);
 
         $.ajax({
                     url: "${ctx}/recipe/saveMenu",
@@ -178,8 +209,8 @@
                         name:title,
                         intro:intro,
                         tags:tags,
-                        ingredient:ingredient,
-                        burdening:burdening
+                        ingredient: ingredients,
+                        burdening: burdenings
                     },
             success: function (value) {
                 if("保存成功" == value){
@@ -190,10 +221,6 @@
                 }
             }
         });
-
-
-
-
     });
 
 </script>

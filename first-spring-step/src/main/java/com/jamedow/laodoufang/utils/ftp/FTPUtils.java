@@ -193,7 +193,7 @@ public class FTPUtils {
     }
 
     //创建多层目录文件，如果有ftp服务器已存在该文件，则不创建，如果无，则创建
-    public boolean CreateDirectory(FTPClient ftpClient, String remote) throws IOException {
+    private boolean CreateDirectory(FTPClient ftpClient, String remote) throws IOException {
         boolean success = true;
         String directory = remote + "/";
 //        String directory = remote.substring(0, remote.lastIndexOf("/") + 1);
@@ -237,7 +237,7 @@ public class FTPUtils {
     }
 
     //判断ftp服务器文件是否存在
-    public boolean existFile(FTPClient ftpClient, String path) throws IOException {
+    private boolean existFile(FTPClient ftpClient, String path) throws IOException {
         boolean flag = false;
         FTPFile[] ftpFileArr = ftpClient.listFiles(path);
         if (ftpFileArr.length > 0) {
@@ -248,7 +248,7 @@ public class FTPUtils {
 
 
     //创建目录
-    public boolean makeDirectory(FTPClient ftpClient, String dir) {
+    private boolean makeDirectory(FTPClient ftpClient, String dir) {
         boolean flag = true;
         try {
             flag = ftpClient.makeDirectory(dir);
@@ -265,7 +265,7 @@ public class FTPUtils {
     }
 
     //改变目录路径
-    public boolean changeWorkingDirectory(FTPClient ftpClient, String directory) {
+    private boolean changeWorkingDirectory(FTPClient ftpClient, String directory) {
         boolean flag = true;
         try {
             flag = ftpClient.changeWorkingDirectory(directory);

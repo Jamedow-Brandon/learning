@@ -4,6 +4,7 @@ import com.jamedow.laodoufang.entity.BaseAttachment;
 import com.jamedow.laodoufang.service.BaseAttachmentService;
 import com.jamedow.laodoufang.utils.FileLocationAttribute;
 import com.jamedow.laodoufang.utils.ftp.FTPUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class CommonController {
      */
     @RequestMapping(value = "/addSection", method = {RequestMethod.POST})
     @ResponseBody
-    public String addSection(@RequestParam(value = "upload", required = false) MultipartFile file, String resourceType) {
+    public String addSection(@RequestParam(value = "file", required = false) MultipartFile file, String resourceType) {
         List<BaseAttachment> attachments = new ArrayList<>();
         logger.debug("==addSection==start=======");
         String remotePath = "";
@@ -58,14 +59,16 @@ public class CommonController {
             if (fileSize > MAX_SIZE_OF_UPLOAD_FILE) {
                 return "MAX_SIZE";
             }
+            //根据resourceType计算ftp存放路径
+            String dirPath = "media/" + StringUtils.join(resourceType.split("_"), "/");
             attachment.setName(file.getOriginalFilename());
             attachment.setResourceType(resourceType);
-            attachment.setSize(fileSize);
-            attachment.setSuffix(fileLocationAttribute.getSuffix());
+            attachment.setSize(fileSize);//图片大小
+            attachment.setSuffix(fileLocationAttribute.getSuffix());//文件后缀
             remotePath = ftpUtils.uploadFile(fileLocationAttribute
-                    .getStoreLocation().getPath(), "media/recipe/detail", file.getOriginalFilename());
+                    .getStoreLocation().getPath(), dirPath, file.getOriginalFilename());
             attachment.setRemotePath(remotePath);
-
+            attachmentService.saveBaseAttachment(attachment);
             attachments.add(attachment);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
