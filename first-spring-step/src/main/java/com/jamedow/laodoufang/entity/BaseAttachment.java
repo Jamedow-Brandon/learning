@@ -3,7 +3,7 @@ package com.jamedow.laodoufang.entity;
 public class BaseAttachment {
     private Integer id;
 
-    private Long resourceId;
+    private Integer resourceId;
 
     private String resourceType;
 
@@ -31,11 +31,11 @@ public class BaseAttachment {
         this.id = id;
     }
 
-    public Long getResourceId() {
+    public Integer getResourceId() {
         return resourceId;
     }
 
-    public void setResourceId(Long resourceId) {
+    public void setResourceId(Integer resourceId) {
         this.resourceId = resourceId;
     }
 

@@ -518,6 +518,11 @@
 
         };
 
+        uploader.onUploadSuccess = function (file, response) {
+            var imgUrl = response._raw;
+            $("#imgUrl").val(imgUrl);
+        }
+
         uploader.on('all', function (type) {
             var stats;
             switch (type) {

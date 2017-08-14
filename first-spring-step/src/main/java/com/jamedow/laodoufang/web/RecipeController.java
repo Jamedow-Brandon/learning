@@ -48,7 +48,7 @@ public class RecipeController {
     @RequestMapping(value = "add")
     public ModelAndView detail(HttpSession session, Integer recipeId) {
         ModelAndView view = new ModelAndView();
-        view.setViewName("recipe/recipeEdit");
+        view.setViewName("recipe/add");
         Users users = (Users) session.getAttribute("user");
         if (users == null) {
             view.setViewName("redirect:/user/login");
@@ -92,14 +92,12 @@ public class RecipeController {
 
     @RequestMapping("/saveMenu")
     @ResponseBody
-    public String saveMenu(HttpSession session, String name, String intro, String tags, String ingredient, String burdening) {
-
-
+    public Object saveMenu(HttpSession session, Recipe recipe) {
         Users user = (Users) session.getAttribute("user");
         if (null != user) {
-
-            return recipeService.saveRecipeAndRel(user, name, intro, tags, ingredient, burdening);
+            recipe.setUserId(user.getId());
+            return recipeService.saveRecipe(recipe);
         }
-        return null;
+        return 0;
     }
 }

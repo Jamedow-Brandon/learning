@@ -54,11 +54,7 @@ table {
 
 /* ------------ */
 #wrapper {
-    width: 980px;
-    margin: 0 auto;
-
-    margin: 1em;
-    width: auto;
+    width: 450px;
 }
 
 #container {

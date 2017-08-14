@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <input id="imgUrl" name="imgUrl" type="hidden"/>
         <div class="form-group">
             <label for="title">菜名：</label>
             <input id="title" type="text" class="form-control" placeholder="请输入菜名" maxlength="20"/>
@@ -57,7 +58,7 @@
         </div>
         <div class="form-group">
             <label>标签：</label>
-            <select id = "tags" class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择标签">
+            <select id="tags" class="js-example-basic-multiple form-control" multiple="multiple" placeholder="请选择标签">
                 <c:forEach items="${tags}" var="tag">
                     <option value="${tag.id}">${tag.name}</option>
                 </c:forEach>
@@ -97,7 +98,7 @@
             This is my textarea to be replaced with CKEditor.
         </textarea>
         </div>
-        <label id = "submit">提交</label>
+        <label id="submit">提交</label>
     </form>
 </div>
 
@@ -106,7 +107,7 @@
 <script type="text/html" id="paramTemplate">
     <div>
         <span class="col-sm-1 control-label ">{{name}}：</span><input type="text" class="form-control cm-xl-1 weight"
-                                                                    tagId="{{value}}"/>
+                                                                     tagId="{{value}}"/>
     </div>
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
@@ -114,7 +115,7 @@
 <script type="application/javascript" src="${ctx}/static/select2/dist/js/select2.js"></script>
 <script type="application/javascript" src="${ctx}/static/webuploader/dist/webuploader.js"></script>
 <script type="application/javascript" src="${ctx}/static/webuploader/examples/image-upload/upload.js"></script>
-<script src = "${ctx}/static/layer/layer.js"></script>
+<script type="application/javascript" src="${ctx}/static/layer/layer.js"></script>
 <script type="application/javascript">
     CKEDITOR.replace('detail');
 
@@ -129,59 +130,59 @@
             paramHtml += template("paramTemplate", {name: param.text, value: param.value});
         });
         $select.parent().find(".params").html(paramHtml);
-    })
+    });
 
-    $("#submit").click(function(){
+    $("#submit").click(function () {
 
         var title = $("#title").val();
-        if(title == ""){
+        if (title == "") {
             layer.msg("请输入菜名");
-            return ;
+            return;
         }
 
         var intro = $("#intro").val();
-        if(intro == ""){
+        if (intro == "") {
             layer.msg("请输入简介");
-            return ;
+            return;
         }
 
         var tags = "[]";//标签
         var selectedTags = $("#tags").find("option:selected");
-        if(selectedTags.length == 0){
+        if (selectedTags.length == 0) {
             layer.msg("请选择至少一个标签");
-            return ;
+            return;
         }
-        var jsonArray3 = eval('('+tags+')');
+        var jsonArray3 = eval('(' + tags + ')');
         var m = 0;
         selectedTags.each(function (index, param) {
             var arr =
-            {
-                "id" : selectedTags[m].value,
-                "name" :  param.text,
-            }
+                {
+                    "id": selectedTags[m].value,
+                    "name": param.text,
+                }
             jsonArray3.push(arr);
             m++;
         })
-        tags =JSON.stringify(jsonArray3);
+        tags = JSON.stringify(jsonArray3);
 
 
         var selectedIngredient = $("#ingredients").find("option:selected");//主料
         var weight = $(".weight");//分量
-        if(selectedIngredient.length == 0){
+        if (selectedIngredient.length == 0) {
             layer.msg("请选择至少一个主料");
-            return ;
+            return;
         }
 
         var ingredients = "[]";//json存储主料
         var jsonArray = eval('(' + ingredients + ')');
-        var i=0;
+        var i = 0;
         selectedIngredient.each(function (index, param) {
             var arr =
-            {
-                "id" : selectedIngredient[i].value,
-                "name" :  param.text,
-                "weight":weight[i].value
-            }
+                {
+                    "id": selectedIngredient[i].value,
+                    "name": param.text,
+                    "weight": weight[i].value
+                }
             jsonArray.push(arr);
             i++;
         })
@@ -190,33 +191,33 @@
         var selectedBurdening = $("#burdenings").find("option:selected");//选择的辅料
         var burdenings = "[]";//json存储辅料
         var jsonArray2 = eval('(' + burdenings + ')');
-        var j=0;//选择的辅料下标
+        var j = 0;//选择的辅料下标
         selectedBurdening.each(function (index, param) {
             var arr =
-            {
-                "id" : selectedBurdening[j].value,
-                "name" :  param.text,
-                "weight":weight[i].value
-            }
+                {
+                    "id": selectedBurdening[j].value,
+                    "name": param.text,
+                    "weight": weight[i].value
+                }
             jsonArray2.push(arr);
             i++;
         })
         burdenings = JSON.stringify(jsonArray2);
 
         $.ajax({
-                    url: "${ctx}/recipe/saveMenu",
-                    data: {
-                        name:title,
-                        intro:intro,
-                        tags:tags,
-                        ingredient: ingredients,
-                        burdening: burdenings
-                    },
+            url: "${ctx}/recipe/saveMenu",
+            data: {
+                name: title,
+                intro: intro,
+                tags: tags,
+                ingredient: ingredients,
+                burdening: burdenings
+            },
             success: function (value) {
-                if("保存成功" == value){
+                if (1 == value) {
                     layer.msg("保存成功");
                     //成功跳转
-                }else{
+                } else {
                     layer.msg("保存失败");
                 }
             }

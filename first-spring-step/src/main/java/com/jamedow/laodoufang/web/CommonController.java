@@ -5,7 +5,6 @@ import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.BaseAttachmentService;
 import com.jamedow.laodoufang.utils.FileLocationAttribute;
 import com.jamedow.laodoufang.utils.ftp.FTPUtils;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class CommonController {
      */
     @RequestMapping(value = "/addSection", method = {RequestMethod.POST})
     @ResponseBody
-    public String addSection(HttpSession session, @RequestParam(value = "file", required = false) MultipartFile file, String resourceType) {
+    public String addSection(HttpSession session, @RequestParam(value = "file", required = false) MultipartFile file) {
         Users users = (Users) session.getAttribute("user");
         if (users == null) {
             return "UN_LOGIN";
@@ -66,10 +65,9 @@ public class CommonController {
                 return "MAX_SIZE";
             }
             //根据resourceType计算ftp存放路径
-            String dirPath = "media/" + StringUtils.join(resourceType.split("_"), "/");
-            attachment.setResourceId(Long.valueOf(users.getMobile()));
+            String dirPath = "media/user/" + users.getId();
+            attachment.setResourceId(users.getId());
             attachment.setName(file.getOriginalFilename());
-            attachment.setResourceType(resourceType);
             attachment.setSize(fileSize);//图片大小
             attachment.setSuffix(fileLocationAttribute.getSuffix());//文件后缀
             remotePath = ftpUtils.uploadFile(fileLocationAttribute
