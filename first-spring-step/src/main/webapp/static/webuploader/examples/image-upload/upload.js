@@ -151,7 +151,7 @@
             swf: '../../dist/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '../../server/fileupload.php',
+            server: ctx + '/common/addSection?resourceType=recipe_main',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -517,6 +517,11 @@
             updateTotalProgress();
 
         };
+
+        uploader.onUploadSuccess = function (file, response) {
+            var imgUrl = response._raw;
+            $("#imgUrl").val(imgUrl);
+        }
 
         uploader.on('all', function (type) {
             var stats;

@@ -25,7 +25,7 @@ public class DomainFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         logger.debug("request url :[{}]", request.getRequestURL());
-        if (!request.getRequestURL().toString().contains("www.laodou.site") && !request.getRequestURL().toString().contains("localhost")) {
+        if (!request.getRequestURL().toString().contains("www.laodou.site") && !request.getRequestURL().toString().contains("127.0.0.1")) {
             ((HttpServletResponse) servletResponse).sendError(404, "对不起，您访问的页面不存在");
             return;
         }
