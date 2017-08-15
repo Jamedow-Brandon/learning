@@ -3,9 +3,8 @@ package com.jamedow.laodoufang.service.impl;
 import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.RecipeExample;
 import com.jamedow.laodoufang.mapper.RecipeMapper;
+import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
-import com.jamedow.laodoufang.utils.es.EsClient;
-import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
-
 /**
  * Created by ydy on 2017/2/15.
  */
@@ -25,6 +22,8 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 public class RecipeServiceImpl implements RecipeService {
     private Logger logger = LoggerFactory.getLogger(RecipeServiceImpl.class);
 
+    @Autowired
+    private ElasticSearchService esService;
     @Autowired
     private RecipeMapper recipeMapper;
 
@@ -50,34 +49,8 @@ public class RecipeServiceImpl implements RecipeService {
         recipe.setIsOfficial("0");
         recipe.setCreateTime(new Date());
         int result = recipeMapper.insert(recipe);
-        createRecipeDocument(recipe);
+        esService.insertRecipeToEs(recipe);
         return result;
-    }
-
-    private void createRecipeDocument(Recipe recipe) {
-        try {
-            XContentBuilder builder = jsonBuilder()
-                    .startObject()
-                    .field("id", recipe.getId())
-                    .field("name", recipe.getName())
-                    .field("intro", recipe.getIntro())
-                    .field("createTime", recipe.getCreateTime())
-                    .field("linkUrl", recipe.getLinkUrl())
-                    .field("imgUrl", recipe.getImgUrl())
-                    .field("tags", recipe.getTags())
-                    .field("voteUp", recipe.getVoteUp())
-                    .field("voteDown", recipe.getVoteDown())
-                    .field("isOfficial", recipe.getIsOfficial())
-                    .field("userId", recipe.getUserId())
-                    .field("trafficVolume", recipe.getTrafficVolume())
-                    .field("ingredient", recipe.getIngredient())
-                    .field("burdening", recipe.getBurdening())
-                    .endObject();
-
-            EsClient.createDocument("laodoufang", "recipe", builder);
-        } catch (Exception e) {
-            logger.error("新建食谱文档失败{}", recipe.getId(), e.getMessage(), e);
-        }
     }
 
     @Override

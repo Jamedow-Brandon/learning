@@ -1,8 +1,8 @@
 package com.jamedow.laodoufang.service;
 
+import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.Recipe;
-
-import java.io.IOException;
+import org.elasticsearch.search.SearchHit;
 
 /**
  * Description
@@ -12,9 +12,9 @@ import java.io.IOException;
 public interface ElasticSearchService {
 
 
-    void search(String content, int page, int pageSize);
+    SearchHit[] search(String content, Page page);
 
-    void insertRecipeToEs(Recipe recipe) throws IOException;
+    void insertRecipeToEs(Recipe recipe);
 
     void initRecipes();
 }

@@ -1,12 +1,15 @@
 package com.jamedow.laodoufang.web;
 
+import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.Tags;
 import com.jamedow.laodoufang.entity.Users;
-import com.jamedow.laodoufang.service.CategoryService;
+import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.service.TagsService;
 import net.sf.json.JSONArray;
+import org.apache.commons.lang.StringUtils;
+import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -27,7 +31,7 @@ public class RecipeController {
     private static final Logger logger = LoggerFactory.getLogger(RecipeController.class);
 
     @Autowired
-    private CategoryService categoryService;
+    private ElasticSearchService esService;
     @Autowired
     private RecipeService recipeService;
     @Autowired
@@ -35,12 +39,20 @@ public class RecipeController {
 
 
     @RequestMapping(value = "list")
-    public ModelAndView list() {
+    public ModelAndView list(HttpServletRequest request) {
         ModelAndView view = new ModelAndView();
         view.setViewName("recipe/list");
 
-        List<Tags> tags = tagsService.getTagsByParentId(0);
+        String searchKeyWord = request.getParameter("searchKeyWord");
+        Integer currentPage = Integer.valueOf(request.getParameter("currentPage") == null ? "0" : request.getParameter("currentPage"));
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        if (StringUtils.isNotBlank(searchKeyWord)) {
+            SearchHit[] hits = esService.search(searchKeyWord, page);
+            view.addObject("hits", JSONArray.fromObject(hits));
+        }
 
+        List<Tags> tags = tagsService.getTagsByParentId(0);
         view.addObject("tags", JSONArray.fromObject(tags));
         return view;
     }
