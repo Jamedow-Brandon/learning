@@ -34,6 +34,17 @@
         </div>
         <div class="sort-by"></div>
     </div>
+    <div class="search-hits">
+        <c:forEach items="${hits}" var="hit">
+            <div class="recipe">
+                <h3>${hit.sourceAsString.name}</h3>
+                <div class="recipe-intro">
+                    <img src="${hit.sourceAsString.imgUrl}"/>
+                    <p>${hit.sourceAsString.intro}</p>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
 </div>
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
@@ -46,7 +57,15 @@
     <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
 </script>
 <script type="text/html" id="recipeTemplate">
-
+    {{each hits as hit}}
+    <div class="recipe">
+        <h3>{{hit.sourceAsString.name}}</h3>
+        <div class="recipe-intro">
+            <img src="{{hit.sourceAsString.imgUrl}}"/>
+            <p>{{hit.sourceAsString.intro}}</p>
+        </div>
+    </div>
+    {{/each}}
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script type="application/javascript">

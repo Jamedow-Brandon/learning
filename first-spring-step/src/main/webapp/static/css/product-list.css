@@ -122,3 +122,40 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
     cursor: pointer;
 }
+
+.recipe {
+    height: 15rem;
+    width: 35rem;
+    margin: 1rem;
+    border: 1px solid black;
+    float: left;
+}
+
+.recipe h3 {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.recipe-intro {
+    margin: 0.5rem;
+}
+
+.recipe-intro img {
+    width: 12rem;
+    height: 12rem;
+    border: 1px solid black;
+    float: left;
+}
+
+.recipe-intro p {
+    width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    margin: 0.5rem;
+    text-indent: 2rem;
+    float: left;
+}
