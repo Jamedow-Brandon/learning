@@ -190,6 +190,7 @@
 
         var selectedBurdening = $("#burdenings").find("option:selected");//选择的辅料
         var burdenings = "[]";//json存储辅料
+        var imgUrl = $("#imgUrl").val();//json存储辅料
         var jsonArray2 = eval('(' + burdenings + ')');
         var j = 0;//选择的辅料下标
         selectedBurdening.each(function (index, param) {
@@ -211,7 +212,8 @@
                 intro: intro,
                 tags: tags,
                 ingredient: ingredients,
-                burdening: burdenings
+                burdening: burdenings,
+                imgUrl: imgUrl
             },
             success: function (value) {
                 if (1 == value) {
