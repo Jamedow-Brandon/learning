@@ -35,34 +35,28 @@
         <div class="sort-by"></div>
     </div>
     <div class="recipe-list">
-        <div class="recipe">
-            <h3>砂锅土豆粉砂锅<span style="color:#538870">土豆</span>粉砂锅土豆粉土豆粉图图</h3>
-            <img class="img-thumbnail"
-                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502459540&di=2b3fcce54cdeb2501e518df373c9b76e&imgtype=jpg&er=1&src=http%3A%2F%2Fimg-cdn.hopetrip.com.hk%2Fnews3%2FBFCBDE849E081BAE%2F9%2F9261D386A8BB9ED0CE4E.jpg"/>
-            <p>砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃</p>
-        </div>
-        <div class="recipe">
-            <h3>砂锅土豆粉砂锅土豆粉砂锅土豆粉土豆粉图图</h3>
-            <img class="img-thumbnail"
-                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502459540&di=2b3fcce54cdeb2501e518df373c9b76e&imgtype=jpg&er=1&src=http%3A%2F%2Fimg-cdn.hopetrip.com.hk%2Fnews3%2FBFCBDE849E081BAE%2F9%2F9261D386A8BB9ED0CE4E.jpg"/>
-            <p>砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃</p>
-        </div>
-        <div class="recipe">
-            <h3>砂锅土豆粉砂锅土豆粉砂锅土豆粉土豆粉图图</h3>
-            <img class="img-thumbnail"
-                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502459540&di=2b3fcce54cdeb2501e518df373c9b76e&imgtype=jpg&er=1&src=http%3A%2F%2Fimg-cdn.hopetrip.com.hk%2Fnews3%2FBFCBDE849E081BAE%2F9%2F9261D386A8BB9ED0CE4E.jpg"/>
-            <p>砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃</p>
-        </div>
-        <div class="recipe">
-            <h3>砂锅土豆粉砂锅土豆粉砂锅土豆粉土豆粉图图</h3>
-            <img class="img-thumbnail"
-                 src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1502459540&di=2b3fcce54cdeb2501e518df373c9b76e&imgtype=jpg&er=1&src=http%3A%2F%2Fimg-cdn.hopetrip.com.hk%2Fnews3%2FBFCBDE849E081BAE%2F9%2F9261D386A8BB9ED0CE4E.jpg"/>
-            <p>砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃砂锅土豆粉很好吃</p>
-        </div>
+        <c:forEach items="${hits}" var="hit">
+            <div class="recipe">
+                <h3>${hit.sourceAsMap.name}</h3>
+                <img class="img-thumbnail"
+                     src="${hit.sourceAsMap.imgUrl}"/>
+                <p>${hit.sourceAsMap.intro}</p>
+            </div>
+        </c:forEach>
     </div>
 </div>
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
+<script type="text/html" id="recipeTemplate">
+    {{each hits as hit}}
+    <div class="recipe">
+        <h3>{{hit.sourceAsMap.name}}</h3>
+        <img class="img-thumbnail"
+             src="{{hit.sourceAsMap.imgUrl}}"/>
+        <p>{{hit.sourceAsMap.intro}}</p>
+    </div>
+    {{/each}}
+</script>
 <script type="text/html" id="tagsTemplate">
     {{each tags as tag}}
     <li tagId="{{tag.id}}" isLeaf="{{tag.isLeaf}}">{{tag.name}}</li>

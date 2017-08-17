@@ -49,7 +49,7 @@ public class RecipeController {
         page.setCurrentPage(currentPage);
         if (StringUtils.isNotBlank(searchKeyWord)) {
             SearchHit[] hits = esService.search(searchKeyWord, page);
-            view.addObject("hits", JSONArray.fromObject(hits));
+            view.addObject("hits", hits);
         }
 
         List<Tags> tags = tagsService.getTagsByParentId(0);
