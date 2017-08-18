@@ -123,39 +123,33 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
+.recipe-list {
+    height: 60rem;
+    margin: 0 1rem;
+}
+
 .recipe {
-    height: 15rem;
     width: 35rem;
-    margin: 1rem;
-    border: 1px solid black;
+    height: 18rem;
+    margin: 0.5rem;
+    border: 3px solid #fdecd0;
+    float: left;
+}
+
+.recipe img {
+    height: 13rem;
+    margin: 0 1rem 1rem 1rem;
     float: left;
 }
 
 .recipe h3 {
+    width: 33rem;
+    margin: 1rem;
     text-align: center;
-    margin: 0.5rem;
-    font-size: 1.3rem;
+    color: #91bfbf;
 }
 
-.recipe-intro {
-    margin: 0.5rem;
-}
-
-.recipe-intro img {
-    width: 12rem;
-    height: 12rem;
-    border: 1px solid black;
-    float: left;
-}
-
-.recipe-intro p {
-    width: 20rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 8;
-    -webkit-box-orient: vertical;
-    margin: 0.5rem;
+.recipe p {
     text-indent: 2rem;
-    float: left;
+    margin: 2rem 0;
 }
