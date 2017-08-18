@@ -4,7 +4,7 @@ import com.jamedow.laodoufang.entity.Category;
 import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CategoryService;
 import com.jamedow.laodoufang.service.UsersService;
-import com.jamedow.laodoufang.utils.redis.RedisPoolManager;
+import com.jamedow.laodoufang.utils.redis.RedisUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class IndexController {
     @Autowired
     private CategoryService categoryService;
     @Autowired
-    private RedisPoolManager redis;
+    private RedisUtils redis;
 
     @RequestMapping(value = "")
     public ModelAndView index() {
