@@ -138,6 +138,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .recipe img {
     height: 13rem;
+    width: 13rem;
     margin: 0 1rem 1rem 1rem;
     float: left;
 }

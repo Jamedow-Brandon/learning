@@ -57,6 +57,25 @@ public class RecipeController {
         return view;
     }
 
+    @RequestMapping(value = "detail")
+    public ModelAndView detail(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("recipe/detail");
+
+        String searchKeyWord = request.getParameter("searchKeyWord");
+        Integer currentPage = Integer.valueOf(request.getParameter("currentPage") == null ? "0" : request.getParameter("currentPage"));
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        if (StringUtils.isNotBlank(searchKeyWord)) {
+            SearchHit[] hits = esService.search(searchKeyWord, page);
+            view.addObject("hits", hits);
+        }
+
+        List<Tags> tags = tagsService.getTagsByParentId(0);
+        view.addObject("tags", JSONArray.fromObject(tags));
+        return view;
+    }
+
     @RequestMapping(value = "add")
     public ModelAndView detail(HttpSession session, Integer recipeId) {
         ModelAndView view = new ModelAndView();

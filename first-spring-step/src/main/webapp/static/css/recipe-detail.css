@@ -1,0 +1,51 @@
+html, body, h1, span, div {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: #292a30;
+    font-size: 100%;
+}
+
+.detail {
+    margin: 0.5rem;
+    padding: 1rem;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.recipe-header {
+    height: 40rem;
+}
+
+.recipe-header .images {
+    float: left;
+}
+
+.recipe-header .params {
+    float: left;
+}
+
+.recipe-header .params h2 {
+    width: 45rem;
+    margin: 0 2rem;
+    text-align: center;
+}
+
+.recipe-left {
+    width: 25rem;
+    float: left;
+}
+
+.recipe-content {
+    width: 50rem;
+    float: left
+}
+
+.recipe-material .intro {
+    text-indent: 2rem;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+}
