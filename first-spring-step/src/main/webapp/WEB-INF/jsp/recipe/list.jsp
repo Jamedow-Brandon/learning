@@ -92,8 +92,6 @@
                 if (!checkTags($param.attr("tagId"))) {
                     return false;
                 }
-                console.log(!checkTags($param.attr("tagId")))
-
                 var tagsHtml = template('pitchTemplate',
                     {
                         id: $param.attr("tagId"),
@@ -103,6 +101,26 @@
                 $(".pitch-on ul li span").off();
                 $(".pitch-on ul li span").on("click", function () {
                     $(this).parents("li").remove();
+                });
+
+                var keyword = $("#keyword").val();
+                var tagIds = [];
+                var $patches = $(".pitch-on li");
+                $patches.each(function (n, patch) {
+                    var tagId = $(patch).attr("tagId");
+                    tagIds.push(tagId)
+                });
+
+                $.ajax({
+                    url: "",
+                    method: "get",
+                    data: {
+                        keyword: keyword,
+                        tagIds: tagIds.join(",")
+                    },
+                    success: function () {
+
+                    }
                 })
 
             }
