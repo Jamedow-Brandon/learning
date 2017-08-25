@@ -12,7 +12,7 @@
 <head>
     <%@include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${ctx}/static/css/recipe-detail.css"/>
-    <title>老豆坊</title>
+    <title>${recipe.name}</title>
 </head>
 <body>
 <%@include file="../common/site-nav.jsp" %>
@@ -20,10 +20,10 @@
 <div class="container">
     <div class="detail recipe-header">
         <div class="images">
-            <img class="img-thumbnail" src="http://site.meishij.net/r/32/219/3992282/s3992282_148422446998075.jpg"/>
+            <img class="img-thumbnail" src="${recipe.imgUrl}"/>
         </div>
         <div class="params">
-            <h2>皮蛋瘦肉粥</h2>
+            <h2>${recipe.name}</h2>
 
         </div>
     </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="recipe-content">
         <div class="detail recipe-material">
-            <div class="intro">皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥皮蛋瘦肉粥</div>
+            <div class="intro">${recipe.intro}</div>
             <div class="material"></div>
         </div>
         <div class="detail recipe-detail">
@@ -42,7 +42,7 @@
                     <li>评论</li>
                 </ul>
             </div>
-            <div class="detail"></div>
+            <div class="detail">${recipe.detail}</div>
             <div class="comments">
                 <div class="comment">
                     <div>
