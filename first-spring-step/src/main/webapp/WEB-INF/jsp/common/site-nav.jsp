@@ -47,7 +47,7 @@
         <ul>
             <li>首页</li>
             <li>食谱零食</li>
-            <li>零食</li>
+            <li onclick="window.open('${ctx}/snack')">零食</li>
             <li>零食零食</li>
             <li>零食</li>
         </ul>
