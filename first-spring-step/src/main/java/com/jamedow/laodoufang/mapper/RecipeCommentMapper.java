@@ -3,9 +3,11 @@ package com.jamedow.laodoufang.mapper;
 import com.jamedow.laodoufang.entity.RecipeComment;
 import com.jamedow.laodoufang.entity.RecipeCommentExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface RecipeCommentMapper {
     long countByExample(RecipeCommentExample example);
 
