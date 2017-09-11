@@ -27,10 +27,23 @@ public class CommentController {
      *
      * @param id 评论id
      */
+    @RequestMapping(value = "/recipeComment/comments/{recipeId}", method = {RequestMethod.GET})
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object getComment(@PathVariable(value = "recipeId") Integer recipeId) {
+        return commentService.getRecipeComments(recipeId);
+    }
+
+    /**
+     * 功能描述: <br>
+     * 删除评论
+     *
+     * @param id 评论id
+     */
     @RequestMapping(value = "/recipeComment/delete/{id}", method = {RequestMethod.DELETE})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Object deleteAttachment(@PathVariable(value = "id") Integer id) {
+    public Object deleteRecipeCommentById(@PathVariable(value = "id") Integer id) {
         return commentService.deleteRecipeCommentById(id);
     }
 }
