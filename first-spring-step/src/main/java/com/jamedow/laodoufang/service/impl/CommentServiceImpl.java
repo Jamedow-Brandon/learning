@@ -1,5 +1,6 @@
 package com.jamedow.laodoufang.service.impl;
 
+import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.RecipeComment;
 import com.jamedow.laodoufang.entity.RecipeCommentExample;
 import com.jamedow.laodoufang.mapper.RecipeCommentMapper;
@@ -22,11 +23,12 @@ public class CommentServiceImpl implements CommentService {
     private RecipeCommentMapper recipeCommentMapper;
 
     @Override
-    public List<RecipeComment> getRecipeComments(Integer recipeId) {
+    public List<RecipeComment> getRecipeComments(Integer recipeId, Page page) {
         RecipeCommentExample example = new RecipeCommentExample();
         example.createCriteria().andRecipeIdEqualTo(recipeId);
-        example.setOrderByClause("vote_up desc,create_time desc");
-        return recipeCommentMapper.selectByExample(example);
+        example.setOrderByClause("rc.is_picked desc,rc.vote_up desc,rc.create_time desc");
+        example.setPaging(page);
+        return recipeCommentMapper.getCommentsByRecipeId(example);
     }
 
     @Override

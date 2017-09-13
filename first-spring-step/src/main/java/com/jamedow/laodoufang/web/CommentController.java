@@ -1,5 +1,6 @@
 package com.jamedow.laodoufang.web;
 
+import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,11 +28,11 @@ public class CommentController {
      *
      * @param id 评论id
      */
-    @RequestMapping(value = "/recipeComment/comments/{recipeId}", method = {RequestMethod.GET})
+    @RequestMapping(value = "/recipeComment/comments", method = {RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Object getComment(@PathVariable(value = "recipeId") Integer recipeId) {
-        return commentService.getRecipeComments(recipeId);
+    public Object getComment(Integer recipeId, Page page) {
+        return commentService.getRecipeComments(recipeId, page);
     }
 
     /**

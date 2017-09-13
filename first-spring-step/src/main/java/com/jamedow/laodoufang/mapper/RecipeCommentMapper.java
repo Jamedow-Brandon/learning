@@ -21,6 +21,8 @@ public interface RecipeCommentMapper {
 
     List<RecipeComment> selectByExample(RecipeCommentExample example);
 
+    List<RecipeComment> getCommentsByRecipeId(RecipeCommentExample example);
+
     RecipeComment selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") RecipeComment record, @Param("example") RecipeCommentExample example);

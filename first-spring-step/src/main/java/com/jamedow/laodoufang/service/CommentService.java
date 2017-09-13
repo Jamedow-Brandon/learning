@@ -1,5 +1,6 @@
 package com.jamedow.laodoufang.service;
 
+import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.RecipeComment;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  */
 
 public interface CommentService {
-    List<RecipeComment> getRecipeComments(Integer recipeId);
+    List<RecipeComment> getRecipeComments(Integer recipeId, Page page);
 
     int deleteRecipeCommentById(Integer id);
 }

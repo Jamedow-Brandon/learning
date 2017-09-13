@@ -38,32 +38,51 @@
         <div class="detail recipe-detail">
             <div class="tables">
                 <ul>
-                    <li>详情</li>
-                    <li>评论</li>
+                    <li id="detail">详情</li>
+                    <li id="comments">评论</li>
                 </ul>
             </div>
-            <div class="detail">${recipe.detail}</div>
-            <div class="comments">
-                <div class="comment">
-                    <div>
-                        <img/>
-                        <p></p>
-                    </div>
-                    <div>
-                        <p></p>
-                        <p></p>
-                    </div>
-                    <div>
-                        <span></span>
-                        <a></a>
-                    </div>
-                </div>
-            </div>
+            <div class="tables-child detail">${recipe.detail}</div>
+            <div class="tables-child comments"></div>
         </div>
     </div>
 </div>
 
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
+<script type="text/html" id="commentsTemplate">
+    <div class="comment">
+        {{each comments as comment}}
+        <div>
+            <img src="{{comment.userImage}}"/>
+            <b>{{comment.userName}}</b>
+            <p>{{comment.content}}</p>
+        </div>
+        {{/each}}
+    </div>
+</script>
+<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script>
+    var recipeId = '${recipe.id}';
+    $(function () {
+        $(".tables li").on("click", function () {
+            var tableId = $(this).attr("id");
+            $(".tables-child").hide();
+            $("." + tableId).show();
+        });
+
+        $.ajax({
+            url: "${ctx}/comment/recipeComment/comments",
+            method: "get",
+            data: {
+                recipeId: recipeId
+            },
+            success: function (comments) {
+                var commentsHtml = template('commentsTemplate', {comments: comments});
+                $(".comments").html(commentsHtml);
+            }
+        });
+    });
+</script>
 </body>
 </html>

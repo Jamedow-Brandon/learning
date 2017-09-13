@@ -74,3 +74,7 @@ html, body {
     border: 1px solid black;
     border-radius: 0 15px 0 0;
 }
+
+.recipe-content .recipe-detail .comments {
+    display: none;
+}
