@@ -1,10 +1,13 @@
 package com.jamedow.laodoufang.web;
 
+import cn.edu.hfut.dmic.webcollector.model.CrawlDatum;
 import com.jamedow.laodoufang.entity.Category;
 import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CategoryService;
 import com.jamedow.laodoufang.service.UsersService;
+import com.jamedow.laodoufang.utils.rabbitmq.RabbitMQUtils;
 import com.jamedow.laodoufang.utils.redis.RedisUtils;
+import com.jamedow.laodoufang.utils.webcollector.BingCrawler;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 365 on 2016/12/9 0009.
@@ -56,21 +60,21 @@ public class IndexController {
         view.setViewName("hello");
 
         try {
-//            String keyword = "公司";
-//            int maxPageNum = 3;
-//            BingCrawler crawler = new BingCrawler("depth_crawler", false);
-//            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
-//                String url = BingCrawler.createBingUrl(keyword, pageNum);
-//                crawler.addSeed(new CrawlDatum(url)
-//                        .putMetaData("keyword", keyword)
-//                        .putMetaData("pageNum", pageNum + "")
-//                        .putMetaData("pageType", "searchEngine")
-//                        .putMetaData("depth", "1"));
-//            }
-//
-//            crawler.start(maxPageNum);
-//
-//            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
+            String keyword = "公司";
+            int maxPageNum = 3;
+            BingCrawler crawler = new BingCrawler("depth_crawler", false);
+            for (int pageNum = 1; pageNum <= maxPageNum; pageNum++) {
+                String url = BingCrawler.createBingUrl(keyword, pageNum);
+                crawler.addSeed(new CrawlDatum(url)
+                        .putMetaData("keyword", keyword)
+                        .putMetaData("pageNum", pageNum + "")
+                        .putMetaData("pageType", "searchEngine")
+                        .putMetaData("depth", "1"));
+            }
+
+            crawler.start(maxPageNum);
+
+            RabbitMQUtils.consumerMessage(VIRTUAL_HOST, QUEUE);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -88,7 +92,7 @@ public class IndexController {
     public String testO() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("key", "aa");
-        redis.setCacheWithSec("name", "aa", 1000);
+        redis.setCacheWithSec("name", "aa", 1000, TimeUnit.SECONDS);
         String name = redis.getCache("name");
         logger.info("==========test1===========");
         return jsonObject.toString();
