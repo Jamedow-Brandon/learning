@@ -17,6 +17,48 @@ public class RedisUtils {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    /**
+     * 判断该键值是否存在
+     *
+     * @param key 键值
+     * @return true:存在 false:不存在
+     */
+    public Boolean hasKey(String key) {
+        return stringRedisTemplate.hasKey(key);
+    }
+
+    /**
+     * 存储数据
+     *
+     * @param key    键值
+     * @param value  数据
+     * @param expire 时间长度
+     * @param unit   计时刻度
+     */
+    public void setCacheWithSec(String key, String value, long expire, TimeUnit unit) {
+        put(key, key, value);
+        expire(key, expire, unit);
+    }
+
+    /**
+     * 根据键值获取数据
+     *
+     * @param key 键值
+     * @return redis中缓存数据
+     */
+    public String getCache(String key) {
+        return (String) get(key);
+    }
+
+    /**
+     * 根据键值删除数据
+     *
+     * @param key 键值
+     */
+    public void delete(String key) {
+        stringRedisTemplate.delete(key);
+    }
+
     private Boolean expire(String key, final long timeout, final TimeUnit unit) {
         return stringRedisTemplate.expire(key, timeout, unit);
     }
@@ -25,17 +67,7 @@ public class RedisUtils {
         stringRedisTemplate.opsForHash().put(key, hashKey, value);
     }
 
-    private Object get(String key, Object hashKey) {
-        return stringRedisTemplate.opsForHash().get(key, hashKey);
-    }
-
-
-    public void setCacheWithSec(String key, String value, long expire) {
-        put(key, key, value);
-        expire(key, expire, TimeUnit.SECONDS);
-    }
-
-    public String getCache(String key) {
-        return (String) get(key, key);
+    private Object get(String key) {
+        return stringRedisTemplate.opsForValue().get(key);
     }
 }
