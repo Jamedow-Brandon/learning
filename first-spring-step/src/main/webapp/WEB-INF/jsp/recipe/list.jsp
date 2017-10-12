@@ -19,7 +19,7 @@
     <div class="filter-area">
         <div class="pitch-on">
             <ul></ul>
-            <div>只看官方<input type="checkbox"/></div>
+            <div>只看官方<input type="checkbox" id="isOfficial"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
@@ -116,7 +116,8 @@
                     method: "get",
                     data: {
                         keyword: keyword,
-                        tagIds: tagIds.join(",")
+                        isOfficial: $("#isOfficial").val(),
+                        choseTags: tagIds.join(",")
                     },
                     success: function () {
 

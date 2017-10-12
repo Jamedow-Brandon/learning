@@ -33,13 +33,17 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     private RecipeService recipeService;
 
     @Override
-    public SearchHit[] search(String content, Page page) {
+    public SearchHit[] search(String content, String[] tags, String isOfficial, Page page) {
         int from = page.getCurrentPage() * page.getPageSize();
         List<String> keywords = EsClient.analyze(content);
         BoolQueryBuilder bool = QueryBuilders.boolQuery();
         for (String keyword : keywords) {
             bool.should(termQuery("name", keyword));
         }
+        for (String tag : tags) {
+            bool.should(termQuery("tags", tag));
+        }
+        bool.should(termQuery("isOfficial", isOfficial));
         SearchResponse searchResponse = EsClient.search("laodoufang", "recipe", bool, from, page.getPageSize());
         page.setRecords((int) searchResponse.getHits().getTotalHits());
 

@@ -44,11 +44,13 @@ public class RecipeController {
         view.setViewName("recipe/list");
 
         String searchKeyWord = request.getParameter("searchKeyWord");
+        String[] choseTags = request.getParameter("choseTags").split(",");
+        String isOfficial = request.getParameter("isOfficial");
         Integer currentPage = Integer.valueOf(request.getParameter("currentPage") == null ? "0" : request.getParameter("currentPage"));
         Page page = new Page();
         page.setCurrentPage(currentPage);
         if (StringUtils.isNotBlank(searchKeyWord)) {
-            SearchHit[] hits = esService.search(searchKeyWord, page);
+            SearchHit[] hits = esService.search(searchKeyWord, choseTags, isOfficial, page);
             view.addObject("hits", hits);
         }
 

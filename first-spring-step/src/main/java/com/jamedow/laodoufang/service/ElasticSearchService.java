@@ -12,7 +12,7 @@ import org.elasticsearch.search.SearchHit;
 public interface ElasticSearchService {
 
 
-    SearchHit[] search(String content, Page page);
+    SearchHit[] search(String content, String[] tags, String isOfficial, Page page);
 
     void insertRecipeToEs(Recipe recipe);
 
