@@ -40,10 +40,14 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         for (String keyword : keywords) {
             bool.should(termQuery("name", keyword));
         }
-        for (String tag : tags) {
-            bool.should(termQuery("tags", tag));
+        if (tags != null) {
+            for (String tag : tags) {
+                bool.should(termQuery("tags", tag));
+            }
         }
-        bool.should(termQuery("isOfficial", isOfficial));
+        if (isOfficial != null) {
+            bool.should(termQuery("isOfficial", isOfficial));
+        }
         SearchResponse searchResponse = EsClient.search("laodoufang", "recipe", bool, from, page.getPageSize());
         page.setRecords((int) searchResponse.getHits().getTotalHits());
 
