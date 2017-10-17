@@ -48,9 +48,10 @@ public class RecipeController {
         Page page = new Page();
         page.setCurrentPage(currentPage);
         if (StringUtils.isNotBlank(searchKeyWord)) {
-            SearchHit[] hits = esService.search(searchKeyWord, page);
+            SearchHit[] hits = esService.search(searchKeyWord, null, null, page);
             view.addObject("hits", hits);
         }
+        view.addObject("searchKeyWord", searchKeyWord);
 
         List<Tags> tags = tagsService.getTagsByParentId(0);
         view.addObject("tags", JSONArray.fromObject(tags));
@@ -121,5 +122,17 @@ public class RecipeController {
             return recipeService.saveRecipe(recipe);
         }
         return 0;
+    }
+
+    @RequestMapping(value = "getRecipes", produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public Object getRecipes(String searchKeyWord, String choseTags, String isOfficial, Integer currentPage) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        SearchHit[] hits = null;
+        if (StringUtils.isNotBlank(searchKeyWord)) {
+            hits = esService.search(searchKeyWord, choseTags.split(","), isOfficial, page);
+        }
+        return JSONArray.fromObject(hits).toString();
     }
 }

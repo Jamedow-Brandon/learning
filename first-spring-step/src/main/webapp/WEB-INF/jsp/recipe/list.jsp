@@ -19,7 +19,8 @@
     <div class="filter-area">
         <div class="pitch-on">
             <ul></ul>
-            <div>只看官方<input type="checkbox"/></div>
+            <input type="hidden" id="choseTags"/>
+            <div>只看官方<input type="checkbox" id="isOfficial" onchange="searchRecipes();"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
@@ -34,7 +35,7 @@
         </div>
         <div class="sort-by"></div>
     </div>
-    <div class="recipe-list">
+    <div id="recipes" class="recipe-list">
         <c:forEach items="${hits}" var="hit">
             <div class="recipe">
                 <h3>${hit.sourceAsMap.name}</h3>
@@ -103,7 +104,6 @@
                     $(this).parents("li").remove();
                 });
 
-                var keyword = $("#keyword").val();
                 var tagIds = [];
                 var $patches = $(".pitch-on li");
                 $patches.each(function (n, patch) {
@@ -111,20 +111,30 @@
                     tagIds.push(tagId)
                 });
 
-                $.ajax({
-                    url: "",
-                    method: "get",
-                    data: {
-                        keyword: keyword,
-                        tagIds: tagIds.join(",")
-                    },
-                    success: function () {
-
-                    }
-                })
+                $("#choseTags").val(tagIds.join(","));
 
             }
         });
+    }
+
+    function searchRecipes() {
+        $.ajax({
+            url: "${ctx}/recipe/getRecipes",
+            method: "get",
+            data: {
+                searchKeyWord: $("#searchKeyWord").val(),
+                isOfficial: $("#isOfficial").val() == "on" ? 1 : 0,
+                choseTags: $("#choseTags").val(),
+                currentPage: 1
+            },
+            success: function (hits) {
+                var recipesHtml = template('recipeTemplate',
+                    {
+                        hits: hits
+                    });
+                $("#recipes").html(recipesHtml);
+            }
+        })
     }
 
     /**
