@@ -26,7 +26,7 @@ public class CommentController {
      * 功能描述: <br>
      * 删除评论
      *
-     * @param id 评论id
+     * @param recipeId 食谱id
      */
     @RequestMapping(value = "/recipeComment/comments", method = {RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)

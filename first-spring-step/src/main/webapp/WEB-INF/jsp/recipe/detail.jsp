@@ -51,15 +51,17 @@
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
 <script type="text/html" id="commentsTemplate">
+    {{each comments as comment}}
     <div class="comment">
-        {{each comments as comment}}
-        <div>
-            <img src="{{comment.userImage}}"/>
-            <b>{{comment.userName}}</b>
+        <div class="comment-left">
+            <img src="{{comment.userPhoto}}"/>
+            <b>{{comment.username}}</b>
+        </div>
+        <div class="comment-right">
             <p>{{comment.content}}</p>
         </div>
-        {{/each}}
     </div>
+    {{/each}}
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
 <script>
