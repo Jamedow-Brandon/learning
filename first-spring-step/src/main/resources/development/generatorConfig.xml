@@ -9,7 +9,7 @@
     <properties resource="properties/jdbc.properties"/>
 
     <classPathEntry
-            location="C:\Users\administrator\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
+            location="C:\Users\365\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
 
     <context id="my" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -23,20 +23,20 @@
 
         <!-- 生成实体类地址 -->
         <javaModelGenerator targetPackage="com.jamedow.laodoufang.entity"
-                            targetProject="D:/">
+                            targetProject="E:/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="false"/>
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
         <sqlMapGenerator targetPackage="com.jamedow.laodoufang.mapper"
-                         targetProject="D:/">
+                         targetProject="E:/">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
         <javaClientGenerator targetPackage="com.jamedow.laodoufang.mapper"
-                             targetProject="D:/" type="XMLMAPPER">
+                             targetProject="E:/" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
@@ -45,7 +45,7 @@
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="tags" domainObjectName="Tags"
+        <table tableName="recipe_comment" domainObjectName="RecipeComment"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
