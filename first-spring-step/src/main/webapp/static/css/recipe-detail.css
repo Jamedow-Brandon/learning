@@ -8,6 +8,10 @@ html, body {
     font-size: 100%;
 }
 
+hr {
+    margin: 10px 0;
+}
+
 .detail {
     margin: 0.5rem;
     padding: 1rem;
@@ -49,14 +53,18 @@ html, body {
 }
 
 .recipe-material .intro {
+    padding: 0.5rem;
     text-indent: 2rem;
     font-size: 14px;
     line-height: 24px;
     color: #666;
+    background-color: #bcd0c5;
+    border-radius: 15px;
 }
 
 .recipe-content .recipe-detail .tables {
-    height: 2rem;
+    margin-bottom: 1rem;
+    height: 1rem;
 }
 
 .recipe-content .recipe-detail .tables ul {
@@ -71,12 +79,22 @@ html, body {
     color: #bcd0c5;
     font-size: 1.3rem;
     font-weight: 700;
-    border: 1px solid black;
-    border-radius: 0 15px 0 0;
+    border-radius: 15px 15px 0 0;
+}
+
+.tables-active {
+    border: 3px solid #bcd0c5;
+}
+
+.detail-content {
+    padding: 3rem;
+    background-color: #bcd0c5;
+    border-radius: 15px;
 }
 
 .comments {
     display: none;
+    min-height: 800px;
 }
 
 .comment {
@@ -87,3 +105,18 @@ html, body {
     width: 40px;
     height: 40px;
 }
+
+.comment .comment-top {
+    padding: 0.5rem;
+}
+
+.comment .comment-top .comment-time {
+    padding: 0.5rem;
+    float: right;
+}
+
+.comment .comment-bottom i {
+    padding: 0 0.5rem;
+}
+
+

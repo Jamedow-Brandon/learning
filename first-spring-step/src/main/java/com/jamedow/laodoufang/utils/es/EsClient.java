@@ -35,9 +35,9 @@ import java.util.List;
  * Created by Administrator on 2017/8/1.
  */
 public class EsClient {
-    private static final String hosts = "106.14.210.31:9200";     //节点IP
     private static final String host = "106.14.210.31";     //节点IP
-    private static final String clusterName = "es";     //集群名称
+    private static final String hosts = host + ":9200";     //节点IP
+    private static final String clusterName = "docker-cluster";     //集群名称
     private static Logger logger = LoggerFactory.getLogger(EsClient.class);
     private static Client client;
 

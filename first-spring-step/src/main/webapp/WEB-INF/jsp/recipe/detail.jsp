@@ -38,11 +38,11 @@
         <div class="detail recipe-detail">
             <div class="tables">
                 <ul>
-                    <li id="detail">详情</li>
+                    <li id="detail-content" class="tables-active">详情</li>
                     <li id="comments">评论</li>
                 </ul>
             </div>
-            <div class="tables-child detail">${recipe.detail}</div>
+            <div class="tables-child detail-content">${recipe.detail}</div>
             <div class="tables-child comments"></div>
         </div>
     </div>
@@ -53,14 +53,23 @@
 <script type="text/html" id="commentsTemplate">
     {{each comments as comment}}
     <div class="comment">
-        <div class="comment-left">
-            <img src="{{comment.userPhoto}}"/>
-            <b>{{comment.username}}</b>
+        <div class="comment-top">
+            <span class="comment-user">
+                <img src="{{comment.userPhoto}}"/>
+                <b>{{comment.username}}</b>
+            </span>
+            <span class="comment-time">
+                    4年前
+            </span>
         </div>
-        <div class="comment-right">
+        <div class="comment-content">
             <p>{{comment.content}}</p>
         </div>
+        <div class="comment-bottom">
+            <i class="fa fa-thumbs-o-up"></i><span>0</span>
+        </div>
     </div>
+    <hr/>
     {{/each}}
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
@@ -69,7 +78,9 @@
     $(function () {
         $(".tables li").on("click", function () {
             var tableId = $(this).attr("id");
+            $(".tables ul li").removeClass("tables-active");
             $(".tables-child").hide();
+            $(this).addClass("tables-active");
             $("." + tableId).show();
         });
 
