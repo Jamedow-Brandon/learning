@@ -66,11 +66,20 @@
             <p>{{comment.content}}</p>
         </div>
         <div class="comment-vote">
-            <span class="vote-button" objId="{{comment.id}}">
-                <i class="fa fa-thumbs-o-up"></i><span>0</span>
+            <span class="vote-button" objId="{{comment.id}}" onclick="vote(this)">
+                {{if comment.voteStatus == 1}}
+                    <i class="fa fa-thumbs-up"></i>
+                {{else}}
+                    <i class="fa fa-thumbs-o-up"></i>
+                {{/if}}
+                <span id="voteCount">{{comment.voteCount}}</span>
             </span>
-            <span class="vote-button" objId="{{comment.id}}">
-                <i class="fa fa-thumbs-o-down"></i><span>0</span>
+            <span class="vote-button" objId="{{comment.id}}" onclick="vote(this)">
+                {{if comment.voteStatus == -1}}
+                    <i class="fa fa-thumbs-down"></i>
+                {{else}}
+                    <i class="fa fa-thumbs-o-down"></i>
+                {{/if}}
             </span>
         </div>
     </div>
@@ -87,10 +96,6 @@
             $(".tables-child").hide();
             $(this).addClass("tables-active");
             $("." + tableId).show();
-        });
-
-        $(".vote-button").on("click", function () {
-            vote(this);
         });
 
         $.ajax({

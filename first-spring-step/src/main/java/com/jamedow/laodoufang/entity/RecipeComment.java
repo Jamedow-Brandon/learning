@@ -23,6 +23,26 @@ public class RecipeComment {
 
     private String userPhoto;
 
+    private Integer voteStatus;
+
+    private Integer voteCount;
+
+    public Integer getVoteStatus() {
+        return voteStatus;
+    }
+
+    public void setVoteStatus(Integer voteStatus) {
+        this.voteStatus = voteStatus;
+    }
+
+    public Integer getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(Integer voteCount) {
+        this.voteCount = voteCount;
+    }
+
     public String getUserPhoto() {
         return userPhoto;
     }
