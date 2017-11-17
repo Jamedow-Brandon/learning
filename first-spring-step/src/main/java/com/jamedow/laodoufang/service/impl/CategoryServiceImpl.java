@@ -6,7 +6,6 @@ import com.jamedow.laodoufang.mapper.CategoryMapper;
 import com.jamedow.laodoufang.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,7 +13,6 @@ import java.util.List;
  * Created by ydy on 2017/2/15.
  */
 @Service
-@Transactional
 public class CategoryServiceImpl implements CategoryService {
 
 

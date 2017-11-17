@@ -7,7 +7,7 @@ public enum ReturnResult {
     /**
      * 操作成功
      */
-    SUCCESS("10000", "操作成功！");
+    SUCCESS("10000", "操作成功！"), UN_LOGIN("10001", "未登录！"), ABSENCE_PARAMETER("10002", "缺少参数！");
     /**
      * resultCode小于-10000为异常编码，大于10000为正常编码
      */

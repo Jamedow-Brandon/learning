@@ -1,12 +1,14 @@
 package com.jamedow.laodoufang.web;
 
 import com.jamedow.laodoufang.common.system.bean.Page;
+import com.jamedow.laodoufang.common.system.bean.ReturnResult;
 import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.entity.Tags;
 import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.service.TagsService;
+import com.jamedow.laodoufang.service.VoteService;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.search.SearchHit;
@@ -36,6 +38,8 @@ public class RecipeController {
     private RecipeService recipeService;
     @Autowired
     private TagsService tagsService;
+    @Autowired
+    private VoteService voteService;
 
 
     @RequestMapping(value = "list")
@@ -134,5 +138,19 @@ public class RecipeController {
             hits = esService.search(searchKeyWord, choseTags.split(","), isOfficial, page);
         }
         return JSONArray.fromObject(hits).toString();
+    }
+
+    @RequestMapping(value = "vote", produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public ReturnResult vote(Integer status, Integer objId, HttpSession session) {
+        Users users = (Users) session.getAttribute("user");
+        if (null == users) {
+            return ReturnResult.UN_LOGIN;
+        }
+        if (null == status || null == objId) {
+            return ReturnResult.ABSENCE_PARAMETER;
+        }
+        voteService.vote(status, objId, users.getId());
+        return ReturnResult.SUCCESS;
     }
 }

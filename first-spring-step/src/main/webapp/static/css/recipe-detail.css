@@ -115,8 +115,16 @@ hr {
     float: right;
 }
 
-.comment .comment-bottom i {
-    padding: 0 0.5rem;
+.comment .comment-vote i {
+    padding: 0 8px;
+}
+
+.comment .vote-button {
+    margin: 0 3px;
+    padding: 2px 8px 3px 2px;
+    border-radius: 5px;
+    background-color: #bcd0c5;
+    cursor: pointer;
 }
 
 

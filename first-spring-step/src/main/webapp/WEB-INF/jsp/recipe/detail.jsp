@@ -65,8 +65,13 @@
         <div class="comment-content">
             <p>{{comment.content}}</p>
         </div>
-        <div class="comment-bottom">
-            <i class="fa fa-thumbs-o-up"></i><span>0</span>
+        <div class="comment-vote">
+            <span class="vote-button" objId="{{comment.id}}">
+                <i class="fa fa-thumbs-o-up"></i><span>0</span>
+            </span>
+            <span class="vote-button" objId="{{comment.id}}">
+                <i class="fa fa-thumbs-o-down"></i><span>0</span>
+            </span>
         </div>
     </div>
     <hr/>
@@ -84,6 +89,10 @@
             $("." + tableId).show();
         });
 
+        $(".vote-button").on("click", function () {
+            vote(this);
+        });
+
         $.ajax({
             url: "${ctx}/comment/recipeComment/comments",
             method: "get",
@@ -96,6 +105,28 @@
             }
         });
     });
+
+    function vote(_this) {
+        var $voteButton = $(_this);
+        var objId = $voteButton.attr("objId");
+        console.log(objId)
+        var status = "";
+        $.ajax({
+            url: "${ctx}/recipe/vote",
+            method: "get",
+            data: {
+                status: status,
+                objId: objId
+            },
+            success: function (result) {
+                if (result.resultCode === "10000") {
+
+                } else {
+                    alert(result.resultMessage);
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>

@@ -18,7 +18,6 @@ import java.util.List;
  * Created by ydy on 2017/2/15.
  */
 @Service
-@Transactional
 public class RecipeServiceImpl implements RecipeService {
     private Logger logger = LoggerFactory.getLogger(RecipeServiceImpl.class);
 
