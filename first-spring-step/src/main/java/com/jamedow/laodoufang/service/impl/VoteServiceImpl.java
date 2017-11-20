@@ -23,7 +23,8 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteLogMapper voteLogMapper;
 
-    public int vote(int status, int objId, int userId) {
+    @Override
+    public long vote(int status, int objId, int userId) {
         VoteLogExample example = new VoteLogExample();
         example.createCriteria().andObjIdEqualTo(objId).andUserIdEqualTo(userId);
         List<VoteLog> votes = voteLogMapper.selectByExample(example);
@@ -31,7 +32,7 @@ public class VoteServiceImpl implements VoteService {
             VoteLog voteLog = votes.get(0);
             voteLog.setStatus(status);
             voteLog.setUpdateTime(new Date());
-            return voteLogMapper.updateByPrimaryKey(voteLog);
+            voteLogMapper.updateByPrimaryKey(voteLog);
         } else {
             VoteLog voteLog = new VoteLog();
             voteLog.setObjId(objId);
@@ -39,7 +40,28 @@ public class VoteServiceImpl implements VoteService {
             voteLog.setStatus(status);
             voteLog.setCreateTime(new Date());
             voteLog.setUpdateTime(new Date());
-            return voteLogMapper.insert(voteLog);
+            voteLogMapper.insert(voteLog);
         }
+        return this.getVoteCount(objId, VoteLog.VoteStatus.UP_VOTE.getStatus());
+    }
+
+    @Override
+    public long getVoteCount(int objId, int status) {
+        VoteLogExample countExample = new VoteLogExample();
+        countExample.createCriteria().andObjIdEqualTo(objId).andStatusEqualTo(status);
+        return voteLogMapper.countByExample(countExample);
+    }
+
+
+    @Override
+    public int getVoteStatus(int objId, int userId) {
+        int voteStatus = 0;
+        VoteLogExample countExample = new VoteLogExample();
+        countExample.createCriteria().andObjIdEqualTo(objId).andUserIdEqualTo(userId);
+        List<VoteLog> voteLogs = voteLogMapper.selectByExample(countExample);
+        if (voteLogs != null && voteLogs.size() != 0) {
+            voteStatus = voteLogs.get(0).getStatus();
+        }
+        return voteStatus;
     }
 }

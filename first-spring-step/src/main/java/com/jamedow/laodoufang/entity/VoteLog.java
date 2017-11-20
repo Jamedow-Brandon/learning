@@ -4,15 +4,10 @@ import java.util.Date;
 
 public class VoteLog {
     private Integer id;
-
     private Integer objId;
-
     private Integer status;
-
     private Integer userId;
-
     private Date createTime;
-
     private Date updateTime;
 
     public Integer getId() {
@@ -61,5 +56,30 @@ public class VoteLog {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public enum VoteStatus {
+        UP_VOTE(1, "赞"), UN_VOTE(0, "未记录"), DOWN_VOTE(-1, "踩");
+        /**
+         * resultCode小于-10000为异常编码，大于10000为正常编码
+         */
+        private final int status;
+        /**
+         * message
+         */
+        private final String name;
+
+        VoteStatus(int status, String name) {
+            this.status = status;
+            this.name = name;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }

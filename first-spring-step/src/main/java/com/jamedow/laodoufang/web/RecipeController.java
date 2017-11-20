@@ -1,5 +1,6 @@
 package com.jamedow.laodoufang.web;
 
+import com.jamedow.laodoufang.common.system.bean.GridReturn;
 import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.common.system.bean.ReturnResult;
 import com.jamedow.laodoufang.entity.Recipe;
@@ -142,15 +143,21 @@ public class RecipeController {
 
     @RequestMapping(value = "vote", produces = "application/json;charset=utf-8")
     @ResponseBody
-    public ReturnResult vote(Integer status, Integer objId, HttpSession session) {
+    public Object vote(Integer status, Integer objId, HttpSession session) throws Exception {
+        GridReturn gridReturn = new GridReturn();
         Users users = (Users) session.getAttribute("user");
         if (null == users) {
-            return ReturnResult.UN_LOGIN;
+
+            gridReturn.setReturnResult(ReturnResult.UN_LOGIN);
+            return gridReturn;
         }
         if (null == status || null == objId) {
-            return ReturnResult.ABSENCE_PARAMETER;
+            gridReturn.setReturnResult(ReturnResult.ABSENCE_PARAMETER);
+            return gridReturn;
         }
-        voteService.vote(status, objId, users.getId());
-        return ReturnResult.SUCCESS;
+        long voteCount = voteService.vote(status, objId, users.getId());
+        gridReturn.setReturnResult(ReturnResult.SUCCESS);
+        gridReturn.setTotalCount(voteCount);
+        return gridReturn;
     }
 }

@@ -2,6 +2,7 @@ package com.jamedow.laodoufang.web;
 
 import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.RecipeComment;
+import com.jamedow.laodoufang.entity.Users;
 import com.jamedow.laodoufang.service.CommentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -34,12 +36,9 @@ public class CommentController {
     @RequestMapping(value = "/recipeComment/comments", method = {RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public Object getComment(Integer recipeId, Page page) {
-        List<RecipeComment> comments = commentService.getRecipeComments(recipeId, page);
-        for (RecipeComment comment : comments) {
-            comment.setVoteStatus(1);
-            comment.setVoteCount(123);
-        }
+    public Object getComment(Integer recipeId, Page page, HttpSession session) {
+        Users users = (Users) session.getAttribute("user");
+        List<RecipeComment> comments = commentService.getRecipeComments(recipeId, users == null ? null : users.getId(), page);
         return comments;
     }
 

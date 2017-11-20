@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public interface CommentService {
-    List<RecipeComment> getRecipeComments(Integer recipeId, Page page);
+    List<RecipeComment> getRecipeComments(Integer recipeId, Integer userId, Page page);
 
     int deleteRecipeCommentById(Integer id);
 }

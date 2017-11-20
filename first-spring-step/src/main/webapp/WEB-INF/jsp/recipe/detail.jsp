@@ -72,7 +72,7 @@
                 {{else}}
                     <i class="fa fa-thumbs-o-up"></i>
                 {{/if}}
-                <span id="voteCount">{{comment.voteCount}}</span>
+                <span id="voteCount{{comment.id}}">{{comment.voteCount}}</span>
             </span>
             <span class="vote-button" objId="{{comment.id}}" onclick="vote(this)">
                 {{if comment.voteStatus == -1}}
@@ -111,11 +111,38 @@
         });
     });
 
+    function getStatus(_this) {
+        var status;
+        var $voteButton = $(_this);
+        var className = $voteButton.children("i").attr("class");
+        var currentClass, destClass;
+        if (className.indexOf("fa-thumbs-up") > 0) {
+            currentClass = "fa-thumbs-up";
+            destClass = "fa-thumbs-o-up";
+            status = 0;
+        } else if (className.indexOf("fa-thumbs-o-up") > 0) {
+            currentClass = "fa-thumbs-o-up";
+            destClass = "fa-thumbs-up";
+            $(_this).parent("div").children("span").children(".fa-thumbs-down").removeClass("fa-thumbs-down").addClass("fa-thumbs-o-down")
+            status = 1;
+        } else if (className.indexOf("fa-thumbs-down") > 0) {
+            currentClass = "fa-thumbs-down";
+            destClass = "fa-thumbs-o-down";
+            status = 0;
+        } else if (className.indexOf("fa-thumbs-o-down") > 0) {
+            currentClass = "fa-thumbs-o-down";
+            destClass = "fa-thumbs-down";
+            $(_this).parent("div").children("span").children(".fa-thumbs-up").removeClass("fa-thumbs-up").addClass("fa-thumbs-o-up")
+            status = -1;
+        }
+        $voteButton.children("i").removeClass(currentClass).addClass(destClass);
+        return status;
+    }
+
     function vote(_this) {
         var $voteButton = $(_this);
         var objId = $voteButton.attr("objId");
-        console.log(objId)
-        var status = "";
+        var status = getStatus(_this);
         $.ajax({
             url: "${ctx}/recipe/vote",
             method: "get",
@@ -124,10 +151,10 @@
                 objId: objId
             },
             success: function (result) {
-                if (result.resultCode === "10000") {
-
+                if (result.code === "10000") {
+                    $("#voteCount" + objId).text(result.totalCount);
                 } else {
-                    alert(result.resultMessage);
+                    alert(result.msg);
                 }
             }
         });

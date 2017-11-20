@@ -25,7 +25,7 @@ public class RecipeComment {
 
     private Integer voteStatus;
 
-    private Integer voteCount;
+    private long voteCount;
 
     public Integer getVoteStatus() {
         return voteStatus;
@@ -35,11 +35,11 @@ public class RecipeComment {
         this.voteStatus = voteStatus;
     }
 
-    public Integer getVoteCount() {
+    public long getVoteCount() {
         return voteCount;
     }
 
-    public void setVoteCount(Integer voteCount) {
+    public void setVoteCount(long voteCount) {
         this.voteCount = voteCount;
     }
 
