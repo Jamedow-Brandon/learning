@@ -1,6 +1,6 @@
+import com.jamedow.laodoufang.plugin.es.EsClient;
 import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
-import com.jamedow.laodoufang.utils.es.EsClient;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;

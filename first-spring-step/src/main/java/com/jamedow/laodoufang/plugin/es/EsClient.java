@@ -1,4 +1,4 @@
-package com.jamedow.laodoufang.utils.es;
+package com.jamedow.laodoufang.plugin.es;
 
 import com.jamedow.laodoufang.utils.StringUtils;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
@@ -89,7 +89,7 @@ public class EsClient {
     public static void createIndex(String indexName) {
         // 创建索引库
 
-        if (isIndexExists("indexName")) {
+        if (isIndexExists(indexName)) {
             logger.debug("Index {} already exits!", indexName);
         } else {
             CreateIndexResponse cIndexResponse = client.admin().indices().prepareCreate(indexName).execute().actionGet();

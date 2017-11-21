@@ -2,9 +2,9 @@ package com.jamedow.laodoufang.service.impl;
 
 import com.jamedow.laodoufang.common.system.bean.Page;
 import com.jamedow.laodoufang.entity.Recipe;
+import com.jamedow.laodoufang.plugin.es.EsClient;
 import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
-import com.jamedow.laodoufang.utils.es.EsClient;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
