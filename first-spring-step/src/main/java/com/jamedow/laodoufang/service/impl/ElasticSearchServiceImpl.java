@@ -85,19 +85,12 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     @Override
     public void initRecipes() {
         List<Recipe> recipes = recipeService.queryAll();
-//        for (Recipe recipe : recipes) {
-//            String searchDocumentId = insertRecipeToEs(recipe);
-//            if(!searchDocumentId.equals(recipe.getSearchDocumentId())){
-//                recipe.setSearchDocumentId(searchDocumentId);
-//                recipeService.saveRecipe(recipe);
-//            }
-//        }
-
-        Recipe recipe = recipes.get(0);
-        String searchDocumentId = insertRecipeToEs(recipe);
-        if (!searchDocumentId.equals(recipe.getSearchDocumentId())) {
-            recipe.setSearchDocumentId(searchDocumentId);
-            recipeService.saveRecipe(recipe);
+        for (Recipe recipe : recipes) {
+            String searchDocumentId = insertRecipeToEs(recipe);
+            if (!searchDocumentId.equals(recipe.getSearchDocumentId())) {
+                recipe.setSearchDocumentId(searchDocumentId);
+                recipeService.saveRecipe(recipe);
+            }
         }
     }
 }
