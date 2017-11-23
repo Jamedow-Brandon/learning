@@ -1,6 +1,6 @@
 package com.jamedow.laodoufang.plugin.es;
 
-import com.jamedow.laodoufang.utils.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexResponse;
@@ -8,6 +8,7 @@ import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsReques
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -37,7 +38,7 @@ import java.util.List;
 public class EsClient {
     private static final String host = "106.14.210.31";     //节点IP
     private static final String hosts = host + ":9200";     //节点IP
-    private static final String clusterName = "docker-cluster";     //集群名称
+    private static final String clusterName = "docker-elasticsearch";     //集群名称
     private static Logger logger = LoggerFactory.getLogger(EsClient.class);
     private static Client client;
 
@@ -52,22 +53,22 @@ public class EsClient {
                 .build();
         try {
             // 集群地址配置
-            List<InetSocketTransportAddress> list = new ArrayList<>();
-            if (StringUtils.isNotEmpty(hosts)) {
-                String[] strArr = hosts.split(",");
-                for (String str : strArr) {
-                    String[] addressAndPort = str.split(":");
-                    String address = addressAndPort[0];
-                    int port = Integer.valueOf(addressAndPort[1]);
-
-                    InetSocketTransportAddress inetSocketTransportAddress = new InetSocketTransportAddress(
-                            InetAddress.getByName(address), port);
-                    list.add(inetSocketTransportAddress);
-                }
-            }
-            // 这里可以同时连接集群的服务器,可以多个,并且连接服务是可访问的
-            InetSocketTransportAddress addressList[] = list
-                    .toArray(new InetSocketTransportAddress[list.size()]);
+//            List<InetSocketTransportAddress> list = new ArrayList<>();
+//            if (StringUtils.isNotEmpty(hosts)) {
+//                String[] strArr = hosts.split(",");
+//                for (String str : strArr) {
+//                    String[] addressAndPort = str.split(":");
+//                    String address = addressAndPort[0];
+//                    int port = Integer.valueOf(addressAndPort[1]);
+//
+//                    InetSocketTransportAddress inetSocketTransportAddress = new InetSocketTransportAddress(
+//                            InetAddress.getByName(address), port);
+//                    list.add(inetSocketTransportAddress);
+//                }
+//            }
+//            // 这里可以同时连接集群的服务器,可以多个,并且连接服务是可访问的
+//            InetSocketTransportAddress addressList[] = list
+//                    .toArray(new InetSocketTransportAddress[list.size()]);
 
 //            client = new PreBuiltTransportClient(settings)
 //                    .addTransportAddresses(addressList);
@@ -150,14 +151,25 @@ public class EsClient {
 
     /**
      * 创建文档
-     *
      * @param indexName 索引
      * @param type      类型
+     * @param documentId
      * @param builder   文档对象
      */
-    public static void createDocument(String indexName, String type, XContentBuilder builder) {
-        IndexResponse indexResponse = client.prepareIndex(indexName, type).setSource(builder).execute().actionGet();
-        logger.debug("create document {}", indexResponse.status());
+    public static String createDocument(String indexName, String type, String documentId, XContentBuilder builder) {
+        if (StringUtils.isBlank(documentId)) {
+            IndexResponse indexResponse = client.prepareIndex(indexName, type).setSource(builder).execute().actionGet();
+            return indexResponse.getId();
+        }
+        GetResponse response = client.prepareGet(indexName, type, documentId).get();
+        if (!response.isExists()) {
+            IndexResponse indexResponse = client.prepareIndex(indexName, type).setSource(builder).execute().actionGet();
+            logger.debug("create document [{}] status [{}]", indexResponse.getId(), indexResponse.status());
+            return indexResponse.getId();
+        } else {
+            updateDocument(indexName, type, documentId, builder);
+            return documentId;
+        }
     }
 
     /**
@@ -183,6 +195,7 @@ public class EsClient {
         updateRequest.doc(builder);
         try {
             client.update(updateRequest).get();
+            logger.debug("update document [{}]", id);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

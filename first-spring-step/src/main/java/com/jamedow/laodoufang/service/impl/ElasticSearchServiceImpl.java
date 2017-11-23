@@ -54,7 +54,8 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         return searchResponse.getHits().getHits();
     }
 
-    public void insertRecipeToEs(Recipe recipe) {
+    public String insertRecipeToEs(Recipe recipe) {
+        String searchDocumentId = null;
         try {
             XContentBuilder builder = jsonBuilder()
                     .startObject()
@@ -74,17 +75,29 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
                     .field("burdening", recipe.getBurdening())
                     .endObject();
 
-            EsClient.createDocument("laodoufang", "recipe", builder);
+            searchDocumentId = EsClient.createDocument("laodoufang", "recipe", recipe.getSearchDocumentId(), builder);
         } catch (Exception e) {
             logger.error("新建食谱文档失败{}", recipe.getId(), e.getMessage(), e);
         }
+        return searchDocumentId;
     }
 
     @Override
     public void initRecipes() {
         List<Recipe> recipes = recipeService.queryAll();
-        for (Recipe recipe : recipes) {
-            insertRecipeToEs(recipe);
+//        for (Recipe recipe : recipes) {
+//            String searchDocumentId = insertRecipeToEs(recipe);
+//            if(!searchDocumentId.equals(recipe.getSearchDocumentId())){
+//                recipe.setSearchDocumentId(searchDocumentId);
+//                recipeService.saveRecipe(recipe);
+//            }
+//        }
+
+        Recipe recipe = recipes.get(0);
+        String searchDocumentId = insertRecipeToEs(recipe);
+        if (!searchDocumentId.equals(recipe.getSearchDocumentId())) {
+            recipe.setSearchDocumentId(searchDocumentId);
+            recipeService.saveRecipe(recipe);
         }
     }
 }

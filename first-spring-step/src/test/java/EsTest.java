@@ -30,13 +30,47 @@ public class EsTest {
 
     @Test
     public void testCreateIndex() {
-        EsClient.deleteIndex("test");
+        EsClient.deleteIndex("laodoufang");
         EsClient.createIndex("laodoufang");
+        try {
+            XContentBuilder builder = jsonBuilder()
+                    .startObject()
+                    .startObject("recipe")
+                    .startObject("properties")
+                    .startObject("id").field("type", "integer").endObject()
+                    .startObject("name").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
+                    .startObject("intro").field("type", "string").endObject()
+                    .startObject("createTime").field("type", "date").endObject()
+                    .startObject("linkUrl").field("type", "string").endObject()
+                    .startObject("imgUrl").field("type", "string").endObject()
+                    .startObject("tags").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
+                    .startObject("voteUp").field("type", "integer").endObject()
+                    .startObject("voteDown").field("type", "integer").endObject()
+                    .startObject("isOfficial").field("type", "string").endObject()
+                    .startObject("userId").field("type", "string").endObject()
+                    .startObject("trafficVolume").field("type", "integer").endObject()
+                    .startObject("ingredient").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
+                    .startObject("burdening").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
+                    .endObject()
+                    .endObject()
+                    .endObject();
+
+            EsClient.addType("laodoufang", "recipe", builder);
+
+            elasticSearchService.initRecipes();
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
     @Test
     public void testInitRecipes() {
         elasticSearchService.initRecipes();
+    }
+
+    @Test
+    public void testDeleteIndex() {
+        EsClient.deleteIndex("laodoufang");
     }
 
     @Test

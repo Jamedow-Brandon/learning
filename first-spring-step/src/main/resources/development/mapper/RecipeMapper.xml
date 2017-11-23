@@ -15,8 +15,10 @@
     <result column="is_official" jdbcType="CHAR" property="isOfficial"/>
     <result column="user_id" jdbcType="INTEGER" property="userId"/>
     <result column="traffic_volume" jdbcType="INTEGER" property="trafficVolume"/>
+    <result column="search_document_id" jdbcType="VARCHAR" property="searchDocumentId"/>
     <result column="ingredient" jdbcType="VARCHAR" property="ingredient"/>
     <result column="burdening" jdbcType="VARCHAR" property="burdening"/>
+    <result column="detail" jdbcType="VARCHAR" property="detail"/>
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jamedow.laodoufang.entity.Recipe">
     <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
@@ -81,7 +83,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, name, intro, create_time, link_url, img_url, category, tags, vote_up, vote_down,
-    is_official, user_id, traffic_volume, ingredient, burdening
+    is_official, user_id, traffic_volume, search_document_id, ingredient, burdening, detail
   </sql>
   <sql id="Blob_Column_List">
     detail
@@ -142,13 +144,15 @@
     create_time, link_url, img_url,
     category, tags, vote_up,
     vote_down, is_official, user_id,
-    traffic_volume, ingredient, burdening,
+    traffic_volume, search_document_id,
+    ingredient, burdening,
     detail)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR},
     #{createTime,jdbcType=TIMESTAMP}, #{linkUrl,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
     #{category,jdbcType=INTEGER}, #{tags,jdbcType=VARCHAR}, #{voteUp,jdbcType=INTEGER},
     #{voteDown,jdbcType=INTEGER}, #{isOfficial,jdbcType=CHAR}, #{userId,jdbcType=INTEGER},
-    #{trafficVolume,jdbcType=INTEGER}, #{ingredient,jdbcType=VARCHAR}, #{burdening,jdbcType=VARCHAR},
+    #{trafficVolume,jdbcType=INTEGER}, #{searchDocumentId,jdbcType=VARCHAR},
+    #{ingredient,jdbcType=VARCHAR}, #{burdening,jdbcType=VARCHAR},
     #{detail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jamedow.laodoufang.entity.Recipe">
@@ -192,6 +196,9 @@
       </if>
       <if test="trafficVolume != null">
         traffic_volume,
+      </if>
+      <if test="searchDocumentId != null">
+        search_document_id,
       </if>
       <if test="ingredient != null">
         ingredient,
@@ -242,6 +249,9 @@
       </if>
       <if test="trafficVolume != null">
         #{trafficVolume,jdbcType=INTEGER},
+      </if>
+      <if test="searchDocumentId != null">
+        #{searchDocumentId,jdbcType=INTEGER},
       </if>
       <if test="ingredient != null">
         #{ingredient,jdbcType=VARCHAR},
@@ -302,6 +312,9 @@
       <if test="record.trafficVolume != null">
         traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
       </if>
+      <if test="record.searchDocumentId != null">
+        search_document_id = #{record.searchDocumentId,jdbcType=VARCHAR},
+      </if>
       <if test="record.ingredient != null">
         ingredient = #{record.ingredient,jdbcType=VARCHAR},
       </if>
@@ -331,6 +344,7 @@
       is_official = #{record.isOfficial,jdbcType=CHAR},
       user_id = #{record.userId,jdbcType=INTEGER},
     traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
+    search_document_id = #{record.searchDocumentId,jdbcType=VARCHAR},
     ingredient = #{record.ingredient,jdbcType=VARCHAR},
     burdening = #{record.burdening,jdbcType=VARCHAR},
       detail = #{record.detail,jdbcType=LONGVARCHAR}
@@ -353,8 +367,10 @@
       is_official = #{record.isOfficial,jdbcType=CHAR},
     user_id = #{record.userId,jdbcType=INTEGER},
     traffic_volume = #{record.trafficVolume,jdbcType=INTEGER},
+    search_document_id = #{record.searchDocumentId,jdbcType=VARCHAR},
     ingredient = #{record.ingredient,jdbcType=VARCHAR},
-    burdening = #{record.burdening,jdbcType=VARCHAR}
+    burdening = #{record.burdening,jdbcType=VARCHAR},
+    detail = #{record.detail,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -398,6 +414,9 @@
       <if test="trafficVolume != null">
         traffic_volume = #{trafficVolume,jdbcType=INTEGER},
       </if>
+      <if test="searchDocumentId != null">
+        search_document_id = #{searchDocumentId,jdbcType=VARCHAR},
+      </if>
       <if test="ingredient != null">
         ingredient = #{ingredient,jdbcType=VARCHAR},
       </if>
@@ -423,9 +442,10 @@
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
       user_id = #{userId,jdbcType=INTEGER},
-    traffic_volume = #{trafficVolume,jdbcType=INTEGER},
-    ingredient = #{ingredient,jdbcType=VARCHAR},
-    burdening = #{burdening,jdbcType=VARCHAR},
+      traffic_volume = #{trafficVolume,jdbcType=INTEGER},
+      search_document_id = #{searchDocumentId,jdbcType=VARCHAR},
+      ingredient = #{ingredient,jdbcType=VARCHAR},
+      burdening = #{burdening,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -441,10 +461,12 @@
       vote_up = #{voteUp,jdbcType=INTEGER},
       vote_down = #{voteDown,jdbcType=INTEGER},
       is_official = #{isOfficial,jdbcType=CHAR},
-    user_id = #{userId,jdbcType=INTEGER},
-    traffic_volume = #{trafficVolume,jdbcType=INTEGER},
-    ingredient = #{ingredient,jdbcType=VARCHAR},
-    burdening = #{burdening,jdbcType=VARCHAR}
+      user_id = #{userId,jdbcType=INTEGER},
+      traffic_volume = #{trafficVolume,jdbcType=INTEGER},
+      search_document_id = #{searchDocumentId,jdbcType=VARCHAR},
+      ingredient = #{ingredient,jdbcType=VARCHAR},
+      burdening = #{burdening,jdbcType=VARCHAR},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

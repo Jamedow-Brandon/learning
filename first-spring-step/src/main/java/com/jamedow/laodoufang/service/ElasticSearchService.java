@@ -14,7 +14,7 @@ public interface ElasticSearchService {
 
     SearchHit[] search(String content, String[] tags, String isOfficial, Page page);
 
-    void insertRecipeToEs(Recipe recipe);
+    String insertRecipeToEs(Recipe recipe);
 
     void initRecipes();
 }

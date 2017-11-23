@@ -29,6 +29,8 @@ public class Recipe {
 
     private Integer trafficVolume;
 
+    private String searchDocumentId;
+
     private String ingredient;
 
     private String burdening;
@@ -137,6 +139,14 @@ public class Recipe {
 
     public void setTrafficVolume(Integer trafficVolume) {
         this.trafficVolume = trafficVolume;
+    }
+
+    public String getSearchDocumentId() {
+        return searchDocumentId;
+    }
+
+    public void setSearchDocumentId(String searchDocumentId) {
+        this.searchDocumentId = searchDocumentId;
     }
 
     public String getIngredient() {
