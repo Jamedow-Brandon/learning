@@ -6,9 +6,14 @@ import com.jamedow.laodoufang.plugin.es.EsClient;
 import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.common.lucene.search.function.FieldValueFactorFunction;
+import org.elasticsearch.common.lucene.search.function.FiltersFunctionScoreQuery;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilder;
+import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,23 +40,32 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     @Override
     public SearchHit[] search(String content, String[] tags, String isOfficial, Page page) {
         int from = page.getCurrentPage() * page.getPageSize();
+        SearchResponse searchResponse = EsClient.search("laodoufang", "recipe",
+                buildSearchQuery(content, tags, isOfficial), from, page.getPageSize());
+        page.setRecords((int) searchResponse.getHits().getTotalHits());
+
+        return searchResponse.getHits().getHits();
+    }
+
+    private FunctionScoreQueryBuilder buildSearchQuery(String content, String[] tags, String isOfficial) {
         List<String> keywords = EsClient.analyze(content);
         BoolQueryBuilder bool = QueryBuilders.boolQuery();
         for (String keyword : keywords) {
-            bool.should(termQuery("name", keyword));
+            bool.must(termQuery("name", keyword));
         }
         if (tags != null) {
             for (String tag : tags) {
                 bool.should(termQuery("tags", tag));
             }
         }
+        FunctionScoreQueryBuilder query = null;
         if (isOfficial != null) {
-            bool.should(termQuery("isOfficial", isOfficial));
+            ScoreFunctionBuilder scoreFunctionBuilder = ScoreFunctionBuilders.fieldValueFactorFunction("isOfficial").modifier(FieldValueFactorFunction.Modifier.NONE);
+            query = QueryBuilders.functionScoreQuery(bool, scoreFunctionBuilder).scoreMode(FiltersFunctionScoreQuery.ScoreMode.SUM);
+        } else {
+            query = QueryBuilders.functionScoreQuery(bool).scoreMode(FiltersFunctionScoreQuery.ScoreMode.SUM);
         }
-        SearchResponse searchResponse = EsClient.search("laodoufang", "recipe", bool, from, page.getPageSize());
-        page.setRecords((int) searchResponse.getHits().getTotalHits());
-
-        return searchResponse.getHits().getHits();
+        return query;
     }
 
     public String insertRecipeToEs(Recipe recipe) {

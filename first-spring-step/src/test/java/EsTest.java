@@ -46,7 +46,7 @@ public class EsTest {
                     .startObject("tags").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
                     .startObject("voteUp").field("type", "integer").endObject()
                     .startObject("voteDown").field("type", "integer").endObject()
-                    .startObject("isOfficial").field("type", "string").endObject()
+                    .startObject("isOfficial").field("type", "integer").endObject()
                     .startObject("userId").field("type", "string").endObject()
                     .startObject("trafficVolume").field("type", "integer").endObject()
                     .startObject("ingredient").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
@@ -89,7 +89,7 @@ public class EsTest {
                     .startObject("tags").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
                     .startObject("voteUp").field("type", "integer").endObject()
                     .startObject("voteDown").field("type", "integer").endObject()
-                    .startObject("isOfficial").field("type", "string").endObject()
+                    .startObject("isOfficial").field("type", "integer").endObject()
                     .startObject("userId").field("type", "string").endObject()
                     .startObject("trafficVolume").field("type", "integer").endObject()
                     .startObject("ingredient").field("type", "string").field("analyzer", "ik_max_word").field("search_analyzer", "ik_max_word").endObject()
@@ -106,7 +106,8 @@ public class EsTest {
 
     @Test
     public void testSearch() throws Exception {
-        List<String> keywords = EsClient.analyze("四川的东坡肉");
+        List<String> keywords = EsClient.analyze("红糖核桃发面饼");
+        logger.info("keywords:[{}]", keywords);
 //        BoolQueryBuilder bool = QueryBuilders.boolQuery();
 //        for (String keyword : keywords) {
 //            bool.should(termQuery("name", keyword));
