@@ -5,11 +5,13 @@ import com.jamedow.laodoufang.entity.Recipe;
 import com.jamedow.laodoufang.plugin.es.EsClient;
 import com.jamedow.laodoufang.service.ElasticSearchService;
 import com.jamedow.laodoufang.service.RecipeService;
+import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.common.lucene.search.function.FieldValueFactorFunction;
 import org.elasticsearch.common.lucene.search.function.FiltersFunctionScoreQuery;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilder;
@@ -48,17 +50,19 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     }
 
     private FunctionScoreQueryBuilder buildSearchQuery(String content, String[] tags, String isOfficial) {
-        List<String> keywords = EsClient.analyze(content);
+        FunctionScoreQueryBuilder query = null;
+
         BoolQueryBuilder bool = QueryBuilders.boolQuery();
-        for (String keyword : keywords) {
-            bool.must(termQuery("name", keyword));
-        }
+
+        MatchQueryBuilder match = QueryBuilders.matchQuery("name", content).boost(0.5f);
+        bool.must(match);
         if (tags != null) {
             for (String tag : tags) {
-                bool.should(termQuery("tags", tag));
+                if (StringUtils.isNotBlank(tag)) {
+                    bool.should(termQuery("tags", tag));
+                }
             }
         }
-        FunctionScoreQueryBuilder query = null;
         if (isOfficial != null) {
             ScoreFunctionBuilder scoreFunctionBuilder = ScoreFunctionBuilders.fieldValueFactorFunction("isOfficial").modifier(FieldValueFactorFunction.Modifier.NONE);
             query = QueryBuilders.functionScoreQuery(bool, scoreFunctionBuilder).scoreMode(FiltersFunctionScoreQuery.ScoreMode.SUM);
