@@ -11,6 +11,7 @@ import com.jamedow.laodoufang.service.RecipeService;
 import com.jamedow.laodoufang.service.TagsService;
 import com.jamedow.laodoufang.service.VoteService;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.search.SearchHit;
 import org.slf4j.Logger;
@@ -49,7 +50,7 @@ public class RecipeController {
         view.setViewName("recipe/list");
 
         String searchKeyWord = request.getParameter("searchKeyWord");
-        Integer currentPage = Integer.valueOf(request.getParameter("currentPage") == null ? "0" : request.getParameter("currentPage"));
+        Integer currentPage = Integer.valueOf(request.getParameter("currentPage") == null ? "1" : request.getParameter("currentPage"));
         Page page = new Page();
         page.setCurrentPage(currentPage);
         if (StringUtils.isNotBlank(searchKeyWord)) {
@@ -60,6 +61,7 @@ public class RecipeController {
 
         List<Tags> tags = tagsService.getTagsByParentId(0);
         view.addObject("tags", JSONArray.fromObject(tags));
+        view.addObject("page", page);
         return view;
     }
 
@@ -136,9 +138,12 @@ public class RecipeController {
         page.setCurrentPage(currentPage);
         SearchHit[] hits = null;
         if (StringUtils.isNotBlank(searchKeyWord)) {
-            hits = esService.search(searchKeyWord, choseTags.split(","), isOfficial, page);
+            hits = esService.search(searchKeyWord, choseTags, isOfficial, page);
         }
-        return JSONArray.fromObject(hits).toString();
+        JSONObject result = new JSONObject();
+        result.put("hits", hits);
+        result.put("page", page);
+        return JSONObject.fromObject(result).toString();
     }
 
     @RequestMapping(value = "vote", produces = "application/json;charset=utf-8")

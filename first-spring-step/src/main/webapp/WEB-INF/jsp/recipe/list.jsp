@@ -12,6 +12,7 @@
 <head>
     <%@include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${ctx}/static/css/product-list.css"/>
+    <link rel="stylesheet" href="${ctx}/static/pagination/pagination.css"/>
 </head>
 <body>
 <%@include file="../common/site-nav.jsp" %>
@@ -20,7 +21,7 @@
         <div class="pitch-on">
             <ul></ul>
             <input type="hidden" id="choseTags"/>
-            <div>只看官方<input type="checkbox" id="isOfficial" onchange="searchRecipes();"/></div>
+            <div>只看官方<input type="checkbox" id="isOfficial" onchange="filterRecipes(1);"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
@@ -45,6 +46,7 @@
             </div>
         </c:forEach>
     </div>
+    <div class="M-box"></div>
 </div>
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
@@ -67,14 +69,32 @@
     <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script type="application/javascript" src="${ctx}/static/pagination/jquery.pagination.js"></script>
 <script type="application/javascript">
 
     var tags = ${tags};
+    var records = ${page.records};
     $(function () {
         var tagsHtml = template('tagsTemplate', {tags: tags});
         $(".param-children ul").html(tagsHtml);
 
         paramBindClick();
+
+        $('.M-box').pagination({
+            pageCount: 8, //初始化时总页数8页
+            totalData: records,//总记录数
+            showData: 6,//每页记录数
+            coping: true,
+            homePage: '首页',
+            endPage: '末页',
+            prevContent: '上页',
+            nextContent: '下页',
+            callback: function (api) {
+                searchRecipes(api.getCurrent());
+            }
+        }, function (api) {
+            $('.now').text(api.getCurrent());
+        });
     });
 
     function paramBindClick() {
@@ -102,37 +122,81 @@
                 $(".pitch-on ul li span").off();
                 $(".pitch-on ul li span").on("click", function () {
                     $(this).parents("li").remove();
+                    var tagNames = [];
+                    var $patches = $(".pitch-on li");
+                    $patches.each(function (n, patch) {
+                        var tagName = $(patch).text();
+                        tagNames.push(tagName)
+                    });
+                    $("#choseTags").val(tagNames.join(","));
+                    searchRecipes(1);
                 });
 
-                var tagIds = [];
+                var tagNames = [];
                 var $patches = $(".pitch-on li");
                 $patches.each(function (n, patch) {
-                    var tagId = $(patch).attr("tagId");
-                    tagIds.push(tagId)
+                    var tagName = $(patch).text();
+                    tagNames.push(tagName)
                 });
 
-                $("#choseTags").val(tagIds.join(","));
-
+                $("#choseTags").val(tagNames.join(","));
+                searchRecipes(1);
             }
         });
     }
 
-    function searchRecipes() {
+    function searchRecipes(currentPage) {
         $.ajax({
             url: "${ctx}/recipe/getRecipes",
             method: "get",
             data: {
                 searchKeyWord: $("#searchKeyWord").val(),
-                isOfficial: $("#isOfficial").val() == "on" ? 1 : 0,
+                isOfficial: $("#isOfficial").prop("checked") ? 1 : 0,
                 choseTags: $("#choseTags").val(),
-                currentPage: 1
+                currentPage: currentPage
             },
-            success: function (hits) {
+            success: function (result) {
                 var recipesHtml = template('recipeTemplate',
                     {
-                        hits: hits
+                        hits: result.hits
                     });
                 $("#recipes").html(recipesHtml);
+            }
+        })
+    }
+
+    function filterRecipes(currentPage) {
+        $.ajax({
+            url: "${ctx}/recipe/getRecipes",
+            method: "get",
+            data: {
+                searchKeyWord: $("#searchKeyWord").val(),
+                isOfficial: $("#isOfficial").prop("checked") ? 1 : 0,
+                choseTags: $("#choseTags").val(),
+                currentPage: currentPage
+            },
+            success: function (result) {
+                var recipesHtml = template('recipeTemplate',
+                    {
+                        hits: result.hits
+                    });
+                $("#recipes").html(recipesHtml);
+
+                $('.M-box').pagination({
+                    pageCount: 8, //初始化时总页数8页
+                    totalData: records,//总记录数
+                    showData: 6,//每页记录数
+                    coping: true,
+                    homePage: '首页',
+                    endPage: '末页',
+                    prevContent: '上页',
+                    nextContent: '下页',
+                    callback: function (api) {
+                        searchRecipes(api.getCurrent());
+                    }
+                }, function (api) {
+                    $('.now').text(api.getCurrent());
+                });
             }
         })
     }

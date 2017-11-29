@@ -11,7 +11,6 @@ import org.elasticsearch.common.lucene.search.function.FieldValueFactorFunction;
 import org.elasticsearch.common.lucene.search.function.FiltersFunctionScoreQuery;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilder;
@@ -40,8 +39,8 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
     private RecipeService recipeService;
 
     @Override
-    public SearchHit[] search(String content, String[] tags, String isOfficial, Page page) {
-        int from = page.getCurrentPage() * page.getPageSize();
+    public SearchHit[] search(String content, String tags, String isOfficial, Page page) {
+        int from = (page.getCurrentPage() - 1) * page.getPageSize();
         SearchResponse searchResponse = EsClient.search("laodoufang", "recipe",
                 buildSearchQuery(content, tags, isOfficial), from, page.getPageSize());
         page.setRecords((int) searchResponse.getHits().getTotalHits());
@@ -49,21 +48,16 @@ public class ElasticSearchServiceImpl implements ElasticSearchService {
         return searchResponse.getHits().getHits();
     }
 
-    private FunctionScoreQueryBuilder buildSearchQuery(String content, String[] tags, String isOfficial) {
+    private FunctionScoreQueryBuilder buildSearchQuery(String content, String tags, String isOfficial) {
         FunctionScoreQueryBuilder query = null;
 
         BoolQueryBuilder bool = QueryBuilders.boolQuery();
 
-        MatchQueryBuilder match = QueryBuilders.matchQuery("name", content).boost(0.5f);
-        bool.must(match);
-        if (tags != null) {
-            for (String tag : tags) {
-                if (StringUtils.isNotBlank(tag)) {
-                    bool.should(termQuery("tags", tag));
-                }
-            }
+        bool.must(termQuery("name", content).boost(0.5f));
+        if (StringUtils.isNotBlank(tags)) {
+            bool.must(termQuery("tags", tags).boost(0.5f));
         }
-        if (isOfficial != null) {
+        if (isOfficial != null && "1".equals(isOfficial)) {
             ScoreFunctionBuilder scoreFunctionBuilder = ScoreFunctionBuilders.fieldValueFactorFunction("isOfficial").modifier(FieldValueFactorFunction.Modifier.NONE);
             query = QueryBuilders.functionScoreQuery(bool, scoreFunctionBuilder).scoreMode(FiltersFunctionScoreQuery.ScoreMode.SUM);
         } else {
