@@ -53,8 +53,9 @@ hr {
 }
 
 .recipe-material .intro {
-    padding: 0.5rem;
-    text-indent: 2rem;
+    width: 50rem;
+    padding: 7px;
+    text-indent: 30px;
     font-size: 14px;
     line-height: 24px;
     color: #666;

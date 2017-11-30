@@ -24,17 +24,17 @@
         </div>
         <div class="params">
             <h2>${recipe.name}</h2>
-
+            <div class="detail recipe-material">
+                <div class="intro">${recipe.intro}</div>
+                <div class="material"></div>
+            </div>
         </div>
     </div>
     <div class="detail recipe-left">
 
     </div>
     <div class="recipe-content">
-        <div class="detail recipe-material">
-            <div class="intro">${recipe.intro}</div>
-            <div class="material"></div>
-        </div>
+
         <div class="detail recipe-detail">
             <div class="tables">
                 <ul>
