@@ -129,7 +129,7 @@
                         tagNames.push(tagName)
                     });
                     $("#choseTags").val(tagNames.join(","));
-                    searchRecipes(1);
+                    filterRecipes(1);
                 });
 
                 var tagNames = [];
@@ -140,7 +140,7 @@
                 });
 
                 $("#choseTags").val(tagNames.join(","));
-                searchRecipes(1);
+                filterRecipes(1);
             }
         });
     }
@@ -181,10 +181,10 @@
                         hits: result.hits
                     });
                 $("#recipes").html(recipesHtml);
-
+                console.log(result.page.records)
                 $('.M-box').pagination({
                     pageCount: 8, //初始化时总页数8页
-                    totalData: records,//总记录数
+                    totalData: result.page.records,//总记录数
                     showData: 6,//每页记录数
                     coping: true,
                     homePage: '首页',
