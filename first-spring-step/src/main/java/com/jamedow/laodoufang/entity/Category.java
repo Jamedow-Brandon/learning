@@ -17,7 +17,7 @@ public class Category {
 
     private String intro;
 
-    private String categoryCode;
+    private String code;
 
     private List<Category> childrenCategories;
 
@@ -77,13 +77,14 @@ public class Category {
         this.intro = intro;
     }
 
-    public String getCategoryCode() {
-        return categoryCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
+    public void setCode(String code) {
+        this.code = code;
     }
+
 
     public List<Category> getChildrenCategories() {
         return childrenCategories;

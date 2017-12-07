@@ -25,7 +25,7 @@
 <%@include file="common/site-nav.jsp" %>
 
 <c:forEach items="${categories}" var="category">
-    <section class="floor ${category.categoryCode}">
+    <section class="floor ${category.code}">
         <div class="category-all">
             <c:forEach items="${category.childrenCategories}" var="childCategory">
                 <div class="col-md-6 col-xs-12">

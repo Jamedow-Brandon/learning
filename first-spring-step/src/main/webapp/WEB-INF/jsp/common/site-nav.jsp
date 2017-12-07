@@ -15,7 +15,8 @@
             <div class="search-field">
                 <form action="${ctx}/recipe/list" method="get">
                     <div class="search-box-input">
-                        <input type="text" name="searchKeyWord" placeholder="请输入你想做的菜"/>
+                        <input type="text" id="searchKeyWord" name="searchKeyWord" value="${searchKeyWord}"
+                               placeholder="请输入你想做的菜"/>
                     </div>
                     <button class="btn-search" type="submit">搜索</button>
                 </form>
@@ -47,7 +48,7 @@
         <ul>
             <li>首页</li>
             <li>食谱零食</li>
-            <li>零食</li>
+            <li onclick="window.open('${ctx}/snack')">零食</li>
             <li>零食零食</li>
             <li>零食</li>
         </ul>

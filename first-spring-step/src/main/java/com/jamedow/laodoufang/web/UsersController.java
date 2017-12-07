@@ -90,7 +90,7 @@ public class UsersController {
                 return UsersService.USER_EXIST;//用户已存在
 
             user = new Users();
-            user.setId((long) (Constant.ZERO));
+            user.setId(Constant.ZERO);
             user.setUsername(userName);
             password = MD5.md5crypt(password);
             user.setPassword(password);

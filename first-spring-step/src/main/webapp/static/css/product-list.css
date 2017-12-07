@@ -19,15 +19,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .filter-area {
     margin-top: 9rem;
-}
-
-.pitch-on {
-    border: 1px solid #000;
+    padding: 1rem;
 }
 
 .pitch-on p {
     margin: 0.25rem 1rem 0.25rem 0.25rem;
     float: left;
+}
+
+.pitch-on ul {
+    padding-left: 0;
 }
 
 .pitch-on ul {
@@ -37,8 +38,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pitch-on ul li {
-    border: 1px solid black;
-    border-radius: 10px;
+    background-color: #528870;
+    border: 3px solid #bcd0c5;
+    color: #fdecd0;
+    border-radius: 6px;
     text-align: center;
     margin: 0.25rem 0.5rem;
     padding: 0 0.5rem;
@@ -48,10 +51,13 @@ h1, h2, h3, h4, h5, h6 {
 .pitch-on ul li span {
     margin: 0.25rem 0 0.25rem 0.25rem;
     cursor: pointer;
+    color: #91bfbf;
 }
 
 .pitch-on div {
     margin: 0.25rem 0 0.25rem 0.25rem;
+    padding: 0.3rem;
+    border: 3px solid #fdecd0;
 }
 
 .pitch-on div input {
@@ -59,6 +65,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .waiting-for-selection {
+    width: 79%;
+    border: 1px solid #E4E4E4;
     margin: 1rem 0;
 }
 
@@ -69,10 +77,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .waiting-for-selection .param-parent {
-    width: 100%;
-    height: 2rem;
+    height: 3rem;
     margin: 0.25rem 0;
     border-radius: 5px;
+    float: left;
 }
 
 .waiting-for-selection .param-parent ul {
@@ -82,18 +90,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .waiting-for-selection .param-parent ul li {
-    border: 1px solid black;
+    background-color: #91bfbf;
+    border: 3px solid #fdecd0;
+    color: #528870;
     text-align: center;
     margin: 0.25rem 0;
-    padding: 0 0.5rem;
+    padding: 0.2rem 0.7rem;
     float: left;
     cursor: pointer;
 }
 
 .waiting-for-selection .param-children {
-    width: 100%;
     margin: 0.25rem 0;
     border-radius: 5px;
+    float: left;
 }
 
 .waiting-for-selection .param-children ul {
@@ -103,10 +113,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .waiting-for-selection .param-children ul li {
-    border: 1px solid black;
+    background-color: #fdecd0;
+    color: #528870;
+    border-radius: 6px;
     text-align: center;
-    margin: 0.25rem 0;
-    padding: 0 0.5rem;
+    margin: 0.3rem 0.5rem;
+    padding: 0.25rem 0.7rem;
     float: left;
     cursor: pointer;
+}
+
+.recipe-list {
+    height: 60rem;
+    margin: 0 1rem;
+}
+
+.recipe {
+    width: 525px;
+    height: 270px;
+    margin: 7px;
+    border: 3px solid #fdecd0;
+    float: left;
+}
+
+.recipe img {
+    height: 200px;
+    width: 200px;
+    margin: 0 1rem 1rem 1rem;
+    float: left;
+}
+
+.recipe h3 {
+    width: 500px;
+    margin: 15px;
+    text-align: center;
+    color: #91bfbf;
+}
+
+.recipe p {
+    text-indent: 30px;
+    margin: 15px 0;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }

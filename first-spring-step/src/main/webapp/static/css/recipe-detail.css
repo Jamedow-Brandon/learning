@@ -1,0 +1,131 @@
+html, body, h1, span, div {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background-color: #292a30;
+    font-size: 100%;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.detail {
+    margin: 0.5rem;
+    padding: 1rem;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.recipe-header {
+    height: 40rem;
+}
+
+.recipe-header .images {
+    float: left;
+}
+
+.recipe-header .images img {
+    width: 20rem;
+    height: 30rem;
+}
+
+.recipe-header .params {
+    float: left;
+}
+
+.recipe-header .params h2 {
+    width: 45rem;
+    margin: 0 2rem;
+    text-align: center;
+}
+
+.recipe-left {
+    width: 25rem;
+    float: left;
+}
+
+.recipe-content {
+    width: 50rem;
+    float: left
+}
+
+.recipe-material .intro {
+    width: 50rem;
+    padding: 7px;
+    text-indent: 30px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    background-color: #bcd0c5;
+    border-radius: 15px;
+}
+
+.recipe-content .recipe-detail .tables {
+    margin-bottom: 1rem;
+    height: 1rem;
+}
+
+.recipe-content .recipe-detail .tables ul {
+    list-style-type: none;
+}
+
+.recipe-content .recipe-detail .tables ul li {
+    text-align: center;
+    float: left;
+    line-height: 2rem;
+    padding: 0 2rem;
+    color: #bcd0c5;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 15px 15px 0 0;
+}
+
+.tables-active {
+    border: 3px solid #bcd0c5;
+}
+
+.detail-content {
+    padding: 3rem;
+    background-color: #bcd0c5;
+    border-radius: 15px;
+}
+
+.comments {
+    display: none;
+    min-height: 800px;
+}
+
+.comment {
+    width: 700px;
+}
+
+.comment img {
+    width: 40px;
+    height: 40px;
+}
+
+.comment .comment-top {
+    padding: 0.5rem;
+}
+
+.comment .comment-top .comment-time {
+    padding: 0.5rem;
+    float: right;
+}
+
+.comment .comment-vote i {
+    padding: 0 8px;
+}
+
+.comment .vote-button {
+    margin: 0 3px;
+    padding: 2px 8px 3px 2px;
+    border-radius: 5px;
+    background-color: #bcd0c5;
+    cursor: pointer;
+}
+
+

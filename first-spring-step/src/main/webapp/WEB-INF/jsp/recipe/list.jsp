@@ -12,19 +12,19 @@
 <head>
     <%@include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${ctx}/static/css/product-list.css"/>
+    <link rel="stylesheet" href="${ctx}/static/pagination/pagination.css"/>
 </head>
 <body>
 <%@include file="../common/site-nav.jsp" %>
 <div class="container">
     <div class="filter-area">
         <div class="pitch-on">
-            <p>已选属性：</p>
             <ul></ul>
-            <div>只看官方<input type="checkbox"/></div>
+            <input type="hidden" id="choseTags"/>
+            <div>只看官方<input type="checkbox" id="isOfficial" onchange="filterRecipes(1);"/></div>
         </div>
         <div class="clear"></div>
         <div class="waiting-for-selection">
-            <p>待选属性：</p>
             <div class="param-parent">
                 <ul></ul>
             </div>
@@ -32,12 +32,34 @@
                 <ul></ul>
                 <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
         <div class="sort-by"></div>
     </div>
+    <div id="recipes" class="recipe-list">
+        <c:forEach items="${hits}" var="hit">
+            <div class="recipe">
+                <h3>${hit.sourceAsMap.name}</h3>
+                <img class="img-thumbnail"
+                     src="${hit.sourceAsMap.imgUrl}"/>
+                <p>${hit.sourceAsMap.intro}</p>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="M-box"></div>
 </div>
 <%@include file="../common/copy-right.jsp" %>
 <%@include file="../common/footer.jsp" %>
+<script type="text/html" id="recipeTemplate">
+    {{each hits as hit}}
+    <div class="recipe">
+        <h3>{{hit.sourceAsMap.name}}</h3>
+        <img class="img-thumbnail"
+             src="{{hit.sourceAsMap.imgUrl}}"/>
+        <p>{{hit.sourceAsMap.intro}}</p>
+    </div>
+    {{/each}}
+</script>
 <script type="text/html" id="tagsTemplate">
     {{each tags as tag}}
     <li tagId="{{tag.id}}" isLeaf="{{tag.isLeaf}}">{{tag.name}}</li>
@@ -47,14 +69,32 @@
     <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
 </script>
 <script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script type="application/javascript" src="${ctx}/static/pagination/jquery.pagination.js"></script>
 <script type="application/javascript">
 
     var tags = ${tags};
+    var records = ${page.records};
     $(function () {
         var tagsHtml = template('tagsTemplate', {tags: tags});
         $(".param-children ul").html(tagsHtml);
 
         paramBindClick();
+
+        $('.M-box').pagination({
+            pageCount: 8, //初始化时总页数8页
+            totalData: records,//总记录数
+            showData: 6,//每页记录数
+            coping: true,
+            homePage: '首页',
+            endPage: '末页',
+            prevContent: '上页',
+            nextContent: '下页',
+            callback: function (api) {
+                searchRecipes(api.getCurrent());
+            }
+        }, function (api) {
+            $('.now').text(api.getCurrent());
+        });
     });
 
     function paramBindClick() {
@@ -70,6 +110,9 @@
                 });
                 $(".param-parent ul").append($param);
             } else {
+                if (!checkTags($param.attr("tagId"))) {
+                    return false;
+                }
                 var tagsHtml = template('pitchTemplate',
                     {
                         id: $param.attr("tagId"),
@@ -79,10 +122,100 @@
                 $(".pitch-on ul li span").off();
                 $(".pitch-on ul li span").on("click", function () {
                     $(this).parents("li").remove();
-                })
+                    var tagNames = [];
+                    var $patches = $(".pitch-on li");
+                    $patches.each(function (n, patch) {
+                        var tagName = $(patch).text();
+                        tagNames.push(tagName)
+                    });
+                    $("#choseTags").val(tagNames.join(","));
+                    filterRecipes(1);
+                });
 
+                var tagNames = [];
+                var $patches = $(".pitch-on li");
+                $patches.each(function (n, patch) {
+                    var tagName = $(patch).text();
+                    tagNames.push(tagName)
+                });
+
+                $("#choseTags").val(tagNames.join(","));
+                filterRecipes(1);
             }
         });
+    }
+
+    function searchRecipes(currentPage) {
+        $.ajax({
+            url: "${ctx}/recipe/getRecipes",
+            method: "get",
+            data: {
+                searchKeyWord: $("#searchKeyWord").val(),
+                isOfficial: $("#isOfficial").prop("checked") ? 1 : 0,
+                choseTags: $("#choseTags").val(),
+                currentPage: currentPage
+            },
+            success: function (result) {
+                var recipesHtml = template('recipeTemplate',
+                    {
+                        hits: result.hits
+                    });
+                $("#recipes").html(recipesHtml);
+            }
+        })
+    }
+
+    function filterRecipes(currentPage) {
+        $.ajax({
+            url: "${ctx}/recipe/getRecipes",
+            method: "get",
+            data: {
+                searchKeyWord: $("#searchKeyWord").val(),
+                isOfficial: $("#isOfficial").prop("checked") ? 1 : 0,
+                choseTags: $("#choseTags").val(),
+                currentPage: currentPage
+            },
+            success: function (result) {
+                var recipesHtml = template('recipeTemplate',
+                    {
+                        hits: result.hits
+                    });
+                $("#recipes").html(recipesHtml);
+                console.log(result.page.records)
+                $('.M-box').pagination({
+                    pageCount: 8, //初始化时总页数8页
+                    totalData: result.page.records,//总记录数
+                    showData: 6,//每页记录数
+                    coping: true,
+                    homePage: '首页',
+                    endPage: '末页',
+                    prevContent: '上页',
+                    nextContent: '下页',
+                    callback: function (api) {
+                        searchRecipes(api.getCurrent());
+                    }
+                }, function (api) {
+                    $('.now').text(api.getCurrent());
+                });
+            }
+        })
+    }
+
+    /**
+     * 校验重复标签
+     * @param id 点击标签id
+     * @returns {boolean}
+     */
+    function checkTags(id) {
+        var selectedTags = $(".pitch-on li");
+        var flag = true;
+        selectedTags.each(function (index, tag) {
+            if ($(tag).attr("tagId") === id) {
+                flag = false;
+                return false;
+            }
+        });
+        return flag;
     }
 
     function getChildrenTags(_tagsId) {

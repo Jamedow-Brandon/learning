@@ -7,7 +7,6 @@ import com.jamedow.laodoufang.mapper.TagsRelMapperEx;
 import com.jamedow.laodoufang.service.TagsRelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,7 +14,6 @@ import java.util.List;
  * Created by yoyo on 2017/7/13.
  */
 @Service
-@Transactional
 public class TagsRelServiceImpl implements TagsRelService {
 
     @Autowired
