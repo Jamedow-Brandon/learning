@@ -18,7 +18,7 @@
     <meta name="googlebot" content="index, follow">
     <meta name="Author" contect="张雨桐老豆">
 
-    <link rel="stylesheet" href="${ctx}/static/css/snack.css?v=20170717"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/snack.css?v=20170717"/>
 </head>
 
 <body>

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="${ctx}/static/select2/dist/css/select2.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/css/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/examples/image-upload/style.css">
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-edit.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/recipe-edit.css"/>
     <title>老豆坊</title>
 </head>
 <body>

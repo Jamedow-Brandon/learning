@@ -12,7 +12,7 @@
 <head>
     <%@include file="../common/header.jsp" %>
     <link rel="stylesheet" href="${ctx}/static/select2/dist/css/select2.min.css"/>
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-add.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/recipe-edit.css"/>
     <title>老豆坊</title>
 </head>
 <body>

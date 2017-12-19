@@ -68,7 +68,7 @@
 <script type="text/html" id="pitchTemplate">
     <li tagId="{{id}}">{{name}}<span class="fa fa-times-circle-o"></span></li>
 </script>
-<script type="application/javascript" src="${ctx}/static/script/template.js"></script>
+<script type="application/javascript" src="${ctx}/static/artTemplate/template.js"></script>
 <script type="application/javascript" src="${ctx}/static/pagination/jquery.pagination.js"></script>
 <script type="application/javascript">
 

@@ -14,7 +14,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>一叶梧桐落</title>
-    <link rel="stylesheet" href="${ctx}/static/css/index.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/index.css"/>
 </head>
 <body>
 

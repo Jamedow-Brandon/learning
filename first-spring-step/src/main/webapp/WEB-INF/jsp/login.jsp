@@ -12,7 +12,7 @@
 <head>
     <%@include file="common/header.jsp" %>
     <title>老豆坊</title>
-    <link rel="stylesheet" href="${ctx}/static/css/login.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/login.css"/>
 </head>
 
 <body>

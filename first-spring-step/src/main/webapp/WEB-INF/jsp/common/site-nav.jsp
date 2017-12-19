@@ -4,8 +4,9 @@
         <div class="container">
             <div class="logo-area">
                 <h1>
-                    <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/img/logo.png"
-                                                         alt="logo"/><img class="logo" src="${ctx}/static/img/H1.png"
+                    <a href="//www.laodou.site/">老豆坊<img class="icon" src="${ctx}/static/common/img/logo.png"
+                                                         alt="logo"/><img class="logo"
+                                                                          src="${ctx}/static/common/img/H1.png"
                                                                           alt="店招"/></a>
                 </h1>
                 <h2>
@@ -30,7 +31,7 @@
                 <c:if test="${not empty user}">
                     <c:if test="${empty user.photo}">
                         <img class="photo"
-                             src="${ctx}/static/img/default-photo.png"
+                             src="${ctx}/static/common/img/default-photo.png"
                              alt="头像"/>
                     </c:if>
                     <c:if test="${not empty user.photo}">

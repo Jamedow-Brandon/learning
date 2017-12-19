@@ -11,7 +11,7 @@
 <html lang="zh-CN">
 <head>
     <%@include file="../common/header.jsp" %>
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-detail.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/recipe-detail.css"/>
     <title>${recipe.name}</title>
 </head>
 <body>

@@ -15,7 +15,7 @@
     <!--引入CSS-->
     <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/css/webuploader.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/webuploader/examples/image-upload/style.css">
-    <link rel="stylesheet" href="${ctx}/static/css/recipe-edit.css"/>
+    <link rel="stylesheet" href="${ctx}/static/common/css/recipe-edit.css"/>
     <title>Title</title>
 </head>
 <body>
